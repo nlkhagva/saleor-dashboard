@@ -867,32 +867,7 @@ export const order = (placeholder: string): OrderDetails_order => ({
         {
           __typename: "FulfillmentLine",
           id: "RnVsZmlsbG1lbnRMaW5lOjM5",
-          orderLine: {
-            __typename: "OrderLine",
-            id: "T3JkZXJMaW5lOjIz",
-            isShippingRequired: false,
-            productName: "Williams, Garcia and Walker (XS)",
-            productSku: "5-1337",
-            quantity: 2,
-            quantityFulfilled: 2,
-            thumbnail: {
-              __typename: "Image" as "Image",
-              url: placeholder
-            },
-            unitPrice: {
-              __typename: "TaxedMoney",
-              gross: {
-                __typename: "Money",
-                amount: 79.71,
-                currency: "USD"
-              },
-              net: {
-                __typename: "Money",
-                amount: 79.71,
-                currency: "USD"
-              }
-            }
-          },
+          orderLine: null,
           quantity: 1
         }
       ],
@@ -908,32 +883,7 @@ export const order = (placeholder: string): OrderDetails_order => ({
         {
           __typename: "FulfillmentLine",
           id: "RnVsZmlsbG1lbnRMaW5lOjE1",
-          orderLine: {
-            __typename: "OrderLine",
-            id: "T3JkZXJMaW5lOjIz",
-            isShippingRequired: false,
-            productName: "Williams, Garcia and Walker (XS)",
-            productSku: "5-1337",
-            quantity: 2,
-            quantityFulfilled: 2,
-            thumbnail: {
-              __typename: "Image" as "Image",
-              url: placeholder
-            },
-            unitPrice: {
-              __typename: "TaxedMoney",
-              gross: {
-                __typename: "Money",
-                amount: 79.71,
-                currency: "USD"
-              },
-              net: {
-                __typename: "Money",
-                amount: 79.71,
-                currency: "USD"
-              }
-            }
-          },
+          orderLine: null,
           quantity: 1
         }
       ],
@@ -953,60 +903,7 @@ export const order = (placeholder: string): OrderDetails_order => ({
       url: "invoice1"
     }
   ],
-  lines: [
-    {
-      __typename: "OrderLine",
-      id: "T3JkZXJMaW5lOjIy",
-      isShippingRequired: true,
-      productName: "Watkins-Gonzalez (Soft)",
-      productSku: "59-1337",
-      quantity: 3,
-      quantityFulfilled: 0,
-      thumbnail: {
-        __typename: "Image" as "Image",
-        url: placeholder
-      },
-      unitPrice: {
-        __typename: "TaxedMoney",
-        gross: {
-          __typename: "Money",
-          amount: 18.51,
-          currency: "USD"
-        },
-        net: {
-          __typename: "Money",
-          amount: 18.51,
-          currency: "USD"
-        }
-      }
-    },
-    {
-      __typename: "OrderLine",
-      id: "T3JkZXJMaW5lOjIz",
-      isShippingRequired: true,
-      productName: "Williams, Garcia and Walker (XS)",
-      productSku: "5-1337",
-      quantity: 2,
-      quantityFulfilled: 2,
-      thumbnail: {
-        __typename: "Image" as "Image",
-        url: placeholder
-      },
-      unitPrice: {
-        __typename: "TaxedMoney",
-        gross: {
-          __typename: "Money",
-          amount: 79.71,
-          currency: "USD"
-        },
-        net: {
-          __typename: "Money",
-          amount: 79.71,
-          currency: "USD"
-        }
-      }
-    }
-  ],
+  lines: [],
   number: "9",
   paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED,
   shippingAddress: {
@@ -1095,60 +992,7 @@ export const draftOrder = (placeholder: string): OrderDetails_order => ({
       url: "invoice1"
     }
   ],
-  lines: [
-    {
-      __typename: "OrderLine" as "OrderLine",
-      id: "T3JkZXJMaW5lOjQ1",
-      isShippingRequired: false,
-      productName: "Davis Group (Hard)",
-      productSku: "58-1338",
-      quantity: 2,
-      quantityFulfilled: 0,
-      thumbnail: {
-        __typename: "Image" as "Image",
-        url: placeholder
-      },
-      unitPrice: {
-        __typename: "TaxedMoney" as "TaxedMoney",
-        gross: {
-          __typename: "Money" as "Money",
-          amount: 65.95,
-          currency: "USD"
-        },
-        net: {
-          __typename: "Money" as "Money",
-          amount: 65.95,
-          currency: "USD"
-        }
-      }
-    },
-    {
-      __typename: "OrderLine" as "OrderLine",
-      id: "T3JkZXJMaW5lOjQ2",
-      isShippingRequired: false,
-      productName: "Anderson PLC (15-1337)",
-      productSku: "15-1337",
-      quantity: 2,
-      quantityFulfilled: 0,
-      thumbnail: {
-        __typename: "Image" as "Image",
-        url: placeholder
-      },
-      unitPrice: {
-        __typename: "TaxedMoney" as "TaxedMoney",
-        gross: {
-          __typename: "Money" as "Money",
-          amount: 68.2,
-          currency: "USD"
-        },
-        net: {
-          __typename: "Money" as "Money",
-          amount: 68.2,
-          currency: "USD"
-        }
-      }
-    }
-  ],
+  lines: [],
   number: "24",
   paymentStatus: null,
   shippingAddress: null,

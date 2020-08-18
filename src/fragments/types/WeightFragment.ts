@@ -1,6 +1,9 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
+
+import { WeightUnitsEnum } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL fragment: WeightFragment
@@ -8,6 +11,12 @@
 
 export interface WeightFragment {
   __typename: "Weight";
-  unit: string;
+  /**
+   * Weight unit.
+   */
+  unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
   value: number;
 }

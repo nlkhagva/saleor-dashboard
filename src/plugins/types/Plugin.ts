@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 import { ConfigurationTypeFieldEnum } from "./../../types/globalTypes";
@@ -10,10 +11,25 @@ import { ConfigurationTypeFieldEnum } from "./../../types/globalTypes";
 
 export interface Plugin_plugin_configuration {
   __typename: "ConfigurationItem";
+  /**
+   * Name of the field.
+   */
   name: string;
+  /**
+   * Type of the field.
+   */
   type: ConfigurationTypeFieldEnum | null;
+  /**
+   * Current value of the field.
+   */
   value: string | null;
+  /**
+   * Help text for the field.
+   */
   helpText: string | null;
+  /**
+   * Label for the field.
+   */
   label: string | null;
 }
 
@@ -27,6 +43,9 @@ export interface Plugin_plugin {
 }
 
 export interface Plugin {
+  /**
+   * Look up a plugin by ID.
+   */
   plugin: Plugin_plugin | null;
 }
 

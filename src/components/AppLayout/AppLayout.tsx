@@ -371,7 +371,13 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
                   [classes.logoDark]: isDark
                 })}
               >
-                <SVG src={isMenuSmall ? saleorDarkLogoSmall : saleorDarkLogo} />
+                <SVG
+                  src={
+                    isMenuSmall && !isDrawerOpened
+                      ? saleorDarkLogoSmall
+                      : saleorDarkLogo
+                  }
+                />
               </div>
               <Hidden smDown>
                 <div
@@ -387,7 +393,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
               <MenuList
                 className={isMenuSmall ? classes.menuSmall : classes.menu}
                 menuItems={menuStructure}
-                isMenuSmall={!isMenuSmall}
+                isMenuSmall={!isMenuSmall || isDrawerOpened}
                 location={location.pathname}
                 user={user}
                 renderConfigure={renderConfigure}

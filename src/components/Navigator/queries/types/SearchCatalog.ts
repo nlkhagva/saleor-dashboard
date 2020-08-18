@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -8,12 +9,18 @@
 
 export interface SearchCatalog_categories_edges_node {
   __typename: "Category";
+  /**
+   * The ID of the object.
+   */
   id: string;
   name: string;
 }
 
 export interface SearchCatalog_categories_edges {
   __typename: "CategoryCountableEdge";
+  /**
+   * The item at the end of the edge.
+   */
   node: SearchCatalog_categories_edges_node;
 }
 
@@ -24,6 +31,9 @@ export interface SearchCatalog_categories {
 
 export interface SearchCatalog_collections_edges_node {
   __typename: "Collection";
+  /**
+   * The ID of the object.
+   */
   id: string;
   name: string;
   isPublished: boolean;
@@ -32,6 +42,9 @@ export interface SearchCatalog_collections_edges_node {
 
 export interface SearchCatalog_collections_edges {
   __typename: "CollectionCountableEdge";
+  /**
+   * The item at the end of the edge.
+   */
   node: SearchCatalog_collections_edges_node;
 }
 
@@ -42,12 +55,18 @@ export interface SearchCatalog_collections {
 
 export interface SearchCatalog_products_edges_node_category {
   __typename: "Category";
+  /**
+   * The ID of the object.
+   */
   id: string;
   name: string;
 }
 
 export interface SearchCatalog_products_edges_node {
   __typename: "Product";
+  /**
+   * The ID of the object.
+   */
   id: string;
   category: SearchCatalog_products_edges_node_category | null;
   name: string;
@@ -55,6 +74,9 @@ export interface SearchCatalog_products_edges_node {
 
 export interface SearchCatalog_products_edges {
   __typename: "ProductCountableEdge";
+  /**
+   * The item at the end of the edge.
+   */
   node: SearchCatalog_products_edges_node;
 }
 
@@ -64,8 +86,17 @@ export interface SearchCatalog_products {
 }
 
 export interface SearchCatalog {
+  /**
+   * List of the shop's categories.
+   */
   categories: SearchCatalog_categories | null;
+  /**
+   * List of the shop's collections.
+   */
   collections: SearchCatalog_collections | null;
+  /**
+   * List of the shop's products.
+   */
   products: SearchCatalog_products | null;
 }
 

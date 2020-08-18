@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 import { SaleType } from "./../../types/globalTypes";
@@ -10,6 +11,9 @@ import { SaleType } from "./../../types/globalTypes";
 
 export interface SaleFragment {
   __typename: "Sale";
+  /**
+   * The ID of the object.
+   */
   id: string;
   name: string;
   type: SaleType;

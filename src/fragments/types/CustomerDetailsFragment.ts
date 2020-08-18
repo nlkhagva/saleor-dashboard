@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -8,7 +9,13 @@
 
 export interface CustomerDetailsFragment_defaultShippingAddress_country {
   __typename: "CountryDisplay";
+  /**
+   * Country code.
+   */
   code: string;
+  /**
+   * Country name.
+   */
   country: string;
 }
 
@@ -17,9 +24,15 @@ export interface CustomerDetailsFragment_defaultShippingAddress {
   city: string;
   cityArea: string;
   companyName: string;
+  /**
+   * Shop's default country.
+   */
   country: CustomerDetailsFragment_defaultShippingAddress_country;
   countryArea: string;
   firstName: string;
+  /**
+   * The ID of the object.
+   */
   id: string;
   lastName: string;
   phone: string | null;
@@ -30,7 +43,13 @@ export interface CustomerDetailsFragment_defaultShippingAddress {
 
 export interface CustomerDetailsFragment_defaultBillingAddress_country {
   __typename: "CountryDisplay";
+  /**
+   * Country code.
+   */
   code: string;
+  /**
+   * Country name.
+   */
   country: string;
 }
 
@@ -39,9 +58,15 @@ export interface CustomerDetailsFragment_defaultBillingAddress {
   city: string;
   cityArea: string;
   companyName: string;
+  /**
+   * Shop's default country.
+   */
   country: CustomerDetailsFragment_defaultBillingAddress_country;
   countryArea: string;
   firstName: string;
+  /**
+   * The ID of the object.
+   */
   id: string;
   lastName: string;
   phone: string | null;
@@ -52,6 +77,9 @@ export interface CustomerDetailsFragment_defaultBillingAddress {
 
 export interface CustomerDetailsFragment {
   __typename: "User";
+  /**
+   * The ID of the object.
+   */
   id: string;
   email: string;
   firstName: string;
@@ -60,6 +88,9 @@ export interface CustomerDetailsFragment {
   lastLogin: any | null;
   defaultShippingAddress: CustomerDetailsFragment_defaultShippingAddress | null;
   defaultBillingAddress: CustomerDetailsFragment_defaultBillingAddress | null;
+  /**
+   * A note about the customer.
+   */
   note: string | null;
   isActive: boolean;
 }

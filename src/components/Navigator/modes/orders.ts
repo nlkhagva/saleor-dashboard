@@ -12,7 +12,7 @@ export function isQueryValidOrderNumber(query: string): boolean {
 }
 
 export function getGqlOrderId(orderNumber: string): string {
-  return btoa(`Order:${orderNumber}`);
+  return btoa(unescape(encodeURIComponent(`Order:${orderNumber}`)));
 }
 
 function getOrdersModeActions(

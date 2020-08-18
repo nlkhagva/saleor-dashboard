@@ -36,6 +36,26 @@ function createMenuStructure(intl: IntlShape): IMenuItem[] {
       url: "/"
     },
     {
+      ariaLabel: "orders",
+      children: [
+        {
+          ariaLabel: "orders",
+          label: intl.formatMessage(sectionNames.orders),
+          permission: PermissionEnum.MANAGE_ORDERS,
+          url: orderListUrl()
+        },
+        {
+          ariaLabel: "order drafts",
+          label: intl.formatMessage(commonMessages.drafts),
+          permission: PermissionEnum.MANAGE_ORDERS,
+          url: orderDraftListUrl()
+        }
+      ],
+      icon: ordersIcon,
+      label: intl.formatMessage(sectionNames.orders),
+      permission: PermissionEnum.MANAGE_ORDERS
+    },
+    {
       ariaLabel: "catalogue",
       children: [
         {
@@ -58,26 +78,7 @@ function createMenuStructure(intl: IntlShape): IMenuItem[] {
       label: intl.formatMessage(commonMessages.catalog),
       permission: PermissionEnum.MANAGE_PRODUCTS
     },
-    {
-      ariaLabel: "orders",
-      children: [
-        {
-          ariaLabel: "orders",
-          label: intl.formatMessage(sectionNames.orders),
-          permission: PermissionEnum.MANAGE_ORDERS,
-          url: orderListUrl()
-        },
-        {
-          ariaLabel: "order drafts",
-          label: intl.formatMessage(commonMessages.drafts),
-          permission: PermissionEnum.MANAGE_ORDERS,
-          url: orderDraftListUrl()
-        }
-      ],
-      icon: ordersIcon,
-      label: intl.formatMessage(sectionNames.orders),
-      permission: PermissionEnum.MANAGE_ORDERS
-    },
+
     {
       ariaLabel: "customers",
       icon: customerIcon,

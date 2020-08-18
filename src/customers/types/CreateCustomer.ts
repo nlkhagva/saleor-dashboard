@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 import { UserCreateInput, AccountErrorCode } from "./../../types/globalTypes";
@@ -10,12 +11,21 @@ import { UserCreateInput, AccountErrorCode } from "./../../types/globalTypes";
 
 export interface CreateCustomer_customerCreate_errors {
   __typename: "AccountError";
+  /**
+   * The error code.
+   */
   code: AccountErrorCode;
+  /**
+   * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   */
   field: string | null;
 }
 
 export interface CreateCustomer_customerCreate_user {
   __typename: "User";
+  /**
+   * The ID of the object.
+   */
   id: string;
 }
 
@@ -26,6 +36,9 @@ export interface CreateCustomer_customerCreate {
 }
 
 export interface CreateCustomer {
+  /**
+   * Creates a new customer.
+   */
   customerCreate: CreateCustomer_customerCreate | null;
 }
 

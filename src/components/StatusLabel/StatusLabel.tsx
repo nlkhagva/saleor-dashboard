@@ -25,7 +25,7 @@ const useStyles = makeStyles(
         "&:before": { backgroundColor: yellow[500], ...dot }
       },
       root: {
-        display: "inline-block",
+        // display: "inline-block",
         marginLeft: theme.spacing(1) + 8,
         position: "relative"
       },

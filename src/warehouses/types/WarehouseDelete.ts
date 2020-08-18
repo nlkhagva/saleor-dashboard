@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 import { WarehouseErrorCode } from "./../../types/globalTypes";
@@ -10,7 +11,13 @@ import { WarehouseErrorCode } from "./../../types/globalTypes";
 
 export interface WarehouseDelete_deleteWarehouse_errors {
   __typename: "WarehouseError";
+  /**
+   * The error code.
+   */
   code: WarehouseErrorCode;
+  /**
+   * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   */
   field: string | null;
 }
 
@@ -20,6 +27,9 @@ export interface WarehouseDelete_deleteWarehouse {
 }
 
 export interface WarehouseDelete {
+  /**
+   * Deletes selected warehouse.
+   */
   deleteWarehouse: WarehouseDelete_deleteWarehouse | null;
 }
 

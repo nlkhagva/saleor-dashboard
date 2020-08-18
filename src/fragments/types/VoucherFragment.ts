@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 import { DiscountValueTypeEnum } from "./../../types/globalTypes";
@@ -10,25 +11,46 @@ import { DiscountValueTypeEnum } from "./../../types/globalTypes";
 
 export interface VoucherFragment_countries {
   __typename: "CountryDisplay";
+  /**
+   * Country code.
+   */
   code: string;
+  /**
+   * Country name.
+   */
   country: string;
 }
 
 export interface VoucherFragment_minSpent {
   __typename: "Money";
+  /**
+   * Currency code.
+   */
   currency: string;
+  /**
+   * Amount of money.
+   */
   amount: number;
 }
 
 export interface VoucherFragment {
   __typename: "Voucher";
+  /**
+   * The ID of the object.
+   */
   id: string;
   code: string;
   startDate: any;
   endDate: any | null;
   usageLimit: number | null;
+  /**
+   * Determines a type of discount for voucher - value or percentage
+   */
   discountValueType: DiscountValueTypeEnum;
   discountValue: number;
+  /**
+   * List of countries available for the shipping voucher.
+   */
   countries: (VoucherFragment_countries | null)[] | null;
   minSpent: VoucherFragment_minSpent | null;
   minCheckoutItemsQuantity: number | null;

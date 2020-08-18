@@ -28,6 +28,25 @@ export const fragmentOrderLine = gql`
     productSku
     quantity
     quantityFulfilled
+    variant {
+      id
+      name
+      product {
+        id
+        productType {
+          id
+          name
+        }
+        ushop {
+          id
+          name
+        }
+        metadata {
+          key
+          value
+        }
+      }
+    }
     unitPrice {
       gross {
         amount

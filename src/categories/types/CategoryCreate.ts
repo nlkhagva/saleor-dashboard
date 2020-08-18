@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 import { CategoryInput, ProductErrorCode } from "./../../types/globalTypes";
@@ -10,17 +11,29 @@ import { CategoryInput, ProductErrorCode } from "./../../types/globalTypes";
 
 export interface CategoryCreate_categoryCreate_category_backgroundImage {
   __typename: "Image";
+  /**
+   * Alt text for an image.
+   */
   alt: string | null;
+  /**
+   * The URL of the image.
+   */
   url: string;
 }
 
 export interface CategoryCreate_categoryCreate_category_parent {
   __typename: "Category";
+  /**
+   * The ID of the object.
+   */
   id: string;
 }
 
 export interface CategoryCreate_categoryCreate_category {
   __typename: "Category";
+  /**
+   * The ID of the object.
+   */
   id: string;
   backgroundImage: CategoryCreate_categoryCreate_category_backgroundImage | null;
   name: string;
@@ -32,7 +45,13 @@ export interface CategoryCreate_categoryCreate_category {
 
 export interface CategoryCreate_categoryCreate_errors {
   __typename: "ProductError";
+  /**
+   * The error code.
+   */
   code: ProductErrorCode;
+  /**
+   * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   */
   field: string | null;
 }
 
@@ -43,6 +62,9 @@ export interface CategoryCreate_categoryCreate {
 }
 
 export interface CategoryCreate {
+  /**
+   * Creates a new category.
+   */
   categoryCreate: CategoryCreate_categoryCreate | null;
 }
 

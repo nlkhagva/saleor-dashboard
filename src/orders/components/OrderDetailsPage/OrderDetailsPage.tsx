@@ -163,6 +163,12 @@ const OrderDetailsPage: React.FC<OrderDetailsPageProps> = props => {
             )
           )}
           <CardSpacer />
+          <OrderHistory
+            history={maybe(() => order.events)}
+            onNoteAdd={onNoteAdd}
+          />
+        </div>
+        <div>
           <OrderPayment
             order={order}
             onCapture={onPaymentCapture}
@@ -170,12 +176,7 @@ const OrderDetailsPage: React.FC<OrderDetailsPageProps> = props => {
             onRefund={onPaymentRefund}
             onVoid={onPaymentVoid}
           />
-          <OrderHistory
-            history={maybe(() => order.events)}
-            onNoteAdd={onNoteAdd}
-          />
-        </div>
-        <div>
+          <CardSpacer />
           <OrderCustomer
             canEditAddresses={canEditAddresses}
             canEditCustomer={false}

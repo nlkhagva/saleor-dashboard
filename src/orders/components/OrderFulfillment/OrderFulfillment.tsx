@@ -4,7 +4,6 @@ import CardActions from "@material-ui/core/CardActions";
 import { makeStyles } from "@material-ui/core/styles";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Typography from "@material-ui/core/Typography";
 import CardMenu from "@saleor/components/CardMenu";
@@ -20,9 +19,12 @@ import classNames from "classnames";
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
+import { PRODUCT_TYPE_SHIPPING } from "../../../constants";
 import { getStringOrPlaceholder, maybe, renderCollection } from "../../../misc";
 import { FulfillmentStatus } from "../../../types/globalTypes";
 import { OrderDetails_order_fulfillments } from "../../types/OrderDetails";
+// import TableHeader from "./TableHeader";
+import UkShippingRow from "./UkShppingRow";
 
 const useStyles = makeStyles(
   theme => ({
@@ -53,7 +55,7 @@ const useStyles = makeStyles(
       width: 120
     },
     infoLabel: {
-      display: "inline-block"
+      // display: "inline-block"
     },
     infoLabelWithMargin: {
       marginBottom: theme.spacing()
@@ -82,7 +84,7 @@ interface OrderFulfillmentProps {
   onTrackingCodeAdd: () => void;
 }
 
-const numberOfColumns = 4;
+const numberOfColumns = 5;
 
 const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
   const {
@@ -95,11 +97,34 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
 
   const intl = useIntl();
 
-  const lines = maybe(() => fulfillment.lines);
+  const lines = maybe(
+    () =>
+      fulfillment.lines.filter(
+        l =>
+          l.orderLine.variant.product.productType.id !== PRODUCT_TYPE_SHIPPING
+      ),
+    []
+  );
+  const shippingUk = maybe(() =>
+    fulfillment.lines.find(
+      l => l.orderLine.variant.product.productType.id === PRODUCT_TYPE_SHIPPING
+    )
+  );
+
+  const productTotal = {
+    amount: lines
+      .map(l => l.quantity * l.orderLine.unitPrice.gross.amount)
+      .reduce((a, b) => a + b, 0),
+    currency: "GBP"
+  };
+
   const status = maybe(() => fulfillment.status);
   const quantity = lines
     ? lines.map(line => line.quantity).reduce((prev, curr) => prev + curr, 0)
     : "...";
+
+  const ushop = maybe(() => lines[0].orderLine.variant.product.ushop);
+  const metakeyInfo = ["color", "code", "size"];
 
   return (
     <Card>
@@ -109,30 +134,58 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
             <StatusLabel
               label={
                 <>
-                  {status === FulfillmentStatus.FULFILLED
-                    ? intl.formatMessage(
-                        {
-                          defaultMessage: "Fulfilled ({quantity})",
-                          description: "section header"
-                        },
-                        {
-                          quantity
-                        }
-                      )
-                    : intl.formatMessage(
-                        {
-                          defaultMessage: "Cancelled ({quantity})",
-                          description: "cancelled fulfillment, section header"
-                        },
-                        {
-                          quantity
-                        }
-                      )}
+                  {ushop?.name}
                   <Typography className={classes.orderNumber} variant="body1">
                     {maybe(
-                      () => `#${orderNumber}-${fulfillment.fulfillmentOrder}`
+                      () =>
+                        `#${orderNumber}-${fulfillment.fulfillmentOrder} 
+                        ${
+                          status === FulfillmentStatus.FULFILLED
+                            ? intl.formatMessage(
+                                {
+                                  defaultMessage: "Fulfilled ({quantity})",
+                                  description: "section header"
+                                },
+                                {
+                                  quantity
+                                }
+                              )
+                            : intl.formatMessage(
+                                {
+                                  defaultMessage: "Cancelled ({quantity})",
+                                  description:
+                                    "cancelled fulfillment, section header"
+                                },
+                                {
+                                  quantity
+                                }
+                              )
+                        }`
                     )}
                   </Typography>
+                  <span style={{ float: "right", fontSize: "1rem" }}>
+                    <Money money={productTotal} />
+                    {` (${quantity} бараа) + `}
+                    {shippingUk ? (
+                      <>
+                        <Money money={shippingUk.orderLine.unitPrice.gross} />
+                        {" = "}
+                        <Money
+                          money={{
+                            ...productTotal,
+                            amount:
+                              productTotal.amount +
+                              shippingUk.orderLine.unitPrice.gross.amount
+                          }}
+                        />
+                      </>
+                    ) : (
+                      <>
+                        ? =
+                        <Money money={productTotal} />
+                      </>
+                    )}
+                  </span>{" "}
                 </>
               }
               status={
@@ -160,42 +213,7 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
         }
       />
       <ResponsiveTable className={classes.table}>
-        <TableHead>
-          <TableRow>
-            <TableCell className={classes.colName}>
-              <span className={classes.colNameLabel}>
-                <FormattedMessage
-                  defaultMessage="Product"
-                  description="product name"
-                />
-              </span>
-            </TableCell>
-            <TableCell className={classes.colSku}>
-              <FormattedMessage
-                defaultMessage="SKU"
-                description="ordered product sku"
-              />
-            </TableCell>
-            <TableCell className={classes.colQuantity}>
-              <FormattedMessage
-                defaultMessage="Quantity"
-                description="ordered product quantity"
-              />
-            </TableCell>
-            <TableCell className={classes.colPrice}>
-              <FormattedMessage
-                defaultMessage="Price"
-                description="product price"
-              />
-            </TableCell>
-            <TableCell className={classes.colTotal}>
-              <FormattedMessage
-                defaultMessage="Total"
-                description="order line total price"
-              />
-            </TableCell>
-          </TableRow>
-        </TableHead>
+        {/* <TableHeader classes={classes} /> */}
         <TableBody>
           {renderCollection(lines, line => (
             <TableRow
@@ -208,9 +226,28 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
                 thumbnail={maybe(() => line.orderLine.thumbnail.url)}
               >
                 {maybe(() => line.orderLine.productName) || <Skeleton />}
+                <br />
+                <a
+                  target="_blank"
+                  href={maybe(
+                    () =>
+                      (line?.orderLine.variant.product.metadata || []).find(
+                        i => i.key === "url"
+                      ).value
+                  )}
+                >
+                  {(
+                    line?.orderLine.variant.product.metadata.filter(
+                      i => i.value && metakeyInfo.includes(i.key)
+                    ) || []
+                  )
+                    .map(i => `${i.key}: ${i.value}`)
+                    .join(", ")}
+                </a>
               </TableCellAvatar>
               <TableCell className={classes.colSku}>
-                {line?.orderLine.productSku || <Skeleton />}
+                <Skeleton />
+                {/* {line?.orderLine.productSku || <Skeleton />} */}
               </TableCell>
               <TableCell className={classes.colQuantity}>
                 {line?.quantity || <Skeleton />}
@@ -239,6 +276,7 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
               </TableCell>
             </TableRow>
           ))}
+          {shippingUk && <UkShippingRow line={shippingUk} classes={classes} />}
           <TableRow>
             <TableCell className={classes.infoRow} colSpan={numberOfColumns}>
               <Typography color="textSecondary" variant="body2">

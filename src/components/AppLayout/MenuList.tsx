@@ -36,7 +36,7 @@ const useStyles = makeStyles(
       }
     },
     menuIconSmall: {
-      left: -5
+      left: -2
     },
     menuIsActive: {
       boxShadow: "0px 0px 12px 1px rgba(0,0,0,0.2)"
@@ -132,10 +132,14 @@ const useStyles = makeStyles(
       transition: "opacity 0.5s ease"
     },
     menuListItemTextHide: {
-      bottom: 0,
-      left: 30,
-      opacity: 0,
-      position: "absolute"
+      fontSize: 10,
+      height: 20,
+      left: -25,
+      opacity: 1,
+      padding: "5px 0 0",
+      textAlign: "center",
+      top: "100%",
+      width: 80
     },
     subMenu: {
       padding: "0 15px"

@@ -7270,7 +7270,7 @@ type Weight {
 scalar WeightScalar
 
 enum WeightUnitsEnum {
-  KG
+  kg
   LB
   OZ
   G

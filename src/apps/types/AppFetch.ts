@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 import { PermissionEnum, AppErrorCode } from "./../../types/globalTypes";
@@ -10,7 +11,13 @@ import { PermissionEnum, AppErrorCode } from "./../../types/globalTypes";
 
 export interface AppFetch_appFetchManifest_manifest_permissions {
   __typename: "Permission";
+  /**
+   * Internal code for permission.
+   */
   code: PermissionEnum;
+  /**
+   * Describe action(s) allowed to do by permission.
+   */
   name: string;
 }
 
@@ -32,9 +39,21 @@ export interface AppFetch_appFetchManifest_manifest {
 
 export interface AppFetch_appFetchManifest_errors {
   __typename: "AppError";
+  /**
+   * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   */
   field: string | null;
+  /**
+   * The error message.
+   */
   message: string | null;
+  /**
+   * The error code.
+   */
   code: AppErrorCode;
+  /**
+   * List of permissions which causes the error.
+   */
   permissions: PermissionEnum[] | null;
 }
 
@@ -45,6 +64,9 @@ export interface AppFetch_appFetchManifest {
 }
 
 export interface AppFetch {
+  /**
+   * Fetch and validate manifest.
+   */
   appFetchManifest: AppFetch_appFetchManifest | null;
 }
 

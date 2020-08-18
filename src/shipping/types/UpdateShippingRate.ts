@@ -1,8 +1,9 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
-import { ShippingPriceInput, ShippingErrorCode, ShippingMethodTypeEnum } from "./../../types/globalTypes";
+import { ShippingPriceInput, ShippingErrorCode, WeightUnitsEnum, ShippingMethodTypeEnum } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: UpdateShippingRate
@@ -10,42 +11,81 @@ import { ShippingPriceInput, ShippingErrorCode, ShippingMethodTypeEnum } from ".
 
 export interface UpdateShippingRate_shippingPriceUpdate_errors {
   __typename: "ShippingError";
+  /**
+   * The error code.
+   */
   code: ShippingErrorCode;
+  /**
+   * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   */
   field: string | null;
 }
 
 export interface UpdateShippingRate_shippingPriceUpdate_shippingMethod_minimumOrderPrice {
   __typename: "Money";
+  /**
+   * Amount of money.
+   */
   amount: number;
+  /**
+   * Currency code.
+   */
   currency: string;
 }
 
 export interface UpdateShippingRate_shippingPriceUpdate_shippingMethod_minimumOrderWeight {
   __typename: "Weight";
-  unit: string;
+  /**
+   * Weight unit.
+   */
+  unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
   value: number;
 }
 
 export interface UpdateShippingRate_shippingPriceUpdate_shippingMethod_maximumOrderPrice {
   __typename: "Money";
+  /**
+   * Amount of money.
+   */
   amount: number;
+  /**
+   * Currency code.
+   */
   currency: string;
 }
 
 export interface UpdateShippingRate_shippingPriceUpdate_shippingMethod_maximumOrderWeight {
   __typename: "Weight";
-  unit: string;
+  /**
+   * Weight unit.
+   */
+  unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
   value: number;
 }
 
 export interface UpdateShippingRate_shippingPriceUpdate_shippingMethod_price {
   __typename: "Money";
+  /**
+   * Amount of money.
+   */
   amount: number;
+  /**
+   * Currency code.
+   */
   currency: string;
 }
 
 export interface UpdateShippingRate_shippingPriceUpdate_shippingMethod {
   __typename: "ShippingMethod";
+  /**
+   * The ID of the object.
+   */
   id: string;
   minimumOrderPrice: UpdateShippingRate_shippingPriceUpdate_shippingMethod_minimumOrderPrice | null;
   minimumOrderWeight: UpdateShippingRate_shippingPriceUpdate_shippingMethod_minimumOrderWeight | null;
@@ -53,6 +93,9 @@ export interface UpdateShippingRate_shippingPriceUpdate_shippingMethod {
   maximumOrderWeight: UpdateShippingRate_shippingPriceUpdate_shippingMethod_maximumOrderWeight | null;
   name: string;
   price: UpdateShippingRate_shippingPriceUpdate_shippingMethod_price | null;
+  /**
+   * Type of the shipping method.
+   */
   type: ShippingMethodTypeEnum | null;
 }
 
@@ -63,6 +106,9 @@ export interface UpdateShippingRate_shippingPriceUpdate {
 }
 
 export interface UpdateShippingRate {
+  /**
+   * Updates a new shipping price.
+   */
   shippingPriceUpdate: UpdateShippingRate_shippingPriceUpdate | null;
 }
 

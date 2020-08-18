@@ -1,11 +1,15 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
 
+/**
+ * An enumeration.
+ */
 export enum AccountErrorCode {
   ACTIVATE_OWN_ACCOUNT = "ACTIVATE_OWN_ACCOUNT",
   ACTIVATE_SUPERUSER_ACCOUNT = "ACTIVATE_SUPERUSER_ACCOUNT",
@@ -39,11 +43,17 @@ export enum AccountErrorCode {
   UNIQUE = "UNIQUE",
 }
 
+/**
+ * An enumeration.
+ */
 export enum AddressTypeEnum {
   BILLING = "BILLING",
   SHIPPING = "SHIPPING",
 }
 
+/**
+ * An enumeration.
+ */
 export enum AppErrorCode {
   FORBIDDEN = "FORBIDDEN",
   GRAPHQL_ERROR = "GRAPHQL_ERROR",
@@ -65,11 +75,17 @@ export enum AppSortField {
   NAME = "NAME",
 }
 
+/**
+ * An enumeration.
+ */
 export enum AppTypeEnum {
   LOCAL = "LOCAL",
   THIRDPARTY = "THIRDPARTY",
 }
 
+/**
+ * An enumeration.
+ */
 export enum AttributeInputTypeEnum {
   DROPDOWN = "DROPDOWN",
   MULTISELECT = "MULTISELECT",
@@ -99,6 +115,9 @@ export enum AttributeValueType {
   URL = "URL",
 }
 
+/**
+ * An enumeration.
+ */
 export enum AuthorizationKeyType {
   FACEBOOK = "FACEBOOK",
   GOOGLE_OAUTH2 = "GOOGLE_OAUTH2",
@@ -121,6 +140,9 @@ export enum CollectionSortField {
   PRODUCT_COUNT = "PRODUCT_COUNT",
 }
 
+/**
+ * An enumeration.
+ */
 export enum ConfigurationTypeFieldEnum {
   BOOLEAN = "BOOLEAN",
   PASSWORD = "PASSWORD",
@@ -128,6 +150,9 @@ export enum ConfigurationTypeFieldEnum {
   STRING = "STRING",
 }
 
+/**
+ * An enumeration.
+ */
 export enum CountryCode {
   AD = "AD",
   AE = "AE",
@@ -381,6 +406,9 @@ export enum CountryCode {
   ZW = "ZW",
 }
 
+/**
+ * An enumeration.
+ */
 export enum DiscountErrorCode {
   ALREADY_EXISTS = "ALREADY_EXISTS",
   GRAPHQL_ERROR = "GRAPHQL_ERROR",
@@ -401,6 +429,9 @@ export enum DiscountValueTypeEnum {
   PERCENTAGE = "PERCENTAGE",
 }
 
+/**
+ * An enumeration.
+ */
 export enum ExportErrorCode {
   INVALID = "INVALID",
   NOT_FOUND = "NOT_FOUND",
@@ -413,16 +444,31 @@ export enum ExportScope {
   IDS = "IDS",
 }
 
+/**
+ * An enumeration.
+ */
 export enum FileTypesEnum {
   CSV = "CSV",
   XLSX = "XLSX",
 }
 
+/**
+ * An enumeration.
+ */
 export enum FulfillmentStatus {
   CANCELED = "CANCELED",
   FULFILLED = "FULFILLED",
 }
 
+export enum GaduurSortField {
+  PUBLICATION_DATE = "PUBLICATION_DATE",
+  TITLE = "TITLE",
+  VISIBILITY = "VISIBILITY",
+}
+
+/**
+ * An enumeration.
+ */
 export enum InvoiceErrorCode {
   EMAIL_NOT_SET = "EMAIL_NOT_SET",
   INVALID_STATUS = "INVALID_STATUS",
@@ -433,6 +479,9 @@ export enum InvoiceErrorCode {
   URL_NOT_SET = "URL_NOT_SET",
 }
 
+/**
+ * An enumeration.
+ */
 export enum JobStatusEnum {
   DELETED = "DELETED",
   FAILED = "FAILED",
@@ -440,6 +489,9 @@ export enum JobStatusEnum {
   SUCCESS = "SUCCESS",
 }
 
+/**
+ * An enumeration.
+ */
 export enum LanguageCodeEnum {
   AR = "AR",
   AZ = "AZ",
@@ -489,6 +541,9 @@ export enum LanguageCodeEnum {
   ZH_HANT = "ZH_HANT",
 }
 
+/**
+ * An enumeration.
+ */
 export enum MenuErrorCode {
   CANNOT_ASSIGN_NODE = "CANNOT_ASSIGN_NODE",
   GRAPHQL_ERROR = "GRAPHQL_ERROR",
@@ -518,6 +573,9 @@ export enum OrderDirection {
   DESC = "DESC",
 }
 
+/**
+ * An enumeration.
+ */
 export enum OrderErrorCode {
   BILLING_ADDRESS_NOT_SET = "BILLING_ADDRESS_NOT_SET",
   CANNOT_CANCEL_FULFILLMENT = "CANNOT_CANCEL_FULFILLMENT",
@@ -544,6 +602,9 @@ export enum OrderErrorCode {
   ZERO_QUANTITY = "ZERO_QUANTITY",
 }
 
+/**
+ * An enumeration.
+ */
 export enum OrderEventsEmailsEnum {
   DIGITAL_LINKS = "DIGITAL_LINKS",
   FULFILLMENT_CONFIRMATION = "FULFILLMENT_CONFIRMATION",
@@ -553,6 +614,9 @@ export enum OrderEventsEmailsEnum {
   TRACKING_UPDATED = "TRACKING_UPDATED",
 }
 
+/**
+ * An enumeration.
+ */
 export enum OrderEventsEnum {
   CANCELED = "CANCELED",
   DRAFT_ADDED_PRODUCTS = "DRAFT_ADDED_PRODUCTS",
@@ -591,6 +655,9 @@ export enum OrderSortField {
   TOTAL = "TOTAL",
 }
 
+/**
+ * An enumeration.
+ */
 export enum OrderStatus {
   CANCELED = "CANCELED",
   DRAFT = "DRAFT",
@@ -608,6 +675,9 @@ export enum OrderStatusFilter {
   UNFULFILLED = "UNFULFILLED",
 }
 
+/**
+ * An enumeration.
+ */
 export enum PageErrorCode {
   GRAPHQL_ERROR = "GRAPHQL_ERROR",
   INVALID = "INVALID",
@@ -624,6 +694,9 @@ export enum PageSortField {
   VISIBILITY = "VISIBILITY",
 }
 
+/**
+ * An enumeration.
+ */
 export enum PaymentChargeStatusEnum {
   FULLY_CHARGED = "FULLY_CHARGED",
   FULLY_REFUNDED = "FULLY_REFUNDED",
@@ -632,6 +705,9 @@ export enum PaymentChargeStatusEnum {
   PARTIALLY_REFUNDED = "PARTIALLY_REFUNDED",
 }
 
+/**
+ * An enumeration.
+ */
 export enum PermissionEnum {
   MANAGE_APPS = "MANAGE_APPS",
   MANAGE_CHECKOUTS = "MANAGE_CHECKOUTS",
@@ -650,6 +726,9 @@ export enum PermissionEnum {
   MANAGE_USERS = "MANAGE_USERS",
 }
 
+/**
+ * An enumeration.
+ */
 export enum PermissionGroupErrorCode {
   ASSIGN_NON_STAFF_MEMBER = "ASSIGN_NON_STAFF_MEMBER",
   CANNOT_REMOVE_FROM_LAST_GROUP = "CANNOT_REMOVE_FROM_LAST_GROUP",
@@ -670,6 +749,9 @@ export enum PluginSortField {
   NAME = "NAME",
 }
 
+/**
+ * An enumeration.
+ */
 export enum ProductErrorCode {
   ALREADY_EXISTS = "ALREADY_EXISTS",
   ATTRIBUTE_ALREADY_ASSIGNED = "ATTRIBUTE_ALREADY_ASSIGNED",
@@ -735,11 +817,17 @@ export enum SaleSortField {
   VALUE = "VALUE",
 }
 
+/**
+ * An enumeration.
+ */
 export enum SaleType {
   FIXED = "FIXED",
   PERCENTAGE = "PERCENTAGE",
 }
 
+/**
+ * An enumeration.
+ */
 export enum ShippingErrorCode {
   ALREADY_EXISTS = "ALREADY_EXISTS",
   DUPLICATED_INPUT_ITEM = "DUPLICATED_INPUT_ITEM",
@@ -751,11 +839,17 @@ export enum ShippingErrorCode {
   UNIQUE = "UNIQUE",
 }
 
+/**
+ * An enumeration.
+ */
 export enum ShippingMethodTypeEnum {
   PRICE = "PRICE",
   WEIGHT = "WEIGHT",
 }
 
+/**
+ * An enumeration.
+ */
 export enum ShopErrorCode {
   ALREADY_EXISTS = "ALREADY_EXISTS",
   CANNOT_FETCH_TAX_RATES = "CANNOT_FETCH_TAX_RATES",
@@ -776,6 +870,9 @@ export enum StockAvailability {
   OUT_OF_STOCK = "OUT_OF_STOCK",
 }
 
+/**
+ * An enumeration.
+ */
 export enum StockErrorCode {
   ALREADY_EXISTS = "ALREADY_EXISTS",
   GRAPHQL_ERROR = "GRAPHQL_ERROR",
@@ -785,6 +882,9 @@ export enum StockErrorCode {
   UNIQUE = "UNIQUE",
 }
 
+/**
+ * An enumeration.
+ */
 export enum TaxRateType {
   ACCOMMODATION = "ACCOMMODATION",
   ADMISSION_TO_CULTURAL_EVENTS = "ADMISSION_TO_CULTURAL_EVENTS",
@@ -842,6 +942,9 @@ export enum VoucherTypeEnum {
   SPECIFIC_PRODUCT = "SPECIFIC_PRODUCT",
 }
 
+/**
+ * An enumeration.
+ */
 export enum WarehouseErrorCode {
   ALREADY_EXISTS = "ALREADY_EXISTS",
   GRAPHQL_ERROR = "GRAPHQL_ERROR",
@@ -855,6 +958,9 @@ export enum WarehouseSortField {
   NAME = "NAME",
 }
 
+/**
+ * An enumeration.
+ */
 export enum WebhookErrorCode {
   GRAPHQL_ERROR = "GRAPHQL_ERROR",
   INVALID = "INVALID",
@@ -863,9 +969,14 @@ export enum WebhookErrorCode {
   UNIQUE = "UNIQUE",
 }
 
+/**
+ * An enumeration.
+ */
 export enum WebhookEventTypeEnum {
   ANY_EVENTS = "ANY_EVENTS",
+  CHECKOUT_CREATED = "CHECKOUT_CREATED",
   CHECKOUT_QUANTITY_CHANGED = "CHECKOUT_QUANTITY_CHANGED",
+  CHECKOUT_UPDATED = "CHECKOUT_UPDATED",
   CUSTOMER_CREATED = "CUSTOMER_CREATED",
   FULFILLMENT_CREATED = "FULFILLMENT_CREATED",
   INVOICE_DELETED = "INVOICE_DELETED",
@@ -886,6 +997,9 @@ export enum WebhookSortField {
   TARGET_URL = "TARGET_URL",
 }
 
+/**
+ * An enumeration.
+ */
 export enum WeightUnitsEnum {
   G = "G",
   KG = "KG",
@@ -1134,6 +1248,21 @@ export interface FulfillmentCancelInput {
 export interface FulfillmentUpdateTrackingInput {
   trackingNumber?: string | null;
   notifyCustomer?: boolean | null;
+}
+
+export interface GaduurFilterInput {
+  search?: string | null;
+}
+
+export interface GaduurInput {
+  name?: string | null;
+  isPublished?: boolean | null;
+  publicationDate?: string | null;
+}
+
+export interface GaduurSortingInput {
+  direction: OrderDirection;
+  field: GaduurSortField;
 }
 
 export interface IntRangeInput {

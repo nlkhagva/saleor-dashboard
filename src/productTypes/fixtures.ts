@@ -601,7 +601,7 @@ export const productType: ProductTypeDetails_productType = {
   ],
   weight: {
     __typename: "Weight",
-    unit: "kg",
+    unit: `KG`,
     value: 7.82
   }
 };

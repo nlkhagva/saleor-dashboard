@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -8,12 +9,18 @@
 
 export interface WarehouseDetails_warehouse_shippingZones_edges_node {
   __typename: "ShippingZone";
+  /**
+   * The ID of the object.
+   */
   id: string;
   name: string;
 }
 
 export interface WarehouseDetails_warehouse_shippingZones_edges {
   __typename: "ShippingZoneCountableEdge";
+  /**
+   * The item at the end of the edge.
+   */
   node: WarehouseDetails_warehouse_shippingZones_edges_node;
 }
 
@@ -24,7 +31,13 @@ export interface WarehouseDetails_warehouse_shippingZones {
 
 export interface WarehouseDetails_warehouse_address_country {
   __typename: "CountryDisplay";
+  /**
+   * Country code.
+   */
   code: string;
+  /**
+   * Country name.
+   */
   country: string;
 }
 
@@ -33,9 +46,15 @@ export interface WarehouseDetails_warehouse_address {
   city: string;
   cityArea: string;
   companyName: string;
+  /**
+   * Shop's default country.
+   */
   country: WarehouseDetails_warehouse_address_country;
   countryArea: string;
   firstName: string;
+  /**
+   * The ID of the object.
+   */
   id: string;
   lastName: string;
   phone: string | null;
@@ -46,6 +65,9 @@ export interface WarehouseDetails_warehouse_address {
 
 export interface WarehouseDetails_warehouse {
   __typename: "Warehouse";
+  /**
+   * The ID of the object.
+   */
   id: string;
   name: string;
   shippingZones: WarehouseDetails_warehouse_shippingZones;
@@ -53,6 +75,9 @@ export interface WarehouseDetails_warehouse {
 }
 
 export interface WarehouseDetails {
+  /**
+   * Look up a warehouse by ID.
+   */
   warehouse: WarehouseDetails_warehouse | null;
 }
 
