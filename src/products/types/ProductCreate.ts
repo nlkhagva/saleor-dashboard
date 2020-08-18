@@ -3,7 +3,14 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { AttributeValueInput, SeoInput, StockInput, ProductErrorCode, AttributeInputTypeEnum, WeightUnitsEnum } from "./../../types/globalTypes";
+import {
+  AttributeValueInput,
+  SeoInput,
+  StockInput,
+  ProductErrorCode,
+  AttributeInputTypeEnum,
+  WeightUnitsEnum
+} from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: ProductCreate
@@ -62,7 +69,9 @@ export interface ProductCreate_productCreate_product_attributes_attribute {
   /**
    * List of attribute's values.
    */
-  values: (ProductCreate_productCreate_product_attributes_attribute_values | null)[] | null;
+  values:
+    | (ProductCreate_productCreate_product_attributes_attribute_values | null)[]
+    | null;
 }
 
 export interface ProductCreate_productCreate_product_attributes_values {
@@ -122,7 +131,9 @@ export interface ProductCreate_productCreate_product_productType_variantAttribut
   /**
    * List of attribute's values.
    */
-  values: (ProductCreate_productCreate_product_productType_variantAttributes_values | null)[] | null;
+  values:
+    | (ProductCreate_productCreate_product_productType_variantAttributes_values | null)[]
+    | null;
 }
 
 export interface ProductCreate_productCreate_product_productType {
@@ -134,7 +145,9 @@ export interface ProductCreate_productCreate_product_productType {
   /**
    * Variant attributes of that product type.
    */
-  variantAttributes: (ProductCreate_productCreate_product_productType_variantAttributes | null)[] | null;
+  variantAttributes:
+    | (ProductCreate_productCreate_product_productType_variantAttributes | null)[]
+    | null;
   name: string;
   hasVariants: boolean;
 }
@@ -336,13 +349,7 @@ export interface ProductCreate_productCreate_product_variants {
 
 export interface ProductCreate_productCreate_product_weight {
   __typename: "Weight";
-  /**
-   * Weight unit.
-   */
   unit: WeightUnitsEnum;
-  /**
-   * Weight value.
-   */
   value: number;
 }
 
@@ -369,7 +376,9 @@ export interface ProductCreate_productCreate_product {
   /**
    * List of collections for the product.
    */
-  collections: (ProductCreate_productCreate_product_collections | null)[] | null;
+  collections:
+    | (ProductCreate_productCreate_product_collections | null)[]
+    | null;
   margin: ProductCreate_productCreate_product_margin | null;
   purchaseCost: ProductCreate_productCreate_product_purchaseCost | null;
   /**

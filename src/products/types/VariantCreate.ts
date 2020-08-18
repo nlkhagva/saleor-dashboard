@@ -3,7 +3,11 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ProductVariantCreateInput, ProductErrorCode, WeightUnitsEnum } from "./../../types/globalTypes";
+import {
+  ProductVariantCreateInput,
+  ProductErrorCode,
+  WeightUnitsEnum
+} from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: VariantCreate
@@ -58,7 +62,9 @@ export interface VariantCreate_productVariantCreate_productVariant_attributes_at
   /**
    * List of attribute's values.
    */
-  values: (VariantCreate_productVariantCreate_productVariant_attributes_attribute_values | null)[] | null;
+  values:
+    | (VariantCreate_productVariantCreate_productVariant_attributes_attribute_values | null)[]
+    | null;
 }
 
 export interface VariantCreate_productVariantCreate_productVariant_attributes_values {
@@ -170,7 +176,9 @@ export interface VariantCreate_productVariantCreate_productVariant_product_varia
   /**
    * List of images for the product variant.
    */
-  images: (VariantCreate_productVariantCreate_productVariant_product_variants_images | null)[] | null;
+  images:
+    | (VariantCreate_productVariantCreate_productVariant_product_variants_images | null)[]
+    | null;
 }
 
 export interface VariantCreate_productVariantCreate_productVariant_product {
@@ -182,7 +190,9 @@ export interface VariantCreate_productVariantCreate_productVariant_product {
   /**
    * List of images for the product.
    */
-  images: (VariantCreate_productVariantCreate_productVariant_product_images | null)[] | null;
+  images:
+    | (VariantCreate_productVariantCreate_productVariant_product_images | null)[]
+    | null;
   name: string;
   /**
    * The main thumbnail for a product.
@@ -191,7 +201,9 @@ export interface VariantCreate_productVariantCreate_productVariant_product {
   /**
    * List of variants for the product.
    */
-  variants: (VariantCreate_productVariantCreate_productVariant_product_variants | null)[] | null;
+  variants:
+    | (VariantCreate_productVariantCreate_productVariant_product_variants | null)[]
+    | null;
 }
 
 export interface VariantCreate_productVariantCreate_productVariant_stocks_warehouse {
@@ -222,13 +234,7 @@ export interface VariantCreate_productVariantCreate_productVariant_stocks {
 
 export interface VariantCreate_productVariantCreate_productVariant_weight {
   __typename: "Weight";
-  /**
-   * Weight unit.
-   */
   unit: WeightUnitsEnum;
-  /**
-   * Weight value.
-   */
   value: number;
 }
 
@@ -249,7 +255,9 @@ export interface VariantCreate_productVariantCreate_productVariant {
   /**
    * List of images for the product variant.
    */
-  images: (VariantCreate_productVariantCreate_productVariant_images | null)[] | null;
+  images:
+    | (VariantCreate_productVariantCreate_productVariant_images | null)[]
+    | null;
   name: string;
   /**
    * Base price of a product variant. This field is restricted for admins. Use the pricing field to get the public price for customers.
@@ -260,7 +268,9 @@ export interface VariantCreate_productVariantCreate_productVariant {
   /**
    * Stocks for the product variant.
    */
-  stocks: (VariantCreate_productVariantCreate_productVariant_stocks | null)[] | null;
+  stocks:
+    | (VariantCreate_productVariantCreate_productVariant_stocks | null)[]
+    | null;
   trackInventory: boolean;
   weight: VariantCreate_productVariantCreate_productVariant_weight | null;
 }

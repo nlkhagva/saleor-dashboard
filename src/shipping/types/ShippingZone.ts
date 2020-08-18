@@ -3,7 +3,10 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { WeightUnitsEnum, ShippingMethodTypeEnum } from "./../../types/globalTypes";
+import {
+  WeightUnitsEnum,
+  ShippingMethodTypeEnum
+} from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: ShippingZone
@@ -35,13 +38,7 @@ export interface ShippingZone_shippingZone_shippingMethods_minimumOrderPrice {
 
 export interface ShippingZone_shippingZone_shippingMethods_minimumOrderWeight {
   __typename: "Weight";
-  /**
-   * Weight unit.
-   */
   unit: WeightUnitsEnum;
-  /**
-   * Weight value.
-   */
   value: number;
 }
 
@@ -59,13 +56,7 @@ export interface ShippingZone_shippingZone_shippingMethods_maximumOrderPrice {
 
 export interface ShippingZone_shippingZone_shippingMethods_maximumOrderWeight {
   __typename: "Weight";
-  /**
-   * Weight unit.
-   */
   unit: WeightUnitsEnum;
-  /**
-   * Weight value.
-   */
   value: number;
 }
 

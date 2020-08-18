@@ -3,7 +3,10 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { AttributeInputTypeEnum, WeightUnitsEnum } from "./../../types/globalTypes";
+import {
+  AttributeInputTypeEnum,
+  WeightUnitsEnum
+} from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: ProductDetails
@@ -110,7 +113,9 @@ export interface ProductDetails_product_productType_variantAttributes {
   /**
    * List of attribute's values.
    */
-  values: (ProductDetails_product_productType_variantAttributes_values | null)[] | null;
+  values:
+    | (ProductDetails_product_productType_variantAttributes_values | null)[]
+    | null;
 }
 
 export interface ProductDetails_product_productType {
@@ -122,7 +127,9 @@ export interface ProductDetails_product_productType {
   /**
    * Variant attributes of that product type.
    */
-  variantAttributes: (ProductDetails_product_productType_variantAttributes | null)[] | null;
+  variantAttributes:
+    | (ProductDetails_product_productType_variantAttributes | null)[]
+    | null;
   name: string;
   hasVariants: boolean;
 }
@@ -324,13 +331,7 @@ export interface ProductDetails_product_variants {
 
 export interface ProductDetails_product_weight {
   __typename: "Weight";
-  /**
-   * Weight unit.
-   */
   unit: WeightUnitsEnum;
-  /**
-   * Weight value.
-   */
   value: number;
 }
 

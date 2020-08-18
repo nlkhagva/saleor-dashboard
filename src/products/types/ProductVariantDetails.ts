@@ -46,7 +46,9 @@ export interface ProductVariantDetails_productVariant_attributes_attribute {
   /**
    * List of attribute's values.
    */
-  values: (ProductVariantDetails_productVariant_attributes_attribute_values | null)[] | null;
+  values:
+    | (ProductVariantDetails_productVariant_attributes_attribute_values | null)[]
+    | null;
 }
 
 export interface ProductVariantDetails_productVariant_attributes_values {
@@ -158,7 +160,9 @@ export interface ProductVariantDetails_productVariant_product_variants {
   /**
    * List of images for the product variant.
    */
-  images: (ProductVariantDetails_productVariant_product_variants_images | null)[] | null;
+  images:
+    | (ProductVariantDetails_productVariant_product_variants_images | null)[]
+    | null;
 }
 
 export interface ProductVariantDetails_productVariant_product {
@@ -179,7 +183,9 @@ export interface ProductVariantDetails_productVariant_product {
   /**
    * List of variants for the product.
    */
-  variants: (ProductVariantDetails_productVariant_product_variants | null)[] | null;
+  variants:
+    | (ProductVariantDetails_productVariant_product_variants | null)[]
+    | null;
 }
 
 export interface ProductVariantDetails_productVariant_stocks_warehouse {
@@ -210,13 +216,7 @@ export interface ProductVariantDetails_productVariant_stocks {
 
 export interface ProductVariantDetails_productVariant_weight {
   __typename: "Weight";
-  /**
-   * Weight unit.
-   */
   unit: WeightUnitsEnum;
-  /**
-   * Weight value.
-   */
   value: number;
 }
 

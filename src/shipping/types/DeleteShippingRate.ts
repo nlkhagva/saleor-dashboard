@@ -3,7 +3,11 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ShippingErrorCode, WeightUnitsEnum, ShippingMethodTypeEnum } from "./../../types/globalTypes";
+import {
+  ShippingErrorCode,
+  WeightUnitsEnum,
+  ShippingMethodTypeEnum
+} from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: DeleteShippingRate
@@ -47,13 +51,7 @@ export interface DeleteShippingRate_shippingPriceDelete_shippingZone_shippingMet
 
 export interface DeleteShippingRate_shippingPriceDelete_shippingZone_shippingMethods_minimumOrderWeight {
   __typename: "Weight";
-  /**
-   * Weight unit.
-   */
   unit: WeightUnitsEnum;
-  /**
-   * Weight value.
-   */
   value: number;
 }
 
@@ -71,13 +69,7 @@ export interface DeleteShippingRate_shippingPriceDelete_shippingZone_shippingMet
 
 export interface DeleteShippingRate_shippingPriceDelete_shippingZone_shippingMethods_maximumOrderWeight {
   __typename: "Weight";
-  /**
-   * Weight unit.
-   */
   unit: WeightUnitsEnum;
-  /**
-   * Weight value.
-   */
   value: number;
 }
 
@@ -129,17 +121,23 @@ export interface DeleteShippingRate_shippingPriceDelete_shippingZone {
   /**
    * List of countries available for the method.
    */
-  countries: (DeleteShippingRate_shippingPriceDelete_shippingZone_countries | null)[] | null;
+  countries:
+    | (DeleteShippingRate_shippingPriceDelete_shippingZone_countries | null)[]
+    | null;
   name: string;
   default: boolean;
   /**
    * List of shipping methods available for orders shipped to countries within this shipping zone.
    */
-  shippingMethods: (DeleteShippingRate_shippingPriceDelete_shippingZone_shippingMethods | null)[] | null;
+  shippingMethods:
+    | (DeleteShippingRate_shippingPriceDelete_shippingZone_shippingMethods | null)[]
+    | null;
   /**
    * List of warehouses for shipping zone.
    */
-  warehouses: (DeleteShippingRate_shippingPriceDelete_shippingZone_warehouses | null)[] | null;
+  warehouses:
+    | (DeleteShippingRate_shippingPriceDelete_shippingZone_warehouses | null)[]
+    | null;
 }
 
 export interface DeleteShippingRate_shippingPriceDelete {

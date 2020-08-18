@@ -105,10 +105,14 @@ export interface ProductTypeDetailsFragment {
   /**
    * Product attributes of that product type.
    */
-  productAttributes: (ProductTypeDetailsFragment_productAttributes | null)[] | null;
+  productAttributes:
+    | (ProductTypeDetailsFragment_productAttributes | null)[]
+    | null;
   /**
    * Variant attributes of that product type.
    */
-  variantAttributes: (ProductTypeDetailsFragment_variantAttributes | null)[] | null;
+  variantAttributes:
+    | (ProductTypeDetailsFragment_variantAttributes | null)[]
+    | null;
   weight: ProductTypeDetailsFragment_weight | null;
 }

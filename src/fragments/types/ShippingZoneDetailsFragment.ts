@@ -3,7 +3,10 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { WeightUnitsEnum, ShippingMethodTypeEnum } from "./../../types/globalTypes";
+import {
+  WeightUnitsEnum,
+  ShippingMethodTypeEnum
+} from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL fragment: ShippingZoneDetailsFragment
@@ -35,13 +38,7 @@ export interface ShippingZoneDetailsFragment_shippingMethods_minimumOrderPrice {
 
 export interface ShippingZoneDetailsFragment_shippingMethods_minimumOrderWeight {
   __typename: "Weight";
-  /**
-   * Weight unit.
-   */
   unit: WeightUnitsEnum;
-  /**
-   * Weight value.
-   */
   value: number;
 }
 
@@ -59,13 +56,7 @@ export interface ShippingZoneDetailsFragment_shippingMethods_maximumOrderPrice {
 
 export interface ShippingZoneDetailsFragment_shippingMethods_maximumOrderWeight {
   __typename: "Weight";
-  /**
-   * Weight unit.
-   */
   unit: WeightUnitsEnum;
-  /**
-   * Weight value.
-   */
   value: number;
 }
 
@@ -123,7 +114,9 @@ export interface ShippingZoneDetailsFragment {
   /**
    * List of shipping methods available for orders shipped to countries within this shipping zone.
    */
-  shippingMethods: (ShippingZoneDetailsFragment_shippingMethods | null)[] | null;
+  shippingMethods:
+    | (ShippingZoneDetailsFragment_shippingMethods | null)[]
+    | null;
   /**
    * List of warehouses for shipping zone.
    */

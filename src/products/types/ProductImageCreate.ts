@@ -3,7 +3,11 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ProductErrorCode, AttributeInputTypeEnum, WeightUnitsEnum } from "./../../types/globalTypes";
+import {
+  ProductErrorCode,
+  AttributeInputTypeEnum,
+  WeightUnitsEnum
+} from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: ProductImageCreate
@@ -62,7 +66,9 @@ export interface ProductImageCreate_productImageCreate_product_attributes_attrib
   /**
    * List of attribute's values.
    */
-  values: (ProductImageCreate_productImageCreate_product_attributes_attribute_values | null)[] | null;
+  values:
+    | (ProductImageCreate_productImageCreate_product_attributes_attribute_values | null)[]
+    | null;
 }
 
 export interface ProductImageCreate_productImageCreate_product_attributes_values {
@@ -122,7 +128,9 @@ export interface ProductImageCreate_productImageCreate_product_productType_varia
   /**
    * List of attribute's values.
    */
-  values: (ProductImageCreate_productImageCreate_product_productType_variantAttributes_values | null)[] | null;
+  values:
+    | (ProductImageCreate_productImageCreate_product_productType_variantAttributes_values | null)[]
+    | null;
 }
 
 export interface ProductImageCreate_productImageCreate_product_productType {
@@ -134,7 +142,9 @@ export interface ProductImageCreate_productImageCreate_product_productType {
   /**
    * Variant attributes of that product type.
    */
-  variantAttributes: (ProductImageCreate_productImageCreate_product_productType_variantAttributes | null)[] | null;
+  variantAttributes:
+    | (ProductImageCreate_productImageCreate_product_productType_variantAttributes | null)[]
+    | null;
   name: string;
   hasVariants: boolean;
 }
@@ -330,19 +340,15 @@ export interface ProductImageCreate_productImageCreate_product_variants {
   /**
    * Stocks for the product variant.
    */
-  stocks: (ProductImageCreate_productImageCreate_product_variants_stocks | null)[] | null;
+  stocks:
+    | (ProductImageCreate_productImageCreate_product_variants_stocks | null)[]
+    | null;
   trackInventory: boolean;
 }
 
 export interface ProductImageCreate_productImageCreate_product_weight {
   __typename: "Weight";
-  /**
-   * Weight unit.
-   */
   unit: WeightUnitsEnum;
-  /**
-   * Weight value.
-   */
   value: number;
 }
 
@@ -369,7 +375,9 @@ export interface ProductImageCreate_productImageCreate_product {
   /**
    * List of collections for the product.
    */
-  collections: (ProductImageCreate_productImageCreate_product_collections | null)[] | null;
+  collections:
+    | (ProductImageCreate_productImageCreate_product_collections | null)[]
+    | null;
   margin: ProductImageCreate_productImageCreate_product_margin | null;
   purchaseCost: ProductImageCreate_productImageCreate_product_purchaseCost | null;
   /**
@@ -382,11 +390,15 @@ export interface ProductImageCreate_productImageCreate_product {
   /**
    * List of images for the product.
    */
-  images: (ProductImageCreate_productImageCreate_product_images | null)[] | null;
+  images:
+    | (ProductImageCreate_productImageCreate_product_images | null)[]
+    | null;
   /**
    * List of variants for the product.
    */
-  variants: (ProductImageCreate_productImageCreate_product_variants | null)[] | null;
+  variants:
+    | (ProductImageCreate_productImageCreate_product_variants | null)[]
+    | null;
   weight: ProductImageCreate_productImageCreate_product_weight | null;
 }
 

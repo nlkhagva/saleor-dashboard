@@ -91,13 +91,7 @@ export interface ProductTypeCreate_productTypeCreate_productType_variantAttribut
 
 export interface ProductTypeCreate_productTypeCreate_productType_weight {
   __typename: "Weight";
-  /**
-   * Weight unit.
-   */
   unit: WeightUnitsEnum;
-  /**
-   * Weight value.
-   */
   value: number;
 }
 
@@ -117,11 +111,15 @@ export interface ProductTypeCreate_productTypeCreate_productType {
   /**
    * Product attributes of that product type.
    */
-  productAttributes: (ProductTypeCreate_productTypeCreate_productType_productAttributes | null)[] | null;
+  productAttributes:
+    | (ProductTypeCreate_productTypeCreate_productType_productAttributes | null)[]
+    | null;
   /**
    * Variant attributes of that product type.
    */
-  variantAttributes: (ProductTypeCreate_productTypeCreate_productType_variantAttributes | null)[] | null;
+  variantAttributes:
+    | (ProductTypeCreate_productTypeCreate_productType_variantAttributes | null)[]
+    | null;
   weight: ProductTypeCreate_productTypeCreate_productType_weight | null;
 }
 

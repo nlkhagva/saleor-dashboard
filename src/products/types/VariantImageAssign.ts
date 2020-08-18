@@ -58,7 +58,9 @@ export interface VariantImageAssign_variantImageAssign_productVariant_attributes
   /**
    * List of attribute's values.
    */
-  values: (VariantImageAssign_variantImageAssign_productVariant_attributes_attribute_values | null)[] | null;
+  values:
+    | (VariantImageAssign_variantImageAssign_productVariant_attributes_attribute_values | null)[]
+    | null;
 }
 
 export interface VariantImageAssign_variantImageAssign_productVariant_attributes_values {
@@ -170,7 +172,9 @@ export interface VariantImageAssign_variantImageAssign_productVariant_product_va
   /**
    * List of images for the product variant.
    */
-  images: (VariantImageAssign_variantImageAssign_productVariant_product_variants_images | null)[] | null;
+  images:
+    | (VariantImageAssign_variantImageAssign_productVariant_product_variants_images | null)[]
+    | null;
 }
 
 export interface VariantImageAssign_variantImageAssign_productVariant_product {
@@ -182,7 +186,9 @@ export interface VariantImageAssign_variantImageAssign_productVariant_product {
   /**
    * List of images for the product.
    */
-  images: (VariantImageAssign_variantImageAssign_productVariant_product_images | null)[] | null;
+  images:
+    | (VariantImageAssign_variantImageAssign_productVariant_product_images | null)[]
+    | null;
   name: string;
   /**
    * The main thumbnail for a product.
@@ -191,7 +197,9 @@ export interface VariantImageAssign_variantImageAssign_productVariant_product {
   /**
    * List of variants for the product.
    */
-  variants: (VariantImageAssign_variantImageAssign_productVariant_product_variants | null)[] | null;
+  variants:
+    | (VariantImageAssign_variantImageAssign_productVariant_product_variants | null)[]
+    | null;
 }
 
 export interface VariantImageAssign_variantImageAssign_productVariant_stocks_warehouse {
@@ -222,13 +230,7 @@ export interface VariantImageAssign_variantImageAssign_productVariant_stocks {
 
 export interface VariantImageAssign_variantImageAssign_productVariant_weight {
   __typename: "Weight";
-  /**
-   * Weight unit.
-   */
   unit: WeightUnitsEnum;
-  /**
-   * Weight value.
-   */
   value: number;
 }
 
@@ -249,7 +251,9 @@ export interface VariantImageAssign_variantImageAssign_productVariant {
   /**
    * List of images for the product variant.
    */
-  images: (VariantImageAssign_variantImageAssign_productVariant_images | null)[] | null;
+  images:
+    | (VariantImageAssign_variantImageAssign_productVariant_images | null)[]
+    | null;
   name: string;
   /**
    * Base price of a product variant. This field is restricted for admins. Use the pricing field to get the public price for customers.
@@ -260,7 +264,9 @@ export interface VariantImageAssign_variantImageAssign_productVariant {
   /**
    * Stocks for the product variant.
    */
-  stocks: (VariantImageAssign_variantImageAssign_productVariant_stocks | null)[] | null;
+  stocks:
+    | (VariantImageAssign_variantImageAssign_productVariant_stocks | null)[]
+    | null;
   trackInventory: boolean;
   weight: VariantImageAssign_variantImageAssign_productVariant_weight | null;
 }

@@ -3,7 +3,10 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { AttributeAssignInput, WeightUnitsEnum } from "./../../types/globalTypes";
+import {
+  AttributeAssignInput,
+  WeightUnitsEnum
+} from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: AssignAttribute
@@ -91,13 +94,7 @@ export interface AssignAttribute_attributeAssign_productType_variantAttributes {
 
 export interface AssignAttribute_attributeAssign_productType_weight {
   __typename: "Weight";
-  /**
-   * Weight unit.
-   */
   unit: WeightUnitsEnum;
-  /**
-   * Weight value.
-   */
   value: number;
 }
 
@@ -117,11 +114,15 @@ export interface AssignAttribute_attributeAssign_productType {
   /**
    * Product attributes of that product type.
    */
-  productAttributes: (AssignAttribute_attributeAssign_productType_productAttributes | null)[] | null;
+  productAttributes:
+    | (AssignAttribute_attributeAssign_productType_productAttributes | null)[]
+    | null;
   /**
    * Variant attributes of that product type.
    */
-  variantAttributes: (AssignAttribute_attributeAssign_productType_variantAttributes | null)[] | null;
+  variantAttributes:
+    | (AssignAttribute_attributeAssign_productType_variantAttributes | null)[]
+    | null;
   weight: AssignAttribute_attributeAssign_productType_weight | null;
 }
 

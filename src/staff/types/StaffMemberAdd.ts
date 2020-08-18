@@ -3,7 +3,11 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { StaffCreateInput, AccountErrorCode, PermissionEnum } from "./../../types/globalTypes";
+import {
+  StaffCreateInput,
+  AccountErrorCode,
+  PermissionEnum
+} from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: StaffMemberAdd
@@ -19,14 +23,6 @@ export interface StaffMemberAdd_staffCreate_errors {
    * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
    */
   field: string | null;
-}
-
-export interface StaffMemberAdd_staffCreate_user_avatar {
-  __typename: "Image";
-  /**
-   * The URL of the image.
-   */
-  url: string;
 }
 
 export interface StaffMemberAdd_staffCreate_user_permissionGroups {
@@ -54,6 +50,11 @@ export interface StaffMemberAdd_staffCreate_user_userPermissions {
   name: string;
 }
 
+export interface StaffMemberAdd_staffCreate_user_avatar {
+  __typename: "Image";
+  url: string;
+}
+
 export interface StaffMemberAdd_staffCreate_user {
   __typename: "User";
   /**
@@ -64,15 +65,16 @@ export interface StaffMemberAdd_staffCreate_user {
   firstName: string;
   isActive: boolean;
   lastName: string;
-  avatar: StaffMemberAdd_staffCreate_user_avatar | null;
-  /**
-   * List of user's permission groups.
-   */
-  permissionGroups: (StaffMemberAdd_staffCreate_user_permissionGroups | null)[] | null;
+  permissionGroups:
+    | (StaffMemberAdd_staffCreate_user_permissionGroups | null)[]
+    | null;
   /**
    * List of user's permissions.
    */
-  userPermissions: (StaffMemberAdd_staffCreate_user_userPermissions | null)[] | null;
+  userPermissions:
+    | (StaffMemberAdd_staffCreate_user_userPermissions | null)[]
+    | null;
+  avatar: StaffMemberAdd_staffCreate_user_avatar | null;
 }
 
 export interface StaffMemberAdd_staffCreate {

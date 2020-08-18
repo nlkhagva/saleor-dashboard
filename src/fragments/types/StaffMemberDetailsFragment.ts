@@ -9,14 +9,6 @@ import { PermissionEnum } from "./../../types/globalTypes";
 // GraphQL fragment: StaffMemberDetailsFragment
 // ====================================================
 
-export interface StaffMemberDetailsFragment_avatar {
-  __typename: "Image";
-  /**
-   * The URL of the image.
-   */
-  url: string;
-}
-
 export interface StaffMemberDetailsFragment_permissionGroups {
   __typename: "Group";
   /**
@@ -42,6 +34,11 @@ export interface StaffMemberDetailsFragment_userPermissions {
   name: string;
 }
 
+export interface StaffMemberDetailsFragment_avatar {
+  __typename: "Image";
+  url: string;
+}
+
 export interface StaffMemberDetailsFragment {
   __typename: "User";
   /**
@@ -52,13 +49,12 @@ export interface StaffMemberDetailsFragment {
   firstName: string;
   isActive: boolean;
   lastName: string;
-  avatar: StaffMemberDetailsFragment_avatar | null;
-  /**
-   * List of user's permission groups.
-   */
-  permissionGroups: (StaffMemberDetailsFragment_permissionGroups | null)[] | null;
+  permissionGroups:
+    | (StaffMemberDetailsFragment_permissionGroups | null)[]
+    | null;
   /**
    * List of user's permissions.
    */
   userPermissions: (StaffMemberDetailsFragment_userPermissions | null)[] | null;
+  avatar: StaffMemberDetailsFragment_avatar | null;
 }

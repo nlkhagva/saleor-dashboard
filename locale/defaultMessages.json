@@ -557,9 +557,9 @@
     "context": "apps content",
     "string": "You don’t have any installed apps in your dashboard"
   },
-  "src_dot_apps_dot_components_dot_InstalledApps_dot_2008086393": {
+  "src_dot_apps_dot_components_dot_InstalledApps_dot_3504763431": {
     "context": "section header",
-    "string": "Thirdparty Apps"
+    "string": "Third-party Apps"
   },
   "src_dot_apps_dot_components_dot_Marketplace_dot_2932910073": {
     "context": "section header",
@@ -1055,6 +1055,9 @@
     "context": "dialog title",
     "string": "Delete products"
   },
+  "src_dot_categories_dot_views_dot_3296953393": {
+    "string": "Remember this will also unpin all products assigned to this category, making them unavailable in storefront."
+  },
   "src_dot_categories_dot_views_dot_3488150607": {
     "string": "Remember this will also delete all products assigned to this category."
   },
@@ -1511,6 +1514,9 @@
   },
   "src_dot_components_dot_MultiSelectField_dot_4205644805": {
     "string": "No results found"
+  },
+  "src_dot_components_dot_NavigatorButton_dot_154826674": {
+    "string": "Navigator"
   },
   "src_dot_components_dot_Navigator_dot_1116468870": {
     "context": "navigator placeholder",
@@ -2585,6 +2591,9 @@
   },
   "src_dot_home_dot_components_dot_HomeActivityCard_dot_draft": {
     "string": "Order #{orderId} was placed from draft by {userEmail}"
+  },
+  "src_dot_home_dot_components_dot_HomeActivityCard_dot_draft_no_email": {
+    "string": "Order #{orderId} was placed from draft"
   },
   "src_dot_home_dot_components_dot_HomeActivityCard_dot_paid": {
     "string": "Order #{orderId} was fully paid"
@@ -5728,6 +5737,10 @@
     "context": "dialog header",
     "string": "Delete Webhook"
   },
+  "src_dot_webhooks_dot_components_dot_WebhookEvents_dot_1087314240": {
+    "context": "event",
+    "string": "Checkout updated"
+  },
   "src_dot_webhooks_dot_components_dot_WebhookEvents_dot_1368317066": {
     "context": "event",
     "string": "Invoice deleted"
@@ -5739,6 +5752,10 @@
   "src_dot_webhooks_dot_components_dot_WebhookEvents_dot_1606361075": {
     "context": "event",
     "string": "Order updated"
+  },
+  "src_dot_webhooks_dot_components_dot_WebhookEvents_dot_2240725235": {
+    "context": "event",
+    "string": "Checkout created"
   },
   "src_dot_webhooks_dot_components_dot_WebhookEvents_dot_2454751033": {
     "context": "event",

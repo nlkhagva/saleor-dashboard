@@ -3,7 +3,10 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { AttributeInputTypeEnum, WeightUnitsEnum } from "./../../types/globalTypes";
+import {
+  AttributeInputTypeEnum,
+  WeightUnitsEnum
+} from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL fragment: Product

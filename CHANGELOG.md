@@ -15,6 +15,13 @@ All notable, unreleased changes to this project will be documented in this file.
 - create Apps - #599 by @AlicjaSzu
 - Refactor authorization - #624 by @dominik-zeglen
 - Fix minor bugs - #628 by @dominik-zeglen
+- Add navigator button - #635 by @dominik-zeglen
+- Update to newest schema - #638 by @dominik-zeglen
+- Fix missing save button - #636 by @dominik-zeglen
+- Fix user avatars - #639 by @dominik-zeglen
+- Reset modal state after closing - #644 by @dominik-zeglen
+- Fix incorrect messages - #643 by @dominik-zeglen
+- Do not use devserver to run cypress tests - #650 by @dominik-zeglen
 
 ## 2.10.1
 

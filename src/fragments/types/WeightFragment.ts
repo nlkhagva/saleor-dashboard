@@ -11,12 +11,6 @@ import { WeightUnitsEnum } from "./../../types/globalTypes";
 
 export interface WeightFragment {
   __typename: "Weight";
-  /**
-   * Weight unit.
-   */
   unit: WeightUnitsEnum;
-  /**
-   * Weight value.
-   */
   value: number;
 }
