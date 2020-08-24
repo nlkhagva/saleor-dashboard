@@ -744,6 +744,15 @@ export enum PermissionGroupSortField {
   NAME = "NAME",
 }
 
+export enum PluginErrorCode {
+  GRAPHQL_ERROR = "GRAPHQL_ERROR",
+  INVALID = "INVALID",
+  NOT_FOUND = "NOT_FOUND",
+  PLUGIN_MISCONFIGURED = "PLUGIN_MISCONFIGURED",
+  REQUIRED = "REQUIRED",
+  UNIQUE = "UNIQUE",
+}
+
 export enum PluginSortField {
   IS_ACTIVE = "IS_ACTIVE",
   NAME = "NAME",
