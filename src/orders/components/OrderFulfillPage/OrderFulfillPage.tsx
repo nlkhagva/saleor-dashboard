@@ -205,7 +205,7 @@ const OrderFulfillPage: React.FC<OrderFulfillPageProps> = props => {
       <PageHeader
         title={intl.formatMessage(
           {
-            defaultMessage: "Order no. {orderNumber} - Add Fulfillment",
+            defaultMessage: "Захиалгын дугаар. {orderNumber} - Худалдан авалт",
             description: "page header"
           },
           {
