@@ -37,6 +37,18 @@ export interface ProductTypeAttributeReorder_productTypeReorderAttributes_produc
   taxCode: string | null;
 }
 
+export interface ProductTypeAttributeReorder_productTypeReorderAttributes_productType_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface ProductTypeAttributeReorder_productTypeReorderAttributes_productType_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
 export interface ProductTypeAttributeReorder_productTypeReorderAttributes_productType_productAttributes {
   __typename: "Attribute";
   /**
@@ -112,15 +124,11 @@ export interface ProductTypeAttributeReorder_productTypeReorderAttributes_produc
    * A type of tax. Assigned by enabled tax gateway
    */
   taxType: ProductTypeAttributeReorder_productTypeReorderAttributes_productType_taxType | null;
-  /**
-   * Product attributes of that product type.
-   */
+  metadata: (ProductTypeAttributeReorder_productTypeReorderAttributes_productType_metadata | null)[];
+  privateMetadata: (ProductTypeAttributeReorder_productTypeReorderAttributes_productType_privateMetadata | null)[];
   productAttributes:
     | (ProductTypeAttributeReorder_productTypeReorderAttributes_productType_productAttributes | null)[]
     | null;
-  /**
-   * Variant attributes of that product type.
-   */
   variantAttributes:
     | (ProductTypeAttributeReorder_productTypeReorderAttributes_productType_variantAttributes | null)[]
     | null;

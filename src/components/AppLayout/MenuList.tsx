@@ -262,7 +262,8 @@ const MenuList: React.FC<MenuListProps> = props => {
                 [classes.menuListItemActive]: isAnyChildActive
               })}
               key={menuItem.label}
-              data-testid={menuItem.label.toLowerCase()}
+              data-testid={menuItem.testingContextId}
+              data-test="menuItemEntry"
             >
               <div
                 className={classNames(classes.menuItemHover, {
@@ -270,7 +271,6 @@ const MenuList: React.FC<MenuListProps> = props => {
                     menuItem.ariaLabel === activeSubMenu.label &&
                     activeSubMenu.isActive
                 })}
-                data-test={menuItem.label}
                 onClick={() => handleSubMenu(menuItem.ariaLabel)}
               >
                 <SVG
@@ -317,6 +317,8 @@ const MenuList: React.FC<MenuListProps> = props => {
             href={createHref(menuItem.url)}
             onClick={event => closeSubMenu(menuItem.url, event)}
             key={menuItem.label}
+            data-testid={menuItem.testingContextId}
+            data-test="menuItemEntry"
           >
             <div className={classes.menuItemHover}>
               <SVG

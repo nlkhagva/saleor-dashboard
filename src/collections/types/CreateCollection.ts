@@ -9,6 +9,18 @@ import { CollectionCreateInput, ProductErrorCode } from "./../../types/globalTyp
 // GraphQL mutation operation: CreateCollection
 // ====================================================
 
+export interface CreateCollection_collectionCreate_collection_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface CreateCollection_collectionCreate_collection_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
 export interface CreateCollection_collectionCreate_collection_backgroundImage {
   __typename: "Image";
   /**
@@ -29,6 +41,8 @@ export interface CreateCollection_collectionCreate_collection {
   id: string;
   isPublished: boolean;
   name: string;
+  metadata: (CreateCollection_collectionCreate_collection_metadata | null)[];
+  privateMetadata: (CreateCollection_collectionCreate_collection_privateMetadata | null)[];
   backgroundImage: CreateCollection_collectionCreate_collection_backgroundImage | null;
   descriptionJson: any;
   publicationDate: any | null;

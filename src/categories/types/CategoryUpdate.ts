@@ -9,6 +9,18 @@ import { CategoryInput, ProductErrorCode } from "./../../types/globalTypes";
 // GraphQL mutation operation: CategoryUpdate
 // ====================================================
 
+export interface CategoryUpdate_categoryUpdate_category_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface CategoryUpdate_categoryUpdate_category_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
 export interface CategoryUpdate_categoryUpdate_category_backgroundImage {
   __typename: "Image";
   /**
@@ -35,6 +47,8 @@ export interface CategoryUpdate_categoryUpdate_category {
    * The ID of the object.
    */
   id: string;
+  metadata: (CategoryUpdate_categoryUpdate_category_metadata | null)[];
+  privateMetadata: (CategoryUpdate_categoryUpdate_category_privateMetadata | null)[];
   backgroundImage: CategoryUpdate_categoryUpdate_category_backgroundImage | null;
   name: string;
   descriptionJson: any;

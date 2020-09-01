@@ -33,6 +33,18 @@ export interface ProductTypeUpdate_productTypeUpdate_productType_taxType {
   taxCode: string | null;
 }
 
+export interface ProductTypeUpdate_productTypeUpdate_productType_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface ProductTypeUpdate_productTypeUpdate_productType_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
 export interface ProductTypeUpdate_productTypeUpdate_productType_productAttributes {
   __typename: "Attribute";
   /**
@@ -108,15 +120,11 @@ export interface ProductTypeUpdate_productTypeUpdate_productType {
    * A type of tax. Assigned by enabled tax gateway
    */
   taxType: ProductTypeUpdate_productTypeUpdate_productType_taxType | null;
-  /**
-   * Product attributes of that product type.
-   */
+  metadata: (ProductTypeUpdate_productTypeUpdate_productType_metadata | null)[];
+  privateMetadata: (ProductTypeUpdate_productTypeUpdate_productType_privateMetadata | null)[];
   productAttributes:
     | (ProductTypeUpdate_productTypeUpdate_productType_productAttributes | null)[]
     | null;
-  /**
-   * Variant attributes of that product type.
-   */
   variantAttributes:
     | (ProductTypeUpdate_productTypeUpdate_productType_variantAttributes | null)[]
     | null;

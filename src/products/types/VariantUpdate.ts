@@ -27,6 +27,18 @@ export interface VariantUpdate_productVariantUpdate_errors {
   field: string | null;
 }
 
+export interface VariantUpdate_productVariantUpdate_productVariant_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface VariantUpdate_productVariantUpdate_productVariant_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
 export interface VariantUpdate_productVariantUpdate_productVariant_attributes_attribute_values {
   __typename: "AttributeValue";
   /**
@@ -246,9 +258,8 @@ export interface VariantUpdate_productVariantUpdate_productVariant {
    * The ID of the object.
    */
   id: string;
-  /**
-   * List of attributes assigned to this variant.
-   */
+  metadata: (VariantUpdate_productVariantUpdate_productVariant_metadata | null)[];
+  privateMetadata: (VariantUpdate_productVariantUpdate_productVariant_privateMetadata | null)[];
   attributes: VariantUpdate_productVariantUpdate_productVariant_attributes[];
   /**
    * Cost price of the variant.
@@ -297,6 +308,18 @@ export interface VariantUpdate_productVariantStocksUpdate_errors {
    * Index of an input list item that caused the error.
    */
   index: number | null;
+}
+
+export interface VariantUpdate_productVariantStocksUpdate_productVariant_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface VariantUpdate_productVariantStocksUpdate_productVariant_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
 }
 
 export interface VariantUpdate_productVariantStocksUpdate_productVariant_attributes_attribute_values {
@@ -518,9 +541,8 @@ export interface VariantUpdate_productVariantStocksUpdate_productVariant {
    * The ID of the object.
    */
   id: string;
-  /**
-   * List of attributes assigned to this variant.
-   */
+  metadata: (VariantUpdate_productVariantStocksUpdate_productVariant_metadata | null)[];
+  privateMetadata: (VariantUpdate_productVariantStocksUpdate_productVariant_privateMetadata | null)[];
   attributes: VariantUpdate_productVariantStocksUpdate_productVariant_attributes[];
   /**
    * Cost price of the variant.

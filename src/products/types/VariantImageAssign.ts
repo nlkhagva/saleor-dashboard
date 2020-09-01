@@ -21,6 +21,18 @@ export interface VariantImageAssign_variantImageAssign_errors {
   field: string | null;
 }
 
+export interface VariantImageAssign_variantImageAssign_productVariant_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface VariantImageAssign_variantImageAssign_productVariant_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
 export interface VariantImageAssign_variantImageAssign_productVariant_attributes_attribute_values {
   __typename: "AttributeValue";
   /**
@@ -240,9 +252,8 @@ export interface VariantImageAssign_variantImageAssign_productVariant {
    * The ID of the object.
    */
   id: string;
-  /**
-   * List of attributes assigned to this variant.
-   */
+  metadata: (VariantImageAssign_variantImageAssign_productVariant_metadata | null)[];
+  privateMetadata: (VariantImageAssign_variantImageAssign_productVariant_privateMetadata | null)[];
   attributes: VariantImageAssign_variantImageAssign_productVariant_attributes[];
   /**
    * Cost price of the variant.

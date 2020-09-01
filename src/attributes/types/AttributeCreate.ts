@@ -3,11 +3,28 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { AttributeCreateInput, AttributeInputTypeEnum, AttributeValueType, ProductErrorCode } from "./../../types/globalTypes";
+import {
+  AttributeCreateInput,
+  AttributeInputTypeEnum,
+  AttributeValueType,
+  ProductErrorCode
+} from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: AttributeCreate
 // ====================================================
+
+export interface AttributeCreate_attributeCreate_attribute_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface AttributeCreate_attributeCreate_attribute_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
 
 export interface AttributeCreate_attributeCreate_attribute_values {
   __typename: "AttributeValue";
@@ -55,9 +72,8 @@ export interface AttributeCreate_attributeCreate_attribute {
    * Whether the attribute can be filtered in storefront.
    */
   filterableInStorefront: boolean;
-  /**
-   * Whether the attribute can be displayed in the admin product list.
-   */
+  metadata: (AttributeCreate_attributeCreate_attribute_metadata | null)[];
+  privateMetadata: (AttributeCreate_attributeCreate_attribute_privateMetadata | null)[];
   availableInGrid: boolean;
   /**
    * The input type to use for entering attribute values in the dashboard.

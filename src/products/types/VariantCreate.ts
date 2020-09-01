@@ -25,6 +25,18 @@ export interface VariantCreate_productVariantCreate_errors {
   field: string | null;
 }
 
+export interface VariantCreate_productVariantCreate_productVariant_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface VariantCreate_productVariantCreate_productVariant_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
 export interface VariantCreate_productVariantCreate_productVariant_attributes_attribute_values {
   __typename: "AttributeValue";
   /**
@@ -244,9 +256,8 @@ export interface VariantCreate_productVariantCreate_productVariant {
    * The ID of the object.
    */
   id: string;
-  /**
-   * List of attributes assigned to this variant.
-   */
+  metadata: (VariantCreate_productVariantCreate_productVariant_metadata | null)[];
+  privateMetadata: (VariantCreate_productVariantCreate_productVariant_privateMetadata | null)[];
   attributes: VariantCreate_productVariantCreate_productVariant_attributes[];
   /**
    * Cost price of the variant.

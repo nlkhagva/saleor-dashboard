@@ -21,6 +21,18 @@ export interface VariantImageUnassign_variantImageUnassign_errors {
   field: string | null;
 }
 
+export interface VariantImageUnassign_variantImageUnassign_productVariant_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface VariantImageUnassign_variantImageUnassign_productVariant_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
 export interface VariantImageUnassign_variantImageUnassign_productVariant_attributes_attribute_values {
   __typename: "AttributeValue";
   /**
@@ -240,9 +252,8 @@ export interface VariantImageUnassign_variantImageUnassign_productVariant {
    * The ID of the object.
    */
   id: string;
-  /**
-   * List of attributes assigned to this variant.
-   */
+  metadata: (VariantImageUnassign_variantImageUnassign_productVariant_metadata | null)[];
+  privateMetadata: (VariantImageUnassign_variantImageUnassign_productVariant_privateMetadata | null)[];
   attributes: VariantImageUnassign_variantImageUnassign_productVariant_attributes[];
   /**
    * Cost price of the variant.

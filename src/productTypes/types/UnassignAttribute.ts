@@ -33,6 +33,18 @@ export interface UnassignAttribute_attributeUnassign_productType_taxType {
   taxCode: string | null;
 }
 
+export interface UnassignAttribute_attributeUnassign_productType_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface UnassignAttribute_attributeUnassign_productType_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
 export interface UnassignAttribute_attributeUnassign_productType_productAttributes {
   __typename: "Attribute";
   /**
@@ -108,15 +120,11 @@ export interface UnassignAttribute_attributeUnassign_productType {
    * A type of tax. Assigned by enabled tax gateway
    */
   taxType: UnassignAttribute_attributeUnassign_productType_taxType | null;
-  /**
-   * Product attributes of that product type.
-   */
+  metadata: (UnassignAttribute_attributeUnassign_productType_metadata | null)[];
+  privateMetadata: (UnassignAttribute_attributeUnassign_productType_privateMetadata | null)[];
   productAttributes:
     | (UnassignAttribute_attributeUnassign_productType_productAttributes | null)[]
     | null;
-  /**
-   * Variant attributes of that product type.
-   */
   variantAttributes:
     | (UnassignAttribute_attributeUnassign_productType_variantAttributes | null)[]
     | null;

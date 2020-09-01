@@ -3,11 +3,28 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { AttributeValueCreateInput, AttributeInputTypeEnum, AttributeValueType, ProductErrorCode } from "./../../types/globalTypes";
+import {
+  AttributeValueCreateInput,
+  AttributeInputTypeEnum,
+  AttributeValueType,
+  ProductErrorCode
+} from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: AttributeValueUpdate
 // ====================================================
+
+export interface AttributeValueUpdate_attributeValueUpdate_attribute_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface AttributeValueUpdate_attributeValueUpdate_attribute_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
 
 export interface AttributeValueUpdate_attributeValueUpdate_attribute_values {
   __typename: "AttributeValue";
@@ -55,9 +72,8 @@ export interface AttributeValueUpdate_attributeValueUpdate_attribute {
    * Whether the attribute can be filtered in storefront.
    */
   filterableInStorefront: boolean;
-  /**
-   * Whether the attribute can be displayed in the admin product list.
-   */
+  metadata: (AttributeValueUpdate_attributeValueUpdate_attribute_metadata | null)[];
+  privateMetadata: (AttributeValueUpdate_attributeValueUpdate_attribute_privateMetadata | null)[];
   availableInGrid: boolean;
   /**
    * The input type to use for entering attribute values in the dashboard.
@@ -74,7 +90,9 @@ export interface AttributeValueUpdate_attributeValueUpdate_attribute {
   /**
    * List of attribute's values.
    */
-  values: (AttributeValueUpdate_attributeValueUpdate_attribute_values | null)[] | null;
+  values:
+    | (AttributeValueUpdate_attributeValueUpdate_attribute_values | null)[]
+    | null;
 }
 
 export interface AttributeValueUpdate_attributeValueUpdate_errors {

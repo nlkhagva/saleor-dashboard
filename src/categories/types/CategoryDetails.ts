@@ -7,6 +7,18 @@
 // GraphQL query operation: CategoryDetails
 // ====================================================
 
+export interface CategoryDetails_category_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface CategoryDetails_category_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
 export interface CategoryDetails_category_backgroundImage {
   __typename: "Image";
   /**
@@ -243,6 +255,8 @@ export interface CategoryDetails_category {
    * The ID of the object.
    */
   id: string;
+  metadata: (CategoryDetails_category_metadata | null)[];
+  privateMetadata: (CategoryDetails_category_privateMetadata | null)[];
   backgroundImage: CategoryDetails_category_backgroundImage | null;
   name: string;
   descriptionJson: any;

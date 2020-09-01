@@ -3,11 +3,27 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { AttributeInputTypeEnum, AttributeValueType, ProductErrorCode } from "./../../types/globalTypes";
+import {
+  AttributeInputTypeEnum,
+  AttributeValueType,
+  ProductErrorCode
+} from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: AttributeValueDelete
 // ====================================================
+
+export interface AttributeValueDelete_attributeValueDelete_attribute_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface AttributeValueDelete_attributeValueDelete_attribute_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
 
 export interface AttributeValueDelete_attributeValueDelete_attribute_values {
   __typename: "AttributeValue";
@@ -55,9 +71,8 @@ export interface AttributeValueDelete_attributeValueDelete_attribute {
    * Whether the attribute can be filtered in storefront.
    */
   filterableInStorefront: boolean;
-  /**
-   * Whether the attribute can be displayed in the admin product list.
-   */
+  metadata: (AttributeValueDelete_attributeValueDelete_attribute_metadata | null)[];
+  privateMetadata: (AttributeValueDelete_attributeValueDelete_attribute_privateMetadata | null)[];
   availableInGrid: boolean;
   /**
    * The input type to use for entering attribute values in the dashboard.
@@ -74,7 +89,9 @@ export interface AttributeValueDelete_attributeValueDelete_attribute {
   /**
    * List of attribute's values.
    */
-  values: (AttributeValueDelete_attributeValueDelete_attribute_values | null)[] | null;
+  values:
+    | (AttributeValueDelete_attributeValueDelete_attribute_values | null)[]
+    | null;
 }
 
 export interface AttributeValueDelete_attributeValueDelete_errors {

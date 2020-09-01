@@ -211,6 +211,18 @@ export interface ProductUpdate_productUpdate_product_pricing {
   priceRangeUndiscounted: ProductUpdate_productUpdate_product_pricing_priceRangeUndiscounted | null;
 }
 
+export interface ProductUpdate_productUpdate_product_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface ProductUpdate_productUpdate_product_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
 export interface ProductUpdate_productUpdate_product_category {
   __typename: "Category";
   /**
@@ -367,6 +379,8 @@ export interface ProductUpdate_productUpdate_product {
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: ProductUpdate_productUpdate_product_pricing | null;
+  metadata: (ProductUpdate_productUpdate_product_metadata | null)[];
+  privateMetadata: (ProductUpdate_productUpdate_product_privateMetadata | null)[];
   name: string;
   descriptionJson: any;
   seoTitle: string | null;

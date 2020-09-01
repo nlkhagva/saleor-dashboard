@@ -21,6 +21,18 @@ export interface ProductTypeDetailsFragment_taxType {
   taxCode: string | null;
 }
 
+export interface ProductTypeDetailsFragment_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface ProductTypeDetailsFragment_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
 export interface ProductTypeDetailsFragment_productAttributes {
   __typename: "Attribute";
   /**
@@ -102,15 +114,11 @@ export interface ProductTypeDetailsFragment {
    * A type of tax. Assigned by enabled tax gateway
    */
   taxType: ProductTypeDetailsFragment_taxType | null;
-  /**
-   * Product attributes of that product type.
-   */
+  metadata: (ProductTypeDetailsFragment_metadata | null)[];
+  privateMetadata: (ProductTypeDetailsFragment_privateMetadata | null)[];
   productAttributes:
     | (ProductTypeDetailsFragment_productAttributes | null)[]
     | null;
-  /**
-   * Variant attributes of that product type.
-   */
   variantAttributes:
     | (ProductTypeDetailsFragment_variantAttributes | null)[]
     | null;

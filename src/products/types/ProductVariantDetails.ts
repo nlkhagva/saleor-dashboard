@@ -9,6 +9,18 @@ import { WeightUnitsEnum } from "./../../types/globalTypes";
 // GraphQL query operation: ProductVariantDetails
 // ====================================================
 
+export interface ProductVariantDetails_productVariant_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface ProductVariantDetails_productVariant_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
 export interface ProductVariantDetails_productVariant_attributes_attribute_values {
   __typename: "AttributeValue";
   /**
@@ -226,9 +238,8 @@ export interface ProductVariantDetails_productVariant {
    * The ID of the object.
    */
   id: string;
-  /**
-   * List of attributes assigned to this variant.
-   */
+  metadata: (ProductVariantDetails_productVariant_metadata | null)[];
+  privateMetadata: (ProductVariantDetails_productVariant_privateMetadata | null)[];
   attributes: ProductVariantDetails_productVariant_attributes[];
   /**
    * Cost price of the variant.

@@ -3,11 +3,26 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { AttributeInputTypeEnum, AttributeValueType } from "./../../types/globalTypes";
+import {
+  AttributeInputTypeEnum,
+  AttributeValueType
+} from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: AttributeDetails
 // ====================================================
+
+export interface AttributeDetails_attribute_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface AttributeDetails_attribute_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
 
 export interface AttributeDetails_attribute_values {
   __typename: "AttributeValue";
@@ -55,9 +70,8 @@ export interface AttributeDetails_attribute {
    * Whether the attribute can be filtered in storefront.
    */
   filterableInStorefront: boolean;
-  /**
-   * Whether the attribute can be displayed in the admin product list.
-   */
+  metadata: (AttributeDetails_attribute_metadata | null)[];
+  privateMetadata: (AttributeDetails_attribute_privateMetadata | null)[];
   availableInGrid: boolean;
   /**
    * The input type to use for entering attribute values in the dashboard.
