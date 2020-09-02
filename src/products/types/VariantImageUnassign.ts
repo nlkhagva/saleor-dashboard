@@ -23,13 +23,25 @@ export interface VariantImageUnassign_variantImageUnassign_errors {
 
 export interface VariantImageUnassign_variantImageUnassign_productVariant_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface VariantImageUnassign_variantImageUnassign_productVariant_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -70,9 +82,7 @@ export interface VariantImageUnassign_variantImageUnassign_productVariant_attrib
   /**
    * List of attribute's values.
    */
-  values:
-    | (VariantImageUnassign_variantImageUnassign_productVariant_attributes_attribute_values | null)[]
-    | null;
+  values: (VariantImageUnassign_variantImageUnassign_productVariant_attributes_attribute_values | null)[] | null;
 }
 
 export interface VariantImageUnassign_variantImageUnassign_productVariant_attributes_values {
@@ -184,9 +194,7 @@ export interface VariantImageUnassign_variantImageUnassign_productVariant_produc
   /**
    * List of images for the product variant.
    */
-  images:
-    | (VariantImageUnassign_variantImageUnassign_productVariant_product_variants_images | null)[]
-    | null;
+  images: (VariantImageUnassign_variantImageUnassign_productVariant_product_variants_images | null)[] | null;
 }
 
 export interface VariantImageUnassign_variantImageUnassign_productVariant_product {
@@ -198,9 +206,7 @@ export interface VariantImageUnassign_variantImageUnassign_productVariant_produc
   /**
    * List of images for the product.
    */
-  images:
-    | (VariantImageUnassign_variantImageUnassign_productVariant_product_images | null)[]
-    | null;
+  images: (VariantImageUnassign_variantImageUnassign_productVariant_product_images | null)[] | null;
   name: string;
   /**
    * The main thumbnail for a product.
@@ -209,9 +215,7 @@ export interface VariantImageUnassign_variantImageUnassign_productVariant_produc
   /**
    * List of variants for the product.
    */
-  variants:
-    | (VariantImageUnassign_variantImageUnassign_productVariant_product_variants | null)[]
-    | null;
+  variants: (VariantImageUnassign_variantImageUnassign_productVariant_product_variants | null)[] | null;
 }
 
 export interface VariantImageUnassign_variantImageUnassign_productVariant_stocks_warehouse {
@@ -242,7 +246,13 @@ export interface VariantImageUnassign_variantImageUnassign_productVariant_stocks
 
 export interface VariantImageUnassign_variantImageUnassign_productVariant_weight {
   __typename: "Weight";
+  /**
+   * Weight unit.
+   */
   unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
   value: number;
 }
 
@@ -252,8 +262,17 @@ export interface VariantImageUnassign_variantImageUnassign_productVariant {
    * The ID of the object.
    */
   id: string;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (VariantImageUnassign_variantImageUnassign_productVariant_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (VariantImageUnassign_variantImageUnassign_productVariant_privateMetadata | null)[];
+  /**
+   * List of attributes assigned to this variant.
+   */
   attributes: VariantImageUnassign_variantImageUnassign_productVariant_attributes[];
   /**
    * Cost price of the variant.
@@ -262,9 +281,7 @@ export interface VariantImageUnassign_variantImageUnassign_productVariant {
   /**
    * List of images for the product variant.
    */
-  images:
-    | (VariantImageUnassign_variantImageUnassign_productVariant_images | null)[]
-    | null;
+  images: (VariantImageUnassign_variantImageUnassign_productVariant_images | null)[] | null;
   name: string;
   /**
    * Base price of a product variant. This field is restricted for admins. Use the pricing field to get the public price for customers.
@@ -275,9 +292,7 @@ export interface VariantImageUnassign_variantImageUnassign_productVariant {
   /**
    * Stocks for the product variant.
    */
-  stocks:
-    | (VariantImageUnassign_variantImageUnassign_productVariant_stocks | null)[]
-    | null;
+  stocks: (VariantImageUnassign_variantImageUnassign_productVariant_stocks | null)[] | null;
   trackInventory: boolean;
   weight: VariantImageUnassign_variantImageUnassign_productVariant_weight | null;
 }

@@ -23,13 +23,25 @@ export interface ProductTypeDetailsFragment_taxType {
 
 export interface ProductTypeDetailsFragment_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface ProductTypeDetailsFragment_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -114,13 +126,21 @@ export interface ProductTypeDetailsFragment {
    * A type of tax. Assigned by enabled tax gateway
    */
   taxType: ProductTypeDetailsFragment_taxType | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (ProductTypeDetailsFragment_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (ProductTypeDetailsFragment_privateMetadata | null)[];
-  productAttributes:
-    | (ProductTypeDetailsFragment_productAttributes | null)[]
-    | null;
-  variantAttributes:
-    | (ProductTypeDetailsFragment_variantAttributes | null)[]
-    | null;
+  /**
+   * Product attributes of that product type.
+   */
+  productAttributes: (ProductTypeDetailsFragment_productAttributes | null)[] | null;
+  /**
+   * Variant attributes of that product type.
+   */
+  variantAttributes: (ProductTypeDetailsFragment_variantAttributes | null)[] | null;
   weight: ProductTypeDetailsFragment_weight | null;
 }

@@ -105,7 +105,7 @@ export type OrderUrlQueryParams = Dialog<OrderUrlDialog> & SingleAction;
 export const orderUrl = (id: string, params?: OrderUrlQueryParams) =>
   orderPath(encodeURIComponent(id)) + "?" + stringifyQs(params);
 
-export const orderFulfillPath = (id: string) =>
-  urlJoin(orderPath(id), "fulfill");
-export const orderFulfillUrl = (id: string) =>
-  orderFulfillPath(encodeURIComponent(id));
+export const orderFulfillPath = (id: string, ushop?: string) =>
+  urlJoin(orderPath(id), "fulfill", ushop);
+export const orderFulfillUrl = (id: string, ushop?: string) =>
+  orderFulfillPath(encodeURIComponent(id), encodeURIComponent(ushop));

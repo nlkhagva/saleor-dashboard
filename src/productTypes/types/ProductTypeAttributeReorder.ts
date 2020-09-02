@@ -3,11 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import {
-  ReorderInput,
-  AttributeTypeEnum,
-  WeightUnitsEnum
-} from "./../../types/globalTypes";
+import { ReorderInput, AttributeTypeEnum, WeightUnitsEnum } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: ProductTypeAttributeReorder
@@ -39,13 +35,25 @@ export interface ProductTypeAttributeReorder_productTypeReorderAttributes_produc
 
 export interface ProductTypeAttributeReorder_productTypeReorderAttributes_productType_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface ProductTypeAttributeReorder_productTypeReorderAttributes_productType_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -107,7 +115,13 @@ export interface ProductTypeAttributeReorder_productTypeReorderAttributes_produc
 
 export interface ProductTypeAttributeReorder_productTypeReorderAttributes_productType_weight {
   __typename: "Weight";
+  /**
+   * Weight unit.
+   */
   unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
   value: number;
 }
 
@@ -124,14 +138,22 @@ export interface ProductTypeAttributeReorder_productTypeReorderAttributes_produc
    * A type of tax. Assigned by enabled tax gateway
    */
   taxType: ProductTypeAttributeReorder_productTypeReorderAttributes_productType_taxType | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (ProductTypeAttributeReorder_productTypeReorderAttributes_productType_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (ProductTypeAttributeReorder_productTypeReorderAttributes_productType_privateMetadata | null)[];
-  productAttributes:
-    | (ProductTypeAttributeReorder_productTypeReorderAttributes_productType_productAttributes | null)[]
-    | null;
-  variantAttributes:
-    | (ProductTypeAttributeReorder_productTypeReorderAttributes_productType_variantAttributes | null)[]
-    | null;
+  /**
+   * Product attributes of that product type.
+   */
+  productAttributes: (ProductTypeAttributeReorder_productTypeReorderAttributes_productType_productAttributes | null)[] | null;
+  /**
+   * Variant attributes of that product type.
+   */
+  variantAttributes: (ProductTypeAttributeReorder_productTypeReorderAttributes_productType_variantAttributes | null)[] | null;
   weight: ProductTypeAttributeReorder_productTypeReorderAttributes_productType_weight | null;
 }
 

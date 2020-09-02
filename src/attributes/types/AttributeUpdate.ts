@@ -3,12 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import {
-  AttributeUpdateInput,
-  AttributeInputTypeEnum,
-  AttributeValueType,
-  ProductErrorCode
-} from "./../../types/globalTypes";
+import { AttributeUpdateInput, AttributeInputTypeEnum, AttributeValueType, ProductErrorCode } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: AttributeUpdate
@@ -16,13 +11,25 @@ import {
 
 export interface AttributeUpdate_attributeUpdate_attribute_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface AttributeUpdate_attributeUpdate_attribute_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -72,8 +79,17 @@ export interface AttributeUpdate_attributeUpdate_attribute {
    * Whether the attribute can be filtered in storefront.
    */
   filterableInStorefront: boolean;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (AttributeUpdate_attributeUpdate_attribute_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (AttributeUpdate_attributeUpdate_attribute_privateMetadata | null)[];
+  /**
+   * Whether the attribute can be displayed in the admin product list.
+   */
   availableInGrid: boolean;
   /**
    * The input type to use for entering attribute values in the dashboard.

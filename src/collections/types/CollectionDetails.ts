@@ -9,13 +9,25 @@
 
 export interface CollectionDetails_collection_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface CollectionDetails_collection_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -108,7 +120,13 @@ export interface CollectionDetails_collection {
   id: string;
   isPublished: boolean;
   name: string;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (CollectionDetails_collection_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (CollectionDetails_collection_privateMetadata | null)[];
   backgroundImage: CollectionDetails_collection_backgroundImage | null;
   descriptionJson: any;

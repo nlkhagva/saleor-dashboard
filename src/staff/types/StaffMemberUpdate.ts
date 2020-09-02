@@ -3,11 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import {
-  StaffUpdateInput,
-  AccountErrorCode,
-  PermissionEnum
-} from "./../../types/globalTypes";
+import { StaffUpdateInput, AccountErrorCode, PermissionEnum } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: StaffMemberUpdate
@@ -52,6 +48,9 @@ export interface StaffMemberUpdate_staffUpdate_user_userPermissions {
 
 export interface StaffMemberUpdate_staffUpdate_user_avatar {
   __typename: "Image";
+  /**
+   * The URL of the image.
+   */
   url: string;
 }
 
@@ -65,15 +64,14 @@ export interface StaffMemberUpdate_staffUpdate_user {
   firstName: string;
   isActive: boolean;
   lastName: string;
-  permissionGroups:
-    | (StaffMemberUpdate_staffUpdate_user_permissionGroups | null)[]
-    | null;
+  /**
+   * List of user's permission groups.
+   */
+  permissionGroups: (StaffMemberUpdate_staffUpdate_user_permissionGroups | null)[] | null;
   /**
    * List of user's permissions.
    */
-  userPermissions:
-    | (StaffMemberUpdate_staffUpdate_user_userPermissions | null)[]
-    | null;
+  userPermissions: (StaffMemberUpdate_staffUpdate_user_userPermissions | null)[] | null;
   avatar: StaffMemberUpdate_staffUpdate_user_avatar | null;
 }
 

@@ -60,7 +60,10 @@ const OrderDetails: React.FC<RouteComponentProps<any>> = ({
 };
 
 const OrderFulfill: React.FC<RouteComponentProps<any>> = ({ match }) => (
-  <OrderFulfillComponent orderId={decodeURIComponent(match.params.id)} />
+  <OrderFulfillComponent
+    orderId={decodeURIComponent(match.params.id)}
+    ushopId={decodeURIComponent(match.params.ushop)}
+  />
 );
 
 const Component = () => {
@@ -72,7 +75,10 @@ const Component = () => {
       <Switch>
         <Route exact path={orderDraftListPath} component={OrderDraftList} />
         <Route exact path={orderListPath} component={OrderList} />
-        <Route path={orderFulfillPath(":id")} component={OrderFulfill} />
+        <Route
+          path={orderFulfillPath(":id", ":ushop")}
+          component={OrderFulfill}
+        />
         <Route path={orderPath(":id")} component={OrderDetails} />
       </Switch>
     </>

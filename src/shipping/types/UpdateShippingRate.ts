@@ -3,12 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import {
-  ShippingPriceInput,
-  ShippingErrorCode,
-  WeightUnitsEnum,
-  ShippingMethodTypeEnum
-} from "./../../types/globalTypes";
+import { ShippingPriceInput, ShippingErrorCode, WeightUnitsEnum, ShippingMethodTypeEnum } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: UpdateShippingRate
@@ -40,7 +35,13 @@ export interface UpdateShippingRate_shippingPriceUpdate_shippingMethod_minimumOr
 
 export interface UpdateShippingRate_shippingPriceUpdate_shippingMethod_minimumOrderWeight {
   __typename: "Weight";
+  /**
+   * Weight unit.
+   */
   unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
   value: number;
 }
 
@@ -58,7 +59,13 @@ export interface UpdateShippingRate_shippingPriceUpdate_shippingMethod_maximumOr
 
 export interface UpdateShippingRate_shippingPriceUpdate_shippingMethod_maximumOrderWeight {
   __typename: "Weight";
+  /**
+   * Weight unit.
+   */
   unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
   value: number;
 }
 

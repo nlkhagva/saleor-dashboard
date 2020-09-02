@@ -3,12 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import {
-  AttributeValueCreateInput,
-  AttributeInputTypeEnum,
-  AttributeValueType,
-  ProductErrorCode
-} from "./../../types/globalTypes";
+import { AttributeValueCreateInput, AttributeInputTypeEnum, AttributeValueType, ProductErrorCode } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: AttributeValueUpdate
@@ -16,13 +11,25 @@ import {
 
 export interface AttributeValueUpdate_attributeValueUpdate_attribute_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface AttributeValueUpdate_attributeValueUpdate_attribute_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -72,8 +79,17 @@ export interface AttributeValueUpdate_attributeValueUpdate_attribute {
    * Whether the attribute can be filtered in storefront.
    */
   filterableInStorefront: boolean;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (AttributeValueUpdate_attributeValueUpdate_attribute_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (AttributeValueUpdate_attributeValueUpdate_attribute_privateMetadata | null)[];
+  /**
+   * Whether the attribute can be displayed in the admin product list.
+   */
   availableInGrid: boolean;
   /**
    * The input type to use for entering attribute values in the dashboard.
@@ -90,9 +106,7 @@ export interface AttributeValueUpdate_attributeValueUpdate_attribute {
   /**
    * List of attribute's values.
    */
-  values:
-    | (AttributeValueUpdate_attributeValueUpdate_attribute_values | null)[]
-    | null;
+  values: (AttributeValueUpdate_attributeValueUpdate_attribute_values | null)[] | null;
 }
 
 export interface AttributeValueUpdate_attributeValueUpdate_errors {

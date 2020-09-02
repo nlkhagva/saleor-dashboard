@@ -36,6 +36,9 @@ export interface StaffMemberDetailsFragment_userPermissions {
 
 export interface StaffMemberDetailsFragment_avatar {
   __typename: "Image";
+  /**
+   * The URL of the image.
+   */
   url: string;
 }
 
@@ -49,9 +52,10 @@ export interface StaffMemberDetailsFragment {
   firstName: string;
   isActive: boolean;
   lastName: string;
-  permissionGroups:
-    | (StaffMemberDetailsFragment_permissionGroups | null)[]
-    | null;
+  /**
+   * List of user's permission groups.
+   */
+  permissionGroups: (StaffMemberDetailsFragment_permissionGroups | null)[] | null;
   /**
    * List of user's permissions.
    */

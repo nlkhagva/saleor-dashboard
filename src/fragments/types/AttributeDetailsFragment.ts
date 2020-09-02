@@ -3,10 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import {
-  AttributeInputTypeEnum,
-  AttributeValueType
-} from "./../../types/globalTypes";
+import { AttributeInputTypeEnum, AttributeValueType } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL fragment: AttributeDetailsFragment
@@ -14,13 +11,25 @@ import {
 
 export interface AttributeDetailsFragment_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface AttributeDetailsFragment_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -70,8 +79,17 @@ export interface AttributeDetailsFragment {
    * Whether the attribute can be filtered in storefront.
    */
   filterableInStorefront: boolean;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (AttributeDetailsFragment_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (AttributeDetailsFragment_privateMetadata | null)[];
+  /**
+   * Whether the attribute can be displayed in the admin product list.
+   */
   availableInGrid: boolean;
   /**
    * The input type to use for entering attribute values in the dashboard.

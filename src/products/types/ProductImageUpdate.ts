@@ -3,11 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import {
-  ProductErrorCode,
-  AttributeInputTypeEnum,
-  WeightUnitsEnum
-} from "./../../types/globalTypes";
+import { ProductErrorCode, AttributeInputTypeEnum, WeightUnitsEnum } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: ProductImageUpdate
@@ -66,9 +62,7 @@ export interface ProductImageUpdate_productImageUpdate_product_attributes_attrib
   /**
    * List of attribute's values.
    */
-  values:
-    | (ProductImageUpdate_productImageUpdate_product_attributes_attribute_values | null)[]
-    | null;
+  values: (ProductImageUpdate_productImageUpdate_product_attributes_attribute_values | null)[] | null;
 }
 
 export interface ProductImageUpdate_productImageUpdate_product_attributes_values {
@@ -128,9 +122,7 @@ export interface ProductImageUpdate_productImageUpdate_product_productType_varia
   /**
    * List of attribute's values.
    */
-  values:
-    | (ProductImageUpdate_productImageUpdate_product_productType_variantAttributes_values | null)[]
-    | null;
+  values: (ProductImageUpdate_productImageUpdate_product_productType_variantAttributes_values | null)[] | null;
 }
 
 export interface ProductImageUpdate_productImageUpdate_product_productType {
@@ -142,9 +134,7 @@ export interface ProductImageUpdate_productImageUpdate_product_productType {
   /**
    * Variant attributes of that product type.
    */
-  variantAttributes:
-    | (ProductImageUpdate_productImageUpdate_product_productType_variantAttributes | null)[]
-    | null;
+  variantAttributes: (ProductImageUpdate_productImageUpdate_product_productType_variantAttributes | null)[] | null;
   name: string;
   hasVariants: boolean;
 }
@@ -211,13 +201,25 @@ export interface ProductImageUpdate_productImageUpdate_product_pricing {
 
 export interface ProductImageUpdate_productImageUpdate_product_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface ProductImageUpdate_productImageUpdate_product_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -352,15 +354,19 @@ export interface ProductImageUpdate_productImageUpdate_product_variants {
   /**
    * Stocks for the product variant.
    */
-  stocks:
-    | (ProductImageUpdate_productImageUpdate_product_variants_stocks | null)[]
-    | null;
+  stocks: (ProductImageUpdate_productImageUpdate_product_variants_stocks | null)[] | null;
   trackInventory: boolean;
 }
 
 export interface ProductImageUpdate_productImageUpdate_product_weight {
   __typename: "Weight";
+  /**
+   * Weight unit.
+   */
   unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
   value: number;
 }
 
@@ -379,7 +385,13 @@ export interface ProductImageUpdate_productImageUpdate_product {
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: ProductImageUpdate_productImageUpdate_product_pricing | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (ProductImageUpdate_productImageUpdate_product_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (ProductImageUpdate_productImageUpdate_product_privateMetadata | null)[];
   name: string;
   descriptionJson: any;
@@ -389,9 +401,7 @@ export interface ProductImageUpdate_productImageUpdate_product {
   /**
    * List of collections for the product.
    */
-  collections:
-    | (ProductImageUpdate_productImageUpdate_product_collections | null)[]
-    | null;
+  collections: (ProductImageUpdate_productImageUpdate_product_collections | null)[] | null;
   margin: ProductImageUpdate_productImageUpdate_product_margin | null;
   purchaseCost: ProductImageUpdate_productImageUpdate_product_purchaseCost | null;
   /**
@@ -404,15 +414,11 @@ export interface ProductImageUpdate_productImageUpdate_product {
   /**
    * List of images for the product.
    */
-  images:
-    | (ProductImageUpdate_productImageUpdate_product_images | null)[]
-    | null;
+  images: (ProductImageUpdate_productImageUpdate_product_images | null)[] | null;
   /**
    * List of variants for the product.
    */
-  variants:
-    | (ProductImageUpdate_productImageUpdate_product_variants | null)[]
-    | null;
+  variants: (ProductImageUpdate_productImageUpdate_product_variants | null)[] | null;
   weight: ProductImageUpdate_productImageUpdate_product_weight | null;
 }
 

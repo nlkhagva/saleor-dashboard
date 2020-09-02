@@ -11,13 +11,25 @@ import { WeightUnitsEnum } from "./../../types/globalTypes";
 
 export interface ProductVariant_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface ProductVariant_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -238,8 +250,17 @@ export interface ProductVariant {
    * The ID of the object.
    */
   id: string;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (ProductVariant_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (ProductVariant_privateMetadata | null)[];
+  /**
+   * List of attributes assigned to this variant.
+   */
   attributes: ProductVariant_attributes[];
   /**
    * Cost price of the variant.

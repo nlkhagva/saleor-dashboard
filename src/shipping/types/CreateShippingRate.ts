@@ -3,12 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import {
-  ShippingPriceInput,
-  ShippingErrorCode,
-  WeightUnitsEnum,
-  ShippingMethodTypeEnum
-} from "./../../types/globalTypes";
+import { ShippingPriceInput, ShippingErrorCode, WeightUnitsEnum, ShippingMethodTypeEnum } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: CreateShippingRate
@@ -52,7 +47,13 @@ export interface CreateShippingRate_shippingPriceCreate_shippingZone_shippingMet
 
 export interface CreateShippingRate_shippingPriceCreate_shippingZone_shippingMethods_minimumOrderWeight {
   __typename: "Weight";
+  /**
+   * Weight unit.
+   */
   unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
   value: number;
 }
 
@@ -70,7 +71,13 @@ export interface CreateShippingRate_shippingPriceCreate_shippingZone_shippingMet
 
 export interface CreateShippingRate_shippingPriceCreate_shippingZone_shippingMethods_maximumOrderWeight {
   __typename: "Weight";
+  /**
+   * Weight unit.
+   */
   unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
   value: number;
 }
 
@@ -122,23 +129,17 @@ export interface CreateShippingRate_shippingPriceCreate_shippingZone {
   /**
    * List of countries available for the method.
    */
-  countries:
-    | (CreateShippingRate_shippingPriceCreate_shippingZone_countries | null)[]
-    | null;
+  countries: (CreateShippingRate_shippingPriceCreate_shippingZone_countries | null)[] | null;
   name: string;
   default: boolean;
   /**
    * List of shipping methods available for orders shipped to countries within this shipping zone.
    */
-  shippingMethods:
-    | (CreateShippingRate_shippingPriceCreate_shippingZone_shippingMethods | null)[]
-    | null;
+  shippingMethods: (CreateShippingRate_shippingPriceCreate_shippingZone_shippingMethods | null)[] | null;
   /**
    * List of warehouses for shipping zone.
    */
-  warehouses:
-    | (CreateShippingRate_shippingPriceCreate_shippingZone_warehouses | null)[]
-    | null;
+  warehouses: (CreateShippingRate_shippingPriceCreate_shippingZone_warehouses | null)[] | null;
 }
 
 export interface CreateShippingRate_shippingPriceCreate {

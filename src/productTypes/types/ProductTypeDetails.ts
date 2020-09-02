@@ -23,13 +23,25 @@ export interface ProductTypeDetails_productType_taxType {
 
 export interface ProductTypeDetails_productType_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface ProductTypeDetails_productType_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -91,7 +103,13 @@ export interface ProductTypeDetails_productType_variantAttributes {
 
 export interface ProductTypeDetails_productType_weight {
   __typename: "Weight";
+  /**
+   * Weight unit.
+   */
   unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
   value: number;
 }
 
@@ -108,14 +126,22 @@ export interface ProductTypeDetails_productType {
    * A type of tax. Assigned by enabled tax gateway
    */
   taxType: ProductTypeDetails_productType_taxType | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (ProductTypeDetails_productType_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (ProductTypeDetails_productType_privateMetadata | null)[];
-  productAttributes:
-    | (ProductTypeDetails_productType_productAttributes | null)[]
-    | null;
-  variantAttributes:
-    | (ProductTypeDetails_productType_variantAttributes | null)[]
-    | null;
+  /**
+   * Product attributes of that product type.
+   */
+  productAttributes: (ProductTypeDetails_productType_productAttributes | null)[] | null;
+  /**
+   * Variant attributes of that product type.
+   */
+  variantAttributes: (ProductTypeDetails_productType_variantAttributes | null)[] | null;
   weight: ProductTypeDetails_productType_weight | null;
 }
 

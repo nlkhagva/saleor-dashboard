@@ -1,14 +1,16 @@
 import { TableBody, TableCell, TableHead, TableRow } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 import Money from "@saleor/components/Money";
 import Skeleton from "@saleor/components/Skeleton";
 import TableCellAvatar from "@saleor/components/TableCellAvatar";
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 // import { FormattedMessag e } from "react-intl";
 import { maybe } from "../../../misc";
 import UkShippingRow from "./UkShppingRow";
 
-const UshopTable = ({ ushop, classes }: any) => {
+const UshopTable = ({ ushop, classes, canFulfill, onFulfill }: any) => {
   const metakeyInfo = ["color", "code", "size"];
   const quantity = ushop.lines
     .map(line => line.quantity - line.quantityFulfilled)
@@ -128,6 +130,22 @@ const UshopTable = ({ ushop, classes }: any) => {
         {ushop.ukShipping && (
           <UkShippingRow line={ushop.ukShipping} classes={classes} />
         )}
+        <TableRow>
+          <TableCell colSpan={5}>
+            {canFulfill && (
+              <Button
+                variant="text"
+                color="primary"
+                onClick={() => onFulfill(ushop.id)}
+              >
+                <FormattedMessage
+                  defaultMessage="Fulfill"
+                  description="button"
+                />
+              </Button>
+            )}
+          </TableCell>
+        </TableRow>
       </TableBody>
     </>
   );

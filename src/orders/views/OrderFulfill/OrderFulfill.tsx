@@ -11,9 +11,10 @@ import { useIntl } from "react-intl";
 
 export interface OrderFulfillProps {
   orderId: string;
+  ushopId: string;
 }
 
-const OrderFulfill: React.FC<OrderFulfillProps> = ({ orderId }) => {
+const OrderFulfill: React.FC<OrderFulfillProps> = ({ orderId, ushopId }) => {
   const navigate = useNavigator();
   const notify = useNotifier();
   const intl = useIntl();
@@ -65,6 +66,7 @@ const OrderFulfill: React.FC<OrderFulfillProps> = ({ orderId }) => {
         }
       />
       <OrderFulfillPage
+        ushopId={ushopId}
         disabled={loading || warehousesLoading || fulfillOrderOpts.loading}
         errors={fulfillOrderOpts.data?.orderFulfill.errors}
         onBack={() => navigate(orderUrl(orderId))}

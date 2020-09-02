@@ -131,6 +131,7 @@ export interface OrderFulfillPageProps {
   warehouses: WarehouseFragment[];
   onBack: () => void;
   onSubmit: (data: OrderFulfillSubmitData) => void;
+  ushopId: string;
 }
 
 const initialFormData: OrderFulfillFormData = {
@@ -143,6 +144,7 @@ function getRemainingQuantity(line: OrderFulfillData_order_lines): number {
 
 const OrderFulfillPage: React.FC<OrderFulfillPageProps> = props => {
   const {
+    ushopId,
     disabled,
     errors,
     order,
@@ -160,6 +162,7 @@ const OrderFulfillPage: React.FC<OrderFulfillPageProps> = props => {
     OrderFulfillStockInput[]
   >(
     order?.lines
+      .filter(line => line.variant.product.ushop.id === ushopId)
       .filter(line => getRemainingQuantity(line) > 0)
       .map(line => ({
         data: null,
@@ -218,10 +221,11 @@ const OrderFulfillPage: React.FC<OrderFulfillPageProps> = props => {
           <>
             <Card>
               <CardTitle
-                title={intl.formatMessage({
-                  defaultMessage: "Items ready to ship",
-                  description: "header"
-                })}
+                title={
+                  order?.lines.filter(
+                    line => line.variant.product.ushop.id === ushopId
+                  )[0].variant.product.ushop.name
+                }
               />
               <ResponsiveTable className={classes.table}>
                 <TableHead>
@@ -256,7 +260,9 @@ const OrderFulfillPage: React.FC<OrderFulfillPageProps> = props => {
                 </TableHead>
                 <TableBody>
                   {renderCollection(
-                    order?.lines.filter(line => getRemainingQuantity(line) > 0),
+                    order?.lines
+                      .filter(line => line.variant.product.ushop.id === ushopId)
+                      .filter(line => getRemainingQuantity(line) > 0),
                     (line, lineIndex) => {
                       if (!line) {
                         return (

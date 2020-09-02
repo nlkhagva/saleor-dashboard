@@ -3,16 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import {
-  AttributeValueInput,
-  ProductVariantInput,
-  SeoInput,
-  StockInput,
-  ProductErrorCode,
-  AttributeInputTypeEnum,
-  WeightUnitsEnum,
-  StockErrorCode
-} from "./../../types/globalTypes";
+import { AttributeValueInput, ProductVariantInput, SeoInput, StockInput, ProductErrorCode, AttributeInputTypeEnum, WeightUnitsEnum, StockErrorCode } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: SimpleProductUpdate
@@ -71,9 +62,7 @@ export interface SimpleProductUpdate_productUpdate_product_attributes_attribute 
   /**
    * List of attribute's values.
    */
-  values:
-    | (SimpleProductUpdate_productUpdate_product_attributes_attribute_values | null)[]
-    | null;
+  values: (SimpleProductUpdate_productUpdate_product_attributes_attribute_values | null)[] | null;
 }
 
 export interface SimpleProductUpdate_productUpdate_product_attributes_values {
@@ -133,9 +122,7 @@ export interface SimpleProductUpdate_productUpdate_product_productType_variantAt
   /**
    * List of attribute's values.
    */
-  values:
-    | (SimpleProductUpdate_productUpdate_product_productType_variantAttributes_values | null)[]
-    | null;
+  values: (SimpleProductUpdate_productUpdate_product_productType_variantAttributes_values | null)[] | null;
 }
 
 export interface SimpleProductUpdate_productUpdate_product_productType {
@@ -147,9 +134,7 @@ export interface SimpleProductUpdate_productUpdate_product_productType {
   /**
    * Variant attributes of that product type.
    */
-  variantAttributes:
-    | (SimpleProductUpdate_productUpdate_product_productType_variantAttributes | null)[]
-    | null;
+  variantAttributes: (SimpleProductUpdate_productUpdate_product_productType_variantAttributes | null)[] | null;
   name: string;
   hasVariants: boolean;
 }
@@ -216,13 +201,25 @@ export interface SimpleProductUpdate_productUpdate_product_pricing {
 
 export interface SimpleProductUpdate_productUpdate_product_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface SimpleProductUpdate_productUpdate_product_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -357,15 +354,19 @@ export interface SimpleProductUpdate_productUpdate_product_variants {
   /**
    * Stocks for the product variant.
    */
-  stocks:
-    | (SimpleProductUpdate_productUpdate_product_variants_stocks | null)[]
-    | null;
+  stocks: (SimpleProductUpdate_productUpdate_product_variants_stocks | null)[] | null;
   trackInventory: boolean;
 }
 
 export interface SimpleProductUpdate_productUpdate_product_weight {
   __typename: "Weight";
+  /**
+   * Weight unit.
+   */
   unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
   value: number;
 }
 
@@ -384,7 +385,13 @@ export interface SimpleProductUpdate_productUpdate_product {
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: SimpleProductUpdate_productUpdate_product_pricing | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (SimpleProductUpdate_productUpdate_product_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (SimpleProductUpdate_productUpdate_product_privateMetadata | null)[];
   name: string;
   descriptionJson: any;
@@ -394,9 +401,7 @@ export interface SimpleProductUpdate_productUpdate_product {
   /**
    * List of collections for the product.
    */
-  collections:
-    | (SimpleProductUpdate_productUpdate_product_collections | null)[]
-    | null;
+  collections: (SimpleProductUpdate_productUpdate_product_collections | null)[] | null;
   margin: SimpleProductUpdate_productUpdate_product_margin | null;
   purchaseCost: SimpleProductUpdate_productUpdate_product_purchaseCost | null;
   /**
@@ -413,9 +418,7 @@ export interface SimpleProductUpdate_productUpdate_product {
   /**
    * List of variants for the product.
    */
-  variants:
-    | (SimpleProductUpdate_productUpdate_product_variants | null)[]
-    | null;
+  variants: (SimpleProductUpdate_productUpdate_product_variants | null)[] | null;
   weight: SimpleProductUpdate_productUpdate_product_weight | null;
 }
 
@@ -439,13 +442,25 @@ export interface SimpleProductUpdate_productVariantUpdate_errors {
 
 export interface SimpleProductUpdate_productVariantUpdate_productVariant_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface SimpleProductUpdate_productVariantUpdate_productVariant_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -486,9 +501,7 @@ export interface SimpleProductUpdate_productVariantUpdate_productVariant_attribu
   /**
    * List of attribute's values.
    */
-  values:
-    | (SimpleProductUpdate_productVariantUpdate_productVariant_attributes_attribute_values | null)[]
-    | null;
+  values: (SimpleProductUpdate_productVariantUpdate_productVariant_attributes_attribute_values | null)[] | null;
 }
 
 export interface SimpleProductUpdate_productVariantUpdate_productVariant_attributes_values {
@@ -600,9 +613,7 @@ export interface SimpleProductUpdate_productVariantUpdate_productVariant_product
   /**
    * List of images for the product variant.
    */
-  images:
-    | (SimpleProductUpdate_productVariantUpdate_productVariant_product_variants_images | null)[]
-    | null;
+  images: (SimpleProductUpdate_productVariantUpdate_productVariant_product_variants_images | null)[] | null;
 }
 
 export interface SimpleProductUpdate_productVariantUpdate_productVariant_product {
@@ -614,9 +625,7 @@ export interface SimpleProductUpdate_productVariantUpdate_productVariant_product
   /**
    * List of images for the product.
    */
-  images:
-    | (SimpleProductUpdate_productVariantUpdate_productVariant_product_images | null)[]
-    | null;
+  images: (SimpleProductUpdate_productVariantUpdate_productVariant_product_images | null)[] | null;
   name: string;
   /**
    * The main thumbnail for a product.
@@ -625,9 +634,7 @@ export interface SimpleProductUpdate_productVariantUpdate_productVariant_product
   /**
    * List of variants for the product.
    */
-  variants:
-    | (SimpleProductUpdate_productVariantUpdate_productVariant_product_variants | null)[]
-    | null;
+  variants: (SimpleProductUpdate_productVariantUpdate_productVariant_product_variants | null)[] | null;
 }
 
 export interface SimpleProductUpdate_productVariantUpdate_productVariant_stocks_warehouse {
@@ -658,7 +665,13 @@ export interface SimpleProductUpdate_productVariantUpdate_productVariant_stocks 
 
 export interface SimpleProductUpdate_productVariantUpdate_productVariant_weight {
   __typename: "Weight";
+  /**
+   * Weight unit.
+   */
   unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
   value: number;
 }
 
@@ -668,8 +681,17 @@ export interface SimpleProductUpdate_productVariantUpdate_productVariant {
    * The ID of the object.
    */
   id: string;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (SimpleProductUpdate_productVariantUpdate_productVariant_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (SimpleProductUpdate_productVariantUpdate_productVariant_privateMetadata | null)[];
+  /**
+   * List of attributes assigned to this variant.
+   */
   attributes: SimpleProductUpdate_productVariantUpdate_productVariant_attributes[];
   /**
    * Cost price of the variant.
@@ -678,9 +700,7 @@ export interface SimpleProductUpdate_productVariantUpdate_productVariant {
   /**
    * List of images for the product variant.
    */
-  images:
-    | (SimpleProductUpdate_productVariantUpdate_productVariant_images | null)[]
-    | null;
+  images: (SimpleProductUpdate_productVariantUpdate_productVariant_images | null)[] | null;
   name: string;
   /**
    * Base price of a product variant. This field is restricted for admins. Use the pricing field to get the public price for customers.
@@ -691,9 +711,7 @@ export interface SimpleProductUpdate_productVariantUpdate_productVariant {
   /**
    * Stocks for the product variant.
    */
-  stocks:
-    | (SimpleProductUpdate_productVariantUpdate_productVariant_stocks | null)[]
-    | null;
+  stocks: (SimpleProductUpdate_productVariantUpdate_productVariant_stocks | null)[] | null;
   trackInventory: boolean;
   weight: SimpleProductUpdate_productVariantUpdate_productVariant_weight | null;
 }
@@ -722,13 +740,25 @@ export interface SimpleProductUpdate_productVariantStocksCreate_errors {
 
 export interface SimpleProductUpdate_productVariantStocksCreate_productVariant_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface SimpleProductUpdate_productVariantStocksCreate_productVariant_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -769,9 +799,7 @@ export interface SimpleProductUpdate_productVariantStocksCreate_productVariant_a
   /**
    * List of attribute's values.
    */
-  values:
-    | (SimpleProductUpdate_productVariantStocksCreate_productVariant_attributes_attribute_values | null)[]
-    | null;
+  values: (SimpleProductUpdate_productVariantStocksCreate_productVariant_attributes_attribute_values | null)[] | null;
 }
 
 export interface SimpleProductUpdate_productVariantStocksCreate_productVariant_attributes_values {
@@ -883,9 +911,7 @@ export interface SimpleProductUpdate_productVariantStocksCreate_productVariant_p
   /**
    * List of images for the product variant.
    */
-  images:
-    | (SimpleProductUpdate_productVariantStocksCreate_productVariant_product_variants_images | null)[]
-    | null;
+  images: (SimpleProductUpdate_productVariantStocksCreate_productVariant_product_variants_images | null)[] | null;
 }
 
 export interface SimpleProductUpdate_productVariantStocksCreate_productVariant_product {
@@ -897,9 +923,7 @@ export interface SimpleProductUpdate_productVariantStocksCreate_productVariant_p
   /**
    * List of images for the product.
    */
-  images:
-    | (SimpleProductUpdate_productVariantStocksCreate_productVariant_product_images | null)[]
-    | null;
+  images: (SimpleProductUpdate_productVariantStocksCreate_productVariant_product_images | null)[] | null;
   name: string;
   /**
    * The main thumbnail for a product.
@@ -908,9 +932,7 @@ export interface SimpleProductUpdate_productVariantStocksCreate_productVariant_p
   /**
    * List of variants for the product.
    */
-  variants:
-    | (SimpleProductUpdate_productVariantStocksCreate_productVariant_product_variants | null)[]
-    | null;
+  variants: (SimpleProductUpdate_productVariantStocksCreate_productVariant_product_variants | null)[] | null;
 }
 
 export interface SimpleProductUpdate_productVariantStocksCreate_productVariant_stocks_warehouse {
@@ -941,7 +963,13 @@ export interface SimpleProductUpdate_productVariantStocksCreate_productVariant_s
 
 export interface SimpleProductUpdate_productVariantStocksCreate_productVariant_weight {
   __typename: "Weight";
+  /**
+   * Weight unit.
+   */
   unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
   value: number;
 }
 
@@ -951,8 +979,17 @@ export interface SimpleProductUpdate_productVariantStocksCreate_productVariant {
    * The ID of the object.
    */
   id: string;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (SimpleProductUpdate_productVariantStocksCreate_productVariant_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (SimpleProductUpdate_productVariantStocksCreate_productVariant_privateMetadata | null)[];
+  /**
+   * List of attributes assigned to this variant.
+   */
   attributes: SimpleProductUpdate_productVariantStocksCreate_productVariant_attributes[];
   /**
    * Cost price of the variant.
@@ -961,9 +998,7 @@ export interface SimpleProductUpdate_productVariantStocksCreate_productVariant {
   /**
    * List of images for the product variant.
    */
-  images:
-    | (SimpleProductUpdate_productVariantStocksCreate_productVariant_images | null)[]
-    | null;
+  images: (SimpleProductUpdate_productVariantStocksCreate_productVariant_images | null)[] | null;
   name: string;
   /**
    * Base price of a product variant. This field is restricted for admins. Use the pricing field to get the public price for customers.
@@ -974,9 +1009,7 @@ export interface SimpleProductUpdate_productVariantStocksCreate_productVariant {
   /**
    * Stocks for the product variant.
    */
-  stocks:
-    | (SimpleProductUpdate_productVariantStocksCreate_productVariant_stocks | null)[]
-    | null;
+  stocks: (SimpleProductUpdate_productVariantStocksCreate_productVariant_stocks | null)[] | null;
   trackInventory: boolean;
   weight: SimpleProductUpdate_productVariantStocksCreate_productVariant_weight | null;
 }
@@ -1004,13 +1037,25 @@ export interface SimpleProductUpdate_productVariantStocksDelete_errors {
 
 export interface SimpleProductUpdate_productVariantStocksDelete_productVariant_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface SimpleProductUpdate_productVariantStocksDelete_productVariant_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -1051,9 +1096,7 @@ export interface SimpleProductUpdate_productVariantStocksDelete_productVariant_a
   /**
    * List of attribute's values.
    */
-  values:
-    | (SimpleProductUpdate_productVariantStocksDelete_productVariant_attributes_attribute_values | null)[]
-    | null;
+  values: (SimpleProductUpdate_productVariantStocksDelete_productVariant_attributes_attribute_values | null)[] | null;
 }
 
 export interface SimpleProductUpdate_productVariantStocksDelete_productVariant_attributes_values {
@@ -1165,9 +1208,7 @@ export interface SimpleProductUpdate_productVariantStocksDelete_productVariant_p
   /**
    * List of images for the product variant.
    */
-  images:
-    | (SimpleProductUpdate_productVariantStocksDelete_productVariant_product_variants_images | null)[]
-    | null;
+  images: (SimpleProductUpdate_productVariantStocksDelete_productVariant_product_variants_images | null)[] | null;
 }
 
 export interface SimpleProductUpdate_productVariantStocksDelete_productVariant_product {
@@ -1179,9 +1220,7 @@ export interface SimpleProductUpdate_productVariantStocksDelete_productVariant_p
   /**
    * List of images for the product.
    */
-  images:
-    | (SimpleProductUpdate_productVariantStocksDelete_productVariant_product_images | null)[]
-    | null;
+  images: (SimpleProductUpdate_productVariantStocksDelete_productVariant_product_images | null)[] | null;
   name: string;
   /**
    * The main thumbnail for a product.
@@ -1190,9 +1229,7 @@ export interface SimpleProductUpdate_productVariantStocksDelete_productVariant_p
   /**
    * List of variants for the product.
    */
-  variants:
-    | (SimpleProductUpdate_productVariantStocksDelete_productVariant_product_variants | null)[]
-    | null;
+  variants: (SimpleProductUpdate_productVariantStocksDelete_productVariant_product_variants | null)[] | null;
 }
 
 export interface SimpleProductUpdate_productVariantStocksDelete_productVariant_stocks_warehouse {
@@ -1223,7 +1260,13 @@ export interface SimpleProductUpdate_productVariantStocksDelete_productVariant_s
 
 export interface SimpleProductUpdate_productVariantStocksDelete_productVariant_weight {
   __typename: "Weight";
+  /**
+   * Weight unit.
+   */
   unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
   value: number;
 }
 
@@ -1233,8 +1276,17 @@ export interface SimpleProductUpdate_productVariantStocksDelete_productVariant {
    * The ID of the object.
    */
   id: string;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (SimpleProductUpdate_productVariantStocksDelete_productVariant_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (SimpleProductUpdate_productVariantStocksDelete_productVariant_privateMetadata | null)[];
+  /**
+   * List of attributes assigned to this variant.
+   */
   attributes: SimpleProductUpdate_productVariantStocksDelete_productVariant_attributes[];
   /**
    * Cost price of the variant.
@@ -1243,9 +1295,7 @@ export interface SimpleProductUpdate_productVariantStocksDelete_productVariant {
   /**
    * List of images for the product variant.
    */
-  images:
-    | (SimpleProductUpdate_productVariantStocksDelete_productVariant_images | null)[]
-    | null;
+  images: (SimpleProductUpdate_productVariantStocksDelete_productVariant_images | null)[] | null;
   name: string;
   /**
    * Base price of a product variant. This field is restricted for admins. Use the pricing field to get the public price for customers.
@@ -1256,9 +1306,7 @@ export interface SimpleProductUpdate_productVariantStocksDelete_productVariant {
   /**
    * Stocks for the product variant.
    */
-  stocks:
-    | (SimpleProductUpdate_productVariantStocksDelete_productVariant_stocks | null)[]
-    | null;
+  stocks: (SimpleProductUpdate_productVariantStocksDelete_productVariant_stocks | null)[] | null;
   trackInventory: boolean;
   weight: SimpleProductUpdate_productVariantStocksDelete_productVariant_weight | null;
 }
@@ -1290,13 +1338,25 @@ export interface SimpleProductUpdate_productVariantStocksUpdate_errors {
 
 export interface SimpleProductUpdate_productVariantStocksUpdate_productVariant_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface SimpleProductUpdate_productVariantStocksUpdate_productVariant_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -1337,9 +1397,7 @@ export interface SimpleProductUpdate_productVariantStocksUpdate_productVariant_a
   /**
    * List of attribute's values.
    */
-  values:
-    | (SimpleProductUpdate_productVariantStocksUpdate_productVariant_attributes_attribute_values | null)[]
-    | null;
+  values: (SimpleProductUpdate_productVariantStocksUpdate_productVariant_attributes_attribute_values | null)[] | null;
 }
 
 export interface SimpleProductUpdate_productVariantStocksUpdate_productVariant_attributes_values {
@@ -1451,9 +1509,7 @@ export interface SimpleProductUpdate_productVariantStocksUpdate_productVariant_p
   /**
    * List of images for the product variant.
    */
-  images:
-    | (SimpleProductUpdate_productVariantStocksUpdate_productVariant_product_variants_images | null)[]
-    | null;
+  images: (SimpleProductUpdate_productVariantStocksUpdate_productVariant_product_variants_images | null)[] | null;
 }
 
 export interface SimpleProductUpdate_productVariantStocksUpdate_productVariant_product {
@@ -1465,9 +1521,7 @@ export interface SimpleProductUpdate_productVariantStocksUpdate_productVariant_p
   /**
    * List of images for the product.
    */
-  images:
-    | (SimpleProductUpdate_productVariantStocksUpdate_productVariant_product_images | null)[]
-    | null;
+  images: (SimpleProductUpdate_productVariantStocksUpdate_productVariant_product_images | null)[] | null;
   name: string;
   /**
    * The main thumbnail for a product.
@@ -1476,9 +1530,7 @@ export interface SimpleProductUpdate_productVariantStocksUpdate_productVariant_p
   /**
    * List of variants for the product.
    */
-  variants:
-    | (SimpleProductUpdate_productVariantStocksUpdate_productVariant_product_variants | null)[]
-    | null;
+  variants: (SimpleProductUpdate_productVariantStocksUpdate_productVariant_product_variants | null)[] | null;
 }
 
 export interface SimpleProductUpdate_productVariantStocksUpdate_productVariant_stocks_warehouse {
@@ -1509,7 +1561,13 @@ export interface SimpleProductUpdate_productVariantStocksUpdate_productVariant_s
 
 export interface SimpleProductUpdate_productVariantStocksUpdate_productVariant_weight {
   __typename: "Weight";
+  /**
+   * Weight unit.
+   */
   unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
   value: number;
 }
 
@@ -1519,8 +1577,17 @@ export interface SimpleProductUpdate_productVariantStocksUpdate_productVariant {
    * The ID of the object.
    */
   id: string;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (SimpleProductUpdate_productVariantStocksUpdate_productVariant_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (SimpleProductUpdate_productVariantStocksUpdate_productVariant_privateMetadata | null)[];
+  /**
+   * List of attributes assigned to this variant.
+   */
   attributes: SimpleProductUpdate_productVariantStocksUpdate_productVariant_attributes[];
   /**
    * Cost price of the variant.
@@ -1529,9 +1596,7 @@ export interface SimpleProductUpdate_productVariantStocksUpdate_productVariant {
   /**
    * List of images for the product variant.
    */
-  images:
-    | (SimpleProductUpdate_productVariantStocksUpdate_productVariant_images | null)[]
-    | null;
+  images: (SimpleProductUpdate_productVariantStocksUpdate_productVariant_images | null)[] | null;
   name: string;
   /**
    * Base price of a product variant. This field is restricted for admins. Use the pricing field to get the public price for customers.
@@ -1542,9 +1607,7 @@ export interface SimpleProductUpdate_productVariantStocksUpdate_productVariant {
   /**
    * Stocks for the product variant.
    */
-  stocks:
-    | (SimpleProductUpdate_productVariantStocksUpdate_productVariant_stocks | null)[]
-    | null;
+  stocks: (SimpleProductUpdate_productVariantStocksUpdate_productVariant_stocks | null)[] | null;
   trackInventory: boolean;
   weight: SimpleProductUpdate_productVariantStocksUpdate_productVariant_weight | null;
 }

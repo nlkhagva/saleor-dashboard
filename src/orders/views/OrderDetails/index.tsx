@@ -225,7 +225,9 @@ export const OrderDetails: React.FC<OrderDetailsProps> = ({ id, params }) => {
                           )}
                           userPermissions={user?.userPermissions || []}
                           onOrderCancel={() => openModal("cancel")}
-                          onOrderFulfill={() => navigate(orderFulfillUrl(id))}
+                          onOrderFulfill={ushop =>
+                            navigate(orderFulfillUrl(id, ushop))
+                          }
                           onFulfillmentCancel={fulfillmentId =>
                             navigate(
                               orderUrl(id, {

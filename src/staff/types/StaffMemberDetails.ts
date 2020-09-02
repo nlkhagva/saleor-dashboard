@@ -36,6 +36,9 @@ export interface StaffMemberDetails_user_userPermissions {
 
 export interface StaffMemberDetails_user_avatar {
   __typename: "Image";
+  /**
+   * The URL of the image.
+   */
   url: string;
 }
 
@@ -49,6 +52,9 @@ export interface StaffMemberDetails_user {
   firstName: string;
   isActive: boolean;
   lastName: string;
+  /**
+   * List of user's permission groups.
+   */
   permissionGroups: (StaffMemberDetails_user_permissionGroups | null)[] | null;
   /**
    * List of user's permissions.

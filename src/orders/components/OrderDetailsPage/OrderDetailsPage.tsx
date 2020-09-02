@@ -53,7 +53,7 @@ export interface OrderDetailsPageProps extends UserPermissionProps {
   onBillingAddressEdit();
   onFulfillmentCancel(id: string);
   onFulfillmentTrackingNumberUpdate(id: string);
-  onOrderFulfill();
+  onOrderFulfill(ushop: string);
   onProductClick?(id: string);
   onPaymentCapture();
   onPaymentPaid();

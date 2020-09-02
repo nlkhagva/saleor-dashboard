@@ -1,6 +1,4 @@
-import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import { makeStyles } from "@material-ui/core/styles";
 import CardTitle from "@saleor/components/CardTitle";
 import ResponsiveTable from "@saleor/components/ResponsiveTable";
@@ -8,7 +6,7 @@ import StatusLabel from "@saleor/components/StatusLabel";
 import { AVATAR_MARGIN } from "@saleor/components/TableCellAvatar";
 import { PRODUCT_TYPE_SHIPPING } from "@saleor/constants";
 import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import { useIntl } from "react-intl";
 
 import { OrderDetails_order_lines } from "../../types/OrderDetails";
 import UshopTable from "./UshopTable";
@@ -55,7 +53,7 @@ const useStyles = makeStyles(
 interface OrderUnfulfilledItemsProps {
   canFulfill: boolean;
   lines: OrderDetails_order_lines[];
-  onFulfill: () => void;
+  onFulfill: (ushop: string) => void;
 }
 
 const OrderUnfulfilledItems: React.FC<OrderUnfulfilledItemsProps> = props => {
@@ -109,16 +107,15 @@ const OrderUnfulfilledItems: React.FC<OrderUnfulfilledItemsProps> = props => {
       />
       <ResponsiveTable className={classes.table}>
         {ushops.map(ushop => (
-          <UshopTable ushop={ushop} classes={classes} key={ushop.id} />
+          <UshopTable
+            ushop={ushop}
+            classes={classes}
+            key={ushop.id}
+            canFulfill={canFulfill}
+            onFulfill={onFulfill}
+          />
         ))}
       </ResponsiveTable>
-      {canFulfill && (
-        <CardActions>
-          <Button variant="text" color="primary" onClick={onFulfill}>
-            <FormattedMessage defaultMessage="Fulfill" description="button" />
-          </Button>
-        </CardActions>
-      )}
     </Card>
   );
 };

@@ -35,13 +35,25 @@ export interface ProductTypeCreate_productTypeCreate_productType_taxType {
 
 export interface ProductTypeCreate_productTypeCreate_productType_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface ProductTypeCreate_productTypeCreate_productType_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -103,7 +115,13 @@ export interface ProductTypeCreate_productTypeCreate_productType_variantAttribut
 
 export interface ProductTypeCreate_productTypeCreate_productType_weight {
   __typename: "Weight";
+  /**
+   * Weight unit.
+   */
   unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
   value: number;
 }
 
@@ -120,14 +138,22 @@ export interface ProductTypeCreate_productTypeCreate_productType {
    * A type of tax. Assigned by enabled tax gateway
    */
   taxType: ProductTypeCreate_productTypeCreate_productType_taxType | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (ProductTypeCreate_productTypeCreate_productType_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (ProductTypeCreate_productTypeCreate_productType_privateMetadata | null)[];
-  productAttributes:
-    | (ProductTypeCreate_productTypeCreate_productType_productAttributes | null)[]
-    | null;
-  variantAttributes:
-    | (ProductTypeCreate_productTypeCreate_productType_variantAttributes | null)[]
-    | null;
+  /**
+   * Product attributes of that product type.
+   */
+  productAttributes: (ProductTypeCreate_productTypeCreate_productType_productAttributes | null)[] | null;
+  /**
+   * Variant attributes of that product type.
+   */
+  variantAttributes: (ProductTypeCreate_productTypeCreate_productType_variantAttributes | null)[] | null;
   weight: ProductTypeCreate_productTypeCreate_productType_weight | null;
 }
 

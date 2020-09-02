@@ -11,13 +11,25 @@ import { CollectionCreateInput, ProductErrorCode } from "./../../types/globalTyp
 
 export interface CreateCollection_collectionCreate_collection_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface CreateCollection_collectionCreate_collection_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -41,7 +53,13 @@ export interface CreateCollection_collectionCreate_collection {
   id: string;
   isPublished: boolean;
   name: string;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (CreateCollection_collectionCreate_collection_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (CreateCollection_collectionCreate_collection_privateMetadata | null)[];
   backgroundImage: CreateCollection_collectionCreate_collection_backgroundImage | null;
   descriptionJson: any;

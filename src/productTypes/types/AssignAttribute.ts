@@ -3,10 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import {
-  AttributeAssignInput,
-  WeightUnitsEnum
-} from "./../../types/globalTypes";
+import { AttributeAssignInput, WeightUnitsEnum } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: AssignAttribute
@@ -38,13 +35,25 @@ export interface AssignAttribute_attributeAssign_productType_taxType {
 
 export interface AssignAttribute_attributeAssign_productType_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface AssignAttribute_attributeAssign_productType_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -106,7 +115,13 @@ export interface AssignAttribute_attributeAssign_productType_variantAttributes {
 
 export interface AssignAttribute_attributeAssign_productType_weight {
   __typename: "Weight";
+  /**
+   * Weight unit.
+   */
   unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
   value: number;
 }
 
@@ -123,14 +138,22 @@ export interface AssignAttribute_attributeAssign_productType {
    * A type of tax. Assigned by enabled tax gateway
    */
   taxType: AssignAttribute_attributeAssign_productType_taxType | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (AssignAttribute_attributeAssign_productType_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (AssignAttribute_attributeAssign_productType_privateMetadata | null)[];
-  productAttributes:
-    | (AssignAttribute_attributeAssign_productType_productAttributes | null)[]
-    | null;
-  variantAttributes:
-    | (AssignAttribute_attributeAssign_productType_variantAttributes | null)[]
-    | null;
+  /**
+   * Product attributes of that product type.
+   */
+  productAttributes: (AssignAttribute_attributeAssign_productType_productAttributes | null)[] | null;
+  /**
+   * Variant attributes of that product type.
+   */
+  variantAttributes: (AssignAttribute_attributeAssign_productType_variantAttributes | null)[] | null;
   weight: AssignAttribute_attributeAssign_productType_weight | null;
 }
 

@@ -11,13 +11,25 @@ import { CategoryInput, ProductErrorCode } from "./../../types/globalTypes";
 
 export interface CategoryUpdate_categoryUpdate_category_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface CategoryUpdate_categoryUpdate_category_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -47,7 +59,13 @@ export interface CategoryUpdate_categoryUpdate_category {
    * The ID of the object.
    */
   id: string;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (CategoryUpdate_categoryUpdate_category_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (CategoryUpdate_categoryUpdate_category_privateMetadata | null)[];
   backgroundImage: CategoryUpdate_categoryUpdate_category_backgroundImage | null;
   name: string;

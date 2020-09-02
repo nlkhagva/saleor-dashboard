@@ -3,11 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import {
-  AttributeInputTypeEnum,
-  AttributeValueType,
-  ProductErrorCode
-} from "./../../types/globalTypes";
+import { AttributeInputTypeEnum, AttributeValueType, ProductErrorCode } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: AttributeValueDelete
@@ -15,13 +11,25 @@ import {
 
 export interface AttributeValueDelete_attributeValueDelete_attribute_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface AttributeValueDelete_attributeValueDelete_attribute_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -71,8 +79,17 @@ export interface AttributeValueDelete_attributeValueDelete_attribute {
    * Whether the attribute can be filtered in storefront.
    */
   filterableInStorefront: boolean;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (AttributeValueDelete_attributeValueDelete_attribute_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (AttributeValueDelete_attributeValueDelete_attribute_privateMetadata | null)[];
+  /**
+   * Whether the attribute can be displayed in the admin product list.
+   */
   availableInGrid: boolean;
   /**
    * The input type to use for entering attribute values in the dashboard.
@@ -89,9 +106,7 @@ export interface AttributeValueDelete_attributeValueDelete_attribute {
   /**
    * List of attribute's values.
    */
-  values:
-    | (AttributeValueDelete_attributeValueDelete_attribute_values | null)[]
-    | null;
+  values: (AttributeValueDelete_attributeValueDelete_attribute_values | null)[] | null;
 }
 
 export interface AttributeValueDelete_attributeValueDelete_errors {

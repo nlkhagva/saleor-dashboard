@@ -48,13 +48,25 @@ export interface CollectionUpdateWithHomepage_homepageCollectionUpdate {
 
 export interface CollectionUpdateWithHomepage_collectionUpdate_collection_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface CollectionUpdateWithHomepage_collectionUpdate_collection_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -78,7 +90,13 @@ export interface CollectionUpdateWithHomepage_collectionUpdate_collection {
   id: string;
   isPublished: boolean;
   name: string;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (CollectionUpdateWithHomepage_collectionUpdate_collection_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (CollectionUpdateWithHomepage_collectionUpdate_collection_privateMetadata | null)[];
   backgroundImage: CollectionUpdateWithHomepage_collectionUpdate_collection_backgroundImage | null;
   descriptionJson: any;

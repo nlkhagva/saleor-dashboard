@@ -3,10 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import {
-  AttributeInputTypeEnum,
-  WeightUnitsEnum
-} from "./../../types/globalTypes";
+import { AttributeInputTypeEnum, WeightUnitsEnum } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL fragment: Product
@@ -192,13 +189,25 @@ export interface Product_pricing {
 
 export interface Product_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface Product_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -364,7 +373,13 @@ export interface Product {
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: Product_pricing | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (Product_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (Product_privateMetadata | null)[];
   name: string;
   descriptionJson: any;

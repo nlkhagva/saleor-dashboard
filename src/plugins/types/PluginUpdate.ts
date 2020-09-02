@@ -10,10 +10,14 @@ import { PluginUpdateInput, PluginErrorCode, ConfigurationTypeFieldEnum } from "
 // ====================================================
 
 export interface PluginUpdate_pluginUpdate_errors {
-  
-  message: string | null;
   __typename: "PluginError";
+  /**
+   * The error code.
+   */
   code: PluginErrorCode;
+  /**
+   * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   */
   field: string | null;
 }
 
@@ -52,9 +56,6 @@ export interface PluginUpdate_pluginUpdate_plugin {
 
 export interface PluginUpdate_pluginUpdate {
   __typename: "PluginUpdate";
-  /**
-   * List of errors that occurred executing the mutation.
-   */
   errors: PluginUpdate_pluginUpdate_errors[];
   plugin: PluginUpdate_pluginUpdate_plugin | null;
 }

@@ -35,13 +35,25 @@ export interface ProductTypeUpdate_productTypeUpdate_productType_taxType {
 
 export interface ProductTypeUpdate_productTypeUpdate_productType_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface ProductTypeUpdate_productTypeUpdate_productType_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -103,7 +115,13 @@ export interface ProductTypeUpdate_productTypeUpdate_productType_variantAttribut
 
 export interface ProductTypeUpdate_productTypeUpdate_productType_weight {
   __typename: "Weight";
+  /**
+   * Weight unit.
+   */
   unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
   value: number;
 }
 
@@ -120,14 +138,22 @@ export interface ProductTypeUpdate_productTypeUpdate_productType {
    * A type of tax. Assigned by enabled tax gateway
    */
   taxType: ProductTypeUpdate_productTypeUpdate_productType_taxType | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (ProductTypeUpdate_productTypeUpdate_productType_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (ProductTypeUpdate_productTypeUpdate_productType_privateMetadata | null)[];
-  productAttributes:
-    | (ProductTypeUpdate_productTypeUpdate_productType_productAttributes | null)[]
-    | null;
-  variantAttributes:
-    | (ProductTypeUpdate_productTypeUpdate_productType_variantAttributes | null)[]
-    | null;
+  /**
+   * Product attributes of that product type.
+   */
+  productAttributes: (ProductTypeUpdate_productTypeUpdate_productType_productAttributes | null)[] | null;
+  /**
+   * Variant attributes of that product type.
+   */
+  variantAttributes: (ProductTypeUpdate_productTypeUpdate_productType_variantAttributes | null)[] | null;
   weight: ProductTypeUpdate_productTypeUpdate_productType_weight | null;
 }
 

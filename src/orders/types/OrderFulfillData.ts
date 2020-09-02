@@ -7,6 +7,50 @@
 // GraphQL query operation: OrderFulfillData
 // ====================================================
 
+export interface OrderFulfillData_order_lines_variant_product_productType {
+  __typename: "ProductType";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
+export interface OrderFulfillData_order_lines_variant_product_ushop {
+  __typename: "Ushop";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
+export interface OrderFulfillData_order_lines_variant_product_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
+export interface OrderFulfillData_order_lines_variant_product {
+  __typename: "Product";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  productType: OrderFulfillData_order_lines_variant_product_productType;
+  ushop: OrderFulfillData_order_lines_variant_product_ushop | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (OrderFulfillData_order_lines_variant_product_metadata | null)[];
+}
+
 export interface OrderFulfillData_order_lines_variant_attributes_values {
   __typename: "AttributeValue";
   /**
@@ -60,6 +104,7 @@ export interface OrderFulfillData_order_lines_variant {
   id: string;
   name: string;
   sku: string;
+  product: OrderFulfillData_order_lines_variant_product;
   /**
    * List of attributes assigned to this variant.
    */

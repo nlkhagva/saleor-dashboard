@@ -3,13 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import {
-  AttributeValueInput,
-  SeoInput,
-  ProductErrorCode,
-  AttributeInputTypeEnum,
-  WeightUnitsEnum
-} from "./../../types/globalTypes";
+import { AttributeValueInput, SeoInput, ProductErrorCode, AttributeInputTypeEnum, WeightUnitsEnum } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: ProductUpdate
@@ -68,9 +62,7 @@ export interface ProductUpdate_productUpdate_product_attributes_attribute {
   /**
    * List of attribute's values.
    */
-  values:
-    | (ProductUpdate_productUpdate_product_attributes_attribute_values | null)[]
-    | null;
+  values: (ProductUpdate_productUpdate_product_attributes_attribute_values | null)[] | null;
 }
 
 export interface ProductUpdate_productUpdate_product_attributes_values {
@@ -130,9 +122,7 @@ export interface ProductUpdate_productUpdate_product_productType_variantAttribut
   /**
    * List of attribute's values.
    */
-  values:
-    | (ProductUpdate_productUpdate_product_productType_variantAttributes_values | null)[]
-    | null;
+  values: (ProductUpdate_productUpdate_product_productType_variantAttributes_values | null)[] | null;
 }
 
 export interface ProductUpdate_productUpdate_product_productType {
@@ -144,9 +134,7 @@ export interface ProductUpdate_productUpdate_product_productType {
   /**
    * Variant attributes of that product type.
    */
-  variantAttributes:
-    | (ProductUpdate_productUpdate_product_productType_variantAttributes | null)[]
-    | null;
+  variantAttributes: (ProductUpdate_productUpdate_product_productType_variantAttributes | null)[] | null;
   name: string;
   hasVariants: boolean;
 }
@@ -213,13 +201,25 @@ export interface ProductUpdate_productUpdate_product_pricing {
 
 export interface ProductUpdate_productUpdate_product_metadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
 export interface ProductUpdate_productUpdate_product_privateMetadata {
   __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
   key: string;
+  /**
+   * Value of a metadata item.
+   */
   value: string;
 }
 
@@ -360,7 +360,13 @@ export interface ProductUpdate_productUpdate_product_variants {
 
 export interface ProductUpdate_productUpdate_product_weight {
   __typename: "Weight";
+  /**
+   * Weight unit.
+   */
   unit: WeightUnitsEnum;
+  /**
+   * Weight value.
+   */
   value: number;
 }
 
@@ -379,7 +385,13 @@ export interface ProductUpdate_productUpdate_product {
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: ProductUpdate_productUpdate_product_pricing | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
   metadata: (ProductUpdate_productUpdate_product_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
   privateMetadata: (ProductUpdate_productUpdate_product_privateMetadata | null)[];
   name: string;
   descriptionJson: any;
@@ -389,9 +401,7 @@ export interface ProductUpdate_productUpdate_product {
   /**
    * List of collections for the product.
    */
-  collections:
-    | (ProductUpdate_productUpdate_product_collections | null)[]
-    | null;
+  collections: (ProductUpdate_productUpdate_product_collections | null)[] | null;
   margin: ProductUpdate_productUpdate_product_margin | null;
   purchaseCost: ProductUpdate_productUpdate_product_purchaseCost | null;
   /**

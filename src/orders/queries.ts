@@ -200,6 +200,21 @@ const orderFulfillData = gql`
           id
           name
           sku
+          product {
+            id
+            productType {
+              id
+              name
+            }
+            ushop {
+              id
+              name
+            }
+            metadata {
+              key
+              value
+            }
+          }
           attributes {
             values {
               id
