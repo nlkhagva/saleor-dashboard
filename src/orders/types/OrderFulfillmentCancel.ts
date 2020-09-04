@@ -263,6 +263,7 @@ export interface OrderFulfillmentCancel_orderFulfillmentCancel_order_fulfillment
   fulfillmentOrder: number;
   status: FulfillmentStatus;
   trackingNumber: string;
+  ukDate: any | null;
   /**
    * Warehouse from fulfillment was fulfilled.
    */

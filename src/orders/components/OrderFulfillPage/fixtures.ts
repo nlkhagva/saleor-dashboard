@@ -135,6 +135,7 @@ export const orderToFulfill: OrderFulfillData_order = {
         id: "UHJvZHVjdFZhcmlhbnQ6MTgy",
         name: "5l",
         sku: "998323584",
+        product: null,
         attributes: [
           {
             __typename: "SelectedAttribute",

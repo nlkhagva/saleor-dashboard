@@ -76,6 +76,7 @@ export const fulfillmentFragment = gql`
     fulfillmentOrder
     status
     trackingNumber
+    ukDate
     warehouse {
       id
       name

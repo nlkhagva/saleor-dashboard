@@ -251,6 +251,7 @@ export interface OrderDetails_order_fulfillments {
   fulfillmentOrder: number;
   status: FulfillmentStatus;
   trackingNumber: string;
+  ukDate: any | null;
   /**
    * Warehouse from fulfillment was fulfilled.
    */

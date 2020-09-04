@@ -63,6 +63,10 @@ const useStyles = makeStyles(
     infoRow: {
       padding: theme.spacing(2, 3)
     },
+    infoColumn: {
+      float: "left",
+      width: "50%"
+    },
     orderNumber: {
       display: "inline",
       marginLeft: theme.spacing(1)
@@ -125,9 +129,10 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
 
   const ushop = maybe(() => lines[0].orderLine.variant.product.ushop);
   const metakeyInfo = ["color", "code", "size"];
+  const style = status === FulfillmentStatus.FULFILLED ? {} : { opacity: 0.5 };
 
   return (
-    <Card>
+    <Card style={style}>
       <CardTitle
         title={
           !!lines ? (
@@ -298,10 +303,14 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
                   }}
                 />
               </Typography>
-              <Typography color="textSecondary" variant="body2">
+              <Typography
+                color="textSecondary"
+                variant="body2"
+                className={classes.infoColumn}
+              >
                 {fulfillment?.trackingNumber && (
                   <FormattedMessage
-                    defaultMessage="Tracking Number: {trackingNumber}"
+                    defaultMessage="Захиалгын дугаар: {trackingNumber}"
                     values={{
                       trackingNumber: (
                         <Typography
@@ -310,6 +319,28 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
                           variant="body2"
                         >
                           {fulfillment.trackingNumber}
+                        </Typography>
+                      )
+                    }}
+                  />
+                )}
+              </Typography>
+              <Typography
+                color="textSecondary"
+                variant="body2"
+                className={classes.infoColumn}
+              >
+                {fulfillment?.ukDate && (
+                  <FormattedMessage
+                    defaultMessage="Оффист ирэх өдөр: {ukDate}"
+                    values={{
+                      ukDate: (
+                        <Typography
+                          className={classes.infoLabel}
+                          color="textPrimary"
+                          variant="body2"
+                        >
+                          {fulfillment.ukDate}
                         </Typography>
                       )
                     }}

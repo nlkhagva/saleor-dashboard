@@ -1,4 +1,4 @@
-import placeholderImage from "@assets/images/placeholder60x60.png";
+// import placeholderImage from "@assets/images/placeholder60x60.png";
 import { Omit } from "@material-ui/core";
 import { adminUserPermissions, fetchMoreProps } from "@saleor/fixtures";
 import { storiesOf } from "@storybook/react";
@@ -10,7 +10,7 @@ import OrderDraftPage, {
 import { clients, countries, draftOrder } from "../../../orders/fixtures";
 import Decorator from "../../Decorator";
 
-const order = draftOrder(placeholderImage);
+const order = draftOrder();
 
 const props: Omit<OrderDraftPageProps, "classes"> = {
   ...fetchMoreProps,

@@ -750,7 +750,7 @@ export const orders: OrderList_orders_edges_node[] = [
     userEmail: "curtis.bailey@example.com"
   }
 ];
-export const order = (placeholder: string): OrderDetails_order => ({
+export const order = (): OrderDetails_order => ({
   __typename: "Order",
   actions: [
     OrderAction.CAPTURE,
@@ -872,6 +872,7 @@ export const order = (placeholder: string): OrderDetails_order => ({
         }
       ],
       status: FulfillmentStatus.FULFILLED,
+      ukDate: "2020-10-10",
       trackingNumber: "",
       warehouse: warehouseList[1]
     },
@@ -889,6 +890,7 @@ export const order = (placeholder: string): OrderDetails_order => ({
       ],
       status: FulfillmentStatus.FULFILLED,
       trackingNumber: "01nn12399su12nndfsy",
+      ukDate: "2020-10-10",
       warehouse: warehouseList[0]
     }
   ],
@@ -970,7 +972,7 @@ export const order = (placeholder: string): OrderDetails_order => ({
   user: null,
   userEmail: "melissa.simon@example.com"
 });
-export const draftOrder = (placeholder: string): OrderDetails_order => ({
+export const draftOrder = (): OrderDetails_order => ({
   __typename: "Order" as "Order",
   actions: [OrderAction.CAPTURE],
   availableShippingMethods: null,

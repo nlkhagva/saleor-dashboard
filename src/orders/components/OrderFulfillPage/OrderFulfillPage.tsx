@@ -22,6 +22,7 @@ import TableCellAvatar from "@saleor/components/TableCellAvatar";
 import { WarehouseFragment } from "@saleor/fragments/types/WarehouseFragment";
 import useFormset, { FormsetData } from "@saleor/hooks/useFormset";
 import { renderCollection } from "@saleor/misc";
+import { maybe } from "@saleor/misc";
 import { FulfillOrder_orderFulfill_errors } from "@saleor/orders/types/FulfillOrder";
 import {
   OrderFulfillData_order,
@@ -119,6 +120,8 @@ const useStyles = makeStyles<Theme, OrderFulfillPageProps, ClassKey>(
 
 interface OrderFulfillFormData {
   sendInfo: boolean;
+  ukDate: any;
+  trackingNumber: string;
 }
 interface OrderFulfillSubmitData extends OrderFulfillFormData {
   items: FormsetData<null, OrderFulfillStockInput[]>;
@@ -135,6 +138,8 @@ export interface OrderFulfillPageProps {
 }
 
 const initialFormData: OrderFulfillFormData = {
+  trackingNumber: "",
+  ukDate: "",
   sendInfo: true
 };
 
@@ -157,12 +162,26 @@ const OrderFulfillPage: React.FC<OrderFulfillPageProps> = props => {
   const intl = useIntl();
   const classes = useStyles(props);
 
+  const _ushop = [];
+  const metakeyInfo = ["color", "code", "size"];
+
+  order?.lines
+    .filter(line => line.variant.product.ushop.id === ushopId)
+    .filter(line => getRemainingQuantity(line) > 0)
+    .map(line => {
+      if (line.variant.product.productType.id !== "UHJvZHVjdFR5cGU6MTY=") {
+        _ushop.unshift(line);
+      } else {
+        _ushop.push(line);
+      }
+    });
+
   const { change: formsetChange, data: formsetData } = useFormset<
     null,
     OrderFulfillStockInput[]
   >(
-    order?.lines
-      .filter(line => line.variant.product.ushop.id === ushopId)
+    _ushop
+      ?.filter(line => line.variant.product.ushop.id === ushopId)
       .filter(line => getRemainingQuantity(line) > 0)
       .map(line => ({
         data: null,
@@ -175,7 +194,10 @@ const OrderFulfillPage: React.FC<OrderFulfillPageProps> = props => {
           )
           .join(" / "),
         value: line.variant.stocks.map(stock => ({
-          quantity: 0,
+          quantity:
+            warehouses?.length === 1
+              ? getRemainingQuantity(line)
+              : 0 /** gants aguulahtai uyd l engej bolno */,
           warehouse: stock.warehouse.id
         }))
       }))
@@ -233,12 +255,12 @@ const OrderFulfillPage: React.FC<OrderFulfillPageProps> = props => {
                     <TableCell className={classes.colName}>
                       <FormattedMessage defaultMessage="Product name" />
                     </TableCell>
-                    <TableCell className={classes.colSku}>
+                    {/* <TableCell className={classes.colSku}>
                       <FormattedMessage
                         defaultMessage="SKU"
                         description="product's sku"
                       />
-                    </TableCell>
+                    </TableCell> */}
                     {warehouses?.map(warehouse => (
                       <TableCell
                         key={warehouse.id}
@@ -260,8 +282,10 @@ const OrderFulfillPage: React.FC<OrderFulfillPageProps> = props => {
                 </TableHead>
                 <TableBody>
                   {renderCollection(
-                    order?.lines
-                      .filter(line => line.variant.product.ushop.id === ushopId)
+                    _ushop
+                      ?.filter(
+                        line => line.variant.product.ushop.id === ushopId
+                      )
                       .filter(line => getRemainingQuantity(line) > 0),
                     (line, lineIndex) => {
                       if (!line) {
@@ -270,9 +294,9 @@ const OrderFulfillPage: React.FC<OrderFulfillPageProps> = props => {
                             <TableCellAvatar className={classes.colName}>
                               <Skeleton />
                             </TableCellAvatar>
-                            <TableCell className={classes.colSku}>
+                            {/* <TableCell className={classes.colSku}>
                               <Skeleton />
-                            </TableCell>
+                            </TableCell> */}
                             {warehouses?.map(warehouse => (
                               <TableCell
                                 className={classes.colQuantity}
@@ -305,7 +329,17 @@ const OrderFulfillPage: React.FC<OrderFulfillPageProps> = props => {
                             className={classes.colName}
                             thumbnail={line?.thumbnail?.url}
                           >
-                            {line.productName}
+                            <a
+                              target="_blank"
+                              href={maybe(
+                                () =>
+                                  (line?.variant.product.metadata || []).find(
+                                    i => i.key === "url"
+                                  ).value
+                              )}
+                            >
+                              {line.productName}
+                            </a>
                             <Typography color="textSecondary" variant="caption">
                               {line.variant.attributes
                                 .map(attribute =>
@@ -315,10 +349,22 @@ const OrderFulfillPage: React.FC<OrderFulfillPageProps> = props => {
                                 )
                                 .join(" / ")}
                             </Typography>
+                            <Typography color="textSecondary" variant="caption">
+                              {(
+                                line?.variant.product.metadata.filter(
+                                  i => i.value && metakeyInfo.includes(i.key)
+                                ) || []
+                              )
+                                .map(i => `${i.key}: ${i.value}`)
+                                .join(", ")}
+                            </Typography>
+                            <Typography color="textSecondary" variant="caption">
+                              SKU: {line.variant.sku}
+                            </Typography>
                           </TableCellAvatar>
-                          <TableCell className={classes.colSku}>
+                          {/* <TableCell className={classes.colSku}>
                             {line.variant.sku}
-                          </TableCell>
+                          </TableCell> */}
                           {warehouses?.map(warehouse => {
                             const warehouseStock = line.variant.stocks.find(
                               stock => stock.warehouse.id === warehouse.id
@@ -439,6 +485,20 @@ const OrderFulfillPage: React.FC<OrderFulfillPageProps> = props => {
                 </TableBody>
               </ResponsiveTable>
               <CardActions className={classes.actionBar}>
+                <TextField
+                  onChange={change}
+                  name="trackingNumber"
+                  type="string"
+                  label="Захиалгын дугаар"
+                  value={data.trackingNumber}
+                />
+                <TextField
+                  onChange={change}
+                  name="ukDate"
+                  type="date"
+                  label="Англид ирэх өдөр"
+                  value={data.ukDate}
+                />
                 <ControlledCheckbox
                   checked={data.sendInfo}
                   label={intl.formatMessage({

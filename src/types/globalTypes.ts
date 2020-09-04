@@ -1363,6 +1363,8 @@ export interface OrderFilterInput {
 export interface OrderFulfillInput {
   lines: OrderFulfillLineInput[];
   notifyCustomer?: boolean | null;
+  trackingNumber?: string | null;
+  ukDate?: any | null;
 }
 
 export interface OrderFulfillLineInput {

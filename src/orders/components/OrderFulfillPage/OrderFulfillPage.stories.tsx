@@ -14,7 +14,8 @@ const props: OrderFulfillPageProps = {
   onSubmit: () => undefined,
   order: orderToFulfill,
   saveButtonBar: "default",
-  warehouses: warehouseList
+  warehouses: warehouseList,
+  ushopId: ""
 };
 
 storiesOf("Views / Orders / Fulfill order", module)
