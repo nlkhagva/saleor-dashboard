@@ -14,6 +14,9 @@ export interface GaduurDetails_gaduur {
    */
   id: string;
   name: string;
+  shippingType: string | null;
+  isPublished: boolean;
+  publicationDate: any | null;
 }
 
 export interface GaduurDetails {

@@ -15,11 +15,11 @@ import StatusLabel from "@saleor/components/StatusLabel";
 import TableCellAvatar, {
   AVATAR_MARGIN
 } from "@saleor/components/TableCellAvatar";
+import { metakeyInfo, PRODUCT_TYPE_SHIPPING } from "@saleor/constants";
 import classNames from "classnames";
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
-import { PRODUCT_TYPE_SHIPPING } from "../../../constants";
 import { getStringOrPlaceholder, maybe, renderCollection } from "../../../misc";
 import { FulfillmentStatus } from "../../../types/globalTypes";
 import { OrderDetails_order_fulfillments } from "../../types/OrderDetails";
@@ -54,6 +54,10 @@ const useStyles = makeStyles(
       textAlign: "right",
       width: 120
     },
+    infoColumn: {
+      float: "left",
+      width: "50%"
+    },
     infoLabel: {
       // display: "inline-block"
     },
@@ -62,10 +66,6 @@ const useStyles = makeStyles(
     },
     infoRow: {
       padding: theme.spacing(2, 3)
-    },
-    infoColumn: {
-      float: "left",
-      width: "50%"
     },
     orderNumber: {
       display: "inline",
@@ -88,7 +88,7 @@ interface OrderFulfillmentProps {
   onTrackingCodeAdd: () => void;
 }
 
-const numberOfColumns = 5;
+const numberOfColumns = 4;
 
 const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
   const {
@@ -128,7 +128,6 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
     : "...";
 
   const ushop = maybe(() => lines[0].orderLine.variant.product.ushop);
-  const metakeyInfo = ["color", "code", "size"];
   const style = status === FulfillmentStatus.FULFILLED ? {} : { opacity: 0.5 };
 
   return (
@@ -230,30 +229,34 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
                 className={classes.colName}
                 thumbnail={maybe(() => line.orderLine.thumbnail.url)}
               >
-                {maybe(() => line.orderLine.productName) || <Skeleton />}
-                <br />
-                <a
-                  target="_blank"
-                  href={maybe(
-                    () =>
-                      (line?.orderLine.variant.product.metadata || []).find(
-                        i => i.key === "url"
-                      ).value
-                  )}
-                >
-                  {(
-                    line?.orderLine.variant.product.metadata.filter(
-                      i => i.value && metakeyInfo.includes(i.key)
-                    ) || []
-                  )
-                    .map(i => `${i.key}: ${i.value}`)
-                    .join(", ")}
-                </a>
+                <Typography variant="caption">
+                  {maybe(() => line.orderLine.productName) || <Skeleton />}
+                </Typography>
+
+                <Typography color="textSecondary" variant="caption">
+                  <a
+                    target="_blank"
+                    href={maybe(
+                      () =>
+                        (line?.orderLine.variant.product.metadata || []).find(
+                          i => i.key === "url"
+                        ).value
+                    )}
+                  >
+                    {(
+                      line?.orderLine.variant.product.metadata.filter(
+                        i => i.value && metakeyInfo.includes(i.key)
+                      ) || []
+                    )
+                      .map(i => `${i.key}: ${i.value}`)
+                      .join(", ")}
+                  </a>
+                </Typography>
               </TableCellAvatar>
-              <TableCell className={classes.colSku}>
+              {/* <TableCell className={classes.colSku}>
                 <Skeleton />
-                {/* {line?.orderLine.productSku || <Skeleton />} */}
-              </TableCell>
+                {line?.orderLine.productSku || <Skeleton />}
+              </TableCell> */}
               <TableCell className={classes.colQuantity}>
                 {line?.quantity || <Skeleton />}
               </TableCell>

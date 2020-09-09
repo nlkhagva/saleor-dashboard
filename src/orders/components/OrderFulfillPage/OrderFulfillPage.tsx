@@ -19,6 +19,7 @@ import ResponsiveTable from "@saleor/components/ResponsiveTable";
 import SaveButtonBar from "@saleor/components/SaveButtonBar";
 import Skeleton from "@saleor/components/Skeleton";
 import TableCellAvatar from "@saleor/components/TableCellAvatar";
+import { metakeyInfo, PRODUCT_TYPE_SHIPPING } from "@saleor/constants";
 import { WarehouseFragment } from "@saleor/fragments/types/WarehouseFragment";
 import useFormset, { FormsetData } from "@saleor/hooks/useFormset";
 import { renderCollection } from "@saleor/misc";
@@ -138,9 +139,9 @@ export interface OrderFulfillPageProps {
 }
 
 const initialFormData: OrderFulfillFormData = {
+  sendInfo: true,
   trackingNumber: "",
-  ukDate: "",
-  sendInfo: true
+  ukDate: ""
 };
 
 function getRemainingQuantity(line: OrderFulfillData_order_lines): number {
@@ -163,13 +164,12 @@ const OrderFulfillPage: React.FC<OrderFulfillPageProps> = props => {
   const classes = useStyles(props);
 
   const _ushop = [];
-  const metakeyInfo = ["color", "code", "size"];
 
   order?.lines
     .filter(line => line.variant.product.ushop.id === ushopId)
     .filter(line => getRemainingQuantity(line) > 0)
     .map(line => {
-      if (line.variant.product.productType.id !== "UHJvZHVjdFR5cGU6MTY=") {
+      if (line.variant.product.productType.id !== PRODUCT_TYPE_SHIPPING) {
         _ushop.unshift(line);
       } else {
         _ushop.push(line);

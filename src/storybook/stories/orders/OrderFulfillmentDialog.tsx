@@ -1,4 +1,3 @@
-import placeholderImage from "@assets/images/placeholder60x60.png";
 import { Omit } from "@material-ui/core";
 import { OrderErrorCode } from "@saleor/types/globalTypes";
 import { storiesOf } from "@storybook/react";
@@ -10,7 +9,7 @@ import OrderFulfillmentDialog, {
 import { order as orderFixture } from "../../../orders/fixtures";
 import Decorator from "../../Decorator";
 
-const order = orderFixture(placeholderImage);
+const order = orderFixture();
 
 const props: Omit<OrderFulfillmentDialogProps, "classes"> = {
   confirmButtonState: "default",

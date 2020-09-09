@@ -3,7 +3,17 @@ import SaveFilterTabDialog, {
   SaveFilterTabDialogFormData
 } from "@saleor/components/SaveFilterTabDialog";
 import { WindowTitle } from "@saleor/components/WindowTitle";
-import { configurationMenuUrl } from "@saleor/configuration";
+import GaduurDeleteDialog from "@saleor/gaduur/components/GaduurDeleteDialog";
+import GaduurListPage from "@saleor/gaduur/components/GaduurListPage";
+import { useGaduurDelete } from "@saleor/gaduur/mutations";
+import { useGaduurList } from "@saleor/gaduur/queries";
+import {
+  gaduurAddUrl,
+  gaduurListUrl,
+  GaduurListUrlDialog,
+  GaduurListUrlQueryParams,
+  gaduurUrl
+} from "@saleor/gaduur/urls";
 import useListSettings from "@saleor/hooks/useListSettings";
 import useNavigator from "@saleor/hooks/useNavigator";
 import useNotifier from "@saleor/hooks/useNotifier";
@@ -17,17 +27,6 @@ import createDialogActionHandlers from "@saleor/utils/handlers/dialogActionHandl
 import createFilterHandlers from "@saleor/utils/handlers/filterHandlers";
 import createSortHandler from "@saleor/utils/handlers/sortHandler";
 import { getSortParams } from "@saleor/utils/sort";
-import WarehouseDeleteDialog from "@saleor/warehouses/components/WarehouseDeleteDialog";
-import WarehouseListPage from "@saleor/warehouses/components/WarehouseListPage";
-import { useWarehouseDelete } from "@saleor/warehouses/mutations";
-import { useWarehouseList } from "@saleor/warehouses/queries";
-import {
-  warehouseAddUrl,
-  warehouseListUrl,
-  WarehouseListUrlDialog,
-  WarehouseListUrlQueryParams,
-  warehouseUrl
-} from "@saleor/warehouses/urls";
 import React from "react";
 import { useIntl } from "react-intl";
 
@@ -41,18 +40,18 @@ import {
 } from "./filters";
 import { getSortQueryVariables } from "./sort";
 
-export interface WarehouseListProps {
-  params: WarehouseListUrlQueryParams;
+export interface GaduurListProps {
+  params: GaduurListUrlQueryParams;
 }
 
-const WarehouseList: React.FC<WarehouseListProps> = ({ params }) => {
+const GaduurList: React.FC<GaduurListProps> = ({ params }) => {
   const navigate = useNavigator();
   const notify = useNotifier();
   const paginate = usePaginator();
+  const intl = useIntl();
   const { updateListSettings, settings } = useListSettings(
     ListViews.SALES_LIST
   );
-  const intl = useIntl();
 
   const paginationState = createPaginationState(settings.rowNumber, params);
   const queryVariables = React.useMemo(
@@ -63,13 +62,15 @@ const WarehouseList: React.FC<WarehouseListProps> = ({ params }) => {
     }),
     [params]
   );
-  const { data, loading, refetch } = useWarehouseList({
+
+  const { data, loading, refetch } = useGaduurList({
     displayLoader: true,
     variables: queryVariables
   });
-  const [deleteWarehouse, deleteWarehouseOpts] = useWarehouseDelete({
+
+  const [deleteGaduur, deleteGaduurOpts] = useGaduurDelete({
     onCompleted: data => {
-      if (data.deleteWarehouse.errors.length === 0) {
+      if (data.gaduurDelete.errors.length === 0) {
         notify({
           status: "success",
           text: intl.formatMessage(commonMessages.savedChanges)
@@ -90,20 +91,20 @@ const WarehouseList: React.FC<WarehouseListProps> = ({ params }) => {
       : parseInt(params.activeTab, 0);
 
   const [, resetFilters, handleSearchChange] = createFilterHandlers({
-    createUrl: warehouseListUrl,
+    createUrl: gaduurListUrl,
     getFilterQueryParam: () => undefined,
     navigate,
     params
   });
 
   const [openModal, closeModal] = createDialogActionHandlers<
-    WarehouseListUrlDialog,
-    WarehouseListUrlQueryParams
-  >(navigate, warehouseListUrl, params);
+    GaduurListUrlDialog,
+    GaduurListUrlQueryParams
+  >(navigate, gaduurListUrl, params);
 
   const handleTabChange = (tab: number) =>
     navigate(
-      warehouseListUrl({
+      gaduurListUrl({
         activeTab: tab.toString(),
         ...getFilterTabs()[tab - 1].data
       })
@@ -111,7 +112,7 @@ const WarehouseList: React.FC<WarehouseListProps> = ({ params }) => {
 
   const handleTabDelete = () => {
     deleteFilterTab(currentTab);
-    navigate(warehouseListUrl());
+    navigate(gaduurListUrl());
   };
 
   const handleTabSave = (data: SaveFilterTabDialogFormData) => {
@@ -120,52 +121,51 @@ const WarehouseList: React.FC<WarehouseListProps> = ({ params }) => {
   };
 
   const { loadNextPage, loadPreviousPage, pageInfo } = paginate(
-    maybe(() => data.warehouses.pageInfo),
+    maybe(() => data.gaduurs.pageInfo),
     paginationState,
     params
   );
 
-  const handleSort = createSortHandler(navigate, warehouseListUrl, params);
+  const handleSort = createSortHandler(navigate, gaduurListUrl, params);
 
-  const deleteTransitionState = getMutationStatus(deleteWarehouseOpts);
+  const deleteTransitionState = getMutationStatus(deleteGaduurOpts);
 
   return (
     <>
-      <WindowTitle title={intl.formatMessage(sectionNames.warehouses)} />
-      <WarehouseListPage
+      <WindowTitle title={intl.formatMessage(sectionNames.gaduur)} />
+      <GaduurListPage
         currentTab={currentTab}
-        initialSearch={params.query || ""}
+        initialSearch={params.query}
         onSearchChange={handleSearchChange}
         onAll={resetFilters}
-        onBack={() => navigate(configurationMenuUrl)}
         onTabChange={handleTabChange}
         onTabDelete={() => openModal("delete-search")}
         onTabSave={() => openModal("save-search")}
         tabs={tabs.map(tab => tab.name)}
-        warehouses={maybe(() => data.warehouses.edges.map(edge => edge.node))}
+        gaduurs={maybe(() => data.gaduurs.edges.map(edge => edge.node))}
         settings={settings}
         disabled={loading}
         pageInfo={pageInfo}
-        onAdd={() => navigate(warehouseAddUrl)}
+        onAdd={() => navigate(gaduurAddUrl)}
         onNextPage={loadNextPage}
         onPreviousPage={loadPreviousPage}
         onRemove={id => openModal("delete", { id })}
         onSort={handleSort}
         onUpdateListSettings={updateListSettings}
-        onRowClick={id => () => navigate(warehouseUrl(id))}
+        onRowClick={id => () => navigate(gaduurUrl(id))}
         sort={getSortParams(params)}
       />
-      <WarehouseDeleteDialog
+      <GaduurDeleteDialog
         confirmButtonState={deleteTransitionState}
         name={maybe(
           () =>
-            data.warehouses.edges.find(edge => edge.node.id === params.id).node
+            data.gaduurs.edges.find(edge => edge.node.id === params.id).node
               .name
         )}
         open={params.action === "delete"}
         onClose={closeModal}
         onConfirm={() =>
-          deleteWarehouse({
+          deleteGaduur({
             variables: {
               id: params.id
             }
@@ -189,5 +189,5 @@ const WarehouseList: React.FC<WarehouseListProps> = ({ params }) => {
   );
 };
 
-WarehouseList.displayName = "WarehouseList";
-export default WarehouseList;
+GaduurList.displayName = "GaduurList";
+export default GaduurList;

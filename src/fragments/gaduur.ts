@@ -9,6 +9,10 @@ export const gaduurFragment = gql`
 
 export const gaduurDetailsFragment = gql`
   fragment GaduurDetailsFragment on Gaduur {
-    ...GaduurFragment
+    id
+    name
+    shippingType
+    isPublished
+    publicationDate
   }
 `;

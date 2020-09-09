@@ -28,6 +28,9 @@ export interface GaduurUpdate_gaduurUpdate_gaduurPackage {
    */
   id: string;
   name: string;
+  shippingType: string | null;
+  isPublished: boolean;
+  publicationDate: any | null;
 }
 
 export interface GaduurUpdate_gaduurUpdate {

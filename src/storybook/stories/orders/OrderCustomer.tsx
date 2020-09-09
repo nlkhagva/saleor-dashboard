@@ -9,7 +9,7 @@ import OrderCustomer, {
 import { clients, order as orderFixture } from "../../../orders/fixtures";
 import Decorator from "../../Decorator";
 
-const order = orderFixture("");
+const order = orderFixture();
 
 const props: Omit<OrderCustomerProps, "classes"> = {
   canEditAddresses: false,

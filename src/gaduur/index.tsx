@@ -14,9 +14,9 @@ import {
   gaduurPath,
   GaduurUrlQueryParams
 } from "./urls";
-import GaduurCreate from "./views/GaduurCreate";
-import GaduurDetailsComponent from "./views/GaduurDetails";
-import GaduurListComponent from "./views/GaduurList";
+import GaduurCreate from "./views/GaduurCreatePage";
+import GaduurDetailsView from "./views/GaduurDetailsView";
+import GaduurListView from "./views/GaduurListView";
 
 const GaduurList: React.FC<RouteComponentProps> = ({ location }) => {
   const qs = parseQs(location.search.substr(1));
@@ -25,7 +25,7 @@ const GaduurList: React.FC<RouteComponentProps> = ({ location }) => {
     GaduurListUrlSortField
   );
 
-  return <GaduurListComponent params={params} />;
+  return <GaduurListView params={params} />;
 };
 
 const GaduurDetails: React.FC<RouteComponentProps<{ id: string }>> = ({
@@ -35,7 +35,7 @@ const GaduurDetails: React.FC<RouteComponentProps<{ id: string }>> = ({
   const qs = parseQs(location.search.substr(1));
   const params: GaduurUrlQueryParams = qs;
   return (
-    <GaduurDetailsComponent
+    <GaduurDetailsView
       id={decodeURIComponent(match.params.id)}
       params={params}
     />

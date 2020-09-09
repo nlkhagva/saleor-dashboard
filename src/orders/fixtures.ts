@@ -872,8 +872,8 @@ export const order = (): OrderDetails_order => ({
         }
       ],
       status: FulfillmentStatus.FULFILLED,
-      ukDate: "2020-10-10",
       trackingNumber: "",
+      ukDate: "2020-10-10",
       warehouse: warehouseList[1]
     },
     {

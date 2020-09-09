@@ -78,9 +78,9 @@ const OrderFulfill: React.FC<OrderFulfillProps> = ({ orderId, ushopId }) => {
                   orderLineId: line.id,
                   stocks: line.value
                 })),
-                ukDate: formData.ukDate,
+                notifyCustomer: formData.sendInfo,
                 trackingNumber: formData.trackingNumber,
-                notifyCustomer: formData.sendInfo
+                ukDate: formData.ukDate
               },
               orderId
             }

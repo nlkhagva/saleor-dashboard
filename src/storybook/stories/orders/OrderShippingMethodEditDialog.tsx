@@ -8,7 +8,7 @@ import OrderShippingMethodEditDialog, {
 import { order as orderFixture } from "../../../orders/fixtures";
 import Decorator from "../../Decorator";
 
-const order = orderFixture("");
+const order = orderFixture();
 const props: OrderShippingMethodEditDialogProps = {
   confirmButtonState: "default",
   errors: [],

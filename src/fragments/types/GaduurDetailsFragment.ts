@@ -14,4 +14,7 @@ export interface GaduurDetailsFragment {
    */
   id: string;
   name: string;
+  shippingType: string | null;
+  isPublished: boolean;
+  publicationDate: any | null;
 }

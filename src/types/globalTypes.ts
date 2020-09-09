@@ -461,8 +461,9 @@ export enum FulfillmentStatus {
 }
 
 export enum GaduurSortField {
+  NAME = "NAME",
   PUBLICATION_DATE = "PUBLICATION_DATE",
-  TITLE = "TITLE",
+  SHIPPING_TYPE = "SHIPPING_TYPE",
   VISIBILITY = "VISIBILITY",
 }
 
@@ -1285,6 +1286,7 @@ export interface GaduurFilterInput {
 
 export interface GaduurInput {
   name?: string | null;
+  shippingType?: string | null;
   isPublished?: boolean | null;
   publicationDate?: string | null;
 }

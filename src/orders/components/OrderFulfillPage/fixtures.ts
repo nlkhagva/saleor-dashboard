@@ -16,6 +16,7 @@ export const orderToFulfill: OrderFulfillData_order = {
       quantity: 3,
       quantityFulfilled: 1,
       variant: {
+        product: null,
         __typename: "ProductVariant",
         id: "UHJvZHVjdFZhcmlhbnQ6Mjk2",
         name: "S",
@@ -81,6 +82,7 @@ export const orderToFulfill: OrderFulfillData_order = {
         id: "UHJvZHVjdFZhcmlhbnQ6MTgx",
         name: "2.5l",
         sku: "998323583",
+        product: null,
         attributes: [
           {
             __typename: "SelectedAttribute",

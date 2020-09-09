@@ -1,4 +1,3 @@
-import placeholderImage from "@assets/images/placeholder60x60.png";
 import { Omit } from "@material-ui/core";
 import { adminUserPermissions } from "@saleor/fixtures";
 import { storiesOf } from "@storybook/react";
@@ -15,7 +14,7 @@ import {
 } from "../../../types/globalTypes";
 import Decorator from "../../Decorator";
 
-const order = orderFixture(placeholderImage);
+const order = orderFixture();
 
 const props: Omit<OrderDetailsPageProps, "classes"> = {
   countries,

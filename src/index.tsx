@@ -37,8 +37,8 @@ import AppStateProvider from "./containers/AppState";
 import BackgroundTasksProvider from "./containers/BackgroundTasks";
 import { CustomerSection } from "./customers";
 import DiscountSection from "./discounts";
-// import GaduurSection from "./gaduur";
-// import { gaduurSection } from "./gaduur/urls";
+import GaduurSection from "./gaduur";
+import { gaduurSection } from "./gaduur/urls";
 import HomePage from "./home";
 import { commonMessages } from "./intl";
 import NavigationSection from "./navigation";
@@ -247,11 +247,13 @@ const Routes: React.FC = () => {
                 path={warehouseSection}
                 component={WarehouseSection}
               />
-              {/* <SectionRoute
+
+              {/* unurshop */}
+              <SectionRoute
                 permissions={[PermissionEnum.MANAGE_PRODUCTS]}
                 path={gaduurSection}
                 component={GaduurSection}
-              /> */}
+              />
 
               {createConfigurationMenu(intl).filter(menu =>
                 menu.menuItems.map(item => hasPermission(item.permission, user))

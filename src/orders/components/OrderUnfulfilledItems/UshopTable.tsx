@@ -1,8 +1,15 @@
-import { TableBody, TableCell, TableHead, TableRow } from "@material-ui/core";
+import {
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Typography
+} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Money from "@saleor/components/Money";
 import Skeleton from "@saleor/components/Skeleton";
 import TableCellAvatar from "@saleor/components/TableCellAvatar";
+import { metakeyInfo } from "@saleor/constants";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
@@ -11,7 +18,6 @@ import { maybe } from "../../../misc";
 import UkShippingRow from "./UkShppingRow";
 
 const UshopTable = ({ ushop, classes, canFulfill, onFulfill }: any) => {
-  const metakeyInfo = ["color", "code", "size"];
   const quantity = ushop.lines
     .map(line => line.quantity - line.quantityFulfilled)
     .reduce((a, b) => a + b, 0);
@@ -30,7 +36,7 @@ const UshopTable = ({ ushop, classes, canFulfill, onFulfill }: any) => {
     <>
       <TableHead>
         <TableRow>
-          <TableCell className={classes.colName} colSpan={5}>
+          <TableCell className={classes.colName} colSpan={4}>
             <span style={{ textTransform: "uppercase" }}>
               {`${ushop.name} (${quantity})`}
             </span>
@@ -71,30 +77,37 @@ const UshopTable = ({ ushop, classes, canFulfill, onFulfill }: any) => {
               className={classes.colName}
               thumbnail={maybe(() => line.thumbnail.url)}
             >
-              {maybe(() => line.productName) || <Skeleton />}
-              <br />
-              <a
-                target="_blank"
-                href={maybe(
-                  () =>
-                    (line?.variant.product.metadata || []).find(
-                      i => i.key === "url"
-                    ).value
-                )}
-              >
-                {(
-                  line?.variant.product.metadata.filter(
-                    i => i.value && metakeyInfo.includes(i.key)
-                  ) || []
-                )
-                  .map(i => `${i.key}: ${i.value}`)
-                  .join(", ")}
-              </a>
+              <Typography variant="caption">
+                {maybe(() => line.productName) || <Skeleton />}
+              </Typography>
+
+              <Typography color="textSecondary" variant="caption">
+                <a
+                  target="_blank"
+                  href={maybe(
+                    () =>
+                      (line?.variant.product.metadata || []).find(
+                        i => i.key === "url"
+                      ).value
+                  )}
+                >
+                  {(
+                    line?.variant.product.metadata.filter(
+                      i => i.value && metakeyInfo.includes(i.key)
+                    ) || []
+                  )
+                    .map(i => `${i.key}: ${i.value}`)
+                    .join(", ")}
+                </a>
+              </Typography>
+              {/* <Typography variant="caption">
+                {line?.productSku || <Skeleton />}
+              </Typography> */}
             </TableCellAvatar>
-            <TableCell className={classes.colSku}>
-              {/* {line?.productSku || <Skeleton />} */}
+            {/* <TableCell className={classes.colSku}>
+              
               <Skeleton />
-            </TableCell>
+            </TableCell> */}
             <TableCell className={classes.colQuantity}>
               {maybe(() => line.quantity - line.quantityFulfilled) || (
                 <Skeleton />
@@ -131,7 +144,7 @@ const UshopTable = ({ ushop, classes, canFulfill, onFulfill }: any) => {
           <UkShippingRow line={ushop.ukShipping} classes={classes} />
         )}
         <TableRow>
-          <TableCell colSpan={5}>
+          <TableCell colSpan={4}>
             {canFulfill && (
               <Button
                 variant="text"

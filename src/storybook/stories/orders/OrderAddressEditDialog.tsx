@@ -6,7 +6,7 @@ import OrderAddressEditDialog from "../../../orders/components/OrderAddressEditD
 import { countries, order as orderFixture } from "../../../orders/fixtures";
 import Decorator from "../../Decorator";
 
-const order = orderFixture("");
+const order = orderFixture();
 
 storiesOf("Orders / OrderAddressEditDialog", module)
   .addDecorator(Decorator)
