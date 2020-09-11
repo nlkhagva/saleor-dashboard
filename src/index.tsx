@@ -45,6 +45,8 @@ import NavigationSection from "./navigation";
 import { navigationSection } from "./navigation/urls";
 import { NotFound } from "./NotFound";
 import OrdersSection from "./orders";
+import PackageSection from "./package";
+import { packageSection } from "./package/urls";
 import PageSection from "./pages";
 import PermissionGroupSection from "./permissionGroups";
 import PluginsSection from "./plugins";
@@ -253,6 +255,11 @@ const Routes: React.FC = () => {
                 permissions={[PermissionEnum.MANAGE_PRODUCTS]}
                 path={gaduurSection}
                 component={GaduurSection}
+              />
+              <SectionRoute
+                permissions={[PermissionEnum.MANAGE_PRODUCTS]}
+                path={packageSection}
+                component={PackageSection}
               />
 
               {createConfigurationMenu(intl).filter(menu =>

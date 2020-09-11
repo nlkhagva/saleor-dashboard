@@ -690,6 +690,10 @@ export enum OrderStatusFilter {
   UNFULFILLED = "UNFULFILLED",
 }
 
+export enum PackageSortField {
+  NAME = "NAME",
+}
+
 /**
  * An enumeration.
  */
@@ -1401,6 +1405,35 @@ export interface OrderUpdateInput {
 
 export interface OrderUpdateShippingInput {
   shippingMethod?: string | null;
+}
+
+export interface PackageFilterInput {
+  search?: string | null;
+}
+
+export interface PackageInput {
+  name?: string | null;
+  lines?: (PackageLineInput | null)[] | null;
+  shippingAddressId?: string | null;
+  senderAddressId?: string | null;
+  width?: any | null;
+  height?: any | null;
+  length?: any | null;
+  netWeight?: any | null;
+  grossWeight?: any | null;
+  totalGrossAmount?: any | null;
+}
+
+export interface PackageLineInput {
+  name?: string | null;
+  quantity: number;
+  unitPriceAmount: any;
+  orderlineId?: string | null;
+}
+
+export interface PackageSortingInput {
+  direction: OrderDirection;
+  field: PackageSortField;
 }
 
 export interface PageFilterInput {

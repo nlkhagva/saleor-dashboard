@@ -211,6 +211,10 @@ export const sectionNames = defineMessages({
     defaultMessage: "Orders",
     description: "orders section name"
   },
+  package: {
+    defaultMessage: "Илгээмж",
+    description: "гадуур section name"
+  },
   pages: {
     defaultMessage: "Pages",
     description: "pages section name"
@@ -223,13 +227,13 @@ export const sectionNames = defineMessages({
     defaultMessage: "Plugins",
     description: "plugins section name"
   },
-  productTypes: {
-    defaultMessage: "Product Types",
-    description: "product types section name"
-  },
   products: {
     defaultMessage: "Products",
     description: "products section name"
+  },
+  productTypes: {
+    defaultMessage: "Product Types",
+    description: "product types section name"
   },
   sales: {
     defaultMessage: "Sales",
