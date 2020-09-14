@@ -9,7 +9,7 @@ import { usePackageCreate } from "../mutations";
 import { PackageCreate as PackageCreateData } from "../types/PackageCreate";
 import { packageListUrl, packageUrl } from "../urls";
 
-export const PackageCreate: React.FC = () => {
+export const PackageCreate: React.FC = ({ ordernumber }: any) => {
   const navigate = useNavigator();
   const notify = useNotifier();
   // const intl = useIntl();
@@ -37,19 +37,19 @@ export const PackageCreate: React.FC = () => {
         errors={createPackageOpts.data?.packageCreate.errors || []}
         saveButtonBarState={createPackageTransitionState}
         onBack={() => navigate(packageListUrl())}
-        package={null}
+        object={null}
         onDelete={null}
         onSubmit={data =>
           createPackage({
             variables: {
               input: {
-                name: data.name,
-                width: data.width,
+                grossWeight: data.grossWeight,
                 height: data.height,
                 length: data.length,
+                name: data.name,
                 netWeight: data.netWeight,
-                grossWeight: data.grossWeight,
-                totalGrossAmount: data.totalGrossAmount
+                totalGrossAmount: data.totalGrossAmount,
+                width: data.width
               }
             }
           })

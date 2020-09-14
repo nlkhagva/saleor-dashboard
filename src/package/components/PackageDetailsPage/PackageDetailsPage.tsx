@@ -18,7 +18,7 @@ import Grid from "@saleor/components/Grid";
 import PageHeader from "@saleor/components/PageHeader";
 import SaveButtonBar from "@saleor/components/SaveButtonBar";
 // import SingleSelectField from "@saleor/components/SingleSelectField";
-import useDateLocalize from "@saleor/hooks/useDateLocalize";
+// import useDateLocalize from "@saleor/hooks/useDateLocalize";
 import { sectionNames } from "@saleor/intl";
 import { maybe } from "@saleor/misc";
 import { getFormErrors } from "@saleor/utils/errors";
@@ -40,7 +40,7 @@ import { PackageUpdate_packageUpdate_package } from "../../types/PackageUpdate";
 export interface DetailsPageProps {
   disabled: boolean;
   errors: any;
-  package: PackageUpdate_packageUpdate_package | null;
+  object: PackageUpdate_packageUpdate_package | null;
   saveButtonBarState: ConfirmButtonTransitionState;
   onBack: () => void;
   onSubmit: (data: PackageFormData) => void;
@@ -53,21 +53,22 @@ const PackageDetailsPage: React.FC<DetailsPageProps> = ({
   onBack,
   onDelete,
   onSubmit,
-  package,
+  object,
   saveButtonBarState
 }) => {
   const intl = useIntl();
-  const localizeDate = useDateLocalize();
+  // const localizeDate = useDateLocalize();
 
   const initialForm: PackageFormData = {
-    name: maybe(() => package?.name, ""),
-    width: maybe(() => package?.width, 0),
-    height: maybe(() => package?.height, 0),
-    length: maybe(() => package?.length, 0),
-    netWeight: maybe(() => package?.netWeight, 0),
-    grossWeight: maybe(() => package?.grossWeight, 0),
-    totalGrossAmount: maybe(() => package?.totalGrossAmount, 0)
+    grossWeight: maybe(() => object?.grossWeight, 0),
+    height: maybe(() => object?.height, 0),
+    length: maybe(() => object?.length, 0),
+    name: maybe(() => object?.name, ""),
+    netWeight: maybe(() => object?.netWeight, 0),
+    totalGrossAmount: maybe(() => object?.totalGrossAmount, 0),
+    width: maybe(() => object?.width, 0)
   };
+
   const formErrors = getFormErrors(
     [
       "name",
@@ -88,7 +89,7 @@ const PackageDetailsPage: React.FC<DetailsPageProps> = ({
           <AppHeader onBack={onBack}>
             {intl.formatMessage(sectionNames.package)}
           </AppHeader>
-          <PageHeader title={package ? "#" + package.name : "Илгээмж"} />
+          <PageHeader title={object ? "#" + object.name : "Илгээмж"} />
           <Grid>
             <div>
               <Card data-test="generalInfoSection">

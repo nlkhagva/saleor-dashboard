@@ -49,6 +49,8 @@ export function getMode(command: string): QuickSearchMode {
       return "customers";
     case "#":
       return "orders";
+    case "!":
+      return "fulfill";
     case "$":
       return "catalog";
     case "?":

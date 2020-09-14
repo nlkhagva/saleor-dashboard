@@ -75,7 +75,7 @@ export const PackageDetailsView: React.FC<PackageCreateProps> = ({
         disabled={loading || updatePackageOpts.loading}
         errors={updatePackageOpts.data?.packageUpdate.errors || []}
         saveButtonBarState={updatePackageTransitionState}
-        package={data?.package || null}
+        object={data?.package || null}
         onBack={() => navigate(packageListUrl())}
         onDelete={() => openModal("delete")}
         onSubmit={data =>
@@ -83,13 +83,13 @@ export const PackageDetailsView: React.FC<PackageCreateProps> = ({
             variables: {
               id,
               input: {
-                name: data.name,
-                width: data.width,
+                grossWeight: data.grossWeight,
                 height: data.height,
                 length: data.length,
+                name: data.name,
                 netWeight: data.netWeight,
-                grossWeight: data.grossWeight,
-                totalGrossAmount: data.totalGrossAmount
+                totalGrossAmount: data.totalGrossAmount,
+                width: data.width
               }
             }
           })

@@ -40,3 +40,5 @@ export const packageUrl = (id: string, params?: PackageUrlQueryParams) =>
 
 export const packageAddPath = urlJoin(packageSection, "add");
 export const packageAddUrl = packageAddPath;
+
+export const packageFulfill = urlJoin(packageSection, "fulfill");

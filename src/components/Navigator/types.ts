@@ -21,4 +21,5 @@ export type QuickSearchMode =
   | "commands"
   | "customers"
   | "help"
+  | "fulfill"
   | "orders";

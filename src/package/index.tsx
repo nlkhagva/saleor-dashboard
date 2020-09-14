@@ -42,6 +42,19 @@ const PackageDetails: React.FC<RouteComponentProps<{ id: string }>> = ({
   );
 };
 
+const PackageCreatePage: React.FC<RouteComponentProps<{
+  ordernumber: string;
+}>> = ({ location, match }) => {
+  const qs = parseQs(location.search.substr(1));
+  const params: PackageUrlQueryParams = qs;
+  return (
+    <PackageCreate
+      // ordernumber={decodeURIComponent(match.params.ordernumber)}
+      params={params}
+    />
+  );
+};
+
 export const PackageSection: React.FC = () => {
   const intl = useIntl();
 
@@ -50,7 +63,8 @@ export const PackageSection: React.FC = () => {
       <WindowTitle title={intl.formatMessage(sectionNames.package)} />
       <Switch>
         <Route exact path={packageListPath} component={PackageList} />
-        <Route exact path={packageAddPath} component={PackageCreate} />
+        <Route exact path={packageAddPath} component={PackageCreatePage} />
+        {/* <Route exact path={packageFulfill} component={} /> */}
         <Route path={packagePath(":id")} component={PackageDetails} />
       </Switch>
     </>
