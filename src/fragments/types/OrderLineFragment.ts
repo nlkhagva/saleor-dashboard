@@ -40,6 +40,11 @@ export interface OrderLineFragment_variant_product_metadata {
 export interface OrderLineFragment_variant_product {
   __typename: "Product";
   /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
+  isPublished: boolean;
+  /**
    * The ID of the object.
    */
   id: string;
@@ -53,12 +58,16 @@ export interface OrderLineFragment_variant_product {
 
 export interface OrderLineFragment_variant {
   __typename: "ProductVariant";
+  product: OrderLineFragment_variant_product;
+  /**
+   * Quantity of a product available for sale in one checkout.
+   */
+  quantityAvailable: number;
   /**
    * The ID of the object.
    */
   id: string;
   name: string;
-  product: OrderLineFragment_variant_product;
 }
 
 export interface OrderLineFragment_unitPrice_gross {
@@ -112,14 +121,14 @@ export interface OrderLineFragment {
    */
   id: string;
   isShippingRequired: boolean;
-  productName: string;
-  productSku: string;
-  quantity: number;
-  quantityFulfilled: number;
   /**
    * A purchased product variant. Note: this field may be null if the variant has been removed from stock at all.
    */
   variant: OrderLineFragment_variant | null;
+  productName: string;
+  productSku: string;
+  quantity: number;
+  quantityFulfilled: number;
   /**
    * Price of the single item in the order line.
    */

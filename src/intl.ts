@@ -200,7 +200,7 @@ export const sectionNames = defineMessages({
     description: "гадуур section name"
   },
   home: {
-    defaultMessage: "Home",
+    defaultMessage: "Dashboard",
     description: "home section name"
   },
   navigation: {

@@ -21,6 +21,30 @@ export interface OrderMarkAsPaid_orderMarkAsPaid_errors {
   field: string | null;
 }
 
+export interface OrderMarkAsPaid_orderMarkAsPaid_order_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
+export interface OrderMarkAsPaid_orderMarkAsPaid_order_privateMetadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface OrderMarkAsPaid_orderMarkAsPaid_order_billingAddress_country {
   __typename: "CountryDisplay";
   /**
@@ -141,6 +165,11 @@ export interface OrderMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderL
 export interface OrderMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderLine_variant_product {
   __typename: "Product";
   /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
+  isPublished: boolean;
+  /**
    * The ID of the object.
    */
   id: string;
@@ -154,12 +183,16 @@ export interface OrderMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderL
 
 export interface OrderMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderLine_variant {
   __typename: "ProductVariant";
+  product: OrderMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderLine_variant_product;
+  /**
+   * Quantity of a product available for sale in one checkout.
+   */
+  quantityAvailable: number;
   /**
    * The ID of the object.
    */
   id: string;
   name: string;
-  product: OrderMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderLine_variant_product;
 }
 
 export interface OrderMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderLine_unitPrice_gross {
@@ -213,14 +246,14 @@ export interface OrderMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderL
    */
   id: string;
   isShippingRequired: boolean;
-  productName: string;
-  productSku: string;
-  quantity: number;
-  quantityFulfilled: number;
   /**
    * A purchased product variant. Note: this field may be null if the variant has been removed from stock at all.
    */
   variant: OrderMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderLine_variant | null;
+  productName: string;
+  productSku: string;
+  quantity: number;
+  quantityFulfilled: number;
   /**
    * Price of the single item in the order line.
    */
@@ -303,6 +336,11 @@ export interface OrderMarkAsPaid_orderMarkAsPaid_order_lines_variant_product_met
 export interface OrderMarkAsPaid_orderMarkAsPaid_order_lines_variant_product {
   __typename: "Product";
   /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
+  isPublished: boolean;
+  /**
    * The ID of the object.
    */
   id: string;
@@ -316,12 +354,16 @@ export interface OrderMarkAsPaid_orderMarkAsPaid_order_lines_variant_product {
 
 export interface OrderMarkAsPaid_orderMarkAsPaid_order_lines_variant {
   __typename: "ProductVariant";
+  product: OrderMarkAsPaid_orderMarkAsPaid_order_lines_variant_product;
+  /**
+   * Quantity of a product available for sale in one checkout.
+   */
+  quantityAvailable: number;
   /**
    * The ID of the object.
    */
   id: string;
   name: string;
-  product: OrderMarkAsPaid_orderMarkAsPaid_order_lines_variant_product;
 }
 
 export interface OrderMarkAsPaid_orderMarkAsPaid_order_lines_unitPrice_gross {
@@ -375,14 +417,14 @@ export interface OrderMarkAsPaid_orderMarkAsPaid_order_lines {
    */
   id: string;
   isShippingRequired: boolean;
-  productName: string;
-  productSku: string;
-  quantity: number;
-  quantityFulfilled: number;
   /**
    * A purchased product variant. Note: this field may be null if the variant has been removed from stock at all.
    */
   variant: OrderMarkAsPaid_orderMarkAsPaid_order_lines_variant | null;
+  productName: string;
+  productSku: string;
+  quantity: number;
+  quantityFulfilled: number;
   /**
    * Price of the single item in the order line.
    */
@@ -605,6 +647,14 @@ export interface OrderMarkAsPaid_orderMarkAsPaid_order {
    * The ID of the object.
    */
   id: string;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (OrderMarkAsPaid_orderMarkAsPaid_order_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
+  privateMetadata: (OrderMarkAsPaid_orderMarkAsPaid_order_privateMetadata | null)[];
   billingAddress: OrderMarkAsPaid_orderMarkAsPaid_order_billingAddress | null;
   /**
    * Informs whether a draft order can be finalized(turned into a regular order).

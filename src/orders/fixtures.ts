@@ -8,6 +8,7 @@ import {
   FulfillmentStatus,
   JobStatusEnum,
   OrderAction,
+  OrderEventsEmailsEnum,
   OrderEventsEnum,
   OrderStatus,
   PaymentChargeStatusEnum
@@ -46,6 +47,7 @@ export const clients: SearchCustomers_search_edges_node[] = [
     lastName: "Jonas"
   }
 ];
+const placeholder = "";
 export const orders: OrderList_orders_edges_node[] = [
   {
     __typename: "Order",
@@ -821,7 +823,7 @@ export const order = (): OrderDetails_order => ({
       email: null,
       emailType: null,
       id: "T3JkZXJFdmVudDoyMQ==",
-      invoiceNumber: "23/07/2020",
+      invoiceNumber: null,
       message: null,
       quantity: 1,
       type: OrderEventsEnum.FULFILLMENT_FULFILLED_ITEMS,
@@ -838,7 +840,7 @@ export const order = (): OrderDetails_order => ({
       email: null,
       emailType: null,
       id: "T3JkZXJFdmVudDo0",
-      invoiceNumber: "23/07/2020",
+      invoiceNumber: null,
       message: "This is note",
       quantity: null,
       type: OrderEventsEnum.NOTE_ADDED,
@@ -851,10 +853,62 @@ export const order = (): OrderDetails_order => ({
       email: null,
       emailType: null,
       id: "T3JkZXJFdmVudDo1",
-      invoiceNumber: "24/07/2020",
+      invoiceNumber: null,
       message: "This is note",
       quantity: null,
       type: OrderEventsEnum.NOTE_ADDED,
+      user: null
+    },
+    {
+      __typename: "OrderEvent",
+      amount: null,
+      date: "2019-09-17T13:22:24.376193+00:00",
+      email: null,
+      emailType: null,
+      id: "T3JkZXJFdmVudDo2",
+      invoiceNumber: null,
+      message: "Note from external service",
+      quantity: null,
+      type: OrderEventsEnum.EXTERNAL_SERVICE_NOTIFICATION,
+      user: null
+    },
+    {
+      __typename: "OrderEvent",
+      amount: null,
+      date: "2019-09-17T13:22:24.376193+00:00",
+      email: null,
+      emailType: OrderEventsEmailsEnum.ORDER_CANCEL,
+      id: "T3JkZXJFdmVudDo3",
+      invoiceNumber: null,
+      message: null,
+      quantity: null,
+      type: OrderEventsEnum.EMAIL_SENT,
+      user: null
+    },
+    {
+      __typename: "OrderEvent",
+      amount: null,
+      date: "2019-09-17T13:22:24.376193+00:00",
+      email: null,
+      emailType: OrderEventsEmailsEnum.ORDER_REFUND,
+      id: "T3JkZXJFdmVudDo4",
+      invoiceNumber: null,
+      message: null,
+      quantity: null,
+      type: OrderEventsEnum.EMAIL_SENT,
+      user: null
+    },
+    {
+      __typename: "OrderEvent",
+      amount: null,
+      date: "2019-09-17T13:22:24.376193+00:00",
+      email: null,
+      emailType: null,
+      id: "T3JkZXJFdmVudDo5",
+      invoiceNumber: null,
+      message: null,
+      quantity: null,
+      type: OrderEventsEnum.PAYMENT_AUTHORIZED,
       user: null
     }
   ],
@@ -867,7 +921,41 @@ export const order = (): OrderDetails_order => ({
         {
           __typename: "FulfillmentLine",
           id: "RnVsZmlsbG1lbnRMaW5lOjM5",
-          orderLine: null,
+          orderLine: {
+            __typename: "OrderLine",
+            id: "T3JkZXJMaW5lOjIz",
+            isShippingRequired: false,
+            productName: "Williams, Garcia and Walker (XS)",
+            productSku: "5-1337",
+            quantity: 2,
+            quantityFulfilled: 2,
+            thumbnail: {
+              __typename: "Image" as "Image",
+              url: placeholder
+            },
+            unitPrice: {
+              __typename: "TaxedMoney",
+              gross: {
+                __typename: "Money",
+                amount: 79.71,
+                currency: "USD"
+              },
+              net: {
+                __typename: "Money",
+                amount: 79.71,
+                currency: "USD"
+              }
+            },
+            variant: {
+              __typename: "ProductVariant",
+              product: {
+                __typename: "Product",
+                isAvailableForPurchase: true,
+                isPublished: true
+              },
+              quantityAvailable: 10
+            }
+          },
           quantity: 1
         }
       ],
@@ -884,7 +972,41 @@ export const order = (): OrderDetails_order => ({
         {
           __typename: "FulfillmentLine",
           id: "RnVsZmlsbG1lbnRMaW5lOjE1",
-          orderLine: null,
+          orderLine: {
+            __typename: "OrderLine",
+            id: "T3JkZXJMaW5lOjIz",
+            isShippingRequired: false,
+            productName: "Williams, Garcia and Walker (XS)",
+            productSku: "5-1337",
+            quantity: 2,
+            quantityFulfilled: 2,
+            thumbnail: {
+              __typename: "Image" as "Image",
+              url: placeholder
+            },
+            unitPrice: {
+              __typename: "TaxedMoney",
+              gross: {
+                __typename: "Money",
+                amount: 79.71,
+                currency: "USD"
+              },
+              net: {
+                __typename: "Money",
+                amount: 79.71,
+                currency: "USD"
+              }
+            },
+            variant: {
+              __typename: "ProductVariant",
+              product: {
+                __typename: "Product",
+                isAvailableForPurchase: true,
+                isPublished: true
+              },
+              quantityAvailable: 10
+            }
+          },
           quantity: 1
         }
       ],
@@ -905,9 +1027,88 @@ export const order = (): OrderDetails_order => ({
       url: "invoice1"
     }
   ],
-  lines: [],
+  lines: [
+    {
+      __typename: "OrderLine",
+      id: "T3JkZXJMaW5lOjIy",
+      isShippingRequired: true,
+      productName: "Watkins-Gonzalez (Soft)",
+      productSku: "59-1337",
+      quantity: 3,
+      quantityFulfilled: 0,
+      thumbnail: {
+        __typename: "Image" as "Image",
+        url: placeholder
+      },
+      unitPrice: {
+        __typename: "TaxedMoney",
+        gross: {
+          __typename: "Money",
+          amount: 18.51,
+          currency: "USD"
+        },
+        net: {
+          __typename: "Money",
+          amount: 18.51,
+          currency: "USD"
+        }
+      },
+      variant: {
+        __typename: "ProductVariant",
+        product: {
+          __typename: "Product",
+          isAvailableForPurchase: true,
+          isPublished: true
+        },
+        quantityAvailable: 10
+      }
+    },
+    {
+      __typename: "OrderLine",
+      id: "T3JkZXJMaW5lOjIz",
+      isShippingRequired: true,
+      productName: "Williams, Garcia and Walker (XS)",
+      productSku: "5-1337",
+      quantity: 2,
+      quantityFulfilled: 2,
+      thumbnail: {
+        __typename: "Image" as "Image",
+        url: placeholder
+      },
+      unitPrice: {
+        __typename: "TaxedMoney",
+        gross: {
+          __typename: "Money",
+          amount: 79.71,
+          currency: "USD"
+        },
+        net: {
+          __typename: "Money",
+          amount: 79.71,
+          currency: "USD"
+        }
+      },
+      variant: {
+        __typename: "ProductVariant",
+        product: {
+          __typename: "Product",
+          isAvailableForPurchase: true,
+          isPublished: true
+        },
+        quantityAvailable: 10
+      }
+    }
+  ],
+  metadata: [
+    {
+      __typename: "MetadataItem",
+      key: "integration.key",
+      value: "some-value"
+    }
+  ],
   number: "9",
   paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED,
+  privateMetadata: [],
   shippingAddress: {
     __typename: "Address",
     city: "West Patriciastad",
@@ -994,9 +1195,82 @@ export const draftOrder = (): OrderDetails_order => ({
       url: "invoice1"
     }
   ],
-  lines: [],
+  lines: [
+    {
+      __typename: "OrderLine" as "OrderLine",
+      id: "T3JkZXJMaW5lOjQ1",
+      isShippingRequired: false,
+      productName: "Davis Group (Hard)",
+      productSku: "58-1338",
+      quantity: 2,
+      quantityFulfilled: 0,
+      thumbnail: {
+        __typename: "Image" as "Image",
+        url: placeholder
+      },
+      unitPrice: {
+        __typename: "TaxedMoney" as "TaxedMoney",
+        gross: {
+          __typename: "Money" as "Money",
+          amount: 65.95,
+          currency: "USD"
+        },
+        net: {
+          __typename: "Money" as "Money",
+          amount: 65.95,
+          currency: "USD"
+        }
+      },
+      variant: {
+        __typename: "ProductVariant",
+        product: {
+          __typename: "Product",
+          isAvailableForPurchase: true,
+          isPublished: true
+        },
+        quantityAvailable: 10
+      }
+    },
+    {
+      __typename: "OrderLine" as "OrderLine",
+      id: "T3JkZXJMaW5lOjQ2",
+      isShippingRequired: false,
+      productName: "Anderson PLC (15-1337)",
+      productSku: "15-1337",
+      quantity: 2,
+      quantityFulfilled: 0,
+      thumbnail: {
+        __typename: "Image" as "Image",
+        url: placeholder
+      },
+      unitPrice: {
+        __typename: "TaxedMoney" as "TaxedMoney",
+        gross: {
+          __typename: "Money" as "Money",
+          amount: 68.2,
+          currency: "USD"
+        },
+        net: {
+          __typename: "Money" as "Money",
+          amount: 68.2,
+          currency: "USD"
+        }
+      },
+      variant: {
+        __typename: "ProductVariant",
+        product: {
+          __typename: "Product",
+          isAvailableForPurchase: true,
+          isPublished: true
+        },
+        quantityAvailable: 10
+      }
+    }
+  ],
+  metadata: [],
   number: "24",
   paymentStatus: null,
+  privateMetadata: [],
   shippingAddress: null,
   shippingMethod: null,
   shippingMethodName: null,

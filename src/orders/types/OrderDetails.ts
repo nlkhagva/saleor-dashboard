@@ -9,6 +9,30 @@ import { OrderEventsEmailsEnum, OrderEventsEnum, FulfillmentStatus, PaymentCharg
 // GraphQL query operation: OrderDetails
 // ====================================================
 
+export interface OrderDetails_order_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
+export interface OrderDetails_order_privateMetadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface OrderDetails_order_billingAddress_country {
   __typename: "CountryDisplay";
   /**
@@ -129,6 +153,11 @@ export interface OrderDetails_order_fulfillments_lines_orderLine_variant_product
 export interface OrderDetails_order_fulfillments_lines_orderLine_variant_product {
   __typename: "Product";
   /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
+  isPublished: boolean;
+  /**
    * The ID of the object.
    */
   id: string;
@@ -142,12 +171,16 @@ export interface OrderDetails_order_fulfillments_lines_orderLine_variant_product
 
 export interface OrderDetails_order_fulfillments_lines_orderLine_variant {
   __typename: "ProductVariant";
+  product: OrderDetails_order_fulfillments_lines_orderLine_variant_product;
+  /**
+   * Quantity of a product available for sale in one checkout.
+   */
+  quantityAvailable: number;
   /**
    * The ID of the object.
    */
   id: string;
   name: string;
-  product: OrderDetails_order_fulfillments_lines_orderLine_variant_product;
 }
 
 export interface OrderDetails_order_fulfillments_lines_orderLine_unitPrice_gross {
@@ -201,14 +234,14 @@ export interface OrderDetails_order_fulfillments_lines_orderLine {
    */
   id: string;
   isShippingRequired: boolean;
-  productName: string;
-  productSku: string;
-  quantity: number;
-  quantityFulfilled: number;
   /**
    * A purchased product variant. Note: this field may be null if the variant has been removed from stock at all.
    */
   variant: OrderDetails_order_fulfillments_lines_orderLine_variant | null;
+  productName: string;
+  productSku: string;
+  quantity: number;
+  quantityFulfilled: number;
   /**
    * Price of the single item in the order line.
    */
@@ -291,6 +324,11 @@ export interface OrderDetails_order_lines_variant_product_metadata {
 export interface OrderDetails_order_lines_variant_product {
   __typename: "Product";
   /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
+  isPublished: boolean;
+  /**
    * The ID of the object.
    */
   id: string;
@@ -304,12 +342,16 @@ export interface OrderDetails_order_lines_variant_product {
 
 export interface OrderDetails_order_lines_variant {
   __typename: "ProductVariant";
+  product: OrderDetails_order_lines_variant_product;
+  /**
+   * Quantity of a product available for sale in one checkout.
+   */
+  quantityAvailable: number;
   /**
    * The ID of the object.
    */
   id: string;
   name: string;
-  product: OrderDetails_order_lines_variant_product;
 }
 
 export interface OrderDetails_order_lines_unitPrice_gross {
@@ -363,14 +405,14 @@ export interface OrderDetails_order_lines {
    */
   id: string;
   isShippingRequired: boolean;
-  productName: string;
-  productSku: string;
-  quantity: number;
-  quantityFulfilled: number;
   /**
    * A purchased product variant. Note: this field may be null if the variant has been removed from stock at all.
    */
   variant: OrderDetails_order_lines_variant | null;
+  productName: string;
+  productSku: string;
+  quantity: number;
+  quantityFulfilled: number;
   /**
    * Price of the single item in the order line.
    */
@@ -593,6 +635,14 @@ export interface OrderDetails_order {
    * The ID of the object.
    */
   id: string;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (OrderDetails_order_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
+  privateMetadata: (OrderDetails_order_privateMetadata | null)[];
   billingAddress: OrderDetails_order_billingAddress | null;
   /**
    * Informs whether a draft order can be finalized(turned into a regular order).

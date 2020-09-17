@@ -393,6 +393,10 @@ export interface Product {
   margin: Product_margin | null;
   purchaseCost: Product_purchaseCost | null;
   /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
+  /**
    * Whether the product is in stock and visible or not.
    */
   isAvailable: boolean | null;
@@ -408,4 +412,6 @@ export interface Product {
    */
   variants: (Product_variants | null)[] | null;
   weight: Product_weight | null;
+  availableForPurchase: any | null;
+  visibleInListings: boolean;
 }

@@ -405,6 +405,10 @@ export interface ProductImageUpdate_productImageUpdate_product {
   margin: ProductImageUpdate_productImageUpdate_product_margin | null;
   purchaseCost: ProductImageUpdate_productImageUpdate_product_purchaseCost | null;
   /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
+  /**
    * Whether the product is in stock and visible or not.
    */
   isAvailable: boolean | null;
@@ -420,6 +424,8 @@ export interface ProductImageUpdate_productImageUpdate_product {
    */
   variants: (ProductImageUpdate_productImageUpdate_product_variants | null)[] | null;
   weight: ProductImageUpdate_productImageUpdate_product_weight | null;
+  availableForPurchase: any | null;
+  visibleInListings: boolean;
 }
 
 export interface ProductImageUpdate_productImageUpdate {

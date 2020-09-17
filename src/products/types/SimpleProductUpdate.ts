@@ -405,6 +405,10 @@ export interface SimpleProductUpdate_productUpdate_product {
   margin: SimpleProductUpdate_productUpdate_product_margin | null;
   purchaseCost: SimpleProductUpdate_productUpdate_product_purchaseCost | null;
   /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
+  /**
    * Whether the product is in stock and visible or not.
    */
   isAvailable: boolean | null;
@@ -420,6 +424,8 @@ export interface SimpleProductUpdate_productUpdate_product {
    */
   variants: (SimpleProductUpdate_productUpdate_product_variants | null)[] | null;
   weight: SimpleProductUpdate_productUpdate_product_weight | null;
+  availableForPurchase: any | null;
+  visibleInListings: boolean;
 }
 
 export interface SimpleProductUpdate_productUpdate {
@@ -1662,4 +1668,5 @@ export interface SimpleProductUpdateVariables {
   deleteStocks: string[];
   updateStocks: StockInput[];
   weight?: any | null;
+  visibleInListings?: boolean | null;
 }

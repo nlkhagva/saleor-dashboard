@@ -405,6 +405,10 @@ export interface ProductCreate_productCreate_product {
   margin: ProductCreate_productCreate_product_margin | null;
   purchaseCost: ProductCreate_productCreate_product_purchaseCost | null;
   /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
+  /**
    * Whether the product is in stock and visible or not.
    */
   isAvailable: boolean | null;
@@ -420,6 +424,8 @@ export interface ProductCreate_productCreate_product {
    */
   variants: (ProductCreate_productCreate_product_variants | null)[] | null;
   weight: ProductCreate_productCreate_product_weight | null;
+  availableForPurchase: any | null;
+  visibleInListings: boolean;
 }
 
 export interface ProductCreate_productCreate {
@@ -451,4 +457,5 @@ export interface ProductCreateVariables {
   stocks: StockInput[];
   trackInventory: boolean;
   weight?: any | null;
+  visibleInListings?: boolean | null;
 }

@@ -29,6 +29,30 @@ export interface FulfillOrder_orderFulfill_errors {
   orderLine: string | null;
 }
 
+export interface FulfillOrder_orderFulfill_order_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
+export interface FulfillOrder_orderFulfill_order_privateMetadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface FulfillOrder_orderFulfill_order_billingAddress_country {
   __typename: "CountryDisplay";
   /**
@@ -149,6 +173,11 @@ export interface FulfillOrder_orderFulfill_order_fulfillments_lines_orderLine_va
 export interface FulfillOrder_orderFulfill_order_fulfillments_lines_orderLine_variant_product {
   __typename: "Product";
   /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
+  isPublished: boolean;
+  /**
    * The ID of the object.
    */
   id: string;
@@ -162,12 +191,16 @@ export interface FulfillOrder_orderFulfill_order_fulfillments_lines_orderLine_va
 
 export interface FulfillOrder_orderFulfill_order_fulfillments_lines_orderLine_variant {
   __typename: "ProductVariant";
+  product: FulfillOrder_orderFulfill_order_fulfillments_lines_orderLine_variant_product;
+  /**
+   * Quantity of a product available for sale in one checkout.
+   */
+  quantityAvailable: number;
   /**
    * The ID of the object.
    */
   id: string;
   name: string;
-  product: FulfillOrder_orderFulfill_order_fulfillments_lines_orderLine_variant_product;
 }
 
 export interface FulfillOrder_orderFulfill_order_fulfillments_lines_orderLine_unitPrice_gross {
@@ -221,14 +254,14 @@ export interface FulfillOrder_orderFulfill_order_fulfillments_lines_orderLine {
    */
   id: string;
   isShippingRequired: boolean;
-  productName: string;
-  productSku: string;
-  quantity: number;
-  quantityFulfilled: number;
   /**
    * A purchased product variant. Note: this field may be null if the variant has been removed from stock at all.
    */
   variant: FulfillOrder_orderFulfill_order_fulfillments_lines_orderLine_variant | null;
+  productName: string;
+  productSku: string;
+  quantity: number;
+  quantityFulfilled: number;
   /**
    * Price of the single item in the order line.
    */
@@ -311,6 +344,11 @@ export interface FulfillOrder_orderFulfill_order_lines_variant_product_metadata 
 export interface FulfillOrder_orderFulfill_order_lines_variant_product {
   __typename: "Product";
   /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
+  isPublished: boolean;
+  /**
    * The ID of the object.
    */
   id: string;
@@ -324,12 +362,16 @@ export interface FulfillOrder_orderFulfill_order_lines_variant_product {
 
 export interface FulfillOrder_orderFulfill_order_lines_variant {
   __typename: "ProductVariant";
+  product: FulfillOrder_orderFulfill_order_lines_variant_product;
+  /**
+   * Quantity of a product available for sale in one checkout.
+   */
+  quantityAvailable: number;
   /**
    * The ID of the object.
    */
   id: string;
   name: string;
-  product: FulfillOrder_orderFulfill_order_lines_variant_product;
 }
 
 export interface FulfillOrder_orderFulfill_order_lines_unitPrice_gross {
@@ -383,14 +425,14 @@ export interface FulfillOrder_orderFulfill_order_lines {
    */
   id: string;
   isShippingRequired: boolean;
-  productName: string;
-  productSku: string;
-  quantity: number;
-  quantityFulfilled: number;
   /**
    * A purchased product variant. Note: this field may be null if the variant has been removed from stock at all.
    */
   variant: FulfillOrder_orderFulfill_order_lines_variant | null;
+  productName: string;
+  productSku: string;
+  quantity: number;
+  quantityFulfilled: number;
   /**
    * Price of the single item in the order line.
    */
@@ -613,6 +655,14 @@ export interface FulfillOrder_orderFulfill_order {
    * The ID of the object.
    */
   id: string;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (FulfillOrder_orderFulfill_order_metadata | null)[];
+  /**
+   * List of private metadata items.Requires proper staff permissions to access.
+   */
+  privateMetadata: (FulfillOrder_orderFulfill_order_privateMetadata | null)[];
   billingAddress: FulfillOrder_orderFulfill_order_billingAddress | null;
   /**
    * Informs whether a draft order can be finalized(turned into a regular order).

@@ -40,6 +40,10 @@ import {
   ProductImageUpdate,
   ProductImageUpdateVariables
 } from "./types/ProductImageUpdate";
+import {
+  ProductSetAvailabilityForPurchase,
+  ProductSetAvailabilityForPurchaseVariables
+} from "./types/ProductSetAvailabilityForPurchase";
 import { ProductUpdate, ProductUpdateVariables } from "./types/ProductUpdate";
 import {
   ProductVariantBulkCreate,
@@ -139,8 +143,9 @@ export const productUpdateMutation = gql`
     $descriptionJson: JSONString
     $isPublished: Boolean!
     $name: String
-    $basePrice: Decimal
+    $basePrice: PositiveDecimal
     $seo: SeoInput
+    $visibleInListings: Boolean
   ) {
     productUpdate(
       id: $id
@@ -155,6 +160,7 @@ export const productUpdateMutation = gql`
         name: $name
         basePrice: $basePrice
         seo: $seo
+        visibleInListings: $visibleInListings
       }
     ) {
       errors: productErrors {
@@ -187,7 +193,7 @@ export const simpleProductUpdateMutation = gql`
     $descriptionJson: JSONString
     $isPublished: Boolean!
     $name: String
-    $basePrice: Decimal
+    $basePrice: PositiveDecimal
     $productVariantId: ID!
     $productVariantInput: ProductVariantInput!
     $seo: SeoInput
@@ -195,6 +201,7 @@ export const simpleProductUpdateMutation = gql`
     $deleteStocks: [ID!]!
     $updateStocks: [StockInput!]!
     $weight: WeightScalar
+    $visibleInListings: Boolean
   ) {
     productUpdate(
       id: $id
@@ -210,6 +217,7 @@ export const simpleProductUpdateMutation = gql`
         basePrice: $basePrice
         seo: $seo
         weight: $weight
+        visibleInListings: $visibleInListings
       }
     ) {
       errors: productErrors {
@@ -279,13 +287,14 @@ export const productCreateMutation = gql`
     $descriptionJson: JSONString
     $isPublished: Boolean!
     $name: String!
-    $basePrice: Decimal
+    $basePrice: PositiveDecimal
     $productType: ID!
     $sku: String
     $seo: SeoInput
     $stocks: [StockInput!]!
     $trackInventory: Boolean!
     $weight: WeightScalar
+    $visibleInListings: Boolean
   ) {
     productCreate(
       input: {
@@ -304,6 +313,7 @@ export const productCreateMutation = gql`
         stocks: $stocks
         trackInventory: $trackInventory
         weight: $weight
+        visibleInListings: $visibleInListings
       }
     ) {
       errors: productErrors {
@@ -347,8 +357,8 @@ export const variantUpdateMutation = gql`
     $removeStocks: [ID!]!
     $id: ID!
     $attributes: [AttributeValueInput]
-    $costPrice: Decimal
-    $price: Decimal
+    $costPrice: PositiveDecimal
+    $price: PositiveDecimal
     $sku: String
     $trackInventory: Boolean!
     $stocks: [StockInput!]!
@@ -588,3 +598,28 @@ export const useProductExport = makeMutation<
   ProductExport,
   ProductExportVariables
 >(productExportMutation);
+
+const productSetAvailabilityForPurchase = gql`
+  ${productErrorFragment}
+  mutation ProductSetAvailabilityForPurchase(
+    $isAvailable: Boolean!
+    $productId: ID!
+    $startDate: Date
+  ) {
+    productSetAvailabilityForPurchase(
+      isAvailable: $isAvailable
+      productId: $productId
+      startDate: $startDate
+    ) {
+      errors: productErrors {
+        ...ProductErrorFragment
+        message
+      }
+    }
+  }
+`;
+
+export const useProductSetAvailabilityForPurchase = makeMutation<
+  ProductSetAvailabilityForPurchase,
+  ProductSetAvailabilityForPurchaseVariables
+>(productSetAvailabilityForPurchase);
