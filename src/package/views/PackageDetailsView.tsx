@@ -75,9 +75,12 @@ export const PackageDetailsView: React.FC<PackageCreateProps> = ({
         disabled={loading || updatePackageOpts.loading}
         errors={updatePackageOpts.data?.packageUpdate.errors || []}
         saveButtonBarState={updatePackageTransitionState}
+        lines={[]}
+        setLines={() => void 0}
         object={data?.package || null}
         onBack={() => navigate(packageListUrl())}
         onDelete={() => openModal("delete")}
+        ordernumber=""
         onSubmit={data =>
           updatePackage({
             variables: {

@@ -455,9 +455,31 @@ export enum FileTypesEnum {
 /**
  * An enumeration.
  */
+export enum FulfillmentLineUshopStatus {
+  ATMGL = "ATMGL",
+  ATUK = "ATUK",
+  NEW = "NEW",
+  RECEIVED = "RECEIVED",
+  SHIPPING = "SHIPPING",
+}
+
+/**
+ * An enumeration.
+ */
 export enum FulfillmentStatus {
   CANCELED = "CANCELED",
   FULFILLED = "FULFILLED",
+}
+
+/**
+ * An enumeration.
+ */
+export enum FulfillmentUshopStatus {
+  ATMGL = "ATMGL",
+  ATUK = "ATUK",
+  NEW = "NEW",
+  RECEIVED = "RECEIVED",
+  SHIPPING = "SHIPPING",
 }
 
 export enum GaduurSortField {
@@ -1428,7 +1450,7 @@ export interface PackageLineInput {
   name?: string | null;
   quantity: number;
   unitPriceAmount: any;
-  orderlineId?: string | null;
+  fulfillmentlineId?: string | null;
 }
 
 export interface PackageSortingInput {

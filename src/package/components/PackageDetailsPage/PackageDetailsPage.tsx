@@ -25,6 +25,9 @@ import { getFormErrors } from "@saleor/utils/errors";
 import React from "react";
 import { useIntl } from "react-intl";
 
+import Ordernumber from "../Ordernumber";
+import PackageLines from "./PackageLines";
+
 export interface PackageFormData {
   name: string;
   width: number;
@@ -35,26 +38,32 @@ export interface PackageFormData {
   totalGrossAmount: number;
 }
 
-import { PackageUpdate_packageUpdate_package } from "../../types/PackageUpdate";
+import { PackageDetails_package } from "@saleor/package/types/PackageDetails";
 
 export interface DetailsPageProps {
   disabled: boolean;
   errors: any;
-  object: PackageUpdate_packageUpdate_package | null;
+  object: PackageDetails_package | null;
+  lines: any;
+  setLines: any;
   saveButtonBarState: ConfirmButtonTransitionState;
   onBack: () => void;
   onSubmit: (data: PackageFormData) => void;
   onDelete: () => void | null;
+  ordernumber: string;
 }
 
 const PackageDetailsPage: React.FC<DetailsPageProps> = ({
   disabled,
   errors,
+  lines,
+  object,
   onBack,
   onDelete,
   onSubmit,
-  object,
-  saveButtonBarState
+  ordernumber,
+  saveButtonBarState,
+  setLines
 }) => {
   const intl = useIntl();
   // const localizeDate = useDateLocalize();
@@ -92,10 +101,14 @@ const PackageDetailsPage: React.FC<DetailsPageProps> = ({
           <PageHeader title={object ? "#" + object.name : "Илгээмж"} />
           <Grid>
             <div>
-              <Card data-test="generalInfoSection">
-                <CardTitle title="Бараанууд" />
-                <CardContent></CardContent>
-              </Card>
+              {!disabled && !object && (
+                <Ordernumber
+                  lines={lines}
+                  setLines={setLines}
+                  ordernumber={ordernumber}
+                />
+              )}
+              {!disabled && object && <PackageLines lines={object.lines} />}
             </div>
             <div>
               <Card data-test="packageInfoSection">

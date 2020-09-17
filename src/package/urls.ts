@@ -11,6 +11,10 @@ import {
   TabActionDialog
 } from "../types";
 
+export type ordernumber = Partial<{
+  ordernumber: string;
+}>;
+
 export const packageSection = "/package/";
 
 export const packageListPath = packageSection;
@@ -34,7 +38,9 @@ export const packageListUrl = (params?: PackageListUrlQueryParams) =>
 
 export const packagePath = (id: string) => urlJoin(packageSection, id);
 export type PackageUrlDialog = "delete";
-export type PackageUrlQueryParams = Dialog<PackageUrlDialog> & SingleAction;
+export type PackageUrlQueryParams = Dialog<PackageUrlDialog> &
+  SingleAction &
+  ordernumber;
 export const packageUrl = (id: string, params?: PackageUrlQueryParams) =>
   packagePath(encodeURIComponent(id)) + "?" + stringifyQs(params);
 

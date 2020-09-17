@@ -44,13 +44,13 @@ const PackageDetails: React.FC<RouteComponentProps<{ id: string }>> = ({
 
 const PackageCreatePage: React.FC<RouteComponentProps<{
   ordernumber: string;
-}>> = ({ location, match }) => {
+}>> = ({ location }) => {
   const qs = parseQs(location.search.substr(1));
   const params: PackageUrlQueryParams = qs;
   return (
     <PackageCreate
       // ordernumber={decodeURIComponent(match.params.ordernumber)}
-      params={params}
+      ordernumber={params?.ordernumber || ""}
     />
   );
 };
