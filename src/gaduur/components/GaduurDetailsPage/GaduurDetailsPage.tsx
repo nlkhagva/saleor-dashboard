@@ -101,25 +101,26 @@ const GaduurDetailsPage: React.FC<DetailsPageProps> = ({
                 data={data}
                 errors={errors}
                 disabled={disabled}
-                hiddenMessage={intl.formatMessage(
-                  {
-                    defaultMessage: "will be visible from {date}",
-                    description: "page"
-                  },
-                  {
-                    date: localizeDate(data.publicationDate)
-                  }
-                )}
+                messages={{
+                  hiddenLabel: intl.formatMessage({
+                    defaultMessage: "Hidden",
+                    description: "gaduur label"
+                  }),
+                  hiddenSecondLabel: intl.formatMessage(
+                    {
+                      defaultMessage: "will be visible from {date}",
+                      description: "gaduur"
+                    },
+                    {
+                      date: localizeDate(data.publicationDate, "L")
+                    }
+                  ),
+                  visibleLabel: intl.formatMessage({
+                    defaultMessage: "Visible",
+                    description: "gaduur label"
+                  })
+                }}
                 onChange={change}
-                visibleMessage={intl.formatMessage(
-                  {
-                    defaultMessage: "since {date}",
-                    description: "page"
-                  },
-                  {
-                    date: localizeDate(data.publicationDate)
-                  }
-                )}
               />
             </div>
           </Grid>

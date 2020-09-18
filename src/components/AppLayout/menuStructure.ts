@@ -1,11 +1,13 @@
 import appsIcon from "@assets/images/menu-apps-icon.svg";
 import catalogIcon from "@assets/images/menu-catalog-icon.svg";
 import customerIcon from "@assets/images/menu-customers-icon.svg";
-import discountsIcon from "@assets/images/menu-discounts-icon.svg";
+// import discountsIcon from "@assets/images/menu-discounts-icon.svg";
 import homeIcon from "@assets/images/menu-home-icon.svg";
 import ordersIcon from "@assets/images/menu-orders-icon.svg";
 import translationIcon from "@assets/images/menu-translation-icon.svg";
+import { gaduurListUrl } from "@saleor/gaduur/urls";
 import { commonMessages, sectionNames } from "@saleor/intl";
+import { packageListUrl } from "@saleor/package/urls";
 import { IntlShape } from "react-intl";
 
 import { appsListPath } from "../../apps/urls";
@@ -97,26 +99,47 @@ function createMenuStructure(intl: IntlShape): IMenuItem[] {
     },
 
     {
-      ariaLabel: "discounts",
+      ariaLabel: "package",
       children: [
         {
-          ariaLabel: "sales",
-          label: intl.formatMessage(sectionNames.sales),
+          ariaLabel: "gaduur",
+          label: intl.formatMessage(sectionNames.gaduur),
           testingContextId: "sales",
-          url: saleListUrl()
+          url: gaduurListUrl()
         },
         {
-          ariaLabel: "vouchers",
-          label: intl.formatMessage(sectionNames.vouchers),
+          ariaLabel: "package",
+          label: intl.formatMessage(sectionNames.package),
           testingContextId: "vouchers",
-          url: voucherListUrl()
+          url: packageListUrl()
         }
       ],
-      icon: discountsIcon,
+      icon: catalogIcon,
       label: intl.formatMessage(commonMessages.discounts),
       permission: PermissionEnum.MANAGE_DISCOUNTS,
       testingContextId: "discounts"
     },
+    // {
+    //   ariaLabel: "discounts",
+    //   children: [
+    //     {
+    //       ariaLabel: "sales",
+    //       label: intl.formatMessage(sectionNames.sales),
+    //       testingContextId: "sales",
+    //       url: saleListUrl()
+    //     },
+    //     {
+    //       ariaLabel: "vouchers",
+    //       label: intl.formatMessage(sectionNames.vouchers),
+    //       testingContextId: "vouchers",
+    //       url: voucherListUrl()
+    //     }
+    //   ],
+    //   icon: discountsIcon,
+    //   label: intl.formatMessage(commonMessages.discounts),
+    //   permission: PermissionEnum.MANAGE_DISCOUNTS,
+    //   testingContextId: "discounts"
+    // },
     {
       ariaLabel: "apps",
       icon: appsIcon,

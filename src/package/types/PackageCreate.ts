@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { PackageInput } from "./../../types/globalTypes";
+import { PackageInput, PackageNetOrGross } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: PackageCreate
@@ -122,7 +122,8 @@ export interface PackageCreate_packageCreate_package {
   netWeight: number | null;
   grossWeight: number | null;
   upostPK: string | null;
-  totalGrossAmount: number;
+  netOrGross: PackageNetOrGross;
+  perkgAmount: number;
   gaduur: PackageCreate_packageCreate_package_gaduur | null;
   shippingAddress: PackageCreate_packageCreate_package_shippingAddress | null;
   senderAddress: PackageCreate_packageCreate_package_senderAddress | null;

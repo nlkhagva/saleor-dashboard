@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { PackageFilterInput, PackageSortingInput } from "./../../types/globalTypes";
+import { PackageFilterInput, PackageSortingInput, PackageNetOrGross } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: PackageList
@@ -110,7 +110,8 @@ export interface PackageList_packages_edges_node {
   netWeight: number | null;
   grossWeight: number | null;
   upostPK: string | null;
-  totalGrossAmount: number;
+  netOrGross: PackageNetOrGross;
+  perkgAmount: number;
   gaduur: PackageList_packages_edges_node_gaduur | null;
   shippingAddress: PackageList_packages_edges_node_shippingAddress | null;
   senderAddress: PackageList_packages_edges_node_senderAddress | null;

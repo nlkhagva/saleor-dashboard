@@ -26,7 +26,8 @@ export const packageDetailsFragment = gql`
     upostPK
     netWeight
     grossWeight
-    totalGrossAmount
+    netOrGross
+    perkgAmount
     gaduur {
       ...GaduurFragment
     }

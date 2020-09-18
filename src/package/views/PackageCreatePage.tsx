@@ -63,8 +63,9 @@ export const PackageCreate: React.FC<PackageCreateProps> = ({
                   unitPriceAmount: l.orderLine.unitPrice.gross.amount
                 })),
                 name: data.name,
+                netOrGross: data.netOrGross,
                 netWeight: data.netWeight,
-                totalGrossAmount: data.totalGrossAmount,
+                perkgAmount: data.perkgAmount,
                 width: data.width
               }
             }

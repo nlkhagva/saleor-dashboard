@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { FulfillmentLineUshopStatus } from "./../../types/globalTypes";
+import { PackageNetOrGross, FulfillmentLineUshopStatus } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: PackageDetails
@@ -247,7 +247,8 @@ export interface PackageDetails_package {
   netWeight: number | null;
   grossWeight: number | null;
   upostPK: string | null;
-  totalGrossAmount: number;
+  netOrGross: PackageNetOrGross;
+  perkgAmount: number;
   gaduur: PackageDetails_package_gaduur | null;
   shippingAddress: PackageDetails_package_shippingAddress | null;
   senderAddress: PackageDetails_package_senderAddress | null;

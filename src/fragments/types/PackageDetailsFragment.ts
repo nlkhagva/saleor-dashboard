@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { PackageNetOrGross } from "./../../types/globalTypes";
+
 // ====================================================
 // GraphQL fragment: PackageDetailsFragment
 // ====================================================
@@ -108,7 +110,8 @@ export interface PackageDetailsFragment {
   netWeight: number | null;
   grossWeight: number | null;
   upostPK: string | null;
-  totalGrossAmount: number;
+  netOrGross: PackageNetOrGross;
+  perkgAmount: number;
   gaduur: PackageDetailsFragment_gaduur | null;
   shippingAddress: PackageDetailsFragment_shippingAddress | null;
   senderAddress: PackageDetailsFragment_senderAddress | null;

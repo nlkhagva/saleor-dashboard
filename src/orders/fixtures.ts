@@ -946,15 +946,7 @@ export const order = (): OrderDetails_order => ({
                 currency: "USD"
               }
             },
-            variant: {
-              __typename: "ProductVariant",
-              product: {
-                __typename: "Product",
-                isAvailableForPurchase: true,
-                isPublished: true
-              },
-              quantityAvailable: 10
-            }
+            variant: null
           },
           quantity: 1
         }
@@ -997,15 +989,7 @@ export const order = (): OrderDetails_order => ({
                 currency: "USD"
               }
             },
-            variant: {
-              __typename: "ProductVariant",
-              product: {
-                __typename: "Product",
-                isAvailableForPurchase: true,
-                isPublished: true
-              },
-              quantityAvailable: 10
-            }
+            variant: null
           },
           quantity: 1
         }
@@ -1053,15 +1037,7 @@ export const order = (): OrderDetails_order => ({
           currency: "USD"
         }
       },
-      variant: {
-        __typename: "ProductVariant",
-        product: {
-          __typename: "Product",
-          isAvailableForPurchase: true,
-          isPublished: true
-        },
-        quantityAvailable: 10
-      }
+      variant: null
     },
     {
       __typename: "OrderLine",
@@ -1088,15 +1064,7 @@ export const order = (): OrderDetails_order => ({
           currency: "USD"
         }
       },
-      variant: {
-        __typename: "ProductVariant",
-        product: {
-          __typename: "Product",
-          isAvailableForPurchase: true,
-          isPublished: true
-        },
-        quantityAvailable: 10
-      }
+      variant: null
     }
   ],
   metadata: [
@@ -1221,15 +1189,7 @@ export const draftOrder = (): OrderDetails_order => ({
           currency: "USD"
         }
       },
-      variant: {
-        __typename: "ProductVariant",
-        product: {
-          __typename: "Product",
-          isAvailableForPurchase: true,
-          isPublished: true
-        },
-        quantityAvailable: 10
-      }
+      variant: null
     },
     {
       __typename: "OrderLine" as "OrderLine",
@@ -1256,15 +1216,7 @@ export const draftOrder = (): OrderDetails_order => ({
           currency: "USD"
         }
       },
-      variant: {
-        __typename: "ProductVariant",
-        product: {
-          __typename: "Product",
-          isAvailableForPurchase: true,
-          isPublished: true
-        },
-        quantityAvailable: 10
-      }
+      variant: null
     }
   ],
   metadata: [],
