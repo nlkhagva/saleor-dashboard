@@ -53,7 +53,7 @@ const useStyles = makeStyles(
       width: 120
     },
     hasShipping: {
-      background: "rgba(24, 119, 242, 0.25)",
+      background: "#eee",
       opacity: 0.4
     },
     infoColumn: {
@@ -165,7 +165,7 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
               >
                 <TableCell style={{ paddingTop: 15, width: 60 }}>
                   {isItemSelected ? (
-                    <CheckBoxIcon color="action" />
+                    <CheckBoxIcon color="primary" />
                   ) : (
                     <CheckBoxOutlineBlankIcon color="action" />
                   )}
