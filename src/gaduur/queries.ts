@@ -5,6 +5,7 @@ import gql from "graphql-tag";
 
 import { GaduurDetails, GaduurDetailsVariables } from "./types/GaduurDetails";
 import { GaduurList, GaduurListVariables } from "./types/GaduurList";
+import { NewGaduurs } from "./types/NewGaduurs";
 
 const gaduurList = gql`
   ${gaduurDetailsFragment}
@@ -52,3 +53,13 @@ export const useGaduurDetails = makeQuery<
   GaduurDetails,
   GaduurDetailsVariables
 >(gaduurDetails);
+
+const newGaduurs = gql`
+  query NewGaduurs {
+    newGaduurs {
+      id
+      name
+    }
+  }
+`;
+export const useNewGaduurList = makeQuery<NewGaduurs, {}>(newGaduurs);

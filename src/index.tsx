@@ -58,6 +58,8 @@ import StaffSection from "./staff";
 import TaxesSection from "./taxes";
 import TranslationsSection from "./translations";
 import { PermissionEnum } from "./types/globalTypes";
+import UshopSection from "./ushop";
+import { ushopSection } from "./ushop/urls";
 import WarehouseSection from "./warehouses";
 import { warehouseSection } from "./warehouses/urls";
 
@@ -260,6 +262,11 @@ const Routes: React.FC = () => {
                 permissions={[PermissionEnum.MANAGE_PRODUCTS]}
                 path={packageSection}
                 component={PackageSection}
+              />
+              <SectionRoute
+                permissions={[PermissionEnum.MANAGE_PRODUCTS]}
+                path={ushopSection}
+                component={UshopSection}
               />
 
               {createConfigurationMenu(intl).filter(menu =>

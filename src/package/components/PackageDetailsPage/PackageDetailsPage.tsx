@@ -9,8 +9,7 @@ import {
   OutlinedInput,
   Radio,
   RadioGroup,
-  TextField,
-  Typography
+  TextField
 } from "@material-ui/core";
 import AppHeader from "@saleor/components/AppHeader";
 import CardSpacer from "@saleor/components/CardSpacer";
@@ -21,6 +20,7 @@ import Form from "@saleor/components/Form";
 import Grid from "@saleor/components/Grid";
 import PageHeader from "@saleor/components/PageHeader";
 import SaveButtonBar from "@saleor/components/SaveButtonBar";
+import SingleSelectField from "@saleor/components/SingleSelectField";
 // import SingleSelectField from "@saleor/components/SingleSelectField";
 // import useDateLocalize from "@saleor/hooks/useDateLocalize";
 import { sectionNames } from "@saleor/intl";
@@ -35,6 +35,7 @@ import Ordernumber from "../Ordernumber";
 import PackageLines from "./PackageLines";
 
 export interface PackageFormData {
+  gaduur: string;
   name: string;
   width: number;
   height: number;
@@ -56,6 +57,7 @@ export interface DetailsPageProps {
   onSubmit: (data: PackageFormData) => void;
   onDelete: () => void | null;
   ordernumber: string;
+  gaduurChoices: Array<{ label: string; value: string }>;
 }
 
 export interface ChangeEvent<TData = any> {
@@ -68,6 +70,7 @@ export interface ChangeEvent<TData = any> {
 const PackageDetailsPage: React.FC<DetailsPageProps> = ({
   disabled,
   errors,
+  gaduurChoices,
   lines,
   object,
   onBack,
@@ -81,13 +84,14 @@ const PackageDetailsPage: React.FC<DetailsPageProps> = ({
   // const localizeDate = useDateLocalize();
 
   const initialForm: PackageFormData = {
+    gaduur: maybe(() => object?.gaduur.id, ""),
     grossWeight: maybe(() => object?.grossWeight, 0),
     height: maybe(() => object?.height, 0),
     length: maybe(() => object?.length, 0),
     name: maybe(() => object?.name, ""),
+    netOrGross: maybe(() => object?.netOrGross, PackageNetOrGross.NET),
     netWeight: maybe(() => object?.netWeight, 0),
     perkgAmount: maybe(() => object?.perkgAmount, 8),
-    netOrGross: maybe(() => object?.netOrGross, PackageNetOrGross.NET),
     width: maybe(() => object?.width, 0)
   };
 
@@ -101,7 +105,6 @@ const PackageDetailsPage: React.FC<DetailsPageProps> = ({
         ? e.target.value * data.length * data.width
         : e.target.value * data.length * data.height;
 
-    console.log(multiple);
     const value = (multiple / 6000).toFixed(2);
     return change({ target: { name, value } });
   };
@@ -113,6 +116,7 @@ const PackageDetailsPage: React.FC<DetailsPageProps> = ({
       "height",
       "length",
       "netWeight",
+      "gaduur",
       "grossWeight",
       "perkgAmount",
       "netOrGross"
@@ -143,6 +147,21 @@ const PackageDetailsPage: React.FC<DetailsPageProps> = ({
               <Card data-test="packageInfoSection">
                 <CardTitle title="Илгээмжийн мэдээлэл" />
                 <CardContent>
+                  <SingleSelectField
+                    choices={gaduurChoices}
+                    disabled={disabled}
+                    error={!!formErrors.gaduur}
+                    // hint={getProductErrorMessage(formErrors.inputType, intl)}
+                    label={intl.formatMessage({
+                      defaultMessage: "Гадуур дагавар",
+                      description: "attribute's editor component"
+                    })}
+                    name={"gaduur" as keyof typeof data}
+                    onChange={change}
+                    value={data.gaduur}
+                  />
+                  <CardSpacer />
+
                   <TextField
                     disabled={disabled}
                     error={!!formErrors.name}
@@ -331,7 +350,7 @@ const PackageDetailsPage: React.FC<DetailsPageProps> = ({
                       disabled={disabled}
                       type="number"
                       value={
-                        data.netOrGross == "NET"
+                        data.netOrGross === "NET"
                           ? data.netWeight * data.perkgAmount
                           : data.grossWeight * data.perkgAmount
                       }

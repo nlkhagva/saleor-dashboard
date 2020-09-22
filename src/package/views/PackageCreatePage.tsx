@@ -1,4 +1,5 @@
 import { WindowTitle } from "@saleor/components/WindowTitle";
+import { useNewGaduurList } from "@saleor/gaduur/queries";
 import useNavigator from "@saleor/hooks/useNavigator";
 import useNotifier from "@saleor/hooks/useNotifier";
 import { getMutationStatus } from "@saleor/misc";
@@ -34,6 +35,13 @@ export const PackageCreate: React.FC<PackageCreateProps> = ({
     }
   });
 
+  const { data: newGaduursData, loading } = useNewGaduurList({
+    displayLoader: true
+  });
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
   const createPackageTransitionState = getMutationStatus(createPackageOpts);
 
   return (
@@ -49,10 +57,17 @@ export const PackageCreate: React.FC<PackageCreateProps> = ({
         setLines={setLines}
         object={null}
         onDelete={null}
+        gaduurChoices={
+          newGaduursData.newGaduurs.map(g => ({
+            label: g.name,
+            value: g.id
+          })) || []
+        }
         onSubmit={data =>
           createPackage({
             variables: {
               input: {
+                gaduur: data.gaduur,
                 grossWeight: data.grossWeight,
                 height: data.height,
                 length: data.length,
@@ -63,7 +78,7 @@ export const PackageCreate: React.FC<PackageCreateProps> = ({
                   unitPriceAmount: l.orderLine.unitPrice.gross.amount
                 })),
                 name: data.name,
-                netOrGross: data.netOrGross,
+                netOrGross: data.netOrGross.toLowerCase(),
                 netWeight: data.netWeight,
                 perkgAmount: data.perkgAmount,
                 width: data.width

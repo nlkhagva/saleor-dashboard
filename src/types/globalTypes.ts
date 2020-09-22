@@ -40,7 +40,7 @@ export enum AccountErrorCode {
   PASSWORD_TOO_SHORT = "PASSWORD_TOO_SHORT",
   PASSWORD_TOO_SIMILAR = "PASSWORD_TOO_SIMILAR",
   REQUIRED = "REQUIRED",
-  UNIQUE = "UNIQUE"
+  UNIQUE = "UNIQUE",
 }
 
 /**
@@ -48,7 +48,7 @@ export enum AccountErrorCode {
  */
 export enum AddressTypeEnum {
   BILLING = "BILLING",
-  SHIPPING = "SHIPPING"
+  SHIPPING = "SHIPPING",
 }
 
 /**
@@ -67,12 +67,12 @@ export enum AppErrorCode {
   OUT_OF_SCOPE_APP = "OUT_OF_SCOPE_APP",
   OUT_OF_SCOPE_PERMISSION = "OUT_OF_SCOPE_PERMISSION",
   REQUIRED = "REQUIRED",
-  UNIQUE = "UNIQUE"
+  UNIQUE = "UNIQUE",
 }
 
 export enum AppSortField {
   CREATION_DATE = "CREATION_DATE",
-  NAME = "NAME"
+  NAME = "NAME",
 }
 
 /**
@@ -80,7 +80,7 @@ export enum AppSortField {
  */
 export enum AppTypeEnum {
   LOCAL = "LOCAL",
-  THIRDPARTY = "THIRDPARTY"
+  THIRDPARTY = "THIRDPARTY",
 }
 
 /**
@@ -88,7 +88,7 @@ export enum AppTypeEnum {
  */
 export enum AttributeInputTypeEnum {
   DROPDOWN = "DROPDOWN",
-  MULTISELECT = "MULTISELECT"
+  MULTISELECT = "MULTISELECT",
 }
 
 export enum AttributeSortField {
@@ -100,19 +100,19 @@ export enum AttributeSortField {
   SLUG = "SLUG",
   STOREFRONT_SEARCH_POSITION = "STOREFRONT_SEARCH_POSITION",
   VALUE_REQUIRED = "VALUE_REQUIRED",
-  VISIBLE_IN_STOREFRONT = "VISIBLE_IN_STOREFRONT"
+  VISIBLE_IN_STOREFRONT = "VISIBLE_IN_STOREFRONT",
 }
 
 export enum AttributeTypeEnum {
   PRODUCT = "PRODUCT",
-  VARIANT = "VARIANT"
+  VARIANT = "VARIANT",
 }
 
 export enum AttributeValueType {
   COLOR = "COLOR",
   GRADIENT = "GRADIENT",
   STRING = "STRING",
-  URL = "URL"
+  URL = "URL",
 }
 
 /**
@@ -120,24 +120,24 @@ export enum AttributeValueType {
  */
 export enum AuthorizationKeyType {
   FACEBOOK = "FACEBOOK",
-  GOOGLE_OAUTH2 = "GOOGLE_OAUTH2"
+  GOOGLE_OAUTH2 = "GOOGLE_OAUTH2",
 }
 
 export enum CategorySortField {
   NAME = "NAME",
   PRODUCT_COUNT = "PRODUCT_COUNT",
-  SUBCATEGORY_COUNT = "SUBCATEGORY_COUNT"
+  SUBCATEGORY_COUNT = "SUBCATEGORY_COUNT",
 }
 
 export enum CollectionPublished {
   HIDDEN = "HIDDEN",
-  PUBLISHED = "PUBLISHED"
+  PUBLISHED = "PUBLISHED",
 }
 
 export enum CollectionSortField {
   AVAILABILITY = "AVAILABILITY",
   NAME = "NAME",
-  PRODUCT_COUNT = "PRODUCT_COUNT"
+  PRODUCT_COUNT = "PRODUCT_COUNT",
 }
 
 /**
@@ -147,7 +147,7 @@ export enum ConfigurationTypeFieldEnum {
   BOOLEAN = "BOOLEAN",
   PASSWORD = "PASSWORD",
   SECRET = "SECRET",
-  STRING = "STRING"
+  STRING = "STRING",
 }
 
 /**
@@ -403,7 +403,7 @@ export enum CountryCode {
   YT = "YT",
   ZA = "ZA",
   ZM = "ZM",
-  ZW = "ZW"
+  ZW = "ZW",
 }
 
 /**
@@ -415,18 +415,18 @@ export enum DiscountErrorCode {
   INVALID = "INVALID",
   NOT_FOUND = "NOT_FOUND",
   REQUIRED = "REQUIRED",
-  UNIQUE = "UNIQUE"
+  UNIQUE = "UNIQUE",
 }
 
 export enum DiscountStatusEnum {
   ACTIVE = "ACTIVE",
   EXPIRED = "EXPIRED",
-  SCHEDULED = "SCHEDULED"
+  SCHEDULED = "SCHEDULED",
 }
 
 export enum DiscountValueTypeEnum {
   FIXED = "FIXED",
-  PERCENTAGE = "PERCENTAGE"
+  PERCENTAGE = "PERCENTAGE",
 }
 
 /**
@@ -435,13 +435,13 @@ export enum DiscountValueTypeEnum {
 export enum ExportErrorCode {
   INVALID = "INVALID",
   NOT_FOUND = "NOT_FOUND",
-  REQUIRED = "REQUIRED"
+  REQUIRED = "REQUIRED",
 }
 
 export enum ExportScope {
   ALL = "ALL",
   FILTER = "FILTER",
-  IDS = "IDS"
+  IDS = "IDS",
 }
 
 /**
@@ -449,7 +449,7 @@ export enum ExportScope {
  */
 export enum FileTypesEnum {
   CSV = "CSV",
-  XLSX = "XLSX"
+  XLSX = "XLSX",
 }
 
 /**
@@ -460,7 +460,7 @@ export enum FulfillmentLineUshopStatus {
   ATUK = "ATUK",
   NEW = "NEW",
   RECEIVED = "RECEIVED",
-  SHIPPING = "SHIPPING"
+  SHIPPING = "SHIPPING",
 }
 
 /**
@@ -468,7 +468,7 @@ export enum FulfillmentLineUshopStatus {
  */
 export enum FulfillmentStatus {
   CANCELED = "CANCELED",
-  FULFILLED = "FULFILLED"
+  FULFILLED = "FULFILLED",
 }
 
 /**
@@ -479,14 +479,14 @@ export enum FulfillmentUshopStatus {
   ATUK = "ATUK",
   NEW = "NEW",
   RECEIVED = "RECEIVED",
-  SHIPPING = "SHIPPING"
+  SHIPPING = "SHIPPING",
 }
 
 export enum GaduurSortField {
   NAME = "NAME",
   PUBLICATION_DATE = "PUBLICATION_DATE",
   SHIPPING_TYPE = "SHIPPING_TYPE",
-  VISIBILITY = "VISIBILITY"
+  VISIBILITY = "VISIBILITY",
 }
 
 /**
@@ -499,7 +499,7 @@ export enum InvoiceErrorCode {
   NOT_READY = "NOT_READY",
   NUMBER_NOT_SET = "NUMBER_NOT_SET",
   REQUIRED = "REQUIRED",
-  URL_NOT_SET = "URL_NOT_SET"
+  URL_NOT_SET = "URL_NOT_SET",
 }
 
 /**
@@ -509,7 +509,7 @@ export enum JobStatusEnum {
   DELETED = "DELETED",
   FAILED = "FAILED",
   PENDING = "PENDING",
-  SUCCESS = "SUCCESS"
+  SUCCESS = "SUCCESS",
 }
 
 /**
@@ -563,7 +563,7 @@ export enum LanguageCodeEnum {
   UK = "UK",
   VI = "VI",
   ZH_HANS = "ZH_HANS",
-  ZH_HANT = "ZH_HANT"
+  ZH_HANT = "ZH_HANT",
 }
 
 /**
@@ -578,12 +578,12 @@ export enum MenuErrorCode {
   NO_MENU_ITEM_PROVIDED = "NO_MENU_ITEM_PROVIDED",
   REQUIRED = "REQUIRED",
   TOO_MANY_MENU_ITEMS = "TOO_MANY_MENU_ITEMS",
-  UNIQUE = "UNIQUE"
+  UNIQUE = "UNIQUE",
 }
 
 export enum MenuSortField {
   ITEMS_COUNT = "ITEMS_COUNT",
-  NAME = "NAME"
+  NAME = "NAME",
 }
 
 /**
@@ -592,19 +592,19 @@ export enum MenuSortField {
 export enum MetadataErrorCode {
   GRAPHQL_ERROR = "GRAPHQL_ERROR",
   INVALID = "INVALID",
-  NOT_FOUND = "NOT_FOUND"
+  NOT_FOUND = "NOT_FOUND",
 }
 
 export enum OrderAction {
   CAPTURE = "CAPTURE",
   MARK_AS_PAID = "MARK_AS_PAID",
   REFUND = "REFUND",
-  VOID = "VOID"
+  VOID = "VOID",
 }
 
 export enum OrderDirection {
   ASC = "ASC",
-  DESC = "DESC"
+  DESC = "DESC",
 }
 
 /**
@@ -635,7 +635,7 @@ export enum OrderErrorCode {
   TAX_ERROR = "TAX_ERROR",
   UNIQUE = "UNIQUE",
   VOID_INACTIVE_PAYMENT = "VOID_INACTIVE_PAYMENT",
-  ZERO_QUANTITY = "ZERO_QUANTITY"
+  ZERO_QUANTITY = "ZERO_QUANTITY",
 }
 
 /**
@@ -649,7 +649,7 @@ export enum OrderEventsEmailsEnum {
   ORDER_REFUND = "ORDER_REFUND",
   PAYMENT_CONFIRMATION = "PAYMENT_CONFIRMATION",
   SHIPPING_CONFIRMATION = "SHIPPING_CONFIRMATION",
-  TRACKING_UPDATED = "TRACKING_UPDATED"
+  TRACKING_UPDATED = "TRACKING_UPDATED",
 }
 
 /**
@@ -682,7 +682,7 @@ export enum OrderEventsEnum {
   PLACED = "PLACED",
   PLACED_FROM_DRAFT = "PLACED_FROM_DRAFT",
   TRACKING_UPDATED = "TRACKING_UPDATED",
-  UPDATED_ADDRESS = "UPDATED_ADDRESS"
+  UPDATED_ADDRESS = "UPDATED_ADDRESS",
 }
 
 export enum OrderSortField {
@@ -691,7 +691,7 @@ export enum OrderSortField {
   FULFILLMENT_STATUS = "FULFILLMENT_STATUS",
   NUMBER = "NUMBER",
   PAYMENT = "PAYMENT",
-  TOTAL = "TOTAL"
+  TOTAL = "TOTAL",
 }
 
 /**
@@ -702,7 +702,7 @@ export enum OrderStatus {
   DRAFT = "DRAFT",
   FULFILLED = "FULFILLED",
   PARTIALLY_FULFILLED = "PARTIALLY_FULFILLED",
-  UNFULFILLED = "UNFULFILLED"
+  UNFULFILLED = "UNFULFILLED",
 }
 
 export enum OrderStatusFilter {
@@ -711,7 +711,7 @@ export enum OrderStatusFilter {
   PARTIALLY_FULFILLED = "PARTIALLY_FULFILLED",
   READY_TO_CAPTURE = "READY_TO_CAPTURE",
   READY_TO_FULFILL = "READY_TO_FULFILL",
-  UNFULFILLED = "UNFULFILLED"
+  UNFULFILLED = "UNFULFILLED",
 }
 
 /**
@@ -719,11 +719,11 @@ export enum OrderStatusFilter {
  */
 export enum PackageNetOrGross {
   GROSS = "GROSS",
-  NET = "NET"
+  NET = "NET",
 }
 
 export enum PackageSortField {
-  NAME = "NAME"
+  NAME = "NAME",
 }
 
 /**
@@ -734,7 +734,7 @@ export enum PageErrorCode {
   INVALID = "INVALID",
   NOT_FOUND = "NOT_FOUND",
   REQUIRED = "REQUIRED",
-  UNIQUE = "UNIQUE"
+  UNIQUE = "UNIQUE",
 }
 
 export enum PageSortField {
@@ -742,7 +742,7 @@ export enum PageSortField {
   PUBLICATION_DATE = "PUBLICATION_DATE",
   SLUG = "SLUG",
   TITLE = "TITLE",
-  VISIBILITY = "VISIBILITY"
+  VISIBILITY = "VISIBILITY",
 }
 
 /**
@@ -756,7 +756,7 @@ export enum PaymentChargeStatusEnum {
   PARTIALLY_CHARGED = "PARTIALLY_CHARGED",
   PARTIALLY_REFUNDED = "PARTIALLY_REFUNDED",
   PENDING = "PENDING",
-  REFUSED = "REFUSED"
+  REFUSED = "REFUSED",
 }
 
 /**
@@ -777,7 +777,7 @@ export enum PermissionEnum {
   MANAGE_SHIPPING = "MANAGE_SHIPPING",
   MANAGE_STAFF = "MANAGE_STAFF",
   MANAGE_TRANSLATIONS = "MANAGE_TRANSLATIONS",
-  MANAGE_USERS = "MANAGE_USERS"
+  MANAGE_USERS = "MANAGE_USERS",
 }
 
 /**
@@ -791,11 +791,11 @@ export enum PermissionGroupErrorCode {
   OUT_OF_SCOPE_PERMISSION = "OUT_OF_SCOPE_PERMISSION",
   OUT_OF_SCOPE_USER = "OUT_OF_SCOPE_USER",
   REQUIRED = "REQUIRED",
-  UNIQUE = "UNIQUE"
+  UNIQUE = "UNIQUE",
 }
 
 export enum PermissionGroupSortField {
-  NAME = "NAME"
+  NAME = "NAME",
 }
 
 /**
@@ -807,12 +807,12 @@ export enum PluginErrorCode {
   NOT_FOUND = "NOT_FOUND",
   PLUGIN_MISCONFIGURED = "PLUGIN_MISCONFIGURED",
   REQUIRED = "REQUIRED",
-  UNIQUE = "UNIQUE"
+  UNIQUE = "UNIQUE",
 }
 
 export enum PluginSortField {
   IS_ACTIVE = "IS_ACTIVE",
-  NAME = "NAME"
+  NAME = "NAME",
 }
 
 /**
@@ -830,7 +830,7 @@ export enum ProductErrorCode {
   NOT_PRODUCTS_IMAGE = "NOT_PRODUCTS_IMAGE",
   REQUIRED = "REQUIRED",
   UNIQUE = "UNIQUE",
-  VARIANT_NO_DIGITAL_CONTENT = "VARIANT_NO_DIGITAL_CONTENT"
+  VARIANT_NO_DIGITAL_CONTENT = "VARIANT_NO_DIGITAL_CONTENT",
 }
 
 export enum ProductFieldEnum {
@@ -849,7 +849,7 @@ export enum ProductFieldEnum {
   VARIANT_PRICE = "VARIANT_PRICE",
   VARIANT_SKU = "VARIANT_SKU",
   VARIANT_WEIGHT = "VARIANT_WEIGHT",
-  VISIBLE = "VISIBLE"
+  VISIBLE = "VISIBLE",
 }
 
 export enum ProductOrderField {
@@ -858,23 +858,23 @@ export enum ProductOrderField {
   NAME = "NAME",
   PRICE = "PRICE",
   PUBLISHED = "PUBLISHED",
-  TYPE = "TYPE"
+  TYPE = "TYPE",
 }
 
 export enum ProductTypeConfigurable {
   CONFIGURABLE = "CONFIGURABLE",
-  SIMPLE = "SIMPLE"
+  SIMPLE = "SIMPLE",
 }
 
 export enum ProductTypeEnum {
   DIGITAL = "DIGITAL",
-  SHIPPABLE = "SHIPPABLE"
+  SHIPPABLE = "SHIPPABLE",
 }
 
 export enum ProductTypeSortField {
   DIGITAL = "DIGITAL",
   NAME = "NAME",
-  SHIPPING_REQUIRED = "SHIPPING_REQUIRED"
+  SHIPPING_REQUIRED = "SHIPPING_REQUIRED",
 }
 
 export enum SaleSortField {
@@ -882,7 +882,7 @@ export enum SaleSortField {
   NAME = "NAME",
   START_DATE = "START_DATE",
   TYPE = "TYPE",
-  VALUE = "VALUE"
+  VALUE = "VALUE",
 }
 
 /**
@@ -890,7 +890,7 @@ export enum SaleSortField {
  */
 export enum SaleType {
   FIXED = "FIXED",
-  PERCENTAGE = "PERCENTAGE"
+  PERCENTAGE = "PERCENTAGE",
 }
 
 /**
@@ -904,7 +904,7 @@ export enum ShippingErrorCode {
   MAX_LESS_THAN_MIN = "MAX_LESS_THAN_MIN",
   NOT_FOUND = "NOT_FOUND",
   REQUIRED = "REQUIRED",
-  UNIQUE = "UNIQUE"
+  UNIQUE = "UNIQUE",
 }
 
 /**
@@ -912,7 +912,7 @@ export enum ShippingErrorCode {
  */
 export enum ShippingMethodTypeEnum {
   PRICE = "PRICE",
-  WEIGHT = "WEIGHT"
+  WEIGHT = "WEIGHT",
 }
 
 /**
@@ -925,17 +925,17 @@ export enum ShopErrorCode {
   INVALID = "INVALID",
   NOT_FOUND = "NOT_FOUND",
   REQUIRED = "REQUIRED",
-  UNIQUE = "UNIQUE"
+  UNIQUE = "UNIQUE",
 }
 
 export enum StaffMemberStatus {
   ACTIVE = "ACTIVE",
-  DEACTIVATED = "DEACTIVATED"
+  DEACTIVATED = "DEACTIVATED",
 }
 
 export enum StockAvailability {
   IN_STOCK = "IN_STOCK",
-  OUT_OF_STOCK = "OUT_OF_STOCK"
+  OUT_OF_STOCK = "OUT_OF_STOCK",
 }
 
 /**
@@ -947,7 +947,7 @@ export enum StockErrorCode {
   INVALID = "INVALID",
   NOT_FOUND = "NOT_FOUND",
   REQUIRED = "REQUIRED",
-  UNIQUE = "UNIQUE"
+  UNIQUE = "UNIQUE",
 }
 
 /**
@@ -978,20 +978,27 @@ export enum TaxRateType {
   SOCIAL_HOUSING = "SOCIAL_HOUSING",
   STANDARD = "STANDARD",
   WATER = "WATER",
-  WINE = "WINE"
+  WINE = "WINE",
 }
 
 export enum UserSortField {
   EMAIL = "EMAIL",
   FIRST_NAME = "FIRST_NAME",
   LAST_NAME = "LAST_NAME",
-  ORDER_COUNT = "ORDER_COUNT"
+  ORDER_COUNT = "ORDER_COUNT",
+}
+
+export enum UshopSortField {
+  NAME = "NAME",
+  PUBLICATION_DATE = "PUBLICATION_DATE",
+  URL = "URL",
+  VISIBILITY = "VISIBILITY",
 }
 
 export enum VoucherDiscountType {
   FIXED = "FIXED",
   PERCENTAGE = "PERCENTAGE",
-  SHIPPING = "SHIPPING"
+  SHIPPING = "SHIPPING",
 }
 
 export enum VoucherSortField {
@@ -1001,13 +1008,13 @@ export enum VoucherSortField {
   START_DATE = "START_DATE",
   TYPE = "TYPE",
   USAGE_LIMIT = "USAGE_LIMIT",
-  VALUE = "VALUE"
+  VALUE = "VALUE",
 }
 
 export enum VoucherTypeEnum {
   ENTIRE_ORDER = "ENTIRE_ORDER",
   SHIPPING = "SHIPPING",
-  SPECIFIC_PRODUCT = "SPECIFIC_PRODUCT"
+  SPECIFIC_PRODUCT = "SPECIFIC_PRODUCT",
 }
 
 /**
@@ -1019,11 +1026,11 @@ export enum WarehouseErrorCode {
   INVALID = "INVALID",
   NOT_FOUND = "NOT_FOUND",
   REQUIRED = "REQUIRED",
-  UNIQUE = "UNIQUE"
+  UNIQUE = "UNIQUE",
 }
 
 export enum WarehouseSortField {
-  NAME = "NAME"
+  NAME = "NAME",
 }
 
 /**
@@ -1034,7 +1041,7 @@ export enum WebhookErrorCode {
   INVALID = "INVALID",
   NOT_FOUND = "NOT_FOUND",
   REQUIRED = "REQUIRED",
-  UNIQUE = "UNIQUE"
+  UNIQUE = "UNIQUE",
 }
 
 /**
@@ -1055,15 +1062,15 @@ export enum WebhookEventTypeEnum {
   ORDER_FULFILLED = "ORDER_FULFILLED",
   ORDER_FULLY_PAID = "ORDER_FULLY_PAID",
   ORDER_UPDATED = "ORDER_UPDATED",
-  PRODUCT_CREATED = "PRODUCT_CREATED"
-  // PRODUCT_UPDATED = "PRODUCT_UPDATED",
+  PRODUCT_CREATED = "PRODUCT_CREATED",
+  PRODUCT_UPDATED = "PRODUCT_UPDATED",
 }
 
 export enum WebhookSortField {
   APP = "APP",
   NAME = "NAME",
   SERVICE_ACCOUNT = "SERVICE_ACCOUNT",
-  TARGET_URL = "TARGET_URL"
+  TARGET_URL = "TARGET_URL",
 }
 
 /**
@@ -1073,7 +1080,7 @@ export enum WeightUnitsEnum {
   G = "G",
   KG = "KG",
   LB = "LB",
-  OZ = "OZ"
+  OZ = "OZ",
 }
 
 export interface AddressInput {
@@ -1755,6 +1762,36 @@ export interface UserCreateInput {
 export interface UserSortingInput {
   direction: OrderDirection;
   field: UserSortField;
+}
+
+export interface UshopFilterInput {
+  search?: string | null;
+}
+
+export interface UshopInput {
+  name?: string | null;
+  url?: string | null;
+  description?: string | null;
+  descriptionJson?: any | null;
+  isPublished?: boolean | null;
+  publicationDate?: string | null;
+  seo?: SeoInput | null;
+  logoImage?: any | null;
+  logoImageAlt?: string | null;
+  rank?: number | null;
+  ratingMain?: number | null;
+  ratingUkShipping?: number | null;
+  ratingProductQuality?: number | null;
+  ratingProductPrice?: number | null;
+  ratingShuurhai?: number | null;
+  ratingProductRank?: number | null;
+  listSelection?: string | null;
+  productSelection?: string | null;
+}
+
+export interface UshopSortingInput {
+  direction: OrderDirection;
+  field: UshopSortField;
 }
 
 export interface VoucherFilterInput {

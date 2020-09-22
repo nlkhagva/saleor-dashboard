@@ -63,10 +63,14 @@ const GaduurDetailsPage: React.FC<DetailsPageProps> = ({
             {intl.formatMessage(sectionNames.gaduur)}
           </AppHeader>
           <PageHeader
-            title={intl.formatMessage({
-              defaultMessage: "Гадуур дагавар үүсгэх",
-              description: "header"
-            })}
+            title={
+              !gaduur
+                ? intl.formatMessage({
+                    defaultMessage: "Гадуур дагавар үүсгэх",
+                    description: "header"
+                  })
+                : `${gaduur.name} засах`
+            }
           />
           <Grid>
             <div>
