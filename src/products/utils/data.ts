@@ -236,3 +236,28 @@ export function mapFormsetStockToStockInput(
     warehouse: stock.id
   };
 }
+
+export function getChoicesParent(nodes: any[]): SingleAutocompleteChoiceType[] {
+  return maybe(
+    () =>
+      nodes.map(node => {
+        let name = node.name;
+        if (node.parent !== null) {
+          name = name.concat("/" + node.parent.name);
+
+          if (node.parent.parent !== null) {
+            name = name.concat("/" + node.parent.parent.name);
+
+            if (node.parent.parent.parent !== null) {
+              name = name.concat("/" + node.parent.parent.parent.name);
+            }
+          }
+        }
+        return {
+          label: name,
+          value: node.id
+        };
+      }),
+    []
+  );
+}

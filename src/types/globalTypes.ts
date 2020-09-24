@@ -1264,6 +1264,15 @@ export interface ConfigurationItemInput {
   value?: string | null;
 }
 
+export interface CrawlerInput {
+  url?: string | null;
+  completed?: boolean | null;
+  productCount?: number | null;
+  jsonData?: any | null;
+  productSelection?: string | null;
+  listSelection?: string | null;
+}
+
 export interface CustomerFilterInput {
   dateJoined?: DateRangeInput | null;
   moneySpent?: PriceRangeInput | null;

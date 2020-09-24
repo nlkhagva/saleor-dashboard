@@ -75,7 +75,7 @@ export const PackageDetailsView: React.FC<PackageCreateProps> = ({
 
   return (
     <>
-      <WindowTitle title="Гадуур дагавар үүсгэх" />
+      <WindowTitle title="Илгээмж" />
       <PackageDetailsPage
         disabled={loading || updatePackageOpts.loading || loadingGaduurs}
         errors={updatePackageOpts.data?.packageUpdate.errors || []}

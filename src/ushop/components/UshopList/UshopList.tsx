@@ -11,7 +11,7 @@ import ResponsiveTable from "@saleor/components/ResponsiveTable";
 import Skeleton from "@saleor/components/Skeleton";
 import TableCellHeader from "@saleor/components/TableCellHeader";
 import TablePagination from "@saleor/components/TablePagination";
-import { SHIPPING_TYPES } from "@saleor/constants";
+// import { SHIPPING_TYPES } from "@saleor/constants";
 import { UshopDetailsFragment } from "@saleor/fragments/types/UshopDetailsFragment";
 import { maybe, renderCollection, stopPropagation } from "@saleor/misc";
 import { ListProps, SortPage } from "@saleor/types";

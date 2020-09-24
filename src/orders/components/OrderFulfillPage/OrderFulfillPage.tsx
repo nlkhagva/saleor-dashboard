@@ -165,16 +165,23 @@ const OrderFulfillPage: React.FC<OrderFulfillPageProps> = props => {
 
   const _ushop = [];
 
-  order?.lines
-    .filter(line => line.variant.product.ushop.id === ushopId)
-    .filter(line => getRemainingQuantity(line) > 0)
-    .map(line => {
-      if (line.variant.product.productType.id !== PRODUCT_TYPE_SHIPPING) {
-        _ushop.unshift(line);
-      } else {
-        _ushop.push(line);
-      }
-    });
+  if (order?.lines) {
+    Array.from(order?.lines)
+      .filter(line => line.variant.product.ushop.id === ushopId)
+      .filter(line => getRemainingQuantity(line) > 0)
+      .forEach(line => {
+        if (line.variant.product.productType.id !== PRODUCT_TYPE_SHIPPING) {
+          _ushop.unshift(line);
+        } else {
+          _ushop.push(line);
+        }
+      });
+  }
+
+  // order?.lines
+  //   .filter(line => line.variant.product.ushop.id === ushopId)
+  //   .filter(line => getRemainingQuantity(line) > 0)
+  //   .map(line => {});
 
   const { change: formsetChange, data: formsetData } = useFormset<
     null,

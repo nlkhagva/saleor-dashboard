@@ -187,6 +187,10 @@ export const sectionNames = defineMessages({
     defaultMessage: "Configuration",
     description: "configuration section name"
   },
+  crawler: {
+    defaultMessage: "Crawler",
+    description: "apps section name"
+  },
   customers: {
     defaultMessage: "Customers",
     description: "customers section name"

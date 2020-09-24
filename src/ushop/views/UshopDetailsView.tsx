@@ -70,7 +70,7 @@ export const UshopDetailsView: React.FC<UshopCreateProps> = ({
 
   return (
     <>
-      <WindowTitle title="Гадуур дагавар үүсгэх" />
+      <WindowTitle title={`${data?.ushop.name} | Англи дэлгүүр`} />
       <UshopDetailsPage
         disabled={loading || updateUshopOpts.loading}
         errors={updateUshopOpts.data?.ushopUpdate.errors || []}

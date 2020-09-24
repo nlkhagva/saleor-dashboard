@@ -63,7 +63,7 @@ export interface UpdatePrivateMetadata_deletePrivateMetadata_item_privateMetadat
 }
 
 export interface UpdatePrivateMetadata_deletePrivateMetadata_item {
-  __typename: "User" | "Checkout" | "ProductVariant" | "Product" | "ProductType" | "Attribute" | "Category" | "Collection" | "DigitalContent" | "Order" | "Fulfillment" | "Invoice" | "ServiceAccount" | "App";
+  __typename: "Product" | "ProductType" | "Attribute" | "Category" | "ProductVariant" | "DigitalContent" | "Collection" | "User" | "Checkout" | "Order" | "Fulfillment" | "Invoice" | "ServiceAccount" | "App";
   /**
    * List of public metadata items. Can be accessed without permissions.
    */

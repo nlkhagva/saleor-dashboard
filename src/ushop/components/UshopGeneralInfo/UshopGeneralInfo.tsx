@@ -1,6 +1,7 @@
 import { Card, CardContent, TextField } from "@material-ui/core";
 import CardSpacer from "@saleor/components/CardSpacer";
 import CardTitle from "@saleor/components/CardTitle";
+// import FileUpload from "@saleor/components/FileUpload";
 import RichTextEditor from "@saleor/components/RichTextEditor";
 import { commonMessages } from "@saleor/intl";
 import { maybe } from "@saleor/misc";
@@ -37,6 +38,7 @@ const UshopGeneralInfo: React.FC<UshopGeneralInfoProps> = props => {
           value={data.name}
           onChange={change}
         />
+        {/* <FileUpload disabled={disabled} error /> */}
         <CardSpacer />
         <TextField
           disabled={disabled}

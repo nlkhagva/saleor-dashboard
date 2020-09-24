@@ -15,7 +15,7 @@ import { UshopUpdate_ushopUpdate_shop } from "@saleor/ushop/types/UshopUpdate";
 import { getFormErrors } from "@saleor/utils/errors";
 import {
   ContentState,
-  convertFromRaw,
+  // convertFromRaw,
   convertToRaw,
   RawDraftContentState
 } from "draft-js";
@@ -65,24 +65,25 @@ const UshopDetailsPage: React.FC<DetailsPageProps> = ({
   const localizeDate = useDateLocalize();
 
   const initialForm: UshopFormData = {
-    isPublished: maybe(() => ushop?.isPublished, false),
-    name: maybe(() => ushop?.name, ""),
-    url: maybe(() => ushop?.url, ""),
-    publicationDate: maybe(() => ushop?.publicationDate, ""),
     description: maybe(
       () => JSON.parse(ushop.descriptionJson),
       convertToRaw(ContentState.createFromText(""))
     ),
+    isPublished: maybe(() => ushop?.isPublished, false),
+    listSelection: maybe(() => ushop?.listSelection, ""),
+    name: maybe(() => ushop?.name, ""),
+    productSelection: maybe(() => ushop?.productSelection, ""),
+    publicationDate: maybe(() => ushop?.publicationDate, ""),
     rank: maybe(() => ushop?.rank, 0),
     ratingMain: maybe(() => ushop?.ratingMain, 0),
-    ratingUkShipping: maybe(() => ushop?.ratingUkShipping, 0),
-    ratingProductQuality: maybe(() => ushop?.ratingProductQuality, 0),
     ratingProductPrice: maybe(() => ushop?.ratingProductPrice, 0),
-    ratingShuurhai: maybe(() => ushop?.ratingShuurhai, 0),
+    ratingProductQuality: maybe(() => ushop?.ratingProductQuality, 0),
     ratingProductRank: maybe(() => ushop?.ratingProductRank, 0),
-    listSelection: maybe(() => ushop?.listSelection, ""),
-    productSelection: maybe(() => ushop?.productSelection, "")
+    ratingShuurhai: maybe(() => ushop?.ratingShuurhai, 0),
+    ratingUkShipping: maybe(() => ushop?.ratingUkShipping, 0),
+    url: maybe(() => ushop?.url, "")
   };
+
   const formErrors = getFormErrors(
     [
       "name",
