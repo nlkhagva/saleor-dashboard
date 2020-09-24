@@ -12,7 +12,7 @@ import { useIntl } from "react-intl";
 
 import { CrawlerDetails_crawler } from "../../types/CrawlerDetails";
 import CrawlerInfo from "../CrawlerInfo";
-// import CrawlerProcess from "../ShopInfo/CrawlerProcess";
+import CrawlerProcess from "../ShopInfo/CrawlerProcess";
 
 export interface FormData {
   url: string;
@@ -69,14 +69,14 @@ const CrawlerDetailsPage: React.FC<CrawlerDetailsPageProps> = ({
             crawler={crawler}
             onChange={change}
           />
-          {/* {crawler && (
+          {crawler && (
             <CrawlerProcess
               url={crawler.url}
               crawler={crawler}
               listSelection={crawler.listSelection}
               productSelection={crawler.productSelection}
             />
-          )} */}
+          )}
           <SaveButtonBar
             disabled={disabled}
             state={saveButtonBarState}

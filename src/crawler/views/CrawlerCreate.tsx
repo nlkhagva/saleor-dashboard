@@ -1,15 +1,14 @@
-import React from 'react';
-import { useIntl } from 'react-intl';
+import { WindowTitle } from "@saleor/components/WindowTitle";
+import useNavigator from "@saleor/hooks/useNavigator";
+import useNotifier from "@saleor/hooks/useNotifier";
+import React from "react";
+import { useIntl } from "react-intl";
 
-import { WindowTitle } from '@saleor/components/WindowTitle';
-import useNavigator from '@saleor/hooks/useNavigator';
-import useNotifier from '@saleor/hooks/useNotifier';
-
-import { getMutationState, maybe } from '../../misc';
-import CrawlerDetailsPage from '../components/CrawlerDetailsPage';
-import { TypedCrawlerCreate } from '../mutations';
-import { CrawlerCreate as CrawlerCreateData } from '../types/CrawlerCreate';
-import { crawlerListUrl, crawlerUrl } from '../urls';
+import { getMutationState, maybe } from "../../misc";
+import CrawlerDetailsPage from "../components/CrawlerDetailsPage";
+import { TypedCrawlerCreate } from "../mutations";
+import { CrawlerCreate as CrawlerCreateData } from "../types/CrawlerCreate";
+import { crawlerListUrl, crawlerUrl } from "../urls";
 
 export interface PageCreateProps {
   id: string;
@@ -23,6 +22,7 @@ export const PageCreate: React.FC<PageCreateProps> = () => {
   const handlePageCreate = (data: CrawlerCreateData) => {
     if (data.crawlerCreate.errors.length === 0) {
       notify({
+        status: "success",
         text: intl.formatMessage({
           defaultMessage: "Successfully created new crawler"
         })

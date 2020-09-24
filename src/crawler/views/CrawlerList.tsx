@@ -1,6 +1,3 @@
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
-
 import { IconButton } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ActionDialog from "@saleor/components/ActionDialog";
@@ -14,6 +11,8 @@ import usePaginator, {
 } from "@saleor/hooks/usePaginator";
 import { getMutationState, maybe } from "@saleor/misc";
 import { ListViews } from "@saleor/types";
+import React from "react";
+import { FormattedMessage, useIntl } from "react-intl";
 
 import CrawlerListPage from "../components/CrawlerListPage";
 import { TypedCrawlerBulkRemove } from "../mutations";
@@ -79,6 +78,7 @@ export const CrawlerList: React.FC<CrawlerListProps> = ({ params }) => {
           if (data.crawlerBulkDelete.errors.length === 0) {
             closeModal();
             notify({
+              status: "success",
               text: intl.formatMessage({
                 defaultMessage: "remove crawlers",
                 description: "notification"

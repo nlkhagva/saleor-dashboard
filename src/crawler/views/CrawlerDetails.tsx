@@ -20,10 +20,10 @@ export interface CrawlerDetailsProps {
 }
 
 const createCrawlerInput = (data: FormData): any => ({
-    listSelection: data.listSelection,
-    productSelection: data.productSelection,
-    url: data.url
-  });
+  listSelection: data.listSelection,
+  productSelection: data.productSelection,
+  url: data.url
+});
 
 export const CrawlerDetails: React.FC<CrawlerDetailsProps> = ({
   id,
@@ -36,6 +36,7 @@ export const CrawlerDetails: React.FC<CrawlerDetailsProps> = ({
   const handleCrawlerRemove = (data: CrawlerRemove) => {
     if (data.crawlerDelete.errors.length === 0) {
       notify({
+        status: "success",
         text: intl.formatMessage({
           defaultMessage: "Remove crawler"
         })

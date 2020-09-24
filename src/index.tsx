@@ -11,6 +11,7 @@ import ErrorBoundary from "react-error-boundary";
 import TagManager from "react-gtm-module";
 import { useIntl } from "react-intl";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Socket } from "react-socket-io";
 
 import AppsSection from "./apps";
 import { appsSection } from "./apps/urls";
@@ -102,6 +103,9 @@ const apolloClient = new ApolloClient({
   link: authLink.concat(link)
 });
 
+export const socketURI = "http://localhost:3012/";
+export const socketOptions = { transports: ["websocket"] };
+
 const App: React.FC = () => {
   const isDark = localStorage.getItem("theme") === "true";
 
@@ -116,7 +120,9 @@ const App: React.FC = () => {
                   <AppStateProvider>
                     <ShopProvider>
                       <AuthProvider>
-                        <Routes />
+                        <Socket uri={socketURI} options={socketOptions}>
+                          <Routes />
+                        </Socket>
                       </AuthProvider>
                     </ShopProvider>
                   </AppStateProvider>

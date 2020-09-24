@@ -1,2 +1,2 @@
-// export { default } from "./ShopInfo";
-// export * from "./ShopInfo";
+export { default } from "./ShopInfo";
+export * from "./ShopInfo";
