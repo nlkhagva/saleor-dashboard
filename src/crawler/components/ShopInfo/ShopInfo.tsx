@@ -23,7 +23,7 @@ export interface ShopInfoProps {
 }
 
 const ShopInfo: React.FC<ShopInfoProps> = ({ url, formData }) => {
-  const { loading, error, data } = useQuery(FIND_USHOP, {
+  const { loading, error } = useQuery(FIND_USHOP, {
     variables: { url }
   });
   if (loading) {
@@ -32,15 +32,19 @@ const ShopInfo: React.FC<ShopInfoProps> = ({ url, formData }) => {
   if (error) {
     return <h1>Error: {error}</h1>;
   }
+  if (formData) {
+    return <h1>Form data</h1>;
+  }
 
   return (
-    <SendRequest
-      url={url}
-      formData={formData}
-      listSelection={data.ushopByLink.listSelection}
-      productSelection={data.ushopByLink.productSelection}
-      ushop={data.ushopByLink}
-    />
+    <h1>Hello</h1>
+    // <SendRequest
+    //   url={url}
+    //   formData={formData}
+    //   listSelection={data.ushopByLink.listSelection}
+    //   productSelection={data.ushopByLink.productSelection}
+    //   ushop={data.ushopByLink}
+    // />
   );
 };
 

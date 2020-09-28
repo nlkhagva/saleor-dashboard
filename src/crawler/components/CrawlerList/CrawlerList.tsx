@@ -1,6 +1,3 @@
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
-
 import Card from "@material-ui/core/Card";
 import { makeStyles } from "@material-ui/core/styles";
 import TableBody from "@material-ui/core/TableBody";
@@ -15,6 +12,8 @@ import TableHead from "@saleor/components/TableHead";
 import TablePagination from "@saleor/components/TablePagination";
 import { maybe, renderCollection } from "@saleor/misc";
 import { ListActions, ListProps } from "@saleor/types";
+import React from "react";
+import { FormattedMessage, useIntl } from "react-intl";
 
 import { CrawlerList_crawlers_edges_node } from "../../types/CrawlerList";
 
@@ -22,25 +21,28 @@ export interface CrawlerListProps extends ListProps, ListActions {
   crawlers: CrawlerList_crawlers_edges_node[];
 }
 
-const useStyles = makeStyles(theme => ({
-  [theme.breakpoints.up("lg")]: {
-    colSlug: {
-      width: 250
+const useStyles = makeStyles(
+  theme => ({
+    [theme.breakpoints.up("lg")]: {
+      colSlug: {
+        width: 250
+      },
+      colTitle: {},
+      colVisibility: {
+        width: 200
+      }
     },
-    colTitle: {},
-    colVisibility: {
-      width: 200
+    colSlug: {},
+    colTitle: {
+      paddingLeft: 0
+    },
+    colVisibility: {},
+    link: {
+      cursor: "pointer"
     }
-  },
-  colSlug: {},
-  colTitle: {
-    paddingLeft: 0
-  },
-  colVisibility: {},
-  link: {
-    cursor: "pointer"
-  }
-}));
+  }),
+  { name: "CrawlerList" }
+);
 
 const numberOfColumns = 4;
 

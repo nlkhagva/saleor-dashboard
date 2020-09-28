@@ -1,19 +1,24 @@
-import clsx from 'clsx';
-import React, { useState } from 'react';
-import { Event } from 'react-socket-io';
+import { useMutation } from "@apollo/react-hooks";
+import Button from "@material-ui/core/Button";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { green } from "@material-ui/core/colors";
+import Grid from "@material-ui/core/Grid";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import {
+  createStyles,
+  lighten,
+  makeStyles,
+  Theme,
+  withStyles
+} from "@material-ui/core/styles";
+import useNotifier from "@saleor/hooks/useNotifier";
+import clsx from "clsx";
+import React, { useState } from "react";
+import { Event } from "react-socket-io";
 
-import { useMutation } from '@apollo/react-hooks';
-import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { green } from '@material-ui/core/colors';
-import Grid from '@material-ui/core/Grid';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import { createStyles, lighten, makeStyles, Theme, withStyles } from '@material-ui/core/styles';
-import useNotifier from '@saleor/hooks/useNotifier';
-
-import { crawlerUpdate } from '../../mutations';
-import { CrawlerDetails_crawler } from '../../types/CrawlerDetails';
-import ProductsSave from './ProductsSave';
+import { crawlerUpdate } from "../../mutations";
+import { CrawlerDetails_crawler } from "../../types/CrawlerDetails";
+import ProductsSave from "./ProductsSave";
 
 export interface PropsRequest {
   url: string;
@@ -30,36 +35,37 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
 }) => {
   const [saveCrawledData] = useMutation(crawlerUpdate);
 
-
   const crawlerServerURI = "http://localhost:3012";
   const notify = useNotifier();
-  const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-      buttonProgress: {
-        color: green[500],
-        left: "40px",
-        marginLeft: -12,
-        marginTop: -12,
-        position: "absolute",
-        top: "50%"
-      },
-      buttonSuccess: {
-        "&:hover": {
-          backgroundColor: green[700]
+  const useStyles = makeStyles(
+    (theme: Theme) =>
+      createStyles({
+        buttonProgress: {
+          color: green[500],
+          left: "40px",
+          marginLeft: -12,
+          marginTop: -12,
+          position: "absolute",
+          top: "50%"
         },
-        backgroundColor: green[500]
-      },
-      margin: {
-        margin: theme.spacing(1)
-      },
-      root: {
-        flexGrow: 1
-      },
-      wrapper: {
-        margin: 0,
-        position: "relative"
-      }
-    })
+        buttonSuccess: {
+          "&:hover": {
+            backgroundColor: green[700]
+          },
+          backgroundColor: green[500]
+        },
+        margin: {
+          margin: theme.spacing(1)
+        },
+        root: {
+          flexGrow: 1
+        },
+        wrapper: {
+          margin: 0,
+          position: "relative"
+        }
+      }),
+    { name: "CrawlerProcess" }
   );
 
   const classes = useStyles({});
@@ -76,38 +82,33 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
     products: [],
     total: 0
   });
-  const [crawledData, setCrawledData] = useState(JSON.parse(crawler.jsonData).crawledData || []);
-
-
+  const [crawledData, setCrawledData] = useState(
+    JSON.parse(crawler.jsonData).crawledData || []
+  );
 
   const crawlerHandler = data => {
     setCrawlerInfo(data);
-    if (
-      data.current + data.errors === data.total &&
-      data.total > 0
-    ) {
+    if (data.current + data.errors === data.total && data.total > 0) {
       setLoading(false);
 
       if (data.current > 0) {
         receiveProductData();
       }
-
     }
-
   };
 
-  const saveCrawledDataFunction = async (cleanedData) => {
+  const saveCrawledDataFunction = async cleanedData => {
     await saveCrawledData({
       variables: {
-        "id": crawler.id,
-        "input": {
-          "jsonData": JSON.stringify({ crawledData: cleanedData }, null),
-          "listSelection": crawler.listSelection,
-          "productSelection": crawler.productSelection
+        id: crawler.id,
+        input: {
+          jsonData: JSON.stringify({ crawledData: cleanedData }, null),
+          listSelection: crawler.listSelection,
+          productSelection: crawler.productSelection
         }
       }
-    })
-  }
+    });
+  };
 
   const sendPostRequest = async () => {
     if (!loading) {
@@ -128,13 +129,13 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
         method: "post"
       });
 
-      const data = await rs.json()
+      const data = await rs.json();
       if (data.status !== "crawling") {
         setSuccess(false);
         setLoading(false);
         notify({
           text: "Server завгүй байна"
-        })
+        });
       }
     }
   };
@@ -150,7 +151,7 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
         "Content-Type": "application/json"
       },
       method: "post"
-    })
+    });
 
     const data = await result.json();
 
@@ -159,26 +160,22 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
       setLoading(false);
     }
 
-    if (data.status === 'complete') {
-      const cleanedProducts = data.products.map((product, index) => {
-        return {
-          ...product,
-          basePrice: parseFloat(product.basePrice.replace(/[^0-9.-]+/g, "")),
-          category: null,
-          chargeTaxes: false,
-          isPublished: false,
-          key: index + 1,
-          productType: null,
-          sku: null,
-          stockQuantity: 100,
-          uprice: parseFloat(product.uprice.replace(/[^0-9.-]+/g, "")),
-          uproductId: null,
-          ushop: crawler.shop.id,
-          ustatus: "unsaved"
-        };
-      });
-
-
+    if (data.status === "complete") {
+      const cleanedProducts = data.products.map((product, index) => ({
+        ...product,
+        basePrice: parseFloat(product.basePrice.replace(/[^0-9.-]+/g, "")),
+        category: null,
+        chargeTaxes: false,
+        isPublished: false,
+        key: index + 1,
+        productType: null,
+        sku: null,
+        stockQuantity: 100,
+        uprice: parseFloat(product.uprice.replace(/[^0-9.-]+/g, "")),
+        uproductId: null,
+        ushop: crawler.shop.id,
+        ustatus: "unsaved"
+      }));
 
       if (crawledData.length === 0) {
         const cleanedData = [
@@ -196,7 +193,7 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
       } else {
         cleanedProducts.map(product => {
           crawledData.map(group => {
-            const ins = group.products.find(p => p.ulink === product.ulink)
+            const ins = group.products.find(p => p.ulink === product.ulink);
             if (ins) {
               let changed = false;
               if (ins.name !== product.name) {
@@ -211,35 +208,31 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
                 ins.name = product.name;
                 changed = true;
               }
-              if (JSON.stringify(ins.options) !== JSON.stringify(product.options)) {
+              if (
+                JSON.stringify(ins.options) !== JSON.stringify(product.options)
+              ) {
                 ins.options = product.options;
                 changed = true;
               }
 
               if (changed) {
-                ins.ustatus = 'unsaved';
+                ins.ustatus = "unsaved";
               }
             }
-          })
-        })
+          });
+        });
 
-        setCrawledData(JSON.parse(JSON.stringify(crawledData)))
+        setCrawledData(JSON.parse(JSON.stringify(crawledData)));
 
         /* medeelel db d hadgalj bga heseg */
         await saveCrawledDataFunction(crawledData);
-
       }
-
-
     } else if (data.status === "error") {
       notify({
-        text: data.errors.join(', ')
-      })
+        text: data.errors.join(", ")
+      });
     }
-
-
   };
-
 
   // if (
   //   crawlerInfo.current + crawlerInfo.errors === crawlerInfo.total &&
@@ -249,16 +242,19 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
   //   receiveProductData();
   // }
 
-  const BorderLinearProgress = withStyles({
-    bar: {
-      backgroundColor: "#009688",
-      borderRadius: 20
+  const BorderLinearProgress = withStyles(
+    {
+      bar: {
+        backgroundColor: "#009688",
+        borderRadius: 20
+      },
+      root: {
+        backgroundColor: lighten("#009688", 0.5),
+        height: 10
+      }
     },
-    root: {
-      backgroundColor: lighten("#009688", 0.5),
-      height: 10
-    }
-  })(LinearProgress);
+    { name: "CrawlerProcess" }
+  )(LinearProgress);
 
   return (
     <>

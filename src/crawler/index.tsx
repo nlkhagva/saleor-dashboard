@@ -1,18 +1,20 @@
-import { parse as parseQs } from 'qs';
-import React from 'react';
-import { useIntl } from 'react-intl';
-import { Route, RouteComponentProps, Switch } from 'react-router-dom';
+import { sectionNames } from "@saleor/intl";
+import { parse as parseQs } from "qs";
+import React from "react";
+import { useIntl } from "react-intl";
+import { Route, RouteComponentProps, Switch } from "react-router-dom";
 
-import { sectionNames } from '@saleor/intl';
-
-import { WindowTitle } from '../components/WindowTitle';
+import { WindowTitle } from "../components/WindowTitle";
 import {
-    crawlerCreatePath, crawlerListPath, CrawlerListUrlQueryParams, crawlerPath,
-    CrawlerUrlQueryParams
-} from './urls';
-import CrawlerCreate from './views/CrawlerCreate';
-import CrawlerDetailsComponent from './views/CrawlerDetails';
-import CrawlerListComponent from './views/CrawlerList';
+  crawlerCreatePath,
+  crawlerListPath,
+  CrawlerListUrlQueryParams,
+  crawlerPath,
+  CrawlerUrlQueryParams
+} from "./urls";
+import CrawlerCreate from "./views/CrawlerCreate";
+import CrawlerDetailsComponent from "./views/CrawlerDetails";
+import CrawlerListComponent from "./views/CrawlerList";
 
 const CrawlerList: React.FC<RouteComponentProps<any>> = ({ location }) => {
   const qs = parseQs(location.search.substr(1));
