@@ -40,7 +40,7 @@ export const commonMessages = defineMessages({
     defaultMessage: "First Name"
   },
   generalInformations: {
-    defaultMessage: "General Informations"
+    defaultMessage: "General Information"
   },
   lastName: {
     defaultMessage: "Last Name"
@@ -204,7 +204,7 @@ export const sectionNames = defineMessages({
     description: "гадуур section name"
   },
   home: {
-    defaultMessage: "Dashboard",
+    defaultMessage: "Home",
     description: "home section name"
   },
   navigation: {

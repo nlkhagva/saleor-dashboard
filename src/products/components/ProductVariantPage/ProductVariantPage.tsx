@@ -19,6 +19,7 @@ import {
   getAttributeInputFromVariant,
   getStockInputFromVariant
 } from "@saleor/products/utils/data";
+import { ReorderAction } from "@saleor/types";
 import { mapMetadataItemToInput } from "@saleor/utils/maps";
 import useMetadataChangeTrigger from "@saleor/utils/metadata/useMetadataChangeTrigger";
 import { diff } from "fast-array-diff";
@@ -34,6 +35,7 @@ import ProductVariantImages from "../ProductVariantImages";
 import ProductVariantImageSelectDialog from "../ProductVariantImageSelectDialog";
 import ProductVariantNavigation from "../ProductVariantNavigation";
 import ProductVariantPrice from "../ProductVariantPrice";
+import ProductVariantSetDefault from "../ProductVariantSetDefault";
 
 export interface ProductVariantPageFormData extends MetadataFormData {
   costPrice: string;
@@ -60,12 +62,14 @@ interface ProductVariantPageProps {
   placeholderImage?: string;
   header: string;
   warehouses: WarehouseFragment[];
+  onVariantReorder: ReorderAction;
   onAdd();
   onBack();
   onDelete();
   onSubmit(data: ProductVariantPageSubmitData);
   onImageSelect(id: string);
   onVariantClick(variantId: string);
+  onSetDefaultVariant();
 }
 
 const ProductVariantPage: React.FC<ProductVariantPageProps> = ({
@@ -82,7 +86,9 @@ const ProductVariantPage: React.FC<ProductVariantPageProps> = ({
   onDelete,
   onImageSelect,
   onSubmit,
-  onVariantClick
+  onVariantClick,
+  onVariantReorder,
+  onSetDefaultVariant
 }) => {
   const attributeInput = React.useMemo(
     () => getAttributeInputFromVariant(variant),
@@ -162,7 +168,9 @@ const ProductVariantPage: React.FC<ProductVariantPageProps> = ({
         <AppHeader onBack={onBack}>
           {maybe(() => variant.product.name)}
         </AppHeader>
-        <PageHeader title={header} />
+        <PageHeader title={header}>
+          <ProductVariantSetDefault onSetDefaultVariant={onSetDefaultVariant} />
+        </PageHeader>
         <Form initial={initialForm} onSubmit={handleSubmit} confirmLeave>
           {({ change, data, hasChanged, submit, triggerChange }) => {
             const handleAttributeChange: FormsetChange = (id, value) => {
@@ -188,6 +196,7 @@ const ProductVariantPage: React.FC<ProductVariantPageProps> = ({
                           return onVariantClick(variantId);
                         }
                       }}
+                      onReorder={onVariantReorder}
                     />
                   </div>
                   <div>

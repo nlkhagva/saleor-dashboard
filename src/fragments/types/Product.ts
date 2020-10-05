@@ -113,6 +113,12 @@ export interface Product_productType_variantAttributes {
   values: (Product_productType_variantAttributes_values | null)[] | null;
 }
 
+export interface Product_productType_taxType {
+  __typename: "TaxType";
+  description: string | null;
+  taxCode: string | null;
+}
+
 export interface Product_productType {
   __typename: "ProductType";
   /**
@@ -125,6 +131,7 @@ export interface Product_productType {
   variantAttributes: (Product_productType_variantAttributes | null)[] | null;
   name: string;
   hasVariants: boolean;
+  taxType: Product_productType_taxType | null;
 }
 
 export interface Product_pricing_priceRangeUndiscounted_start_gross {
@@ -209,6 +216,11 @@ export interface Product_privateMetadata {
    * Value of a metadata item.
    */
   value: string;
+}
+
+export interface Product_defaultVariant {
+  __typename: "ProductVariant";
+  id: string;
 }
 
 export interface Product_category {
@@ -358,6 +370,12 @@ export interface Product_weight {
   value: number;
 }
 
+export interface Product_taxType {
+  __typename: "TaxType";
+  description: string | null;
+  taxCode: string | null;
+}
+
 export interface Product {
   __typename: "Product";
   /**
@@ -382,9 +400,11 @@ export interface Product {
    */
   privateMetadata: (Product_privateMetadata | null)[];
   name: string;
+  slug: string;
   descriptionJson: any;
   seoTitle: string | null;
   seoDescription: string | null;
+  defaultVariant: Product_defaultVariant | null;
   category: Product_category | null;
   /**
    * List of collections for the product.
@@ -412,6 +432,7 @@ export interface Product {
    */
   variants: (Product_variants | null)[] | null;
   weight: Product_weight | null;
+  taxType: Product_taxType | null;
   availableForPurchase: any | null;
   visibleInListings: boolean;
 }

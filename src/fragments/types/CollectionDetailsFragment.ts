@@ -60,6 +60,7 @@ export interface CollectionDetailsFragment {
    */
   privateMetadata: (CollectionDetailsFragment_privateMetadata | null)[];
   backgroundImage: CollectionDetailsFragment_backgroundImage | null;
+  slug: string;
   descriptionJson: any;
   publicationDate: any | null;
   seoDescription: string | null;

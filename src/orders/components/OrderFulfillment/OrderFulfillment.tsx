@@ -88,7 +88,7 @@ interface OrderFulfillmentProps {
   onTrackingCodeAdd: () => void;
 }
 
-const numberOfColumns = 4;
+const numberOfColumns = 5;
 
 const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
   const {

@@ -14,11 +14,15 @@ import {
   ProductUpdate,
   ProductUpdateVariables
 } from "@saleor/products/types/ProductUpdate";
+import { ProductVariantCreateData_product } from "@saleor/products/types/ProductVariantCreateData";
+import { ProductVariantDetails_productVariant_product } from "@saleor/products/types/ProductVariantDetails";
+import { ProductVariantReorderVariables } from "@saleor/products/types/ProductVariantReorder";
 import {
   SimpleProductUpdate,
   SimpleProductUpdateVariables
 } from "@saleor/products/types/SimpleProductUpdate";
 import { mapFormsetStockToStockInput } from "@saleor/products/utils/data";
+import { getProductAvailabilityVariables } from "@saleor/products/utils/handlers";
 import { ReorderEvent } from "@saleor/types";
 import { MutationFetchResult } from "react-apollo";
 import { arrayMove } from "react-sortable-hoc";
@@ -37,25 +41,29 @@ export function createUpdateHandler(
 ) {
   return async (data: ProductUpdatePageSubmitData) => {
     const productVariables: ProductUpdateVariables = {
-      attributes: data.attributes.map(attribute => ({
-        id: attribute.id,
-        values: attribute.value[0] === "" ? [] : attribute.value
-      })),
-      basePrice: decimal(data.basePrice),
-      category: data.category,
-      chargeTaxes: data.chargeTaxes,
-      collections: data.collections,
-      descriptionJson: JSON.stringify(data.description),
       id: product.id,
-      isPublished: data.isPublished,
-      name: data.name,
-      publicationDate:
-        data.publicationDate !== "" ? data.publicationDate : null,
-      seo: {
-        description: data.seoDescription,
-        title: data.seoTitle
-      },
-      visibleInListings: data.visibleInListings
+      input: {
+        attributes: data.attributes.map(attribute => ({
+          id: attribute.id,
+          values: attribute.value[0] === "" ? [] : attribute.value
+        })),
+        basePrice: decimal(data.basePrice),
+        category: data.category,
+        chargeTaxes: data.chargeTaxes,
+        collections: data.collections,
+        descriptionJson: JSON.stringify(data.description),
+        isPublished: data.isPublished,
+        name: data.name,
+        publicationDate:
+          data.publicationDate !== "" ? data.publicationDate : null,
+        seo: {
+          description: data.seoDescription,
+          title: data.seoTitle
+        },
+        slug: data.slug,
+        taxCode: data.changeTaxCode ? data.taxCode : null,
+        visibleInListings: data.visibleInListings
+      }
     };
 
     let errors: Array<
@@ -70,13 +78,16 @@ export function createUpdateHandler(
         ...productVariables,
         addStocks: data.addStocks.map(mapFormsetStockToStockInput),
         deleteStocks: data.removeStocks,
+        input: {
+          ...productVariables.input,
+          weight: weight(data.weight)
+        },
         productVariantId: product.variants[0].id,
         productVariantInput: {
           sku: data.sku,
           trackInventory: data.trackInventory
         },
-        updateStocks: data.updateStocks.map(mapFormsetStockToStockInput),
-        weight: weight(data.weight)
+        updateStocks: data.updateStocks.map(mapFormsetStockToStockInput)
       });
       errors = [
         ...result.data.productUpdate.errors,
@@ -91,20 +102,13 @@ export function createUpdateHandler(
       isAvailableForPurchase !== product.isAvailableForPurchase ||
       availableForPurchase !== product.availableForPurchase
     ) {
-      const isAvailable =
-        availableForPurchase && !isAvailableForPurchase
-          ? true
-          : isAvailableForPurchase;
-
-      const availabilityResult = await setProductAvailability({
-        isAvailable,
-        productId: product.id,
-        startDate: isAvailableForPurchase
-          ? null
-          : availableForPurchase !== ""
-          ? availableForPurchase
-          : null
+      const variables = getProductAvailabilityVariables({
+        availableForPurchase,
+        isAvailableForPurchase,
+        productId: product.id
       });
+
+      const availabilityResult = await setProductAvailability(variables);
       errors = [
         ...errors,
         ...availabilityResult.data.productSetAvailabilityForPurchase.errors
@@ -136,6 +140,24 @@ export function createImageReorderHandler(
     ids = arrayMove(ids, oldIndex, newIndex);
     reorderProductImages({
       imagesIds: ids,
+      productId: product.id
+    });
+  };
+}
+
+export function createVariantReorderHandler(
+  product:
+    | ProductDetails_product
+    | ProductVariantDetails_productVariant_product
+    | ProductVariantCreateData_product,
+  reorderProductVariants: (variables: ProductVariantReorderVariables) => void
+) {
+  return ({ newIndex, oldIndex }: ReorderEvent) => {
+    reorderProductVariants({
+      move: {
+        id: product.variants[oldIndex].id,
+        sortOrder: newIndex - oldIndex
+      },
       productId: product.id
     });
   };

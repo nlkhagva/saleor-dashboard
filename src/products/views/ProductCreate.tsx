@@ -3,9 +3,11 @@ import { DEFAULT_INITIAL_SEARCH_DATA } from "@saleor/config";
 import useNavigator from "@saleor/hooks/useNavigator";
 import useNotifier from "@saleor/hooks/useNotifier";
 import useShop from "@saleor/hooks/useShop";
+import { getProductAvailabilityVariables } from "@saleor/products/utils/handlers";
 import useCategorySearch from "@saleor/searches/useCategorySearch";
 import useCollectionSearch from "@saleor/searches/useCollectionSearch";
 import useProductTypeSearch from "@saleor/searches/useProductTypeSearch";
+import { useTaxTypeList } from "@saleor/taxes/queries";
 import createMetadataCreateHandler from "@saleor/utils/handlers/metadataCreateHandler";
 import {
   useMetadataUpdate,
@@ -19,7 +21,10 @@ import { decimal, weight } from "../../misc";
 import ProductCreatePage, {
   ProductCreatePageSubmitData
 } from "../components/ProductCreatePage";
-import { useProductCreateMutation } from "../mutations";
+import {
+  useProductCreateMutation,
+  useProductSetAvailabilityForPurchase
+} from "../mutations";
 import { productListUrl, productUrl } from "../urls";
 
 export const ProductCreateView: React.FC = () => {
@@ -56,8 +61,21 @@ export const ProductCreateView: React.FC = () => {
   });
   const [updateMetadata] = useMetadataUpdate({});
   const [updatePrivateMetadata] = usePrivateMetadataUpdate({});
+  const taxTypes = useTaxTypeList({});
 
   const handleBack = () => navigate(productListUrl());
+
+  const [
+    setProductAvailability,
+    productAvailabilityOpts
+  ] = useProductSetAvailabilityForPurchase({
+    onCompleted: data => {
+      const errors = data?.productSetAvailabilityForPurchase?.errors;
+      if (errors?.length === 0) {
+        navigate(productUrl(data.productSetAvailabilityForPurchase.product.id));
+      }
+    }
+  });
 
   const [productCreate, productCreateOpts] = useProductCreateMutation({
     onCompleted: data => {
@@ -68,7 +86,6 @@ export const ProductCreateView: React.FC = () => {
             defaultMessage: "Product created"
           })
         });
-        navigate(productUrl(data.productCreate.product.id));
       }
     }
   });
@@ -76,35 +93,56 @@ export const ProductCreateView: React.FC = () => {
   const handleCreate = async (formData: ProductCreatePageSubmitData) => {
     const result = await productCreate({
       variables: {
-        attributes: formData.attributes.map(attribute => ({
-          id: attribute.id,
-          values: attribute.value
-        })),
-        basePrice: decimal(formData.basePrice),
-        category: formData.category,
-        chargeTaxes: formData.chargeTaxes,
-        collections: formData.collections,
-        descriptionJson: JSON.stringify(formData.description),
-        isPublished: formData.isPublished,
-        name: formData.name,
-        productType: formData.productType,
-        publicationDate:
-          formData.publicationDate !== "" ? formData.publicationDate : null,
-        seo: {
-          description: formData.seoDescription,
-          title: formData.seoTitle
-        },
-        sku: formData.sku,
-        stocks: formData.stocks.map(stock => ({
-          quantity: parseInt(stock.value, 0),
-          warehouse: stock.id
-        })),
-        trackInventory: formData.trackInventory,
-        weight: weight(formData.weight)
+        input: {
+          attributes: formData.attributes.map(attribute => ({
+            id: attribute.id,
+            values: attribute.value
+          })),
+          basePrice: decimal(formData.basePrice),
+          category: formData.category,
+          chargeTaxes: formData.chargeTaxes,
+          collections: formData.collections,
+          descriptionJson: JSON.stringify(formData.description),
+          isPublished: formData.isPublished,
+          name: formData.name,
+          productType: formData.productType,
+          publicationDate:
+            formData.publicationDate !== "" ? formData.publicationDate : null,
+          seo: {
+            description: formData.seoDescription,
+            title: formData.seoTitle
+          },
+          sku: formData.sku,
+          slug: formData.slug,
+          stocks: formData.stocks.map(stock => ({
+            quantity: parseInt(stock.value, 0),
+            warehouse: stock.id
+          })),
+          taxCode: formData.changeTaxCode ? formData.taxCode : undefined,
+          trackInventory: formData.trackInventory,
+          visibleInListings: formData.visibleInListings,
+          weight: weight(formData.weight)
+        }
       }
     });
 
-    return result.data.productCreate?.product?.id || null;
+    const productId = result.data.productCreate?.product?.id;
+
+    if (productId) {
+      const { isAvailableForPurchase, availableForPurchase } = formData;
+
+      const variables = getProductAvailabilityVariables({
+        availableForPurchase,
+        isAvailableForPurchase,
+        productId
+      });
+
+      setProductAvailability({
+        variables
+      });
+    }
+
+    return productId || null;
   };
   const handleSubmit = createMetadataCreateHandler(
     handleCreate,
@@ -128,7 +166,7 @@ export const ProductCreateView: React.FC = () => {
         collections={(searchCollectionOpts.data?.search.edges || []).map(
           edge => edge.node
         )}
-        disabled={productCreateOpts.loading}
+        disabled={productCreateOpts.loading || productAvailabilityOpts.loading}
         errors={productCreateOpts.data?.productCreate.errors || []}
         fetchCategories={searchCategory}
         fetchCollections={searchCollection}
@@ -161,6 +199,7 @@ export const ProductCreateView: React.FC = () => {
         warehouses={
           warehouses.data?.warehouses.edges.map(edge => edge.node) || []
         }
+        taxTypes={taxTypes.data?.taxTypes || []}
         weightUnit={shop?.defaultWeightUnit}
       />
     </>

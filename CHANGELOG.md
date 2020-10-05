@@ -38,8 +38,16 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add lazyload to locales - #692 by @eaglesemanation
 - Fix not closed address update modal with two confirmations - #699 by @orzechdev
 - Update schema with PositiveDecimal type - #695 by @AlicjaSzu
-- Restyle side menu - #697 by @dominik-zeglen
 - Add error info when fetching taxes - #701 by @dominik-zeglen
+- Fix return to previous page on screen size change - #710 by @orzechdev
+- Add variants reordering possibility - #716 by @orzechdev
+- Fix avatar change button - #719 by @orzechdev
+- Add slug field to product, collection, category & page details (update and create) - #720 by @mmarkusik
+- Allow product variant to be set as default - #721 by @tomaszszymanski129
+- Change plural form of "informations" to "information" strings across the app #722 by @mmarkusik
+- Fix misaligned rich text draft controls - #725 by @orzechdev
+- Allow taxes to be configured per product - #728 by @dominik-zeglen
+
 
 ## 2.10.1
 
@@ -96,6 +104,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Update product stock management to newest design - #515 by @dominik-zeglen
 - Handle untracked products - #523 by @dominik-zeglen
 - Display correct error if there were no graphql errors - #525 by @dominik-zeglen
+- Fix updating order details on address change #711 - by @orzechdev
 
 ## 2.0.0
 

@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { AttributeValueInput, SeoInput, StockInput, ProductErrorCode, AttributeInputTypeEnum, WeightUnitsEnum } from "./../../types/globalTypes";
+import { ProductCreateInput, ProductErrorCode, AttributeInputTypeEnum, WeightUnitsEnum } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: ProductCreate
@@ -125,6 +125,12 @@ export interface ProductCreate_productCreate_product_productType_variantAttribut
   values: (ProductCreate_productCreate_product_productType_variantAttributes_values | null)[] | null;
 }
 
+export interface ProductCreate_productCreate_product_productType_taxType {
+  __typename: "TaxType";
+  description: string | null;
+  taxCode: string | null;
+}
+
 export interface ProductCreate_productCreate_product_productType {
   __typename: "ProductType";
   /**
@@ -137,6 +143,7 @@ export interface ProductCreate_productCreate_product_productType {
   variantAttributes: (ProductCreate_productCreate_product_productType_variantAttributes | null)[] | null;
   name: string;
   hasVariants: boolean;
+  taxType: ProductCreate_productCreate_product_productType_taxType | null;
 }
 
 export interface ProductCreate_productCreate_product_pricing_priceRangeUndiscounted_start_gross {
@@ -221,6 +228,11 @@ export interface ProductCreate_productCreate_product_privateMetadata {
    * Value of a metadata item.
    */
   value: string;
+}
+
+export interface ProductCreate_productCreate_product_defaultVariant {
+  __typename: "ProductVariant";
+  id: string;
 }
 
 export interface ProductCreate_productCreate_product_category {
@@ -370,6 +382,12 @@ export interface ProductCreate_productCreate_product_weight {
   value: number;
 }
 
+export interface ProductCreate_productCreate_product_taxType {
+  __typename: "TaxType";
+  description: string | null;
+  taxCode: string | null;
+}
+
 export interface ProductCreate_productCreate_product {
   __typename: "Product";
   /**
@@ -394,9 +412,11 @@ export interface ProductCreate_productCreate_product {
    */
   privateMetadata: (ProductCreate_productCreate_product_privateMetadata | null)[];
   name: string;
+  slug: string;
   descriptionJson: any;
   seoTitle: string | null;
   seoDescription: string | null;
+  defaultVariant: ProductCreate_productCreate_product_defaultVariant | null;
   category: ProductCreate_productCreate_product_category | null;
   /**
    * List of collections for the product.
@@ -424,6 +444,7 @@ export interface ProductCreate_productCreate_product {
    */
   variants: (ProductCreate_productCreate_product_variants | null)[] | null;
   weight: ProductCreate_productCreate_product_weight | null;
+  taxType: ProductCreate_productCreate_product_taxType | null;
   availableForPurchase: any | null;
   visibleInListings: boolean;
 }
@@ -442,20 +463,5 @@ export interface ProductCreate {
 }
 
 export interface ProductCreateVariables {
-  attributes?: (AttributeValueInput | null)[] | null;
-  publicationDate?: any | null;
-  category: string;
-  chargeTaxes: boolean;
-  collections?: (string | null)[] | null;
-  descriptionJson?: any | null;
-  isPublished: boolean;
-  name: string;
-  basePrice?: any | null;
-  productType: string;
-  sku?: string | null;
-  seo?: SeoInput | null;
-  stocks: StockInput[];
-  trackInventory: boolean;
-  weight?: any | null;
-  visibleInListings?: boolean | null;
+  input: ProductCreateInput;
 }

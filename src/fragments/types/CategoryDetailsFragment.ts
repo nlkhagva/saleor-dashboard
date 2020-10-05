@@ -67,6 +67,7 @@ export interface CategoryDetailsFragment {
   privateMetadata: (CategoryDetailsFragment_privateMetadata | null)[];
   backgroundImage: CategoryDetailsFragment_backgroundImage | null;
   name: string;
+  slug: string;
   descriptionJson: any;
   seoDescription: string | null;
   seoTitle: string | null;

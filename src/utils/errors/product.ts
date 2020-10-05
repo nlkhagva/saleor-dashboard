@@ -7,6 +7,9 @@ import { defineMessages, IntlShape } from "react-intl";
 import commonErrorMessages from "./common";
 
 const messages = defineMessages({
+  alreadyExists: {
+    defaultMessage: "A product with this SKU already exists"
+  },
   attributeAlreadyAssigned: {
     defaultMessage:
       "This attribute has already been assigned to this product type"
@@ -23,6 +26,9 @@ const messages = defineMessages({
   },
   duplicatedInputItem: {
     defaultMessage: "Variant with these attributes already exists"
+  },
+  nameAlreadyTaken: {
+    defaultMessage: "This name is already taken. Please provide another."
   },
   skuUnique: {
     defaultMessage: "SKUs must be unique",
@@ -45,6 +51,8 @@ function getProductErrorMessage(
     switch (err.code) {
       case ProductErrorCode.ATTRIBUTE_ALREADY_ASSIGNED:
         return intl.formatMessage(messages.attributeAlreadyAssigned);
+      case ProductErrorCode.ALREADY_EXISTS:
+        return intl.formatMessage(messages.alreadyExists);
       case ProductErrorCode.ATTRIBUTE_CANNOT_BE_ASSIGNED:
         return intl.formatMessage(messages.attributeCannotBeAssigned);
       case ProductErrorCode.ATTRIBUTE_VARIANTS_DISABLED:
@@ -59,6 +67,8 @@ function getProductErrorMessage(
         return intl.formatMessage(messages.variantNoDigitalContent);
       case ProductErrorCode.INVALID:
         return intl.formatMessage(commonErrorMessages.invalid);
+      case ProductErrorCode.UNIQUE:
+        return intl.formatMessage(messages.nameAlreadyTaken);
       default:
         return intl.formatMessage(commonErrorMessages.unknownError);
     }

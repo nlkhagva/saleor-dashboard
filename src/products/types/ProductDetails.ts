@@ -113,6 +113,12 @@ export interface ProductDetails_product_productType_variantAttributes {
   values: (ProductDetails_product_productType_variantAttributes_values | null)[] | null;
 }
 
+export interface ProductDetails_product_productType_taxType {
+  __typename: "TaxType";
+  description: string | null;
+  taxCode: string | null;
+}
+
 export interface ProductDetails_product_productType {
   __typename: "ProductType";
   /**
@@ -125,6 +131,7 @@ export interface ProductDetails_product_productType {
   variantAttributes: (ProductDetails_product_productType_variantAttributes | null)[] | null;
   name: string;
   hasVariants: boolean;
+  taxType: ProductDetails_product_productType_taxType | null;
 }
 
 export interface ProductDetails_product_pricing_priceRangeUndiscounted_start_gross {
@@ -209,6 +216,11 @@ export interface ProductDetails_product_privateMetadata {
    * Value of a metadata item.
    */
   value: string;
+}
+
+export interface ProductDetails_product_defaultVariant {
+  __typename: "ProductVariant";
+  id: string;
 }
 
 export interface ProductDetails_product_category {
@@ -358,6 +370,12 @@ export interface ProductDetails_product_weight {
   value: number;
 }
 
+export interface ProductDetails_product_taxType {
+  __typename: "TaxType";
+  description: string | null;
+  taxCode: string | null;
+}
+
 export interface ProductDetails_product {
   __typename: "Product";
   /**
@@ -382,9 +400,11 @@ export interface ProductDetails_product {
    */
   privateMetadata: (ProductDetails_product_privateMetadata | null)[];
   name: string;
+  slug: string;
   descriptionJson: any;
   seoTitle: string | null;
   seoDescription: string | null;
+  defaultVariant: ProductDetails_product_defaultVariant | null;
   category: ProductDetails_product_category | null;
   /**
    * List of collections for the product.
@@ -412,8 +432,15 @@ export interface ProductDetails_product {
    */
   variants: (ProductDetails_product_variants | null)[] | null;
   weight: ProductDetails_product_weight | null;
+  taxType: ProductDetails_product_taxType | null;
   availableForPurchase: any | null;
   visibleInListings: boolean;
+}
+
+export interface ProductDetails_taxTypes {
+  __typename: "TaxType";
+  description: string | null;
+  taxCode: string | null;
 }
 
 export interface ProductDetails {
@@ -421,6 +448,7 @@ export interface ProductDetails {
    * Look up a product by ID.
    */
   product: ProductDetails_product | null;
+  taxTypes: (ProductDetails_taxTypes | null)[] | null;
 }
 
 export interface ProductDetailsVariables {

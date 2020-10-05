@@ -3,6 +3,7 @@ import NotFoundPage from "@saleor/components/NotFoundPage";
 import { WindowTitle } from "@saleor/components/WindowTitle";
 import useNavigator from "@saleor/hooks/useNavigator";
 import useNotifier from "@saleor/hooks/useNotifier";
+import useOnSetDefaultVariant from "@saleor/hooks/useOnSetDefaultVariant";
 import useShop from "@saleor/hooks/useShop";
 import { commonMessages } from "@saleor/intl";
 import createDialogActionHandlers from "@saleor/utils/handlers/dialogActionHandlers";
@@ -21,6 +22,7 @@ import ProductVariantPage, {
   ProductVariantPageSubmitData
 } from "../components/ProductVariantPage";
 import {
+  useProductVariantReorderMutation,
   useVariantDeleteMutation,
   useVariantImageAssignMutation,
   useVariantImageUnassignMutation,
@@ -36,6 +38,7 @@ import {
   ProductVariantEditUrlQueryParams
 } from "../urls";
 import { mapFormsetStockToStockInput } from "../utils/data";
+import { createVariantReorderHandler } from "./ProductUpdate/handlers";
 
 interface ProductUpdateProps {
   variantId: string;
@@ -108,9 +111,8 @@ export const ProductVariant: React.FC<ProductUpdateProps> = ({
           status: "success",
           text: intl.formatMessage(commonMessages.savedChanges)
         });
-      } else {
-        setErrors(data.productVariantUpdate.errors);
       }
+      setErrors(data.productVariantUpdate.errors);
     }
   });
 
@@ -120,12 +122,25 @@ export const ProductVariant: React.FC<ProductUpdateProps> = ({
     return <NotFoundPage onBack={handleBack} />;
   }
 
+  const [
+    reorderProductVariants,
+    reorderProductVariantsOpts
+  ] = useProductVariantReorderMutation({});
+
+  const onSetDefaultVariant = useOnSetDefaultVariant(productId, variant);
+
+  const handleVariantReorder = createVariantReorderHandler(
+    variant?.product,
+    variables => reorderProductVariants({ variables })
+  );
+
   const disableFormSave =
     loading ||
     deleteVariantOpts.loading ||
     updateVariantOpts.loading ||
     assignImageOpts.loading ||
-    unassignImageOpts.loading;
+    unassignImageOpts.loading ||
+    reorderProductVariantsOpts.loading;
 
   const handleImageSelect = (id: string) => () => {
     if (variant) {
@@ -186,6 +201,7 @@ export const ProductVariant: React.FC<ProductUpdateProps> = ({
       <ProductVariantPage
         defaultWeightUnit={shop?.defaultWeightUnit}
         errors={errors}
+        onSetDefaultVariant={onSetDefaultVariant}
         saveButtonBarState={updateVariantOpts.status}
         loading={disableFormSave}
         placeholderImage={placeholderImg}
@@ -202,6 +218,7 @@ export const ProductVariant: React.FC<ProductUpdateProps> = ({
         onVariantClick={variantId => {
           navigate(productVariantEditUrl(productId, variantId));
         }}
+        onVariantReorder={handleVariantReorder}
       />
       <ProductVariantDeleteDialog
         confirmButtonState={deleteVariantOpts.status}

@@ -11,6 +11,7 @@ import PageHeader from "@saleor/components/PageHeader";
 import SaveButtonBar from "@saleor/components/SaveButtonBar";
 import SeoForm from "@saleor/components/SeoForm";
 import { ProductErrorFragment } from "@saleor/fragments/types/ProductErrorFragment";
+import { TaxTypeFragment } from "@saleor/fragments/types/TaxTypeFragment";
 import useDateLocalize from "@saleor/hooks/useDateLocalize";
 import useFormset from "@saleor/hooks/useFormset";
 import useStateFromProps from "@saleor/hooks/useStateFromProps";
@@ -46,24 +47,28 @@ import ProductOrganization from "../ProductOrganization";
 import ProductPricing from "../ProductPricing";
 import ProductShipping from "../ProductShipping/ProductShipping";
 import ProductStocks, { ProductStockInput } from "../ProductStocks";
+import ProductTaxes from "../ProductTaxes";
 
 interface FormData extends MetadataFormData {
   availableForPurchase: string;
   basePrice: number;
-  publicationDate: string;
   category: string;
-  collections: string[];
+  changeTaxCode: boolean;
   chargeTaxes: boolean;
+  collections: string[];
   description: RawDraftContentState;
   isAvailable: boolean;
   isAvailableForPurchase: boolean;
   isPublished: boolean;
   name: string;
+  slug: string;
   productType: string;
+  publicationDate: string;
   seoDescription: string;
   seoTitle: string;
   sku: string;
   stockQuantity: number;
+  taxCode: string;
   trackInventory: boolean;
   visibleInListings: boolean;
   weight: string;
@@ -92,6 +97,7 @@ interface ProductCreatePageProps {
   saveButtonBarState: ConfirmButtonTransitionState;
   weightUnit: string;
   warehouses: SearchWarehouses_search_edges_node[];
+  taxTypes: TaxTypeFragment[];
   fetchCategories: (data: string) => void;
   fetchCollections: (data: string) => void;
   fetchProductTypes: (data: string) => void;
@@ -114,6 +120,7 @@ export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
   productTypes: productTypeChoiceList,
   saveButtonBarState,
   warehouses,
+  taxTypes,
   onBack,
   fetchProductTypes,
   weightUnit,
@@ -148,6 +155,7 @@ export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
     availableForPurchase: "",
     basePrice: 0,
     category: "",
+    changeTaxCode: false,
     chargeTaxes: false,
     collections: [],
     description: {} as any,
@@ -162,7 +170,9 @@ export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
     seoDescription: "",
     seoTitle: "",
     sku: null,
+    slug: "",
     stockQuantity: null,
+    taxCode: null,
     trackInventory: false,
     visibleInListings: false,
     weight: ""
@@ -180,10 +190,16 @@ export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
   >([]);
 
   const [productType, setProductType] = React.useState<ProductType>(null);
+  const [selectedTaxType, setSelectedTaxType] = useStateFromProps(null);
 
   const categories = getChoices(categoryChoiceList);
   const collections = getChoices(collectionChoiceList);
   const productTypes = getChoices(productTypeChoiceList);
+  const taxTypeChoices =
+    taxTypes?.map(taxType => ({
+      label: taxType.description,
+      value: taxType.taxCode
+    })) || [];
 
   const handleSubmit = (data: FormData) =>
     onSubmit({
@@ -227,6 +243,11 @@ export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
           setSelectedAttributes,
           setProductType,
           productTypeChoiceList
+        );
+        const handleTaxTypeSelect = createSingleAutocompleteSelectHandler(
+          change,
+          setSelectedTaxType,
+          taxTypeChoices
         );
 
         const changeMetadata = makeMetadataChangeHandler(change);
@@ -304,11 +325,14 @@ export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
                   </>
                 )}
                 <SeoForm
+                  allowEmptySlug={true}
                   helperText={intl.formatMessage({
                     defaultMessage:
                       "Add search engine title and description to make this product easier to find"
                   })}
                   title={data.seoTitle}
+                  slug={data.slug}
+                  slugPlaceholder={data.name}
                   titlePlaceholder={data.name}
                   description={data.seoDescription}
                   descriptionPlaceholder={data.seoTitle}
@@ -366,6 +390,15 @@ export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
                     })
                   }}
                   onChange={change}
+                />
+                <CardSpacer />
+                <ProductTaxes
+                  data={data}
+                  disabled={disabled}
+                  onChange={change}
+                  onTaxTypeChange={handleTaxTypeSelect}
+                  selectedTaxTypeDisplayName={selectedTaxType}
+                  taxTypes={taxTypes}
                 />
               </div>
             </Grid>
