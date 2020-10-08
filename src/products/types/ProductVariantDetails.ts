@@ -287,7 +287,7 @@ export interface ProductVariantDetails_productVariant {
 
 export interface ProductVariantDetails {
   /**
-   * Look up a product variant by ID.
+   * Look up a product variant by ID or SKU.
    */
   productVariant: ProductVariantDetails_productVariant | null;
 }

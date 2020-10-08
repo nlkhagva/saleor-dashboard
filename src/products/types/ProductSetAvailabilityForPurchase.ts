@@ -11,8 +11,14 @@ import { ProductErrorCode } from "./../../types/globalTypes";
 
 export interface ProductSetAvailabilityForPurchase_productSetAvailabilityForPurchase_product {
   __typename: "Product";
+  /**
+   * The ID of the object.
+   */
   id: string;
   availableForPurchase: any | null;
+  /**
+   * Whether the product is available for purchase.
+   */
   isAvailableForPurchase: boolean | null;
 }
 

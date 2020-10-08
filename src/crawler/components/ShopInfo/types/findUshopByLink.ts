@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -13,8 +14,8 @@ export interface findUshopByLink_ushopByLink {
    */
   id: string;
   name: string;
-  listSelection: string;
-  productSelection: string;
+  listSelection: string | null;
+  productSelection: string | null;
 }
 
 export interface findUshopByLink {

@@ -55,7 +55,13 @@ export interface SearchProductTypes_search_edges_node_productAttributes {
 
 export interface SearchProductTypes_search_edges_node_taxType {
   __typename: "TaxType";
+  /**
+   * Description of the tax type.
+   */
   description: string | null;
+  /**
+   * External tax code used to identify given tax group.
+   */
   taxCode: string | null;
 }
 
@@ -71,6 +77,9 @@ export interface SearchProductTypes_search_edges_node {
    * Product attributes of that product type.
    */
   productAttributes: (SearchProductTypes_search_edges_node_productAttributes | null)[] | null;
+  /**
+   * A type of tax. Assigned by enabled tax gateway
+   */
   taxType: SearchProductTypes_search_edges_node_taxType | null;
 }
 

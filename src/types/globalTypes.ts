@@ -593,6 +593,7 @@ export enum MetadataErrorCode {
   GRAPHQL_ERROR = "GRAPHQL_ERROR",
   INVALID = "INVALID",
   NOT_FOUND = "NOT_FOUND",
+  REQUIRED = "REQUIRED",
 }
 
 export enum OrderAction {
@@ -828,6 +829,7 @@ export enum ProductErrorCode {
   INVALID = "INVALID",
   NOT_FOUND = "NOT_FOUND",
   NOT_PRODUCTS_IMAGE = "NOT_PRODUCTS_IMAGE",
+  NOT_PRODUCTS_VARIANT = "NOT_PRODUCTS_VARIANT",
   REQUIRED = "REQUIRED",
   UNIQUE = "UNIQUE",
   VARIANT_NO_DIGITAL_CONTENT = "VARIANT_NO_DIGITAL_CONTENT",
@@ -1576,6 +1578,7 @@ export interface ProductCreateInput {
   sku?: string | null;
   trackInventory?: boolean | null;
   basePrice?: any | null;
+  ushop?: string | null;
   visibleInListings?: boolean | null;
   productType: string;
   stocks?: StockInput[] | null;
@@ -1613,6 +1616,7 @@ export interface ProductInput {
   sku?: string | null;
   trackInventory?: boolean | null;
   basePrice?: any | null;
+  ushop?: string | null;
   visibleInListings?: boolean | null;
 }
 

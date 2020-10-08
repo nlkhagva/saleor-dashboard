@@ -127,7 +127,13 @@ export interface ProductUpdate_productUpdate_product_productType_variantAttribut
 
 export interface ProductUpdate_productUpdate_product_productType_taxType {
   __typename: "TaxType";
+  /**
+   * Description of the tax type.
+   */
   description: string | null;
+  /**
+   * External tax code used to identify given tax group.
+   */
   taxCode: string | null;
 }
 
@@ -143,6 +149,9 @@ export interface ProductUpdate_productUpdate_product_productType {
   variantAttributes: (ProductUpdate_productUpdate_product_productType_variantAttributes | null)[] | null;
   name: string;
   hasVariants: boolean;
+  /**
+   * A type of tax. Assigned by enabled tax gateway
+   */
   taxType: ProductUpdate_productUpdate_product_productType_taxType | null;
 }
 
@@ -232,6 +241,9 @@ export interface ProductUpdate_productUpdate_product_privateMetadata {
 
 export interface ProductUpdate_productUpdate_product_defaultVariant {
   __typename: "ProductVariant";
+  /**
+   * The ID of the object.
+   */
   id: string;
 }
 
@@ -384,7 +396,13 @@ export interface ProductUpdate_productUpdate_product_weight {
 
 export interface ProductUpdate_productUpdate_product_taxType {
   __typename: "TaxType";
+  /**
+   * Description of the tax type.
+   */
   description: string | null;
+  /**
+   * External tax code used to identify given tax group.
+   */
   taxCode: string | null;
 }
 
@@ -444,6 +462,9 @@ export interface ProductUpdate_productUpdate_product {
    */
   variants: (ProductUpdate_productUpdate_product_variants | null)[] | null;
   weight: ProductUpdate_productUpdate_product_weight | null;
+  /**
+   * A type of tax. Assigned by enabled tax gateway
+   */
   taxType: ProductUpdate_productUpdate_product_taxType | null;
   availableForPurchase: any | null;
   visibleInListings: boolean;

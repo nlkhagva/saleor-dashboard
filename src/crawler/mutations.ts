@@ -1,11 +1,14 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
-import { TypedMutation } from '../mutations';
-import { crawlerFragment } from './queries';
-import { CrawlerBulkRemove, CrawlerBulkRemoveVariables } from './types/CrawlerBulkRemove';
-import { CrawlerCreate, CrawlerCreateVariables } from './types/CrawlerCreate';
-import { CrawlerRemove, CrawlerRemoveVariables } from './types/CrawlerRemove';
-import { CrawlerUpdate, CrawlerUpdateVariables } from './types/CrawlerUpdate';
+import { TypedMutation } from "../mutations";
+import { crawlerFragment } from "./queries";
+import {
+  CrawlerBulkRemove,
+  CrawlerBulkRemoveVariables
+} from "./types/CrawlerBulkRemove";
+import { CrawlerCreate, CrawlerCreateVariables } from "./types/CrawlerCreate";
+import { CrawlerRemove, CrawlerRemoveVariables } from "./types/CrawlerRemove";
+import { CrawlerUpdate, CrawlerUpdateVariables } from "./types/CrawlerUpdate";
 
 const crawlerCreate = gql`
   ${crawlerFragment}

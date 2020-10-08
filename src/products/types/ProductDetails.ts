@@ -115,7 +115,13 @@ export interface ProductDetails_product_productType_variantAttributes {
 
 export interface ProductDetails_product_productType_taxType {
   __typename: "TaxType";
+  /**
+   * Description of the tax type.
+   */
   description: string | null;
+  /**
+   * External tax code used to identify given tax group.
+   */
   taxCode: string | null;
 }
 
@@ -131,6 +137,9 @@ export interface ProductDetails_product_productType {
   variantAttributes: (ProductDetails_product_productType_variantAttributes | null)[] | null;
   name: string;
   hasVariants: boolean;
+  /**
+   * A type of tax. Assigned by enabled tax gateway
+   */
   taxType: ProductDetails_product_productType_taxType | null;
 }
 
@@ -220,6 +229,9 @@ export interface ProductDetails_product_privateMetadata {
 
 export interface ProductDetails_product_defaultVariant {
   __typename: "ProductVariant";
+  /**
+   * The ID of the object.
+   */
   id: string;
 }
 
@@ -372,7 +384,13 @@ export interface ProductDetails_product_weight {
 
 export interface ProductDetails_product_taxType {
   __typename: "TaxType";
+  /**
+   * Description of the tax type.
+   */
   description: string | null;
+  /**
+   * External tax code used to identify given tax group.
+   */
   taxCode: string | null;
 }
 
@@ -432,6 +450,9 @@ export interface ProductDetails_product {
    */
   variants: (ProductDetails_product_variants | null)[] | null;
   weight: ProductDetails_product_weight | null;
+  /**
+   * A type of tax. Assigned by enabled tax gateway
+   */
   taxType: ProductDetails_product_taxType | null;
   availableForPurchase: any | null;
   visibleInListings: boolean;
@@ -439,7 +460,13 @@ export interface ProductDetails_product {
 
 export interface ProductDetails_taxTypes {
   __typename: "TaxType";
+  /**
+   * Description of the tax type.
+   */
   description: string | null;
+  /**
+   * External tax code used to identify given tax group.
+   */
   taxCode: string | null;
 }
 
@@ -448,6 +475,9 @@ export interface ProductDetails {
    * Look up a product by ID.
    */
   product: ProductDetails_product | null;
+  /**
+   * List of all tax rates available from tax gateway.
+   */
   taxTypes: (ProductDetails_taxTypes | null)[] | null;
 }
 
