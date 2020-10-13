@@ -36,7 +36,7 @@ const UshopTable = ({ ushop, classes, canFulfill, onFulfill }: any) => {
     <>
       <TableHead>
         <TableRow>
-          <TableCell className={classes.colName} colSpan={4}>
+          <TableCell className={classes.colName} colSpan={5}>
             <span style={{ textTransform: "uppercase" }}>
               {`${ushop.name} (${quantity})`}
             </span>
@@ -67,18 +67,22 @@ const UshopTable = ({ ushop, classes, canFulfill, onFulfill }: any) => {
         </TableRow>
       </TableHead>
       <TableBody>
-        {ushop.lines.map(line => (
+        {ushop.lines.map((line, index) => (
           <TableRow
             className={!!line ? classes.clickableRow : undefined}
             hover={!!line}
             key={maybe(() => line.id)}
           >
+            <TableCell className={classes.colNumber}>{index + 1}</TableCell>
             <TableCellAvatar
               className={classes.colName}
               thumbnail={maybe(() => line.thumbnail.url)}
             >
               <Typography variant="caption">
                 {maybe(() => line.productName) || <Skeleton />}
+              </Typography>
+              <Typography variant="caption">
+                {maybe(() => line.variant.name)}
               </Typography>
 
               <Typography color="textSecondary" variant="caption">
@@ -144,7 +148,7 @@ const UshopTable = ({ ushop, classes, canFulfill, onFulfill }: any) => {
           <UkShippingRow line={ushop.ukShipping} classes={classes} />
         )}
         <TableRow>
-          <TableCell colSpan={4}>
+          <TableCell colSpan={5}>
             {canFulfill && (
               <Button
                 variant="text"

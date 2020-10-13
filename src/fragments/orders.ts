@@ -80,6 +80,9 @@ export const fulfillmentFragment = gql`
       orderLine {
         ...OrderLineFragment
       }
+      changedDate
+      soonDate
+      ushopStatus
     }
     fulfillmentOrder
     status

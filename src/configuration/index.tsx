@@ -1,5 +1,6 @@
 import { attributeListUrl } from "@saleor/attributes/urls";
 import { WindowTitle } from "@saleor/components/WindowTitle";
+import { crawlerSection } from "@saleor/crawler/urls";
 import useNavigator from "@saleor/hooks/useNavigator";
 import useUser from "@saleor/hooks/useUser";
 import Attributes from "@saleor/icons/Attributes";
@@ -25,6 +26,7 @@ import { siteSettingsUrl } from "@saleor/siteSettings/urls";
 import { staffListUrl } from "@saleor/staff/urls";
 import { taxSection } from "@saleor/taxes/urls";
 import { PermissionEnum } from "@saleor/types/globalTypes";
+import { ushopSection } from "@saleor/ushop/urls";
 import { warehouseSection } from "@saleor/warehouses/urls";
 import React from "react";
 import { IntlShape, useIntl } from "react-intl";
@@ -33,6 +35,33 @@ import ConfigurationPage, { MenuSection } from "./ConfigurationPage";
 
 export function createConfigurationMenu(intl: IntlShape): MenuSection[] {
   return [
+    {
+      label: intl.formatMessage({
+        defaultMessage: "Ushop тохиргоо"
+      }),
+      menuItems: [
+        {
+          description: intl.formatMessage({
+            defaultMessage: "Бараа crawler дах хэсэг",
+            id: "configurationMenuCrawler"
+          }),
+          icon: <Taxes fontSize="inherit" viewBox="0 0 44 44" />,
+          permission: PermissionEnum.MANAGE_PRODUCTS,
+          title: intl.formatMessage(sectionNames.crawler),
+          url: crawlerSection
+        },
+        {
+          description: intl.formatMessage({
+            defaultMessage: "Английн онлайн дэлгүүрүүдийн жагсаалт",
+            id: "configurationMenuUshop"
+          }),
+          icon: <Taxes fontSize="inherit" viewBox="0 0 44 44" />,
+          permission: PermissionEnum.MANAGE_PRODUCTS,
+          title: intl.formatMessage(sectionNames.ushop),
+          url: ushopSection
+        }
+      ]
+    },
     {
       label: intl.formatMessage({
         defaultMessage: "Attributes and Product Types"

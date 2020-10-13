@@ -115,7 +115,7 @@ function createMenuStructure(intl: IntlShape): IMenuItem[] {
         }
       ],
       icon: catalogIcon,
-      label: intl.formatMessage(commonMessages.discounts),
+      label: intl.formatMessage(sectionNames.package),
       permission: PermissionEnum.MANAGE_DISCOUNTS,
       testingContextId: "discounts"
     },

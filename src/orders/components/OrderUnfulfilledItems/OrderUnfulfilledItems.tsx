@@ -23,6 +23,9 @@ const useStyles = makeStyles(
     colNameLabel: {
       marginLeft: AVATAR_MARGIN
     },
+    colNumber: {
+      width: 70
+    },
     colPrice: {
       textAlign: "right",
       width: 120
@@ -44,7 +47,7 @@ const useStyles = makeStyles(
       paddingTop: 0
     },
     table: {
-      tableLayout: "fixed"
+      tableLayout: "auto"
     }
   },
   { name: "OrderUnfulfilledItems" }

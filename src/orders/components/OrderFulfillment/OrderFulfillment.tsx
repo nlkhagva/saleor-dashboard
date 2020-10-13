@@ -37,6 +37,9 @@ const useStyles = makeStyles(
     colNameLabel: {
       marginLeft: AVATAR_MARGIN
     },
+    colNumber: {
+      width: 70
+    },
     colPrice: {
       textAlign: "right",
       width: 120
@@ -129,6 +132,13 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
 
   const ushop = maybe(() => lines[0].orderLine.variant.product.ushop);
   const style = status === FulfillmentStatus.FULFILLED ? {} : { opacity: 0.5 };
+  const soonDateStatus = ["shipping"];
+  const isSoonDate = line =>
+    soonDateStatus.includes(line.ushopStatus.toLowerCase())
+      ? line.changedDate
+      : line.soonDate;
+  const ushopStatusRender = (line: any) =>
+    `${line.ushopStatus} /${isSoonDate(line)}/`;
 
   return (
     <Card style={style}>
@@ -219,18 +229,26 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
       <ResponsiveTable className={classes.table}>
         {/* <TableHeader classes={classes} /> */}
         <TableBody>
-          {renderCollection(lines, line => (
+          {renderCollection(lines, (line, index) => (
             <TableRow
               className={!!line ? classes.clickableRow : undefined}
               hover={!!line}
               key={maybe(() => line.id)}
             >
+              <TableCell className={classes.colNumber}>{index + 1}</TableCell>
               <TableCellAvatar
                 className={classes.colName}
                 thumbnail={maybe(() => line.orderLine.thumbnail.url)}
               >
+                <Typography variant="caption" color="error">
+                  {maybe(() => ushopStatusRender(line)) || <Skeleton />}
+                </Typography>
+
                 <Typography variant="caption">
                   {maybe(() => line.orderLine.productName) || <Skeleton />}
+                </Typography>
+                <Typography variant="caption">
+                  {maybe(() => line.orderLine.variant.name)}
                 </Typography>
 
                 <Typography color="textSecondary" variant="caption">
@@ -248,7 +266,8 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
                         i => i.value && metakeyInfo.includes(i.key)
                       ) || []
                     )
-                      .map(i => `${i.key}: ${i.value}`)
+                      // .map(i => `${i.key}: ${i.value}`)
+                      .map(i => ` ${i.value}`)
                       .join(", ")}
                   </a>
                 </Typography>
