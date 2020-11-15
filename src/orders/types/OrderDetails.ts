@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { OrderEventsEmailsEnum, OrderEventsEnum, FulfillmentStatus, PaymentChargeStatusEnum, OrderStatus, OrderAction, JobStatusEnum, WeightUnitsEnum } from "./../../types/globalTypes";
+import { OrderEventsEmailsEnum, OrderEventsEnum, FulfillmentLineUshopStatus, FulfillmentStatus, PaymentChargeStatusEnum, OrderStatus, OrderAction, JobStatusEnum, WeightUnitsEnum } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: OrderDetails
@@ -260,6 +260,9 @@ export interface OrderDetails_order_fulfillments_lines {
   id: string;
   quantity: number;
   orderLine: OrderDetails_order_fulfillments_lines_orderLine | null;
+  changedDate: any | null;
+  soonDate: any | null;
+  ushopStatus: FulfillmentLineUshopStatus;
 }
 
 export interface OrderDetails_order_fulfillments_warehouse {

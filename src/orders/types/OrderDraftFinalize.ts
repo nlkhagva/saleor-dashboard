@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { OrderErrorCode, OrderEventsEmailsEnum, OrderEventsEnum, FulfillmentStatus, PaymentChargeStatusEnum, OrderStatus, OrderAction, JobStatusEnum } from "./../../types/globalTypes";
+import { OrderErrorCode, OrderEventsEmailsEnum, OrderEventsEnum, FulfillmentLineUshopStatus, FulfillmentStatus, PaymentChargeStatusEnum, OrderStatus, OrderAction, JobStatusEnum } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: OrderDraftFinalize
@@ -272,6 +272,9 @@ export interface OrderDraftFinalize_draftOrderComplete_order_fulfillments_lines 
   id: string;
   quantity: number;
   orderLine: OrderDraftFinalize_draftOrderComplete_order_fulfillments_lines_orderLine | null;
+  changedDate: any | null;
+  soonDate: any | null;
+  ushopStatus: FulfillmentLineUshopStatus;
 }
 
 export interface OrderDraftFinalize_draftOrderComplete_order_fulfillments_warehouse {

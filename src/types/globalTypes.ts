@@ -1432,8 +1432,8 @@ export interface OrderFulfillLineInput {
 }
 
 export interface OrderFulfillStockInput {
-  quantity?: number | null;
-  warehouse?: string | null;
+  quantity: number;
+  warehouse: string;
 }
 
 export interface OrderLineCreateInput {

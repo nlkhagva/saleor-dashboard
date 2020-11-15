@@ -4,27 +4,23 @@ import gql from "graphql-tag";
 // import React from 'react';
 
 export const CREATE_PRODUCT = gql`
-  mutation ProductCreate(
+  mutation ProductCreate2(
     $category: ID!
     $chargeTaxes: Boolean!
     $isPublished: Boolean!
     $name: String!
     $basePrice: Decimal
-    $uprice: Decimal
     $productType: ID!
     $sku: String
-    $ulink: String
     $stockQuantity: Int
     $ushop: ID
     $linkImages: JSONString
   ) {
     productCreate(
       input: {
-        ulink: $ulink
         name: $name
         ushop: $ushop
         basePrice: $basePrice
-        uprice: $uprice
         productType: $productType
         category: $category
         chargeTaxes: $chargeTaxes
@@ -41,8 +37,6 @@ export const CREATE_PRODUCT = gql`
       }
       product {
         id
-        uprice
-        ulink
         productType {
           variantAttributes {
             id
@@ -66,7 +60,7 @@ export const CREATE_PRODUCT = gql`
 `;
 
 export const CREATE_VARIANT = gql`
-  mutation ProductVariantBulkCreate(
+  mutation ProductVariantBulkCreate2(
     $id: ID!
     $inputs: [ProductVariantBulkCreateInput]!
   ) {
@@ -90,7 +84,7 @@ export const CREATE_VARIANT = gql`
 
 export const searchProductTypes = gql`
   ${pageInfoFragment}
-  query SearchProductTypes($after: String, $first: Int!, $query: String!) {
+  query SearchProductTypes2($after: String, $first: Int!, $query: String!) {
     search: productTypes(
       after: $after
       first: $first
@@ -124,7 +118,7 @@ export const searchProductTypes = gql`
 
 export const searchCategories = gql`
   ${pageInfoFragment}
-  query SearchCategories($after: String, $first: Int!, $query: String!) {
+  query SearchCategories2($after: String, $first: Int!, $query: String!) {
     search: categories(after: $after, first: $first, query: $query) {
       edges {
         node {
