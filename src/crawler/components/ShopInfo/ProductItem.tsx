@@ -114,9 +114,9 @@ const ProductItem: React.FC<ProductItemProps> = ({
         </h5>
       </div>
       <div>
-        {product.linkImages.data.length > 0 && (
+        {product.linkImages.length > 0 && (
           <div className={classes.productImage}>
-            {product.linkImages.data.slice(0, 3).map((image, index) => (
+            {product.linkImages.slice(0, 3).map((image, index) => (
               <img
                 key={index}
                 src={image}

@@ -4,7 +4,8 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import SingleAutocompleteSelectField from "@saleor/components/SingleAutocompleteSelectField";
 import { maybe } from "@saleor/misc";
-import { getChoices, getChoicesParent } from "@saleor/products/utils/data";
+import { getChoices } from "@saleor/products/utils/data";
+// import { getChoices, getChoicesParent } from "@saleor/products/utils/data";
 import useCategorySearch from "@saleor/searches/useCategorySearch";
 import useProductTypeSearch from "@saleor/searches/useProductTypeSearch";
 import React, { useState } from "react";
@@ -86,14 +87,11 @@ const ProductsSave: React.FC<ProductItemProps> = ({
     first: 100,
     query: ""
   };
-
-  const {
-    loadMore: loadMoreCategories,
-    search: searchCategory,
-    result: searchCategoryOpts
-  } = useCategorySearch({
-    variables: searchDefault
-  });
+  const searchDefaultCategory = {
+    after: null,
+    first: 100,
+    query: ""
+  };
 
   const {
     loadMore: loadMoreProductTypes,
@@ -101,6 +99,14 @@ const ProductsSave: React.FC<ProductItemProps> = ({
     result: searchProductTypesOpts
   } = useProductTypeSearch({
     variables: searchDefault
+  });
+
+  const {
+    loadMore: loadMoreCategories,
+    search: searchCategory,
+    result: searchCategoryOpts
+  } = useCategorySearch({
+    variables: searchDefaultCategory
   });
 
   const productSaveComplete = () => {
@@ -141,6 +147,7 @@ const ProductsSave: React.FC<ProductItemProps> = ({
       const tmp = searchProductTypesOpts.data.search.edges
         .map(edge => edge.node)
         .find(node => node.id === e.target.value);
+
       setSelectedPType(tmp);
 
       if (usedProductTypes.find(i => i.id === e.target.value) === undefined) {
@@ -334,9 +341,11 @@ const ProductsSave: React.FC<ProductItemProps> = ({
                     displayValue={selectedCategory.name}
                     name="category"
                     label={"Category"}
-                    choices={getChoicesParent(
-                      maybe(() => searchCategoryOpts.data.search.edges, []).map(
-                        edge => edge.node
+                    choices={getChoices(
+                      maybe(() =>
+                        searchCategoryOpts.data.search.edges.map(
+                          edge => edge.node
+                        )
                       )
                     )}
                     value={selectedCategory.id}
@@ -405,6 +414,7 @@ const ProductsSave: React.FC<ProductItemProps> = ({
             </ul> */}
                 </div>
                 <div>
+                  {/* {console.log(crawledData)} */}
                   {crawledData
                     .filter(el => el.show)
                     .sort((a, b) =>

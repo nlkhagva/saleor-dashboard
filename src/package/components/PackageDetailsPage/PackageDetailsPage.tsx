@@ -31,6 +31,7 @@ import { getFormErrors } from "@saleor/utils/errors";
 import React from "react";
 import { useIntl } from "react-intl";
 
+import Customer from "../Customer";
 import Ordernumber from "../Ordernumber";
 import PackageLines from "./PackageLines";
 
@@ -142,6 +143,13 @@ const PackageDetailsPage: React.FC<DetailsPageProps> = ({
                 />
               )}
               {!disabled && object && <PackageLines lines={object.lines} />}
+
+              {!disabled && object && (
+                <Customer
+                  shippingAddress={object.shippingAddress}
+                  senderAddress={object.senderAddress}
+                />
+              )}
             </div>
             <div>
               <Card data-test="packageInfoSection">

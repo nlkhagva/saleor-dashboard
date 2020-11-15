@@ -70,7 +70,7 @@ export const GaduurDetailsView: React.FC<GaduurCreateProps> = ({
 
   return (
     <>
-      <WindowTitle title="Гадуур дагавар үүсгэх" />
+      <WindowTitle title="Гадуур дэлгэрэнгүй" />
       <GaduurDetailsPage
         disabled={loading || updateGaduurOpts.loading}
         errors={updateGaduurOpts.data?.gaduurUpdate.errors || []}

@@ -103,7 +103,7 @@ const apolloClient = new ApolloClient({
   link: authLink.concat(link)
 });
 
-export const socketURI = "http://localhost:3012/";
+export const socketURI = "http://ushop.reactx.space:3012";
 export const socketOptions = { transports: ["websocket"] };
 
 const App: React.FC = () => {

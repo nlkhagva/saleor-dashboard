@@ -12,6 +12,7 @@ import {
   withStyles
 } from "@material-ui/core/styles";
 import useNotifier from "@saleor/hooks/useNotifier";
+import { socketURI } from "@saleor/index";
 import clsx from "clsx";
 import React, { useState } from "react";
 import { Event } from "react-socket-io";
@@ -35,7 +36,7 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
 }) => {
   const [saveCrawledData] = useMutation(crawlerUpdate);
 
-  const crawlerServerURI = "http://localhost:3012";
+  const crawlerServerURI = socketURI;
   const notify = useNotifier();
   const useStyles = makeStyles(
     (theme: Theme) =>
