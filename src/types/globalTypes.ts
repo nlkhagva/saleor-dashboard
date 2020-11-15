@@ -482,6 +482,19 @@ export enum FulfillmentUshopStatus {
   SHIPPING = "SHIPPING",
 }
 
+/**
+ * An enumeration.
+ */
+export enum GaduurPackageStatus {
+  CANCELED = "CANCELED",
+  DELAYED = "DELAYED",
+  DRAFT = "DRAFT",
+  INMONGOLIA = "INMONGOLIA",
+  NEW = "NEW",
+  RECEIVED = "RECEIVED",
+  SHIPPING = "SHIPPING",
+}
+
 export enum GaduurSortField {
   NAME = "NAME",
   PUBLICATION_DATE = "PUBLICATION_DATE",
@@ -1346,6 +1359,11 @@ export interface GaduurInput {
   shippingType?: string | null;
   isPublished?: boolean | null;
   publicationDate?: string | null;
+  status?: string | null;
+  startDate?: string | null;
+  endDate?: string | null;
+  receivedDate?: string | null;
+  trackingNumber?: string | null;
 }
 
 export interface GaduurSortingInput {

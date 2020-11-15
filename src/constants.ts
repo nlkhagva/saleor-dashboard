@@ -14,3 +14,13 @@ export const SHIPPING_TYPES = [
   { label: "Газар", value: "ground" },
   { label: "Далай", value: "boat" }
 ];
+
+export const SHIPPING_STATUS = [
+  { label: "Draft", value: "DRAFT" },
+  { label: "Шинэ", value: "NEW" },
+  { label: "Тээвэрлэж буй", value: "SHIPPING" },
+  { label: "Монголд", value: "INMONGOLIA" },
+  { label: "Хүлээн авсан", value: "RECEIVED" },
+  { label: "Саатсан", value: "DELAYED" },
+  { label: "Цуцалсан", value: "CANCELED" }
+];

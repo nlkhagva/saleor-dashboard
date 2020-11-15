@@ -9,7 +9,7 @@ import React from "react";
 import { useIntl } from "react-intl";
 
 import GaduurDeleteDialog from "../components/GaduurDeleteDialog";
-import GaduurDetailsPage from "../components/GaduurDetailsPage";
+import GaduurViewPage from "../components/GaduurViewPage";
 import { useGaduurDelete, useGaduurUpdate } from "../mutations";
 import { useGaduurDetails } from "../queries";
 import { GaduurUpdate as GaduurUpdateData } from "../types/GaduurUpdate";
@@ -71,7 +71,7 @@ export const GaduurDetailsView: React.FC<GaduurCreateProps> = ({
   return (
     <>
       <WindowTitle title="Гадуур дэлгэрэнгүй" />
-      <GaduurDetailsPage
+      <GaduurViewPage
         disabled={loading || updateGaduurOpts.loading}
         errors={updateGaduurOpts.data?.gaduurUpdate.errors || []}
         saveButtonBarState={updateGaduurTransitionState}
@@ -84,13 +84,18 @@ export const GaduurDetailsView: React.FC<GaduurCreateProps> = ({
               id,
               input: {
                 isPublished: data.isPublished,
-                name: data.name,
                 publicationDate: data.isPublished
                   ? null
                   : data.publicationDate === ""
                   ? null
                   : data.publicationDate,
-                shippingType: data.shippingType
+                status: data.status.toLowerCase(),
+                startDate: data.startDate === "" ? null : data.startDate,
+                endDate: data.endDate === "" ? null : data.endDate,
+                trackingNumber:
+                  data.trackingNumber === "" ? null : data.trackingNumber,
+                receivedDate:
+                  data.receivedDate === "" ? null : data.receivedDate
               }
             }
           })
