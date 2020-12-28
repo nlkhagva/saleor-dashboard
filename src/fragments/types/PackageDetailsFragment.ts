@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { PackageNetOrGross } from "./../../types/globalTypes";
+import { PackageNetOrGross, GaduurPackageUstatus } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL fragment: PackageDetailsFragment
@@ -16,6 +16,14 @@ export interface PackageDetailsFragment_gaduur {
    */
   id: string;
   name: string;
+  shippingType: string | null;
+  isPublished: boolean;
+  publicationDate: any | null;
+  ustatus: GaduurPackageUstatus;
+  startDate: any | null;
+  endDate: any | null;
+  receivedDate: any | null;
+  trackingNumber: string | null;
 }
 
 export interface PackageDetailsFragment_shippingAddress_country {

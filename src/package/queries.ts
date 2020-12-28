@@ -61,7 +61,7 @@ const packageDetails = gql`
         fulfillmentline {
           id
           quantity
-          ushopStatus
+          ustatus
           changedDate
           soonDate
           orderLine {
@@ -134,14 +134,14 @@ const fulfillOrdernumber = gql`
         }
       }
       id
-      status
       trackingNumber
-      ushopStatus
+      status
+      ustatus
       ukDate
       lines {
         id
         quantity
-        ushopStatus
+        ustatus
         changedDate
         soonDate
         orderLine {
@@ -191,14 +191,14 @@ const fulfillOrdernumber = gql`
           }
         }
         id
-        status
         trackingNumber
-        ushopStatus
+        status
+        ustatus
         ukDate
         lines {
           id
           quantity
-          ushopStatus
+          ustatus
           changedDate
           soonDate
           orderLine {

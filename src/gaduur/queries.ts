@@ -1,14 +1,15 @@
-import { gaduurDetailsFragment } from "@saleor/fragments/gaduur";
+import {
+  gaduurDetailsFragment,
+  gaduurFragment} from "@saleor/fragments/gaduur";
 import { pageInfoFragment } from "@saleor/fragments/pageInfo";
 import makeQuery from "@saleor/hooks/makeQuery";
 import gql from "graphql-tag";
 
 import { GaduurDetails, GaduurDetailsVariables } from "./types/GaduurDetails";
 import { GaduurList, GaduurListVariables } from "./types/GaduurList";
-import { NewGaduurs } from "./types/NewGaduurs";
 
 const gaduurList = gql`
-  ${gaduurDetailsFragment}
+  ${gaduurFragment}
   ${pageInfoFragment}
   query GaduurList(
     $first: Int
@@ -28,7 +29,7 @@ const gaduurList = gql`
     ) {
       edges {
         node {
-          ...GaduurDetailsFragment
+          ...GaduurFragment
         }
       }
       pageInfo {
@@ -53,13 +54,3 @@ export const useGaduurDetails = makeQuery<
   GaduurDetails,
   GaduurDetailsVariables
 >(gaduurDetails);
-
-const newGaduurs = gql`
-  query NewGaduurs {
-    newGaduurs {
-      id
-      name
-    }
-  }
-`;
-export const useNewGaduurList = makeQuery<NewGaduurs, {}>(newGaduurs);

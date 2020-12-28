@@ -14,10 +14,13 @@ import { SHIPPING_STATUS } from "@saleor/constants";
 import useDateLocalize from "@saleor/hooks/useDateLocalize";
 import { sectionNames } from "@saleor/intl";
 import { maybe } from "@saleor/misc";
-import { GaduurPackageStatus } from "@saleor/types/globalTypes";
+import { GaduurPackageUstatus } from "@saleor/types/globalTypes";
 import { getFormErrors } from "@saleor/utils/errors";
 import React from "react";
 import { useIntl } from "react-intl";
+
+import PackageList from "../PackageList";
+
 export interface GaduurFormData {
   isPublished: boolean;
   publicationDate: string;
@@ -53,23 +56,24 @@ const GaduurViewPage: React.FC<DetailsPageProps> = ({
   const localizeDate = useDateLocalize();
 
   const initialForm: GaduurFormData = {
+    endDate: maybe(() => (gaduur?.endDate === null ? "" : gaduur?.endDate), ""),
     isPublished: maybe(() => gaduur?.isPublished, false),
     publicationDate: maybe(() => gaduur?.publicationDate, ""),
-    status: maybe(() => gaduur?.status, GaduurPackageStatus.NEW),
-    startDate: maybe(
-      () => (gaduur?.startDate === null ? "" : gaduur?.startDate),
-      ""
-    ),
-    endDate: maybe(() => (gaduur?.endDate === null ? "" : gaduur?.endDate), ""),
     receivedDate: maybe(
       () => (gaduur?.receivedDate === null ? "" : gaduur?.receivedDate),
       ""
     ),
+    startDate: maybe(
+      () => (gaduur?.startDate === null ? "" : gaduur?.startDate),
+      ""
+    ),
+    status: maybe(() => gaduur?.ustatus, GaduurPackageUstatus.NEW),
     trackingNumber: maybe(
       () => (gaduur?.trackingNumber === null ? "" : gaduur?.trackingNumber),
       ""
     )
   };
+
   const formErrors = getFormErrors(
     ["status", "startDate", "endDate", "receivedDate", "trackingNumber"],
     errors
@@ -93,7 +97,11 @@ const GaduurViewPage: React.FC<DetailsPageProps> = ({
             }
           />
           <Grid>
-            <div></div>
+            <div>
+              {gaduur?.packages && (
+                <PackageList packages={gaduur?.packages.edges} />
+              )}
+            </div>
             <div>
               <Card data-test="generalInfoSection">
                 <CardContent>

@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { FulfillmentStatus, FulfillmentUshopStatus, FulfillmentLineUshopStatus } from "./../../types/globalTypes";
+import { FulfillmentStatus, FulfillmentUstatus, FulfillmentLineUstatus } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: Ready2Shipping
@@ -174,7 +174,7 @@ export interface Ready2Shipping_ready2shipping_lines {
    */
   id: string;
   quantity: number;
-  ushopStatus: FulfillmentLineUshopStatus;
+  ustatus: FulfillmentLineUstatus;
   changedDate: any | null;
   soonDate: any | null;
   orderLine: Ready2Shipping_ready2shipping_lines_orderLine | null;
@@ -321,7 +321,7 @@ export interface Ready2Shipping_ready2shipping_others2shipping_lines {
    */
   id: string;
   quantity: number;
-  ushopStatus: FulfillmentLineUshopStatus;
+  ustatus: FulfillmentLineUstatus;
   changedDate: any | null;
   soonDate: any | null;
   orderLine: Ready2Shipping_ready2shipping_others2shipping_lines_orderLine | null;
@@ -334,9 +334,9 @@ export interface Ready2Shipping_ready2shipping_others2shipping {
    * The ID of the object.
    */
   id: string;
-  status: FulfillmentStatus;
   trackingNumber: string;
-  ushopStatus: FulfillmentUshopStatus;
+  status: FulfillmentStatus;
+  ustatus: FulfillmentUstatus;
   ukDate: any | null;
   /**
    * List of lines for the fulfillment.
@@ -351,9 +351,9 @@ export interface Ready2Shipping_ready2shipping {
    * The ID of the object.
    */
   id: string;
-  status: FulfillmentStatus;
   trackingNumber: string;
-  ushopStatus: FulfillmentUshopStatus;
+  status: FulfillmentStatus;
+  ustatus: FulfillmentUstatus;
   ukDate: any | null;
   /**
    * List of lines for the fulfillment.

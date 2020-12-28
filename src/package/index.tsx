@@ -37,7 +37,7 @@ const PackageDetails: React.FC<RouteComponentProps<{ id: string }>> = ({
   return (
     <PackageDetailsView
       id={decodeURIComponent(match.params.id)}
-      params={params}
+      routeParams={params}
     />
   );
 };
@@ -47,12 +47,7 @@ const PackageCreatePage: React.FC<RouteComponentProps<{
 }>> = ({ location }) => {
   const qs = parseQs(location.search.substr(1));
   const params: PackageUrlQueryParams = qs;
-  return (
-    <PackageCreate
-      // ordernumber={decodeURIComponent(match.params.ordernumber)}
-      ordernumber={params?.ordernumber || ""}
-    />
-  );
+  return <PackageCreate routeParams={params || ""} />;
 };
 
 export const PackageSection: React.FC = () => {

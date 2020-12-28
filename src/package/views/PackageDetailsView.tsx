@@ -1,10 +1,11 @@
 import NotFoundPage from "@saleor/components/NotFoundPage";
 import { WindowTitle } from "@saleor/components/WindowTitle";
-import { useNewGaduurList } from "@saleor/gaduur/queries";
+import { DEFAULT_INITIAL_SEARCH_DATA } from "@saleor/config";
 import useNavigator from "@saleor/hooks/useNavigator";
 import useNotifier from "@saleor/hooks/useNotifier";
 import { commonMessages } from "@saleor/intl";
 import { getMutationStatus, getStringOrPlaceholder } from "@saleor/misc";
+import useGaduurSearchSearch from "@saleor/searches/useGaduurSearch";
 import createDialogActionHandlers from "@saleor/utils/handlers/dialogActionHandlers";
 import React from "react";
 import { useIntl } from "react-intl";
@@ -18,23 +19,28 @@ import { packageListUrl, packageUrl, PackageUrlQueryParams } from "../urls";
 
 export interface PackageCreateProps {
   id: string;
-  params: PackageUrlQueryParams;
+  routeParams: PackageUrlQueryParams;
 }
 
 export const PackageDetailsView: React.FC<PackageCreateProps> = ({
   id,
-  params
+  routeParams
 }) => {
   const navigate = useNavigator();
   const notify = useNotifier();
   const intl = useIntl();
+
+  const {
+    loadMore: loadMoreGaduurs,
+    search: searchGaduur,
+    result: searchGaduurOpts
+  } = useGaduurSearchSearch({
+    variables: DEFAULT_INITIAL_SEARCH_DATA
+  });
+
   const { data, loading } = usePackageDetails({
     displayLoader: true,
     variables: { id }
-  });
-
-  const { data: newGaduursData, loading: loadingGaduurs } = useNewGaduurList({
-    displayLoader: true
   });
 
   const [updatePackage, updatePackageOpts] = usePackageUpdate({
@@ -66,7 +72,7 @@ export const PackageDetailsView: React.FC<PackageCreateProps> = ({
   const [openModal, closeModal] = createDialogActionHandlers(
     navigate,
     params => packageUrl(id, params),
-    params
+    routeParams
   );
 
   if (data?.package === null) {
@@ -77,21 +83,24 @@ export const PackageDetailsView: React.FC<PackageCreateProps> = ({
     <>
       <WindowTitle title="Илгээмж" />
       <PackageDetailsPage
-        disabled={loading || updatePackageOpts.loading || loadingGaduurs}
+        disabled={loading || updatePackageOpts.loading}
         errors={updatePackageOpts.data?.packageUpdate.errors || []}
+        fetchGaduurs={searchGaduur}
+        gaduurs={(searchGaduurOpts.data?.search.edges || []).map(
+          edge => edge.node
+        )}
+        fetchMoreGaduurs={{
+          hasMore: searchGaduurOpts.data?.search.pageInfo.hasNextPage,
+          loading: searchGaduurOpts.loading,
+          onFetchMore: loadMoreGaduurs
+        }}
         saveButtonBarState={updatePackageTransitionState}
         lines={[]}
         setLines={() => void 0}
         object={data?.package || null}
         onBack={() => navigate(packageListUrl())}
         onDelete={() => openModal("delete")}
-        ordernumber=""
-        gaduurChoices={
-          newGaduursData?.newGaduurs.map(g => ({
-            label: g.name,
-            value: g.id
-          })) || []
-        }
+        routeParams={routeParams}
         onSubmit={data =>
           updatePackage({
             variables: {
@@ -116,7 +125,7 @@ export const PackageDetailsView: React.FC<PackageCreateProps> = ({
         name={getStringOrPlaceholder(data?.package?.name)}
         onClose={closeModal}
         onConfirm={() => deletePackage({ variables: { id } })}
-        open={params.action === "delete"}
+        open={routeParams.action === "delete"}
       />
     </>
   );

@@ -27,10 +27,12 @@ export const GaduurDetailsView: React.FC<GaduurCreateProps> = ({
   const navigate = useNavigator();
   const notify = useNotifier();
   const intl = useIntl();
-  const { data, loading } = useGaduurDetails({
+  const lk = useGaduurDetails({
     displayLoader: true,
     variables: { id }
   });
+
+  const { data, loading } = lk;
 
   const [updateGaduur, updateGaduurOpts] = useGaduurUpdate({
     onCompleted: (data: GaduurUpdateData) => {
@@ -83,19 +85,19 @@ export const GaduurDetailsView: React.FC<GaduurCreateProps> = ({
             variables: {
               id,
               input: {
+                endDate: data.endDate === "" ? null : data.endDate,
                 isPublished: data.isPublished,
                 publicationDate: data.isPublished
                   ? null
                   : data.publicationDate === ""
                   ? null
                   : data.publicationDate,
-                status: data.status.toLowerCase(),
+                receivedDate:
+                  data.receivedDate === "" ? null : data.receivedDate,
                 startDate: data.startDate === "" ? null : data.startDate,
-                endDate: data.endDate === "" ? null : data.endDate,
                 trackingNumber:
                   data.trackingNumber === "" ? null : data.trackingNumber,
-                receivedDate:
-                  data.receivedDate === "" ? null : data.receivedDate
+                ustatus: data.status.toLowerCase()
               }
             }
           })

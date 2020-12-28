@@ -396,3 +396,18 @@ export function transformFormToAddress<T>(
 export function getStringOrPlaceholder(s: string | undefined): string {
   return s || "...";
 }
+
+export function desc(a, b, orderBy) {
+  if (b[orderBy] < a[orderBy]) {
+    return -1;
+  }
+  if (b[orderBy] > a[orderBy]) {
+    return 1;
+  }
+  return 0;
+}
+export function mnName(user) {
+  return `${user.lastName ? user.lastName.trim().substr(0, 1) + "." : ""}${
+    user.firstName ? user.firstName.trim() : ""
+  }`;
+}

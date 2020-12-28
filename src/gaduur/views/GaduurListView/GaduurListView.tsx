@@ -60,7 +60,7 @@ const GaduurList: React.FC<GaduurListProps> = ({ params }) => {
       filter: getFilterVariables(params),
       sort: getSortQueryVariables(params)
     }),
-    [params]
+    [params, settings.rowNumber]
   );
 
   const { data, loading, refetch } = useGaduurList({

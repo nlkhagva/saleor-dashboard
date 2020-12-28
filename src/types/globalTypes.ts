@@ -455,9 +455,12 @@ export enum FileTypesEnum {
 /**
  * An enumeration.
  */
-export enum FulfillmentLineUshopStatus {
-  ATMGL = "ATMGL",
+export enum FulfillmentLineUstatus {
   ATUK = "ATUK",
+  CANCELED = "CANCELED",
+  DELAYED = "DELAYED",
+  DRAFT = "DRAFT",
+  INMONGOLIA = "INMONGOLIA",
   NEW = "NEW",
   RECEIVED = "RECEIVED",
   SHIPPING = "SHIPPING",
@@ -474,9 +477,12 @@ export enum FulfillmentStatus {
 /**
  * An enumeration.
  */
-export enum FulfillmentUshopStatus {
-  ATMGL = "ATMGL",
+export enum FulfillmentUstatus {
   ATUK = "ATUK",
+  CANCELED = "CANCELED",
+  DELAYED = "DELAYED",
+  DRAFT = "DRAFT",
+  INMONGOLIA = "INMONGOLIA",
   NEW = "NEW",
   RECEIVED = "RECEIVED",
   SHIPPING = "SHIPPING",
@@ -485,7 +491,8 @@ export enum FulfillmentUshopStatus {
 /**
  * An enumeration.
  */
-export enum GaduurPackageStatus {
+export enum GaduurPackageUstatus {
+  ATUK = "ATUK",
   CANCELED = "CANCELED",
   DELAYED = "DELAYED",
   DRAFT = "DRAFT",
@@ -1351,6 +1358,7 @@ export interface FulfillmentUpdateTrackingInput {
 }
 
 export interface GaduurFilterInput {
+  ustatus?: string | null;
   search?: string | null;
 }
 
@@ -1359,7 +1367,7 @@ export interface GaduurInput {
   shippingType?: string | null;
   isPublished?: boolean | null;
   publicationDate?: string | null;
-  status?: string | null;
+  ustatus?: string | null;
   startDate?: string | null;
   endDate?: string | null;
   receivedDate?: string | null;

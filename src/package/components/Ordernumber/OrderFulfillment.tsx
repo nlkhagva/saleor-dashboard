@@ -153,7 +153,7 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
           {renderCollection(lines, line => {
             const isItemSelected = isChecked(line);
             const isClickable =
-              line.ushopStatus === "NEW" || line.ushopStatus === "ATUK";
+              line.ustatus === "NEW" || line.ustatus === "ATUK";
             return (
               <TableRow
                 onClick={isClickable ? () => toggleCheck(line) : () => void 0}
@@ -198,7 +198,7 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
                     </a>
                   </Typography>
                   <Typography variant="caption" color="primary">
-                    {line.changedDate} / {getUshopStatus(line.ushopStatus)}
+                    {line.changedDate} / {getUshopStatus(line.ustatus)}
                   </Typography>
                 </TableCellAvatar>
 

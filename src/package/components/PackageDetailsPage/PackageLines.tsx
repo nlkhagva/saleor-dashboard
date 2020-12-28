@@ -168,7 +168,7 @@ const PackageLines: React.FC<PackageLinesProps> = props => {
                     </Typography>
                     <Typography variant="caption" color="primary">
                       {line.fulfillmentline.changedDate} /{" "}
-                      {getUshopStatus(line.fulfillmentline.ushopStatus)}
+                      {getUshopStatus(line.fulfillmentline.ustatus)}
                     </Typography>
                   </TableCellAvatar>
 

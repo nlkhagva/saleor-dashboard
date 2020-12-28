@@ -82,7 +82,7 @@ export const fulfillmentFragment = gql`
       }
       changedDate
       soonDate
-      ushopStatus
+      ustatus
     }
     fulfillmentOrder
     status

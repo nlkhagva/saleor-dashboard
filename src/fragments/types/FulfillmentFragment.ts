@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { FulfillmentLineUshopStatus, FulfillmentStatus } from "./../../types/globalTypes";
+import { FulfillmentLineUstatus, FulfillmentStatus } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL fragment: FulfillmentFragment
@@ -151,7 +151,7 @@ export interface FulfillmentFragment_lines {
   orderLine: FulfillmentFragment_lines_orderLine | null;
   changedDate: any | null;
   soonDate: any | null;
-  ushopStatus: FulfillmentLineUshopStatus;
+  ustatus: FulfillmentLineUstatus;
 }
 
 export interface FulfillmentFragment_warehouse {

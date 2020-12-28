@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { PackageInput, PackageNetOrGross } from "./../../types/globalTypes";
+import { PackageInput, PackageNetOrGross, GaduurPackageUstatus } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: PackageUpdate
@@ -28,6 +28,14 @@ export interface PackageUpdate_packageUpdate_package_gaduur {
    */
   id: string;
   name: string;
+  shippingType: string | null;
+  isPublished: boolean;
+  publicationDate: any | null;
+  ustatus: GaduurPackageUstatus;
+  startDate: any | null;
+  endDate: any | null;
+  receivedDate: any | null;
+  trackingNumber: string | null;
 }
 
 export interface PackageUpdate_packageUpdate_package_shippingAddress_country {

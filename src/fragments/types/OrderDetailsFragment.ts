@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { OrderEventsEmailsEnum, OrderEventsEnum, FulfillmentLineUshopStatus, FulfillmentStatus, PaymentChargeStatusEnum, OrderStatus, OrderAction, JobStatusEnum } from "./../../types/globalTypes";
+import { OrderEventsEmailsEnum, OrderEventsEnum, FulfillmentLineUstatus, FulfillmentStatus, PaymentChargeStatusEnum, OrderStatus, OrderAction, JobStatusEnum } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL fragment: OrderDetailsFragment
@@ -262,7 +262,7 @@ export interface OrderDetailsFragment_fulfillments_lines {
   orderLine: OrderDetailsFragment_fulfillments_lines_orderLine | null;
   changedDate: any | null;
   soonDate: any | null;
-  ushopStatus: FulfillmentLineUshopStatus;
+  ustatus: FulfillmentLineUstatus;
 }
 
 export interface OrderDetailsFragment_fulfillments_warehouse {

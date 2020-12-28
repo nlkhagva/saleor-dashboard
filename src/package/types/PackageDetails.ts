@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { PackageNetOrGross, FulfillmentLineUshopStatus } from "./../../types/globalTypes";
+import { PackageNetOrGross, GaduurPackageUstatus, FulfillmentLineUstatus } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: PackageDetails
@@ -16,6 +16,14 @@ export interface PackageDetails_package_gaduur {
    */
   id: string;
   name: string;
+  shippingType: string | null;
+  isPublished: boolean;
+  publicationDate: any | null;
+  ustatus: GaduurPackageUstatus;
+  startDate: any | null;
+  endDate: any | null;
+  receivedDate: any | null;
+  trackingNumber: string | null;
 }
 
 export interface PackageDetails_package_shippingAddress_country {
@@ -215,7 +223,7 @@ export interface PackageDetails_package_lines_fulfillmentline {
    */
   id: string;
   quantity: number;
-  ushopStatus: FulfillmentLineUshopStatus;
+  ustatus: FulfillmentLineUstatus;
   changedDate: any | null;
   soonDate: any | null;
   orderLine: PackageDetails_package_lines_fulfillmentline_orderLine | null;

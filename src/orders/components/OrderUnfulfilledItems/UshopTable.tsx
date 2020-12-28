@@ -31,6 +31,9 @@ const UshopTable = ({ ushop, classes, canFulfill, onFulfill }: any) => {
       )
       .reduce((a, b) => a + b, 0)
   };
+  const shippingTotal = ushop.ukShipping
+    ? ushop.ukShipping.unitPrice.gross.amount * ushop.ukShipping.quantity
+    : 0;
 
   return (
     <>
@@ -45,14 +48,17 @@ const UshopTable = ({ ushop, classes, canFulfill, onFulfill }: any) => {
               {` (${quantity} бараа) + `}
               {ushop.ukShipping ? (
                 <>
-                  <Money money={ushop.ukShipping.unitPrice.gross} />
+                  <Money
+                    money={{
+                      amount: shippingTotal,
+                      currency: ushop.ukShipping.unitPrice.gross.currency
+                    }}
+                  />
                   {" = "}
                   <Money
                     money={{
                       ...productTotal,
-                      amount:
-                        productTotal.amount +
-                        ushop.ukShipping.unitPrice.gross.amount
+                      amount: productTotal.amount + shippingTotal
                     }}
                   />
                 </>

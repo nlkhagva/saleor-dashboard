@@ -3,38 +3,28 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { GaduurFilterInput, GaduurSortingInput, GaduurPackageUstatus } from "./../../types/globalTypes";
-
 // ====================================================
-// GraphQL query operation: GaduurList
+// GraphQL query operation: SearchGaduurs
 // ====================================================
 
-export interface GaduurList_gaduurs_edges_node {
+export interface SearchGaduurs_search_edges_node {
   __typename: "Gaduur";
   /**
    * The ID of the object.
    */
   id: string;
   name: string;
-  shippingType: string | null;
-  isPublished: boolean;
-  publicationDate: any | null;
-  ustatus: GaduurPackageUstatus;
-  startDate: any | null;
-  endDate: any | null;
-  receivedDate: any | null;
-  trackingNumber: string | null;
 }
 
-export interface GaduurList_gaduurs_edges {
+export interface SearchGaduurs_search_edges {
   __typename: "GaduurCountableEdge";
   /**
    * The item at the end of the edge.
    */
-  node: GaduurList_gaduurs_edges_node;
+  node: SearchGaduurs_search_edges_node;
 }
 
-export interface GaduurList_gaduurs_pageInfo {
+export interface SearchGaduurs_search_pageInfo {
   __typename: "PageInfo";
   /**
    * When paginating forwards, the cursor to continue.
@@ -54,27 +44,24 @@ export interface GaduurList_gaduurs_pageInfo {
   startCursor: string | null;
 }
 
-export interface GaduurList_gaduurs {
+export interface SearchGaduurs_search {
   __typename: "GaduurCountableConnection";
-  edges: GaduurList_gaduurs_edges[];
+  edges: SearchGaduurs_search_edges[];
   /**
    * Pagination data for this connection.
    */
-  pageInfo: GaduurList_gaduurs_pageInfo;
+  pageInfo: SearchGaduurs_search_pageInfo;
 }
 
-export interface GaduurList {
+export interface SearchGaduurs {
   /**
    * List of the gaduur's.
    */
-  gaduurs: GaduurList_gaduurs | null;
+  search: SearchGaduurs_search | null;
 }
 
-export interface GaduurListVariables {
-  first?: number | null;
+export interface SearchGaduursVariables {
   after?: string | null;
-  last?: number | null;
-  before?: string | null;
-  filter?: GaduurFilterInput | null;
-  sort?: GaduurSortingInput | null;
+  first: number;
+  query: string;
 }

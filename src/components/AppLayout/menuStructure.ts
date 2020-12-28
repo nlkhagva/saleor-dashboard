@@ -4,6 +4,7 @@ import customerIcon from "@assets/images/menu-customers-icon.svg";
 // import discountsIcon from "@assets/images/menu-discounts-icon.svg";
 import homeIcon from "@assets/images/menu-home-icon.svg";
 import ordersIcon from "@assets/images/menu-orders-icon.svg";
+import packageIcon from "@assets/images/menu-package-icon.svg";
 import translationIcon from "@assets/images/menu-translation-icon.svg";
 import { gaduurListUrl } from "@saleor/gaduur/urls";
 import { commonMessages, sectionNames } from "@saleor/intl";
@@ -114,7 +115,7 @@ function createMenuStructure(intl: IntlShape): IMenuItem[] {
           url: packageListUrl()
         }
       ],
-      icon: catalogIcon,
+      icon: packageIcon,
       label: intl.formatMessage(sectionNames.package),
       permission: PermissionEnum.MANAGE_DISCOUNTS,
       testingContextId: "discounts"

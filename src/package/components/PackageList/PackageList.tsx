@@ -158,7 +158,7 @@ const PackageList: React.FC<PackageListProps> = props => {
           () => (
             <TableRow data-test="emptyListMessage">
               <TableCell colSpan={numberOfColumns}>
-                <FormattedMessage defaultMessage="Гадуур дагавар байхгүй байна" />
+                <FormattedMessage defaultMessage="Илгээмж байхгүй байна" />
               </TableCell>
             </TableRow>
           )

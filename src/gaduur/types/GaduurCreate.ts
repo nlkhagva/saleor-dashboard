@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { GaduurInput, GaduurPackageStatus, PackageNetOrGross } from "./../../types/globalTypes";
+import { GaduurInput, GaduurPackageUstatus, PackageNetOrGross } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: GaduurCreate
@@ -31,6 +31,13 @@ export interface GaduurCreate_gaduurCreate_gaduurPackage_packages_edges_node_per
    * Currency code.
    */
   currency: string;
+}
+
+export interface GaduurCreate_gaduurCreate_gaduurPackage_packages_edges_node_user {
+  __typename: "User";
+  lastName: string;
+  firstName: string;
+  phone: string | null;
 }
 
 export interface GaduurCreate_gaduurCreate_gaduurPackage_packages_edges_node_shippingAddress {
@@ -72,6 +79,7 @@ export interface GaduurCreate_gaduurCreate_gaduurPackage_packages_edges_node {
   grossWeight: number | null;
   created: any;
   perkgPrice: GaduurCreate_gaduurCreate_gaduurPackage_packages_edges_node_perkgPrice | null;
+  user: GaduurCreate_gaduurCreate_gaduurPackage_packages_edges_node_user | null;
   shippingAddress: GaduurCreate_gaduurCreate_gaduurPackage_packages_edges_node_shippingAddress | null;
   senderAddress: GaduurCreate_gaduurCreate_gaduurPackage_packages_edges_node_senderAddress | null;
 }
@@ -99,7 +107,7 @@ export interface GaduurCreate_gaduurCreate_gaduurPackage {
   shippingType: string | null;
   isPublished: boolean;
   publicationDate: any | null;
-  status: GaduurPackageStatus;
+  ustatus: GaduurPackageUstatus;
   startDate: any | null;
   endDate: any | null;
   receivedDate: any | null;

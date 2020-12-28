@@ -917,40 +917,7 @@ export const order = (): OrderDetails_order => ({
       __typename: "Fulfillment",
       fulfillmentOrder: 2,
       id: "RnVsZmlsbG1lbnQ6MjQ=",
-      lines: [
-        {
-          __typename: "FulfillmentLine",
-          id: "RnVsZmlsbG1lbnRMaW5lOjM5",
-          orderLine: {
-            __typename: "OrderLine",
-            id: "T3JkZXJMaW5lOjIz",
-            isShippingRequired: false,
-            productName: "Williams, Garcia and Walker (XS)",
-            productSku: "5-1337",
-            quantity: 2,
-            quantityFulfilled: 2,
-            thumbnail: {
-              __typename: "Image" as "Image",
-              url: placeholder
-            },
-            unitPrice: {
-              __typename: "TaxedMoney",
-              gross: {
-                __typename: "Money",
-                amount: 79.71,
-                currency: "USD"
-              },
-              net: {
-                __typename: "Money",
-                amount: 79.71,
-                currency: "USD"
-              }
-            },
-            variant: null
-          },
-          quantity: 1
-        }
-      ],
+      lines: [],
       status: FulfillmentStatus.FULFILLED,
       trackingNumber: "",
       ukDate: "2020-10-10",
@@ -960,40 +927,7 @@ export const order = (): OrderDetails_order => ({
       __typename: "Fulfillment",
       fulfillmentOrder: 1,
       id: "RnVsZmlsbG1lbnQ6OQ==",
-      lines: [
-        {
-          __typename: "FulfillmentLine",
-          id: "RnVsZmlsbG1lbnRMaW5lOjE1",
-          orderLine: {
-            __typename: "OrderLine",
-            id: "T3JkZXJMaW5lOjIz",
-            isShippingRequired: false,
-            productName: "Williams, Garcia and Walker (XS)",
-            productSku: "5-1337",
-            quantity: 2,
-            quantityFulfilled: 2,
-            thumbnail: {
-              __typename: "Image" as "Image",
-              url: placeholder
-            },
-            unitPrice: {
-              __typename: "TaxedMoney",
-              gross: {
-                __typename: "Money",
-                amount: 79.71,
-                currency: "USD"
-              },
-              net: {
-                __typename: "Money",
-                amount: 79.71,
-                currency: "USD"
-              }
-            },
-            variant: null
-          },
-          quantity: 1
-        }
-      ],
+      lines: [],
       status: FulfillmentStatus.FULFILLED,
       trackingNumber: "01nn12399su12nndfsy",
       ukDate: "2020-10-10",

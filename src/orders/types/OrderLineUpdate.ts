@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { OrderLineInput, OrderErrorCode, OrderEventsEmailsEnum, OrderEventsEnum, FulfillmentLineUshopStatus, FulfillmentStatus, PaymentChargeStatusEnum, OrderStatus, OrderAction, JobStatusEnum } from "./../../types/globalTypes";
+import { OrderLineInput, OrderErrorCode, OrderEventsEmailsEnum, OrderEventsEnum, FulfillmentLineUstatus, FulfillmentStatus, PaymentChargeStatusEnum, OrderStatus, OrderAction, JobStatusEnum } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: OrderLineUpdate
@@ -274,7 +274,7 @@ export interface OrderLineUpdate_draftOrderLineUpdate_order_fulfillments_lines {
   orderLine: OrderLineUpdate_draftOrderLineUpdate_order_fulfillments_lines_orderLine | null;
   changedDate: any | null;
   soonDate: any | null;
-  ushopStatus: FulfillmentLineUshopStatus;
+  ustatus: FulfillmentLineUstatus;
 }
 
 export interface OrderLineUpdate_draftOrderLineUpdate_order_fulfillments_warehouse {

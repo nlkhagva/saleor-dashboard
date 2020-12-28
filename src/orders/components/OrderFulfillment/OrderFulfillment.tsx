@@ -134,11 +134,11 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
   const style = status === FulfillmentStatus.FULFILLED ? {} : { opacity: 0.5 };
   const soonDateStatus = ["shipping"];
   const isSoonDate = line =>
-    soonDateStatus.includes(line.ushopStatus.toLowerCase())
+    soonDateStatus.includes(line.ustatus.toLowerCase())
       ? line.changedDate
       : line.soonDate;
   const ushopStatusRender = (line: any) =>
-    `${line.ushopStatus} /${isSoonDate(line)}/`;
+    `${line.ustatus} /${isSoonDate(line)}/`;
 
   return (
     <Card style={style}>

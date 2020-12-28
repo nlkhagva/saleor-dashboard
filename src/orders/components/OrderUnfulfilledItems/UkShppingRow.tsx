@@ -15,7 +15,7 @@ const UkShippingRow: React.FC<UkShippingProps> = ({ line, classes }) => (
     hover={!!line}
     key={maybe(() => line.id)}
   >
-    <TableCell className={classes.colSku} colSpan={3}>
+    <TableCell className={classes.colSku} colSpan={4}>
       <Typography variant="body2">
         {maybe(() => line.productName + " - " + line.variant.name) || (
           <Skeleton />

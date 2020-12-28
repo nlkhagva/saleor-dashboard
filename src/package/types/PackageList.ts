@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { PackageFilterInput, PackageSortingInput, PackageNetOrGross } from "./../../types/globalTypes";
+import { PackageFilterInput, PackageSortingInput, PackageNetOrGross, GaduurPackageUstatus } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: PackageList
@@ -16,6 +16,14 @@ export interface PackageList_packages_edges_node_gaduur {
    */
   id: string;
   name: string;
+  shippingType: string | null;
+  isPublished: boolean;
+  publicationDate: any | null;
+  ustatus: GaduurPackageUstatus;
+  startDate: any | null;
+  endDate: any | null;
+  receivedDate: any | null;
+  trackingNumber: string | null;
 }
 
 export interface PackageList_packages_edges_node_shippingAddress_country {

@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { GaduurPackageStatus, PackageNetOrGross } from "./../../types/globalTypes";
+import { GaduurPackageUstatus, PackageNetOrGross } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL fragment: GaduurDetailsFragment
@@ -19,6 +19,13 @@ export interface GaduurDetailsFragment_packages_edges_node_perkgPrice {
    * Currency code.
    */
   currency: string;
+}
+
+export interface GaduurDetailsFragment_packages_edges_node_user {
+  __typename: "User";
+  lastName: string;
+  firstName: string;
+  phone: string | null;
 }
 
 export interface GaduurDetailsFragment_packages_edges_node_shippingAddress {
@@ -60,6 +67,7 @@ export interface GaduurDetailsFragment_packages_edges_node {
   grossWeight: number | null;
   created: any;
   perkgPrice: GaduurDetailsFragment_packages_edges_node_perkgPrice | null;
+  user: GaduurDetailsFragment_packages_edges_node_user | null;
   shippingAddress: GaduurDetailsFragment_packages_edges_node_shippingAddress | null;
   senderAddress: GaduurDetailsFragment_packages_edges_node_senderAddress | null;
 }
@@ -87,7 +95,7 @@ export interface GaduurDetailsFragment {
   shippingType: string | null;
   isPublished: boolean;
   publicationDate: any | null;
-  status: GaduurPackageStatus;
+  ustatus: GaduurPackageUstatus;
   startDate: any | null;
   endDate: any | null;
   receivedDate: any | null;

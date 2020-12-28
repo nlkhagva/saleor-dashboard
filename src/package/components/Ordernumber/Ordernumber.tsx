@@ -1,53 +1,87 @@
-import React from "react";
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import YoutubeSearchedForIcon from "@material-ui/icons/YoutubeSearchedFor";
+import React, { useRef,useState } from "react";
+import { useIntl } from "react-intl";
 
-import { useOrdernumber } from "../../queries";
-import AddressFulfillment from "./AddressFulfillment";
-import OrderFulfillment from "./OrderFulfillment";
+import FulfillmentRender from "./FulfillmentRender";
+
+// import { useOrdernumber } from "../../queries";
 
 export interface OrdernumberProps {
-  ordernumber: string;
+  routeParams: any;
   lines: any;
   setLines: any;
 }
 
+const useStyles = makeStyles(
+  theme => ({
+    button: {
+      "&:hover": {
+        color: "red"
+      }
+    },
+    input: {
+      marginBottom: "1rem"
+    },
+    root: {
+      "& > svg": {
+        margin: theme.spacing(2)
+      }
+    }
+  }),
+  { name: "Ordernumber" }
+);
+
 const Ordernumber: React.FC<OrdernumberProps> = ({
   lines,
-  ordernumber,
+  routeParams,
   setLines
 }) => {
-  const { data: filfull, loading } = useOrdernumber({
-    displayLoader: true,
-    skip: ordernumber.length < 1,
-    variables: {
-      ordernumber
-    }
-  });
+  const intl = useIntl();
+  const classes = useStyles({});
 
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
+  const inputRef = useRef();
 
-  return filfull.ready2shipping ? (
+  const [ordernumber, setOrdernumber] = useState(
+    routeParams?.ordernumber || ""
+  );
+
+  const loadFulfillment = () => {
+    setOrdernumber((inputRef.current as HTMLInputElement).value);
+    // console.log(inputRef.current.value);
+    // setOrdernumber(e.target.value);
+  };
+
+  return (
     <>
-      <OrderFulfillment
-        checkedlines={lines}
-        setLines={setLines}
-        fulfillment={filfull?.ready2shipping}
+      <TextField
+        fullWidth
+        className={classes.input}
+        label={intl.formatMessage({
+          defaultMessage: "Англи дэлгүүрийн захиалгын дугаар"
+        })}
+        name="ordernumber"
+        defaultValue={ordernumber}
+        inputRef={inputRef}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton edge="end" onClick={loadFulfillment}>
+                <YoutubeSearchedForIcon style={{ margin: 0 }} />
+              </IconButton>
+            </InputAdornment>
+          )
+        }}
       />
-      {filfull?.ready2shipping.others2shipping.map(fulfillment => (
-        <OrderFulfillment
-          checkedlines={lines}
-          setLines={setLines}
-          fulfillment={fulfillment}
-          key={fulfillment.id}
-        />
-      ))}
-      <AddressFulfillment
-        address={filfull?.ready2shipping.order.shippingAddress}
+      <FulfillmentRender
+        ordernumber={ordernumber}
+        setLines={setLines}
+        lines={lines}
       />
     </>
-  ) : (
-    <h1>Тохирох бараанууд олдсонгүй</h1>
   );
 };
 

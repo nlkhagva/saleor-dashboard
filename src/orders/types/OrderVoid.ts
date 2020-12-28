@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { OrderErrorCode, OrderEventsEmailsEnum, OrderEventsEnum, FulfillmentLineUshopStatus, FulfillmentStatus, PaymentChargeStatusEnum, OrderStatus, OrderAction, JobStatusEnum } from "./../../types/globalTypes";
+import { OrderErrorCode, OrderEventsEmailsEnum, OrderEventsEnum, FulfillmentLineUstatus, FulfillmentStatus, PaymentChargeStatusEnum, OrderStatus, OrderAction, JobStatusEnum } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: OrderVoid
@@ -274,7 +274,7 @@ export interface OrderVoid_orderVoid_order_fulfillments_lines {
   orderLine: OrderVoid_orderVoid_order_fulfillments_lines_orderLine | null;
   changedDate: any | null;
   soonDate: any | null;
-  ushopStatus: FulfillmentLineUshopStatus;
+  ustatus: FulfillmentLineUstatus;
 }
 
 export interface OrderVoid_orderVoid_order_fulfillments_warehouse {

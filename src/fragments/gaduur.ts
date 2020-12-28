@@ -4,6 +4,11 @@ export const gaduurFragment = gql`
   fragment GaduurFragment on Gaduur {
     id
     name
+    ustatus
+    startDate
+    endDate
+    receivedDate
+    trackingNumber
   }
 `;
 
@@ -14,7 +19,7 @@ export const gaduurDetailsFragment = gql`
     shippingType
     isPublished
     publicationDate
-    status
+    ustatus
     startDate
     endDate
     receivedDate
@@ -31,6 +36,11 @@ export const gaduurDetailsFragment = gql`
           perkgPrice {
             amount
             currency
+          }
+          user {
+            lastName
+            firstName
+            phone
           }
           shippingAddress {
             id
