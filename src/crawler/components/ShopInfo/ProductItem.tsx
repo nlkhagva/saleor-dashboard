@@ -32,7 +32,7 @@ const useStyles = makeStyles(
       margin: 0,
       padding: `${theme.spacing(1)} 0`
     },
-    uprice: {}
+    wasPrice: {}
   }),
   { name: "CrawlerProductItem" }
 );
@@ -132,11 +132,11 @@ const ProductItem: React.FC<ProductItemProps> = ({
               {product.name}
             </a>
           </h4>
-          <p className={classes.uprice}>
-            {product.uprice !== null && (
+          <p className={classes.wasPrice}>
+            {product.wasPrice !== null && (
               <span style={{ textDecoration: "line-through" }}>
                 {" "}
-                &pound;{product.uprice}
+                &pound;{product.wasPrice}
               </span>
             )}{" "}
             <b>&pound;{product.basePrice} </b>

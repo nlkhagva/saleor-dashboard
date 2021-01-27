@@ -118,10 +118,11 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
 
       const rs = await fetch(crawlerServerURI + "/crawler", {
         body: JSON.stringify({
+          limit: 5,
           listSelection,
           productSelection,
           url,
-          user: 1
+          user: 1,
         }),
         headers: {
           Accept: "application/json",
@@ -172,10 +173,10 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
         productType: null,
         sku: null,
         stockQuantity: 100,
-        uprice: parseFloat(product.uprice.replace(/[^0-9.-]+/g, "")),
         uproductId: null,
         ushop: crawler.shop.id,
-        ustatus: "unsaved"
+        ustatus: "unsaved",
+        wasPrice: parseFloat(product.wasPrice.replace(/[^0-9.-]+/g, "")),
       }));
 
       if (crawledData.length === 0) {
@@ -201,8 +202,8 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
                 ins.name = product.name;
                 changed = true;
               }
-              if (ins.uprice !== product.uprice) {
-                ins.uprice = product.uprice;
+              if (ins.wasPrice !== product.wasPrice) {
+                ins.wasPrice = product.wasPrice;
                 changed = true;
               }
               if (ins.basePrice !== product.basePrice) {
