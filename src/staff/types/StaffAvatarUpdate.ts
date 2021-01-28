@@ -16,7 +16,8 @@ export interface StaffAvatarUpdate_userAvatarUpdate_errors {
    */
   code: AccountErrorCode;
   /**
-   * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
 }
@@ -49,7 +50,9 @@ export interface StaffAvatarUpdate_userAvatarUpdate {
 
 export interface StaffAvatarUpdate {
   /**
-   * Create a user avatar. Only for staff members. This mutation must be sent as a `multipart` request. More detailed specs of the upload format can be found here: https: // github.com/jaydenseric/graphql-multipart-request-spec
+   * Create a user avatar. Only for staff members. This mutation must be sent as a
+   * `multipart` request. More detailed specs of the upload format can be found
+   * here: https: // github.com/jaydenseric/graphql-multipart-request-spec
    */
   userAvatarUpdate: StaffAvatarUpdate_userAvatarUpdate | null;
 }

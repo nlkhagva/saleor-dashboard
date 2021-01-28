@@ -59,6 +59,18 @@ export interface ProductList_products_edges_node_attributes {
   values: (ProductList_products_edges_node_attributes_values | null)[];
 }
 
+export interface ProductList_products_edges_node_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface ProductList_products_edges_node_pricing_priceRangeUndiscounted_start_gross {
   __typename: "Money";
   /**
@@ -140,6 +152,10 @@ export interface ProductList_products_edges_node {
    * List of attributes assigned to this product.
    */
   attributes: ProductList_products_edges_node_attributes[];
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (ProductList_products_edges_node_metadata | null)[];
   /**
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */

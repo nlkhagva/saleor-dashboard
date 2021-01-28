@@ -1,16 +1,18 @@
 // import { repeat } from 'lodash-es';
-import { Mutation } from "@apollo/react-components";
+
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import SingleAutocompleteSelectField from "@saleor/components/SingleAutocompleteSelectField";
 import { maybe } from "@saleor/misc";
+import { useProductCreateMutation } from "@saleor/products/mutations";
+import { useProductVariantBulkCreateMutation } from "@saleor/products/mutations";
 import { getChoices } from "@saleor/products/utils/data";
 // import { getChoices, getChoicesParent } from "@saleor/products/utils/data";
 import useCategorySearch from "@saleor/searches/useCategorySearch";
 import useProductTypeSearch from "@saleor/searches/useProductTypeSearch";
+import { useMetadataUpdate } from "@saleor/utils/metadata/updateMetadata";
 import React, { useState } from "react";
 
-import { CREATE_PRODUCT, CREATE_VARIANT } from "./graphql";
 import ProductItem from "./ProductItem";
 
 export interface ProductItemProps {
@@ -64,6 +66,7 @@ const ProductsSave: React.FC<ProductItemProps> = ({
   setCrawledData,
   saveCrawledDataFunction
 }) => {
+
   const [usedProductTypes] = useState([
     {
       id: null,
@@ -109,10 +112,9 @@ const ProductsSave: React.FC<ProductItemProps> = ({
     variables: searchDefaultCategory
   });
 
-  const productSaveComplete = () => {
-    // console.log("product mutation complete")
-    // console.log(data)
-  };
+  const [productCreate,] = useProductCreateMutation({});
+  const [bulkProductVariantCreate,] = useProductVariantBulkCreateMutation({});
+  const [updateMetadata] = useMetadataUpdate({});
 
   const changeProducts = () => {
     // setCrawledData(JSON.parse(JSON.stringify(crawledData)))
@@ -221,17 +223,23 @@ const ProductsSave: React.FC<ProductItemProps> = ({
   const saveProducts = async (
     tmpProducts,
     selectedProductIds,
-    createMutation,
-    createVariantMutation
   ) => {
     setLoadingSave(true);
     tmpProducts.map(async product => {
       if (selectedProductIds.map(i => i).includes(product.key)) {
         if (!product.uproductId) {
-          const result = await createMutation({
+          const allowed = ['name', 'ushop', 'category', 'basePrice', 'chargeTaxes', 'isPublished', 'productType', "visibleInListings"]
+          const filtered = Object.keys(product)
+            .filter(key => allowed.includes(key))
+            .reduce((obj, key) => {
+              obj[key] = product[key];
+              return obj;
+            }, {productType: ""});
+
+          // linkImages: JSON.stringify(product.linkImages)
+          const result = await productCreate({
             variables: {
-              ...product,
-              linkImages: JSON.stringify(product.linkImages)
+              input: filtered
             }
           });
           product.ustatus = "saved";
@@ -246,7 +254,6 @@ const ProductsSave: React.FC<ProductItemProps> = ({
 
           const inputPreper = [];
           product.options.map(opt => {
-            // opt.toLowerCase
             vattrArray.map(vattr => {
               if (vattr.values.includes(opt.toLowerCase())) {
                 inputPreper.push({
@@ -256,43 +263,61 @@ const ProductsSave: React.FC<ProductItemProps> = ({
                       values: [opt.toLowerCase()]
                     }
                   ],
-                  priceOverride: product.basePrice,
-                  quantity: product.stockQuantity,
+                  price: product.basePrice,
                   sku: (product.name + "_" + opt.toLowerCase()).replace(
                     /[^a-zA-Z0-9-_]+/gi,
                     ""
-                  )
+                  ),
+                  stocks: [{
+                    quantity: product.stockQuantity,
+                    warehouse: "V2FyZWhvdXNlOjQ4ZjU5YjRmLWMxODUtNGUzMi05MjExLTMzOWE5NGJlYmIxYw==",
+                  }],
+                  trackInventory: true,
                 });
               }
             });
           });
 
-          await createVariantMutation({
+          const metaInput = [
+            {
+              key: "url",
+              value:  product.url
+            },
+            {
+              key: "wasPrice",
+              value:  product.wasPrice
+            },
+            {
+              key: "linkImages",
+              value:  JSON.stringify(product.linkImages)
+            },
+          ];
+          
+
+          await updateMetadata({
+            variables: {
+              id: result.data.productCreate.product.id,
+              input: metaInput,
+              keysToDelete: []
+            }
+          })
+
+          await bulkProductVariantCreate({
             variables: {
               id: result.data.productCreate.product.id,
               inputs: inputPreper
             }
           });
 
-          // console.log(vattrArray)
-          // console.log(inputPreper)
-
           setCrawledData(JSON.parse(JSON.stringify(crawledData)));
           saveCrawledDataFunction(crawledData);
         }
       }
-      // console.log(tee)
     });
     setSelectedProducts([]);
     setLoadingSave(false);
 
-    // console.log(tmpProducts)
   };
-
-  // const unCheckAll = e => {
-  //   e.preventDefault();
-  //   setSelectedProducts([]);
-  // };
 
   const refs = crawledData.reduce((acc, value) => {
     acc[value.id] = React.createRef();
@@ -305,11 +330,9 @@ const ProductsSave: React.FC<ProductItemProps> = ({
       block: "start"
     });
 
+
+
   return (
-    <Mutation mutation={CREATE_PRODUCT} onCompleted={productSaveComplete}>
-      {createProduct => (
-        <Mutation mutation={CREATE_VARIANT}>
-          {createVariant => (
             <div>
               <div className={classes.stickyContainer}>
                 <div>
@@ -431,8 +454,6 @@ const ProductsSave: React.FC<ProductItemProps> = ({
                                 saveProducts(
                                   group.products,
                                   selectedProducts,
-                                  createProduct,
-                                  createVariant
                                 )
                               }
                               style={{ color: "#13BEBB !important" }}
@@ -468,7 +489,6 @@ const ProductsSave: React.FC<ProductItemProps> = ({
                             <ProductItem
                               key={index}
                               product={product}
-                              createProduct={createProduct}
                               usedProductTypes={usedProductTypes}
                               usedCategories={usedCategories}
                               changeProducts={changeProducts}
@@ -482,10 +502,6 @@ const ProductsSave: React.FC<ProductItemProps> = ({
                 </div>
               </div>
             </div>
-          )}
-        </Mutation>
-      )}
-    </Mutation>
   );
 };
 

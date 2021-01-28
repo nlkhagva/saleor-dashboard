@@ -21,6 +21,15 @@ export interface UshopList_ushops_edges_node_logoImage {
   url: string;
 }
 
+export interface UshopList_ushops_edges_node_shippingProduct {
+  __typename: "Product";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
 export interface UshopList_ushops_edges_node {
   __typename: "Ushop";
   /**
@@ -43,6 +52,7 @@ export interface UshopList_ushops_edges_node {
   ratingProductRank: number | null;
   listSelection: string | null;
   productSelection: string | null;
+  shippingProduct: UshopList_ushops_edges_node_shippingProduct | null;
 }
 
 export interface UshopList_ushops_edges {

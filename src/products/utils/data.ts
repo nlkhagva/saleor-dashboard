@@ -267,3 +267,14 @@ export function getChoicesParent(nodes: any[]): SingleAutocompleteChoiceType[] {
     []
   );
 }
+
+export function getLinkImages(product){
+  const metadata = product?.metadata.find(el => el.key === "linkImages")
+  return JSON.parse(metadata ? metadata.value : "[]" || "[]");
+}
+
+export function getAvatarImage(product){
+  const imageLinks = getLinkImages(product);
+  
+  return product?.thumbnail ?  product.thumbnail.url: imageLinks.length ? imageLinks[0] : null;
+}

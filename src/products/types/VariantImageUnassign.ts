@@ -16,7 +16,8 @@ export interface VariantImageUnassign_variantImageUnassign_errors {
    */
   code: ProductErrorCode;
   /**
-   * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
 }
@@ -284,7 +285,8 @@ export interface VariantImageUnassign_variantImageUnassign_productVariant {
   images: (VariantImageUnassign_variantImageUnassign_productVariant_images | null)[] | null;
   name: string;
   /**
-   * Base price of a product variant. This field is restricted for admins. Use the pricing field to get the public price for customers.
+   * Base price of a product variant. This field is restricted for admins. Use the
+   * pricing field to get the public price for customers.
    */
   price: VariantImageUnassign_variantImageUnassign_productVariant_price | null;
   product: VariantImageUnassign_variantImageUnassign_productVariant_product;

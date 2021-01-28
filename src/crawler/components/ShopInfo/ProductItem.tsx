@@ -39,7 +39,7 @@ const useStyles = makeStyles(
 
 export interface ProductItemProps {
   product: any;
-  createProduct: any;
+  // createProduct: any;
   usedProductTypes: any;
   usedCategories: any;
   changeProducts: any;
@@ -128,7 +128,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
         )}
         <div className={classes.productInfo}>
           <h4 className={classes.uh4}>
-            <a href={product.ulink} target="_blank">
+            <a href={product.url} target="_blank">
               {product.name}
             </a>
           </h4>

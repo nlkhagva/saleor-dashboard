@@ -16,9 +16,6 @@ export interface GaduurList_gaduurs_edges_node {
    */
   id: string;
   name: string;
-  shippingType: string | null;
-  isPublished: boolean;
-  publicationDate: any | null;
   ustatus: GaduurPackageUstatus;
   startDate: any | null;
   endDate: any | null;

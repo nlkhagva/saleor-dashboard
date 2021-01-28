@@ -16,7 +16,8 @@ export interface SimpleProductUpdate_productUpdate_errors {
    */
   code: ProductErrorCode;
   /**
-   * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
 }
@@ -368,7 +369,8 @@ export interface SimpleProductUpdate_productUpdate_product_variants {
   sku: string;
   name: string;
   /**
-   * Base price of a product variant. This field is restricted for admins. Use the pricing field to get the public price for customers.
+   * Base price of a product variant. This field is restricted for admins. Use the
+   * pricing field to get the public price for customers.
    */
   price: SimpleProductUpdate_productUpdate_product_variants_price | null;
   /**
@@ -483,7 +485,8 @@ export interface SimpleProductUpdate_productVariantUpdate_errors {
    */
   code: ProductErrorCode;
   /**
-   * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
 }
@@ -751,7 +754,8 @@ export interface SimpleProductUpdate_productVariantUpdate_productVariant {
   images: (SimpleProductUpdate_productVariantUpdate_productVariant_images | null)[] | null;
   name: string;
   /**
-   * Base price of a product variant. This field is restricted for admins. Use the pricing field to get the public price for customers.
+   * Base price of a product variant. This field is restricted for admins. Use the
+   * pricing field to get the public price for customers.
    */
   price: SimpleProductUpdate_productVariantUpdate_productVariant_price | null;
   product: SimpleProductUpdate_productVariantUpdate_productVariant_product;
@@ -777,7 +781,8 @@ export interface SimpleProductUpdate_productVariantStocksCreate_errors {
    */
   code: ProductErrorCode;
   /**
-   * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
   /**
@@ -1049,7 +1054,8 @@ export interface SimpleProductUpdate_productVariantStocksCreate_productVariant {
   images: (SimpleProductUpdate_productVariantStocksCreate_productVariant_images | null)[] | null;
   name: string;
   /**
-   * Base price of a product variant. This field is restricted for admins. Use the pricing field to get the public price for customers.
+   * Base price of a product variant. This field is restricted for admins. Use the
+   * pricing field to get the public price for customers.
    */
   price: SimpleProductUpdate_productVariantStocksCreate_productVariant_price | null;
   product: SimpleProductUpdate_productVariantStocksCreate_productVariant_product;
@@ -1078,7 +1084,8 @@ export interface SimpleProductUpdate_productVariantStocksDelete_errors {
    */
   code: StockErrorCode;
   /**
-   * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
 }
@@ -1346,7 +1353,8 @@ export interface SimpleProductUpdate_productVariantStocksDelete_productVariant {
   images: (SimpleProductUpdate_productVariantStocksDelete_productVariant_images | null)[] | null;
   name: string;
   /**
-   * Base price of a product variant. This field is restricted for admins. Use the pricing field to get the public price for customers.
+   * Base price of a product variant. This field is restricted for admins. Use the
+   * pricing field to get the public price for customers.
    */
   price: SimpleProductUpdate_productVariantStocksDelete_productVariant_price | null;
   product: SimpleProductUpdate_productVariantStocksDelete_productVariant_product;
@@ -1375,7 +1383,8 @@ export interface SimpleProductUpdate_productVariantStocksUpdate_errors {
    */
   code: ProductErrorCode;
   /**
-   * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
   /**
@@ -1647,7 +1656,8 @@ export interface SimpleProductUpdate_productVariantStocksUpdate_productVariant {
   images: (SimpleProductUpdate_productVariantStocksUpdate_productVariant_images | null)[] | null;
   name: string;
   /**
-   * Base price of a product variant. This field is restricted for admins. Use the pricing field to get the public price for customers.
+   * Base price of a product variant. This field is restricted for admins. Use the
+   * pricing field to get the public price for customers.
    */
   price: SimpleProductUpdate_productVariantStocksUpdate_productVariant_price | null;
   product: SimpleProductUpdate_productVariantStocksUpdate_productVariant_product;

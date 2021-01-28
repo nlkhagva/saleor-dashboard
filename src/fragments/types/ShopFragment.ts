@@ -78,7 +78,8 @@ export interface ShopFragment_domain {
 export interface ShopFragment {
   __typename: "Shop";
   /**
-   * List of configured authorization keys. Authorization keys are used to enable third-party OAuth authorization (currently Facebook or Google).
+   * List of configured authorization keys. Authorization keys are used to enable
+   * third-party OAuth authorization (currently Facebook or Google).
    */
   authorizationKeys: (ShopFragment_authorizationKeys | null)[];
   /**

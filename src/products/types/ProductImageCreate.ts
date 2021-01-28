@@ -16,7 +16,8 @@ export interface ProductImageCreate_productImageCreate_errors {
    */
   code: ProductErrorCode;
   /**
-   * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
 }
@@ -368,7 +369,8 @@ export interface ProductImageCreate_productImageCreate_product_variants {
   sku: string;
   name: string;
   /**
-   * Base price of a product variant. This field is restricted for admins. Use the pricing field to get the public price for customers.
+   * Base price of a product variant. This field is restricted for admins. Use the
+   * pricing field to get the public price for customers.
    */
   price: ProductImageCreate_productImageCreate_product_variants_price | null;
   /**
@@ -478,7 +480,9 @@ export interface ProductImageCreate_productImageCreate {
 
 export interface ProductImageCreate {
   /**
-   * Create a product image. This mutation must be sent as a `multipart` request. More detailed specs of the upload format can be found here: https: // github.com/jaydenseric/graphql-multipart-request-spec
+   * Create a product image. This mutation must be sent as a `multipart` request.
+   * More detailed specs of the upload format can be found here:
+   * https: // github.com/jaydenseric/graphql-multipart-request-spec
    */
   productImageCreate: ProductImageCreate_productImageCreate | null;
 }

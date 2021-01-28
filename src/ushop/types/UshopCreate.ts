@@ -16,7 +16,8 @@ export interface UshopCreate_ushopCreate_errors {
    */
   message: string | null;
   /**
-   * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
 }
@@ -31,6 +32,15 @@ export interface UshopCreate_ushopCreate_shop_logoImage {
    * The URL of the image.
    */
   url: string;
+}
+
+export interface UshopCreate_ushopCreate_shop_shippingProduct {
+  __typename: "Product";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
 }
 
 export interface UshopCreate_ushopCreate_shop {
@@ -55,6 +65,7 @@ export interface UshopCreate_ushopCreate_shop {
   ratingProductRank: number | null;
   listSelection: string | null;
   productSelection: string | null;
+  shippingProduct: UshopCreate_ushopCreate_shop_shippingProduct | null;
 }
 
 export interface UshopCreate_ushopCreate {

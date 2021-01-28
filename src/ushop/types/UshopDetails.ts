@@ -19,6 +19,15 @@ export interface UshopDetails_ushop_logoImage {
   url: string;
 }
 
+export interface UshopDetails_ushop_shippingProduct {
+  __typename: "Product";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
 export interface UshopDetails_ushop {
   __typename: "Ushop";
   /**
@@ -41,6 +50,7 @@ export interface UshopDetails_ushop {
   ratingProductRank: number | null;
   listSelection: string | null;
   productSelection: string | null;
+  shippingProduct: UshopDetails_ushop_shippingProduct | null;
 }
 
 export interface UshopDetails {

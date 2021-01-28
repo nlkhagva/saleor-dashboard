@@ -16,7 +16,8 @@ export interface ShopSettingsUpdate_shopSettingsUpdate_errors {
    */
   code: ShopErrorCode;
   /**
-   * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
 }
@@ -90,7 +91,8 @@ export interface ShopSettingsUpdate_shopSettingsUpdate_shop_domain {
 export interface ShopSettingsUpdate_shopSettingsUpdate_shop {
   __typename: "Shop";
   /**
-   * List of configured authorization keys. Authorization keys are used to enable third-party OAuth authorization (currently Facebook or Google).
+   * List of configured authorization keys. Authorization keys are used to enable
+   * third-party OAuth authorization (currently Facebook or Google).
    */
   authorizationKeys: (ShopSettingsUpdate_shopSettingsUpdate_shop_authorizationKeys | null)[];
   /**
@@ -143,7 +145,8 @@ export interface ShopSettingsUpdate_shopDomainUpdate_errors {
    */
   code: ShopErrorCode;
   /**
-   * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
 }
@@ -184,7 +187,8 @@ export interface ShopSettingsUpdate_shopAddressUpdate_errors {
    */
   code: ShopErrorCode;
   /**
-   * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
 }

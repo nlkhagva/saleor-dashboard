@@ -124,6 +124,10 @@ const productListQuery = gql`
               name
             }
           }
+          metadata{
+            key
+            value
+          }
           pricing {
             priceRangeUndiscounted {
               start {

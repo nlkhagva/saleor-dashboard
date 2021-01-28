@@ -29,5 +29,9 @@ export const ushopDetailsFragment = gql`
     ratingProductRank
     listSelection
     productSelection
+    shippingProduct{
+      id
+      name
+    }
   }
 `;

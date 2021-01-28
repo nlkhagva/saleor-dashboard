@@ -364,6 +364,7 @@ export const products = (
     id: "UHJvZHVjdDo2MQ==",
     isAvailable: true,
     isPublished: true,
+    metadata: [],
     name: "Nebula Night Sky Paint",
     pricing: {
       __typename: "ProductPricingInfo",
@@ -404,6 +405,7 @@ export const products = (
     id: "UHJvZHVjdDo2NA==",
     isAvailable: true,
     isPublished: false,
+    metadata: [],
     name: "Light Speed Yellow Paint",
     pricing: {
       __typename: "ProductPricingInfo",
@@ -444,8 +446,8 @@ export const products = (
     id: "UHJvZHVjdDo2NQ==",
     isAvailable: true,
     isPublished: false,
+    metadata: [],
     name: "Hyperspace Turquoise Paint",
-
     pricing: {
       __typename: "ProductPricingInfo",
       priceRangeUndiscounted: {
@@ -500,8 +502,8 @@ export const products = (
     id: "UHJvZHVjdDo3NQ==",
     isAvailable: true,
     isPublished: true,
+    metadata: [],
     name: "Pineapple Juice",
-
     pricing: {
       __typename: "ProductPricingInfo",
       priceRangeUndiscounted: {
@@ -556,8 +558,8 @@ export const products = (
     id: "UHJvZHVjdDo3Ng==",
     isAvailable: true,
     isPublished: true,
+    metadata: [],
     name: "Coconut Juice",
-
     pricing: {
       __typename: "ProductPricingInfo",
       priceRangeUndiscounted: {
@@ -612,8 +614,8 @@ export const products = (
     id: "UHJvZHVjdDo3Mg==",
     isAvailable: true,
     isPublished: true,
+    metadata: [],
     name: "Apple Juice",
-
     pricing: {
       __typename: "ProductPricingInfo",
       priceRangeUndiscounted: {
@@ -668,8 +670,8 @@ export const products = (
     id: "UHJvZHVjdDo3MQ==",
     isAvailable: true,
     isPublished: true,
+    metadata: [],
     name: "Orange Juice",
-
     pricing: {
       __typename: "ProductPricingInfo",
       priceRangeUndiscounted: {
@@ -724,8 +726,8 @@ export const products = (
     id: "UHJvZHVjdDo3NA==",
     isAvailable: true,
     isPublished: true,
+    metadata: [],
     name: "Banana Juice",
-
     pricing: {
       __typename: "ProductPricingInfo",
       priceRangeUndiscounted: {
@@ -780,8 +782,8 @@ export const products = (
     id: "UHJvZHVjdDo3OQ==",
     isAvailable: true,
     isPublished: false,
+    metadata: [],
     name: "Bean Juice",
-
     pricing: {
       __typename: "ProductPricingInfo",
       priceRangeUndiscounted: {
@@ -836,8 +838,8 @@ export const products = (
     id: "UHJvZHVjdDo3Mw==",
     isAvailable: true,
     isPublished: true,
+    metadata: [],
     name: "Carrot Juice",
-
     pricing: {
       __typename: "ProductPricingInfo",
       priceRangeUndiscounted: {
@@ -892,8 +894,8 @@ export const products = (
     id: "UHJvZHVjdDo3OA==",
     isAvailable: true,
     isPublished: true,
+    metadata: [],
     name: "Green Juice",
-
     pricing: {
       __typename: "ProductPricingInfo",
       priceRangeUndiscounted: {
@@ -948,8 +950,8 @@ export const products = (
     id: "UHJvZHVjdDo4OQ==",
     isAvailable: true,
     isPublished: true,
+    metadata: [],
     name: "Code Division T-shirt",
-
     pricing: {
       __typename: "ProductPricingInfo",
       priceRangeUndiscounted: {
@@ -1004,8 +1006,8 @@ export const products = (
     id: "UHJvZHVjdDoxMDc=",
     isAvailable: true,
     isPublished: true,
+    metadata: [],
     name: "Polo Shirt",
-
     pricing: {
       __typename: "ProductPricingInfo",
       priceRangeUndiscounted: {
@@ -1060,6 +1062,7 @@ export const products = (
     id: "UHJvZHVjdDoxMDg=",
     isAvailable: true,
     isPublished: true,
+    metadata: [],
     name: "Polo Shirt",
 
     pricing: {
@@ -1116,8 +1119,8 @@ export const products = (
     id: "UHJvZHVjdDoxMDk=",
     isAvailable: true,
     isPublished: true,
+    metadata: [],
     name: "Polo Shirt",
-
     pricing: {
       __typename: "ProductPricingInfo",
       priceRangeUndiscounted: {
@@ -1172,6 +1175,7 @@ export const products = (
     id: "UHJvZHVjdDoxMTA=",
     isAvailable: true,
     isPublished: true,
+    metadata: [],
     name: "Polo Shirt",
 
     pricing: {
@@ -1228,6 +1232,7 @@ export const products = (
     id: "UHJvZHVjdDoxMTU=",
     isAvailable: true,
     isPublished: false,
+    metadata: [],
     name: "Black Hoodie",
 
     pricing: {
@@ -1284,6 +1289,7 @@ export const products = (
     id: "UHJvZHVjdDoxMTY=",
     isAvailable: true,
     isPublished: true,
+    metadata: [],
     name: "Blue Hoodie",
 
     pricing: {
@@ -1340,6 +1346,7 @@ export const products = (
     id: "UHJvZHVjdDoxMTc=",
     isAvailable: true,
     isPublished: true,
+    metadata: [],
     name: "Mustard Hoodie",
 
     pricing: {
@@ -1396,6 +1403,7 @@ export const products = (
     id: "UHJvZHVjdDo4NQ==",
     isAvailable: true,
     isPublished: false,
+    metadata: [],
     name: "Colored Parrot Cushion",
 
     pricing: {

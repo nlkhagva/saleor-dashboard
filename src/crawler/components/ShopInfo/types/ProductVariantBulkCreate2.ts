@@ -12,7 +12,8 @@ import { ProductVariantBulkCreateInput, ProductErrorCode } from "./../../../../t
 export interface ProductVariantBulkCreate2_productVariantBulkCreate_bulkProductErrors {
   __typename: "BulkProductError";
   /**
-   * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
   /**
@@ -32,7 +33,8 @@ export interface ProductVariantBulkCreate2_productVariantBulkCreate_bulkProductE
 export interface ProductVariantBulkCreate2_productVariantBulkCreate_errors {
   __typename: "Error";
   /**
-   * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
   /**

@@ -139,7 +139,8 @@ export interface AppDelete_appDelete_app {
 export interface AppDelete_appDelete_errors {
   __typename: "AppError";
   /**
-   * Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
   /**

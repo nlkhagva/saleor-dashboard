@@ -49,6 +49,7 @@ import {
 import ProductAttributes, { ProductAttributeInput } from "../ProductAttributes";
 import ProductDetailsForm from "../ProductDetailsForm";
 import ProductImages from "../ProductImages";
+import ProductMetaImages from "../ProductMetaImages";
 import ProductOrganization from "../ProductOrganization";
 import ProductPricing from "../ProductPricing";
 import ProductShipping from "../ProductShipping/ProductShipping";
@@ -290,6 +291,8 @@ export const ProductUpdatePage: React.FC<ProductUpdatePageProps> = ({
                     onImageEdit={onImageEdit}
                     onImageUpload={onImageUpload}
                   />
+                  <CardSpacer />
+                  <ProductMetaImages product={product} />
                   <CardSpacer />
                   {attributes.length > 0 && (
                     <ProductAttributes

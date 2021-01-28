@@ -356,7 +356,8 @@ export interface ProductDetails_product_variants {
   sku: string;
   name: string;
   /**
-   * Base price of a product variant. This field is restricted for admins. Use the pricing field to get the public price for customers.
+   * Base price of a product variant. This field is restricted for admins. Use the
+   * pricing field to get the public price for customers.
    */
   price: ProductDetails_product_variants_price | null;
   /**

@@ -24,6 +24,7 @@ import {
 import { GridAttributes_grid_edges_node } from "@saleor/products/types/GridAttributes";
 import { ProductList_products_edges_node } from "@saleor/products/types/ProductList";
 import { ProductListUrlSortField } from "@saleor/products/urls";
+import { getAvatarImage } from "@saleor/products/utils/data"
 import { ListActions, ListProps, SortPage } from "@saleor/types";
 import TDisplayColumn, {
   DisplayColumnProps
@@ -32,6 +33,7 @@ import { getArrowDirection } from "@saleor/utils/sort";
 import classNames from "classnames";
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
+
 
 const useStyles = makeStyles(
   theme => ({
@@ -323,6 +325,7 @@ export const ProductList: React.FC<ProductListProps> = props => {
             products,
             product => {
               const isSelected = product ? isChecked(product.id) : false;
+              const avatarLink = getAvatarImage(product);
 
               return (
                 <TableRow
@@ -344,7 +347,7 @@ export const ProductList: React.FC<ProductListProps> = props => {
                   </TableCell>
                   <TableCellAvatar
                     className={classes.colName}
-                    thumbnail={maybe(() => product.thumbnail.url)}
+                    thumbnail={maybe(() => avatarLink )}
                     data-test="name"
                   >
                     {product?.productType ? (

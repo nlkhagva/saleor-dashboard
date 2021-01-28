@@ -1,3 +1,4 @@
+import Button from "@material-ui/core/Button";
 import AppHeader from "@saleor/components/AppHeader";
 import CardSpacer from "@saleor/components/CardSpacer";
 import { ConfirmButtonTransitionState } from "@saleor/components/ConfirmButton";
@@ -8,8 +9,10 @@ import PageHeader from "@saleor/components/PageHeader";
 import SaveButtonBar from "@saleor/components/SaveButtonBar";
 import VisibilityCard from "@saleor/components/VisibilityCard";
 import useDateLocalize from "@saleor/hooks/useDateLocalize";
+import useNavigator from "@saleor/hooks/useNavigator";
 import { sectionNames } from "@saleor/intl";
 import { maybe } from "@saleor/misc";
+import {productUrl} from "@saleor/products/urls";
 import UshopGeneralInfo from "@saleor/ushop/components/UshopGeneralInfo";
 import { UshopUpdate_ushopUpdate_shop } from "@saleor/ushop/types/UshopUpdate";
 import { getFormErrors } from "@saleor/utils/errors";
@@ -63,6 +66,7 @@ const UshopDetailsPage: React.FC<DetailsPageProps> = ({
 }) => {
   const intl = useIntl();
   const localizeDate = useDateLocalize();
+  const navigate = useNavigator();
 
   const initialForm: UshopFormData = {
     description: maybe(
@@ -143,6 +147,15 @@ const UshopDetailsPage: React.FC<DetailsPageProps> = ({
                 data={data}
                 change={change}
               />
+              <CardSpacer />
+
+              {ushop?.shippingProduct &&
+               (<div>
+                <Button variant="contained" color="secondary" onClick={() =>navigate(productUrl(ushop?.shippingProduct.id))}>
+                  {ushop?.shippingProduct.name}
+                </Button>
+              </div>)
+              }
               <CardSpacer />
               <VisibilityCard
                 data={data}

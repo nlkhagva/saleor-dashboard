@@ -19,6 +19,15 @@ export interface UshopDetailsFragment_logoImage {
   url: string;
 }
 
+export interface UshopDetailsFragment_shippingProduct {
+  __typename: "Product";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
 export interface UshopDetailsFragment {
   __typename: "Ushop";
   /**
@@ -41,4 +50,5 @@ export interface UshopDetailsFragment {
   ratingProductRank: number | null;
   listSelection: string | null;
   productSelection: string | null;
+  shippingProduct: UshopDetailsFragment_shippingProduct | null;
 }

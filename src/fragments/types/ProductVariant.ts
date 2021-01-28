@@ -272,7 +272,8 @@ export interface ProductVariant {
   images: (ProductVariant_images | null)[] | null;
   name: string;
   /**
-   * Base price of a product variant. This field is restricted for admins. Use the pricing field to get the public price for customers.
+   * Base price of a product variant. This field is restricted for admins. Use the
+   * pricing field to get the public price for customers.
    */
   price: ProductVariant_price | null;
   product: ProductVariant_product;
