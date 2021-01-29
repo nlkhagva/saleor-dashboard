@@ -10,15 +10,18 @@ import { UshopUpdate_ushopUpdate_shop } from "@saleor/ushop/types/UshopUpdate";
 import React from "react";
 import { useIntl } from "react-intl";
 
+import UshopLogo from "../UshopLogo";
+
 export interface UshopGeneralInfoProps {
   data: UshopFormData;
   change: (event: React.ChangeEvent<any>) => void;
   disabled: boolean;
   formErrors: any;
   ushop: UshopUpdate_ushopUpdate_shop | null;
+  onImageUpload: (file: File) => void | null;
 }
 const UshopGeneralInfo: React.FC<UshopGeneralInfoProps> = props => {
-  const { data, change, disabled, formErrors, ushop } = props;
+  const { data, change, disabled, formErrors, ushop, onImageUpload } = props;
   const intl = useIntl();
 
   return (
@@ -38,6 +41,7 @@ const UshopGeneralInfo: React.FC<UshopGeneralInfoProps> = props => {
           value={data.name}
           onChange={change}
         />
+
         {/* <FileUpload disabled={disabled} error /> */}
         <CardSpacer />
         <TextField
@@ -52,6 +56,12 @@ const UshopGeneralInfo: React.FC<UshopGeneralInfoProps> = props => {
           onChange={change}
         />
         <CardSpacer />
+        
+        {ushop && <>
+          <UshopLogo onImageUpload={onImageUpload} ushop={ushop} />
+          <CardSpacer />
+        </>}
+
         <RichTextEditor
           disabled={disabled}
           error={!!formErrors.descriptionJson}

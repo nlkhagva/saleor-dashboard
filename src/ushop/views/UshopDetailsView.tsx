@@ -10,7 +10,7 @@ import { useIntl } from "react-intl";
 
 import UshopDeleteDialog from "../components/UshopDeleteDialog";
 import UshopDetailsPage from "../components/UshopDetailsPage";
-import { useUshopDelete, useUshopUpdate } from "../mutations";
+import { useLogoUshop,useUshopDelete, useUshopUpdate } from "../mutations";
 import { useUshopDetails } from "../queries";
 import { UshopUpdate as UshopUpdateData } from "../types/UshopUpdate";
 import { ushopListUrl, ushopUrl, UshopUrlQueryParams } from "../urls";
@@ -33,6 +33,16 @@ export const UshopDetailsView: React.FC<UshopCreateProps> = ({
   });
 
   const [updateUshop, updateUshopOpts] = useUshopUpdate({
+    onCompleted: (data: UshopUpdateData) => {
+      if (data.ushopUpdate.errors.length === 0) {
+        notify({
+          status: "success",
+          text: intl.formatMessage(commonMessages.savedChanges)
+        });
+      }
+    }
+  });
+  const [logoUshop, ] = useLogoUshop({
     onCompleted: (data: UshopUpdateData) => {
       if (data.ushopUpdate.errors.length === 0) {
         notify({
@@ -101,6 +111,16 @@ export const UshopDetailsView: React.FC<UshopCreateProps> = ({
                 ratingShuurhai: data.ratingShuurhai,
                 ratingUkShipping: data.ratingUkShipping,
                 url: data.url
+              }
+            }
+          })
+        }
+        onImageUpload={file => 
+          logoUshop({
+            variables:{
+              id,
+              input: {
+                logoImage: file
               }
             }
           })

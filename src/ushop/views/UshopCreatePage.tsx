@@ -65,6 +65,7 @@ export const UshopCreate: React.FC = () => {
             }
           })
         }
+        onImageUpload={null}
       />
     </>
   );

@@ -53,6 +53,7 @@ export interface DetailsPageProps {
   onBack: () => void;
   onSubmit: (data: UshopFormData) => void;
   onDelete: () => void | null;
+  onImageUpload: (file: File) => void | null;
 }
 
 const UshopDetailsPage: React.FC<DetailsPageProps> = ({
@@ -62,6 +63,7 @@ const UshopDetailsPage: React.FC<DetailsPageProps> = ({
   onBack,
   onSubmit,
   onDelete,
+  onImageUpload,
   saveButtonBarState
 }) => {
   const intl = useIntl();
@@ -131,8 +133,10 @@ const UshopDetailsPage: React.FC<DetailsPageProps> = ({
                 data={data}
                 change={change}
                 ushop={ushop}
+                onImageUpload={onImageUpload}
               />
               <CardSpacer />
+              
               <UshopCrawler
                 disabled={disabled}
                 formErrors={formErrors}

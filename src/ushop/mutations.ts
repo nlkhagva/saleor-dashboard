@@ -55,3 +55,21 @@ const updateUshop = gql`
 export const useUshopUpdate = makeMutation<UshopUpdate, UshopUpdateVariables>(
   updateUshop
 );
+
+const logoUshop = gql`
+  ${ushopDetailsFragment}
+  mutation UshopUpdate($id: ID!, $input: UshopInput!) {
+    ushopUpdate(id: $id, input: $input) {
+      errors {
+        message
+        field
+      }
+      shop {
+        ...UshopDetailsFragment
+      }
+    }
+  }
+`;
+export const useLogoUshop = makeMutation<UshopUpdate, UshopUpdateVariables>(
+  logoUshop
+);
