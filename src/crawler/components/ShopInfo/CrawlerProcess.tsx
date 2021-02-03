@@ -163,22 +163,31 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
     }
 
     if (data.status === "complete") {
-      const cleanedProducts = data.products.map((product, index) => ({
-        ...product,
-        basePrice: parseFloat(product.basePrice.replace(/[^0-9.-]+/g, "")),
-        category: null,
-        chargeTaxes: false,
-        isPublished: true,
-        key: index + 1,
-        productType: null,
-        sku: null,
-        stockQuantity: 100,
-        uproductId: null,
-        ushop: crawler.shop.id,
-        ustatus: "unsaved",
-        visibleInListings: true,
-        wasPrice: parseFloat(product.wasPrice.replace(/[^0-9.-]+/g, "")),
-      }));
+      
+      const cleanedProducts = data.products.map((product, index) => {
+        const bPrice = parseFloat(product.basePrice.replace(/[^0-9.-]+/g, ""));
+        const wPrice = parseFloat(product.wasPrice.replace(/[^0-9.-]+/g, ""));
+        let usalePercent = parseFloat((100 - bPrice*100/wPrice).toFixed(2));
+        usalePercent = isNaN(usalePercent)? 0: usalePercent
+      
+        return  {
+          ...product,
+          basePrice: bPrice,
+          category: null,
+          chargeTaxes: false,
+          isPublished: true,
+          key: index + 1,
+          productType: null,
+          sku: null,
+          stockQuantity: 100,
+          uproductId: null,
+          usale: usalePercent,
+          ushop: crawler.shop.id,
+          ustatus: "unsaved",
+          visibleInListings: true,
+          wasPrice: wPrice,
+        }
+      });
 
       if (crawledData.length === 0) {
         const cleanedData = [
@@ -328,6 +337,7 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
           crawledData={crawledData}
           setCrawledData={setCrawledData}
           saveCrawledDataFunction={saveCrawledDataFunction}
+          productSelection={productSelection}
         />
       )}
     </>

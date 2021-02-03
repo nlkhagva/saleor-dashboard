@@ -19,6 +19,7 @@ export interface ProductItemProps {
   crawledData: any;
   setCrawledData: any;
   saveCrawledDataFunction: any;
+  productSelection: any;
 }
 
 const useStyles = makeStyles(
@@ -64,7 +65,8 @@ const useStyles = makeStyles(
 const ProductsSave: React.FC<ProductItemProps> = ({
   crawledData,
   setCrawledData,
-  saveCrawledDataFunction
+  saveCrawledDataFunction,
+  productSelection
 }) => {
 
   const [usedProductTypes] = useState([
@@ -228,7 +230,7 @@ const ProductsSave: React.FC<ProductItemProps> = ({
     tmpProducts.map(async product => {
       if (selectedProductIds.map(i => i).includes(product.key)) {
         if (!product.uproductId) {
-          const allowed = ['name', 'ushop', 'category', 'basePrice', 'chargeTaxes', 'isPublished', 'productType', "visibleInListings"]
+          const allowed = ['name', 'ushop', 'category', 'basePrice', 'chargeTaxes', 'isPublished', 'productType', "visibleInListings", "wasPrice", "usale"]
           const filtered = Object.keys(product)
             .filter(key => allowed.includes(key))
             .reduce((obj, key) => {
@@ -290,6 +292,10 @@ const ProductsSave: React.FC<ProductItemProps> = ({
             {
               key: "linkImages",
               value:  JSON.stringify(product.linkImages)
+            },
+            {
+              key: "productSelection",
+              value:  productSelection
             },
           ];
           
