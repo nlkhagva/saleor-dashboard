@@ -34,6 +34,20 @@ export const searchProductTypes = gql`
               slug
             }
           }
+          variantAttributes {
+            id
+            inputType
+            slug
+            name
+            valueRequired
+            values {
+              id
+              name
+              slug
+              __typename
+            }
+            __typename
+          }
           taxType {
             ...TaxTypeFragment
           }

@@ -1,7 +1,10 @@
 // import { repeat } from 'lodash-es';
 
 import Button from "@material-ui/core/Button";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 import SingleAutocompleteSelectField from "@saleor/components/SingleAutocompleteSelectField";
 import { maybe } from "@saleor/misc";
 import { useProductCreateMutation } from "@saleor/products/mutations";
@@ -68,7 +71,6 @@ const ProductsSave: React.FC<ProductItemProps> = ({
   saveCrawledDataFunction,
   productSelection
 }) => {
-
   const [usedProductTypes] = useState([
     {
       id: null,
@@ -77,7 +79,17 @@ const ProductsSave: React.FC<ProductItemProps> = ({
     }
   ]);
   const [usedCategories] = useState([]);
-  const [selectedPType, setSelectedPType] = useState({ id: "", name: "" });
+  const [selectedPType, setSelectedPType] = useState({
+    id: "",
+    name: "",
+    variantAttributes: []
+  });
+  const [filterEnabled, setFilterEnabled] = useState({
+    category: false,
+    productType: true
+  });
+  const [selectedTag, setSelectedTag] = useState("");
+
   const [selectedCategory, setSelectedCategory] = useState({
     id: "",
     name: ""
@@ -114,8 +126,8 @@ const ProductsSave: React.FC<ProductItemProps> = ({
     variables: searchDefaultCategory
   });
 
-  const [productCreate,] = useProductCreateMutation({});
-  const [bulkProductVariantCreate,] = useProductVariantBulkCreateMutation({});
+  const [productCreate] = useProductCreateMutation({});
+  const [bulkProductVariantCreate] = useProductVariantBulkCreateMutation({});
   const [updateMetadata] = useMetadataUpdate({});
 
   const changeProducts = () => {
@@ -222,21 +234,32 @@ const ProductsSave: React.FC<ProductItemProps> = ({
 
   const [loadingSave, setLoadingSave] = React.useState(false);
 
-  const saveProducts = async (
-    tmpProducts,
-    selectedProductIds,
-  ) => {
+  const saveProducts = async (tmpProducts, selectedProductIds) => {
     setLoadingSave(true);
     tmpProducts.map(async product => {
       if (selectedProductIds.map(i => i).includes(product.key)) {
         if (!product.uproductId) {
-          const allowed = ['name', 'ushop', 'category', 'basePrice', 'chargeTaxes', 'isPublished', 'productType', "visibleInListings", "wasPrice", "usale"]
+          const allowed = [
+            "name",
+            "ushop",
+            "category",
+            "basePrice",
+            "chargeTaxes",
+            "isPublished",
+            "productType",
+            "visibleInListings",
+            "wasPrice",
+            "usale"
+          ];
           const filtered = Object.keys(product)
             .filter(key => allowed.includes(key))
-            .reduce((obj, key) => {
-              obj[key] = product[key];
-              return obj;
-            }, {productType: ""});
+            .reduce(
+              (obj, key) => {
+                obj[key] = product[key];
+                return obj;
+              },
+              { productType: "" }
+            );
 
           // linkImages: JSON.stringify(product.linkImages)
           const result = await productCreate({
@@ -270,11 +293,14 @@ const ProductsSave: React.FC<ProductItemProps> = ({
                     /[^a-zA-Z0-9-_]+/gi,
                     ""
                   ),
-                  stocks: [{
-                    quantity: product.stockQuantity,
-                    warehouse: "V2FyZWhvdXNlOjQ4ZjU5YjRmLWMxODUtNGUzMi05MjExLTMzOWE5NGJlYmIxYw==",
-                  }],
-                  trackInventory: true,
+                  stocks: [
+                    {
+                      quantity: product.stockQuantity,
+                      warehouse:
+                        "V2FyZWhvdXNlOjQ4ZjU5YjRmLWMxODUtNGUzMi05MjExLTMzOWE5NGJlYmIxYw=="
+                    }
+                  ],
+                  trackInventory: true
                 });
               }
             });
@@ -283,22 +309,21 @@ const ProductsSave: React.FC<ProductItemProps> = ({
           const metaInput = [
             {
               key: "url",
-              value:  product.url
+              value: product.url
             },
             {
               key: "wasPrice",
-              value:  product.wasPrice
+              value: product.wasPrice
             },
             {
               key: "linkImages",
-              value:  JSON.stringify(product.linkImages)
+              value: JSON.stringify(product.linkImages)
             },
             {
               key: "productSelection",
-              value:  productSelection
-            },
+              value: productSelection
+            }
           ];
-          
 
           await updateMetadata({
             variables: {
@@ -306,7 +331,7 @@ const ProductsSave: React.FC<ProductItemProps> = ({
               input: metaInput,
               keysToDelete: []
             }
-          })
+          });
 
           await bulkProductVariantCreate({
             variables: {
@@ -322,7 +347,6 @@ const ProductsSave: React.FC<ProductItemProps> = ({
     });
     setSelectedProducts([]);
     setLoadingSave(false);
-
   };
 
   const refs = crawledData.reduce((acc, value) => {
@@ -336,178 +360,281 @@ const ProductsSave: React.FC<ProductItemProps> = ({
       block: "start"
     });
 
+  //  selectedPType selectedCategory
+  let filteredData = crawledData.filter(el => el.show);
 
+  if (selectedCategory.name.length > 0 && filterEnabled.category) {
+    filteredData = filteredData.map(group => ({
+      ...group,
+      products: group.products.filter(product =>
+        selectedCategory.name
+          .toLowerCase()
+          .trim()
+          .split(" ")
+          .map(text => product.name.toLowerCase().search(text) > -1)
+          .reduce((a, b) => a && b)
+      )
+    }));
+  }
+  if (filterEnabled.productType && selectedPType.variantAttributes.length) {
+    const attribute = selectedPType.variantAttributes[0];
+    const variantAttrs = attribute.values.map(v => v.slug);
+
+    filteredData = filteredData.map(group => ({
+      ...group,
+      products: group.products.filter(
+        product =>
+          product.options
+            .map(o => o.toLowerCase().trim())
+            .filter(val => variantAttrs.includes(val)).length
+      )
+    }));
+  }
+
+  const words = [];
+  crawledData.forEach(group => {
+    group.products.forEach(product => {
+      product.name
+        .toLowerCase()
+        .trim()
+        .split(" ")
+        .map(word => {
+          const find = words.find(w => w.text === word);
+          if (find) {
+            find.count++;
+          } else {
+            words.push({
+              count: 1,
+              text: word
+            });
+          }
+        });
+    });
+  });
+
+  if (selectedTag.length > 0) {
+    filteredData = filteredData.map(group => ({
+      ...group,
+      products: group.products.filter(
+        product =>
+          product.name
+            .toLowerCase()
+            .trim()
+            .search(selectedTag) > -1
+      )
+    }));
+  }
 
   return (
-            <div>
-              <div className={classes.stickyContainer}>
-                <div>
-                  <SingleAutocompleteSelectField
-                    displayValue={selectedPType.name}
-                    name="productType"
-                    label={"Product Type"}
-                    choices={getChoices(
-                      maybe(() =>
-                        searchProductTypesOpts.data.search.edges.map(
-                          edge => edge.node
-                        )
-                      )
-                    )}
-                    value={selectedPType.id}
-                    onChange={changeAutoComplete}
-                    fetchChoices={searchProductTypes}
-                    data-tc="product-type"
-                    hasMore={maybe(
-                      () =>
-                        searchProductTypesOpts.data.search.pageInfo.hasNextPage
-                    )}
-                    loading={searchProductTypesOpts.loading}
-                    onFetchMore={loadMoreProductTypes}
-                  />
-                </div>
-                <div>
-                  <SingleAutocompleteSelectField
-                    displayValue={selectedCategory.name}
-                    name="category"
-                    label={"Category"}
-                    choices={getChoices(
-                      maybe(() =>
-                        searchCategoryOpts.data.search.edges.map(
-                          edge => edge.node
-                        )
-                      )
-                    )}
-                    value={selectedCategory.id}
-                    onChange={changeAutoComplete}
-                    fetchChoices={searchCategory}
-                    data-tc="category"
-                    hasMore={maybe(
-                      () => searchCategoryOpts.data.search.pageInfo.hasNextPage
-                    )}
-                    loading={searchCategoryOpts.loading}
-                    onFetchMore={loadMoreCategories}
-                  />
-                </div>
-                <div className={classes.controller}>
-                  <span style={{ paddingRight: 15 }}>
-                    {selectedProducts.length} бараа сонгосон байна |{" "}
-                    {/* <em style={{ cursor: "pointer" }} onClick={unCheckAll}>
-                uncheck all
-              </em> */}
-                  </span>
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    size="large"
-                    className={classes.controlBtn}
-                    onClick={changeProductInfo}
-                  >
-                    Change
-                  </Button>
-                </div>
-              </div>
-              <div className={classes.uProductContainer}>
-                <div className={classes.uLeftBar}>
-                  <h5 style={{ margin: 0 }}>PRODUCT TYPE</h5>
-                  <ul
-                    style={{
-                      listStyle: "none",
-                      padding: 0,
-                      position: "sticky",
-                      top: 100
-                    }}
-                  >
-                    {crawledData
-                      .sort((a, b) =>
-                        a.name.toLowerCase().localeCompare(b.name.toLowerCase())
-                      )
-                      .map(pType => (
-                        <li
-                          key={pType.id}
-                          onClick={() => handleClick(pType.id)}
-                          style={{
-                            borderTop: "1px dotted #ccc",
-                            cursor: "pointer",
-                            padding: "10px 0"
-                          }}
-                        >
-                          {pType.name} ({pType.products.length})
-                        </li>
-                      ))}
-                  </ul>
-                  {/* <h6>Category</h6>
-            <ul>
-              {usedCategories.map(cat => (
-                <li key={cat.id}>{cat.name}</li>
+    <div>
+      <div className={classes.stickyContainer}>
+        <div>
+          <SingleAutocompleteSelectField
+            displayValue={selectedPType.name}
+            name="productType"
+            label={"Product Type"}
+            choices={getChoices(
+              maybe(() =>
+                searchProductTypesOpts.data.search.edges.map(edge => edge.node)
+              )
+            )}
+            value={selectedPType.id}
+            onChange={changeAutoComplete}
+            fetchChoices={searchProductTypes}
+            data-tc="product-type"
+            hasMore={maybe(
+              () => searchProductTypesOpts.data.search.pageInfo.hasNextPage
+            )}
+            loading={searchProductTypesOpts.loading}
+            onFetchMore={loadMoreProductTypes}
+          />
+        </div>
+        <div>
+          <SingleAutocompleteSelectField
+            displayValue={selectedCategory.name}
+            name="category"
+            label={"Category"}
+            choices={getChoices(
+              maybe(() =>
+                searchCategoryOpts.data.search.edges.map(edge => edge.node)
+              )
+            )}
+            value={selectedCategory.id}
+            onChange={changeAutoComplete}
+            fetchChoices={searchCategory}
+            data-tc="category"
+            hasMore={maybe(
+              () => searchCategoryOpts.data.search.pageInfo.hasNextPage
+            )}
+            loading={searchCategoryOpts.loading}
+            onFetchMore={loadMoreCategories}
+          />
+        </div>
+        <div className={classes.controller}>
+          <span style={{ paddingRight: 15 }}>
+            {selectedProducts.length} бараа сонгосон байна |{" "}
+            {/* <em style={{ cursor: "pointer" }} onClick={unCheckAll}>
+        uncheck all
+      </em> */}
+          </span>
+          <Button
+            variant="contained"
+            color="secondary"
+            size="large"
+            className={classes.controlBtn}
+            onClick={changeProductInfo}
+          >
+            Change
+          </Button>
+        </div>
+      </div>
+      <div className={classes.uProductContainer}>
+        <div className={classes.uLeftBar}>
+          <h5 style={{ margin: 0 }}>PRODUCT TYPE</h5>
+          <ul
+          // style={{
+          //   backgroundColor: "#fff",
+          //   listStyle: "none",
+          //   padding: 0,
+          //   position: "sticky",
+          //   top: 100,
+          //   zIndex: 1
+          // }}
+          >
+            {crawledData
+              .sort((a, b) =>
+                a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+              )
+              .map(pType => (
+                <li
+                  key={pType.id}
+                  onClick={() => handleClick(pType.id)}
+                  style={{
+                    borderTop: "1px dotted #ccc",
+                    cursor: "pointer",
+                    padding: "10px 0"
+                  }}
+                >
+                  {pType.name} ({pType.products.length})
+                </li>
               ))}
-            </ul> */}
-                </div>
-                <div>
-                  {/* {console.log(crawledData)} */}
-                  {crawledData
-                    .filter(el => el.show)
-                    .sort((a, b) =>
-                      a.name.toLowerCase().localeCompare(b.name.toLowerCase())
-                    )
-                    .map(group => (
-                      <div key={group.id}>
-                        {group.id && (
-                          <span style={{ float: "right" }}>
-                            <Button
-                              color="primary"
-                              disabled={loadingSave}
-                              onClick={() =>
-                                saveProducts(
-                                  group.products,
-                                  selectedProducts,
-                                )
-                              }
-                              style={{ color: "#13BEBB !important" }}
-                            >
-                              Save products
-                            </Button>
-                          </span>
-                        )}
-                        <h1 ref={refs[group.id]}>
-                          {group.name} ({group.products.length})
-                          <small>
-                            <Button
-                              size="small"
-                              onClick={() =>
-                                setSelectedProducts(
-                                  group.products.map(product => product.key)
-                                )
-                              }
-                            >
-                              select all
-                            </Button>
-                            &nbsp;|&nbsp;
-                            <Button
-                              size="small"
-                              onClick={() => setSelectedProducts([])}
-                            >
-                              unselect all
-                            </Button>
-                          </small>
-                        </h1>
-                        <div className={classes.uProductGrid}>
-                          {group.products.map((product, index) => (
-                            <ProductItem
-                              key={index}
-                              product={product}
-                              usedProductTypes={usedProductTypes}
-                              usedCategories={usedCategories}
-                              changeProducts={changeProducts}
-                              selectedProducts={selectedProducts}
-                              setSelectedProducts={setSelectedProducts}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    ))}
+          </ul>
+          <h5>FILTER</h5>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={filterEnabled.category}
+                onChange={() =>
+                  setFilterEnabled({
+                    ...filterEnabled,
+                    category: !filterEnabled.category
+                  })
+                }
+                value="filterEnabled"
+                color="primary"
+              />
+            }
+            label="By category name"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={filterEnabled.productType}
+                onChange={() =>
+                  setFilterEnabled({
+                    ...filterEnabled,
+                    productType: !filterEnabled.productType
+                  })
+                }
+                value="filterEnabledProductType"
+                color="primary"
+              />
+            }
+            label="By product type"
+          />
+
+          <div>
+            <Typography
+              style={{ cursor: "pointer" }}
+              onClick={() => setSelectedTag("")}
+            >
+              CLEAR
+            </Typography>
+            {words
+              .sort((a, b) => b.count - a.count)
+              .filter(a => a.count > 1)
+              .map((word, index) => (
+                <Typography
+                  style={{ cursor: "pointer" }}
+                  key={index}
+                  onClick={() => setSelectedTag(word.text)}
+                >
+                  {word.text} ({word.count})
+                </Typography>
+              ))}
+          </div>
+        </div>
+        <div>
+          {filteredData
+            .sort((a, b) =>
+              a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+            )
+            .map(group => (
+              <div key={group.id}>
+                {group.id && (
+                  <span style={{ float: "right" }}>
+                    <Button
+                      color="primary"
+                      disabled={loadingSave}
+                      onClick={() =>
+                        saveProducts(group.products, selectedProducts)
+                      }
+                      style={{ color: "#13BEBB !important" }}
+                    >
+                      Save products
+                    </Button>
+                  </span>
+                )}
+                <h1 ref={refs[group.id]}>
+                  {group.name} ({group.products.length})
+                  <small>
+                    <Button
+                      size="small"
+                      onClick={() =>
+                        setSelectedProducts(
+                          group.products.map(product => product.key)
+                        )
+                      }
+                    >
+                      select all
+                    </Button>
+                    &nbsp;|&nbsp;
+                    <Button
+                      size="small"
+                      onClick={() => setSelectedProducts([])}
+                    >
+                      unselect all
+                    </Button>
+                  </small>
+                </h1>
+                <div className={classes.uProductGrid}>
+                  {group.products.map((product, index) => (
+                    <ProductItem
+                      key={index}
+                      product={product}
+                      usedProductTypes={usedProductTypes}
+                      usedCategories={usedCategories}
+                      changeProducts={changeProducts}
+                      selectedProducts={selectedProducts}
+                      setSelectedProducts={setSelectedProducts}
+                    />
+                  ))}
                 </div>
               </div>
-            </div>
+            ))}
+        </div>
+      </div>
+    </div>
   );
 };
 

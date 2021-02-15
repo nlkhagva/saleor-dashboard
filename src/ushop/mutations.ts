@@ -58,7 +58,7 @@ export const useUshopUpdate = makeMutation<UshopUpdate, UshopUpdateVariables>(
 
 const logoUshop = gql`
   ${ushopDetailsFragment}
-  mutation UshopUpdate($id: ID!, $input: UshopInput!) {
+  mutation UshopLogoUpdate($id: ID!, $input: UshopInput!) {
     ushopUpdate(id: $id, input: $input) {
       errors {
         message

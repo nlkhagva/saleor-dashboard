@@ -105,7 +105,8 @@ export const product: (
   category: {
     __typename: "Category",
     id: "Q2F0ZWdvcnk6MQ==",
-    name: "Apparel"
+    name: "Apparel",
+    parent: null
   },
   chargeTaxes: true,
   collections: [

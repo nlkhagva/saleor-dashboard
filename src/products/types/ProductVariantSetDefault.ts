@@ -248,6 +248,35 @@ export interface ProductVariantSetDefault_productVariantSetDefault_product_defau
   id: string;
 }
 
+export interface ProductVariantSetDefault_productVariantSetDefault_product_category_parent_parent_parent {
+  __typename: "Category";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
+export interface ProductVariantSetDefault_productVariantSetDefault_product_category_parent_parent {
+  __typename: "Category";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  parent: ProductVariantSetDefault_productVariantSetDefault_product_category_parent_parent_parent | null;
+}
+
+export interface ProductVariantSetDefault_productVariantSetDefault_product_category_parent {
+  __typename: "Category";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  parent: ProductVariantSetDefault_productVariantSetDefault_product_category_parent_parent | null;
+}
+
 export interface ProductVariantSetDefault_productVariantSetDefault_product_category {
   __typename: "Category";
   /**
@@ -255,6 +284,7 @@ export interface ProductVariantSetDefault_productVariantSetDefault_product_categ
    */
   id: string;
   name: string;
+  parent: ProductVariantSetDefault_productVariantSetDefault_product_category_parent | null;
 }
 
 export interface ProductVariantSetDefault_productVariantSetDefault_product_collections {

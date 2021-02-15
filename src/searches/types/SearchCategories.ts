@@ -7,6 +7,35 @@
 // GraphQL query operation: SearchCategories
 // ====================================================
 
+export interface SearchCategories_search_edges_node_parent_parent_parent {
+  __typename: "Category";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
+export interface SearchCategories_search_edges_node_parent_parent {
+  __typename: "Category";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  parent: SearchCategories_search_edges_node_parent_parent_parent | null;
+}
+
+export interface SearchCategories_search_edges_node_parent {
+  __typename: "Category";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  parent: SearchCategories_search_edges_node_parent_parent | null;
+}
+
 export interface SearchCategories_search_edges_node {
   __typename: "Category";
   /**
@@ -14,6 +43,7 @@ export interface SearchCategories_search_edges_node {
    */
   id: string;
   name: string;
+  parent: SearchCategories_search_edges_node_parent | null;
 }
 
 export interface SearchCategories_search_edges {

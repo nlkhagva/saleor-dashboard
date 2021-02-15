@@ -12,12 +12,14 @@ const props: MenuItemDialogProps = {
     {
       __typename: "Category",
       id: "1",
-      name: "Chairs"
+      name: "Chairs",
+      parent: null
     },
     {
       __typename: "Category",
       id: "2",
-      name: "Desks"
+      name: "Desks",
+      parent: null
     }
   ],
   collections: [],

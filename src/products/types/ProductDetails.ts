@@ -235,6 +235,35 @@ export interface ProductDetails_product_defaultVariant {
   id: string;
 }
 
+export interface ProductDetails_product_category_parent_parent_parent {
+  __typename: "Category";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
+export interface ProductDetails_product_category_parent_parent {
+  __typename: "Category";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  parent: ProductDetails_product_category_parent_parent_parent | null;
+}
+
+export interface ProductDetails_product_category_parent {
+  __typename: "Category";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  parent: ProductDetails_product_category_parent_parent | null;
+}
+
 export interface ProductDetails_product_category {
   __typename: "Category";
   /**
@@ -242,6 +271,7 @@ export interface ProductDetails_product_category {
    */
   id: string;
   name: string;
+  parent: ProductDetails_product_category_parent | null;
 }
 
 export interface ProductDetails_product_collections {

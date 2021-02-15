@@ -103,6 +103,7 @@ const apolloClient = new ApolloClient({
   link: authLink.concat(link)
 });
 
+// "http://18.197.139.122"
 export const socketURI = process.env.CRAWLER_URL || "http://18.197.139.122";
 export const socketOptions = { transports: ["websocket"] };
 

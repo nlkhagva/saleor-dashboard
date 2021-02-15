@@ -119,6 +119,9 @@ const MenuItemDialog: React.FC<MenuItemDialogProps> = ({
     .reduce((acc, err) => acc || err);
 
   let options: IMenu = [];
+  function parentRender(p) {
+    return p?.name + (p.parent ? " / " + parentRender(p.parent) : "");
+  }
 
   if (categories.length > 0) {
     options = [
@@ -127,7 +130,7 @@ const MenuItemDialog: React.FC<MenuItemDialogProps> = ({
         children: categories.map(category => ({
           children: [],
           data: {},
-          label: category.name,
+          label: parentRender(category),
           value: "category:" + category.id
         })),
         data: {},

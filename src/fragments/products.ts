@@ -123,6 +123,18 @@ export const productFragmentDetails = gql`
     category {
       id
       name
+      parent {
+        id
+        name
+        parent {
+          id
+          name
+          parent {
+            id
+            name
+          }
+        }
+      }
     }
     collections {
       id

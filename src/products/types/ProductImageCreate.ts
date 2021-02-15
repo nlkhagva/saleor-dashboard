@@ -248,6 +248,35 @@ export interface ProductImageCreate_productImageCreate_product_defaultVariant {
   id: string;
 }
 
+export interface ProductImageCreate_productImageCreate_product_category_parent_parent_parent {
+  __typename: "Category";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
+export interface ProductImageCreate_productImageCreate_product_category_parent_parent {
+  __typename: "Category";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  parent: ProductImageCreate_productImageCreate_product_category_parent_parent_parent | null;
+}
+
+export interface ProductImageCreate_productImageCreate_product_category_parent {
+  __typename: "Category";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  parent: ProductImageCreate_productImageCreate_product_category_parent_parent | null;
+}
+
 export interface ProductImageCreate_productImageCreate_product_category {
   __typename: "Category";
   /**
@@ -255,6 +284,7 @@ export interface ProductImageCreate_productImageCreate_product_category {
    */
   id: string;
   name: string;
+  parent: ProductImageCreate_productImageCreate_product_category_parent | null;
 }
 
 export interface ProductImageCreate_productImageCreate_product_collections {

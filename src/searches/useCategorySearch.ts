@@ -19,6 +19,18 @@ export const searchCategories = gql`
         node {
           id
           name
+          parent {
+            id
+            name
+            parent {
+              id
+              name
+              parent {
+                id
+                name
+              }
+            }
+          }
         }
       }
       pageInfo {

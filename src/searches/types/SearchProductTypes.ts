@@ -53,6 +53,50 @@ export interface SearchProductTypes_search_edges_node_productAttributes {
   values: (SearchProductTypes_search_edges_node_productAttributes_values | null)[] | null;
 }
 
+export interface SearchProductTypes_search_edges_node_variantAttributes_values {
+  __typename: "AttributeValue";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  name: string | null;
+  /**
+   * Internal representation of a value (unique per attribute).
+   */
+  slug: string | null;
+}
+
+export interface SearchProductTypes_search_edges_node_variantAttributes {
+  __typename: "Attribute";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * The input type to use for entering attribute values in the dashboard.
+   */
+  inputType: AttributeInputTypeEnum | null;
+  /**
+   * Internal representation of an attribute name.
+   */
+  slug: string | null;
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  name: string | null;
+  /**
+   * Whether the attribute requires values to be passed or not.
+   */
+  valueRequired: boolean;
+  /**
+   * List of attribute's values.
+   */
+  values: (SearchProductTypes_search_edges_node_variantAttributes_values | null)[] | null;
+}
+
 export interface SearchProductTypes_search_edges_node_taxType {
   __typename: "TaxType";
   /**
@@ -77,6 +121,10 @@ export interface SearchProductTypes_search_edges_node {
    * Product attributes of that product type.
    */
   productAttributes: (SearchProductTypes_search_edges_node_productAttributes | null)[] | null;
+  /**
+   * Variant attributes of that product type.
+   */
+  variantAttributes: (SearchProductTypes_search_edges_node_variantAttributes | null)[] | null;
   /**
    * A type of tax. Assigned by enabled tax gateway
    */
