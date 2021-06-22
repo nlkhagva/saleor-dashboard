@@ -487,4 +487,6 @@ export interface Product {
   taxType: Product_taxType | null;
   availableForPurchase: any | null;
   visibleInListings: boolean;
+  wasPrice: number | null;
+  usale: number | null;
 }

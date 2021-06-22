@@ -16,6 +16,7 @@ import { stringifyQs } from "../utils/urls";
 const productSection = "/products/";
 
 export const productAddPath = urlJoin(productSection, "add");
+export const productAddFbLivePath = urlJoin(productSection, "addFbLive");
 export const productAddUrl = productAddPath;
 
 export const productListPath = productSection;
@@ -91,6 +92,10 @@ export const productVariantEditUrl = (
 
 export const productVariantCreatorPath = (productId: string) =>
   urlJoin(productSection, productId, "variant-creator");
+
+export const productFbPath = (id: string) =>
+  urlJoin(productSection, id, "facebook-live");
+
 export const productVariantCreatorUrl = (productId: string) =>
   productVariantCreatorPath(encodeURIComponent(productId));
 

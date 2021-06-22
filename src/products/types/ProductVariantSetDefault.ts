@@ -500,6 +500,8 @@ export interface ProductVariantSetDefault_productVariantSetDefault_product {
   taxType: ProductVariantSetDefault_productVariantSetDefault_product_taxType | null;
   availableForPurchase: any | null;
   visibleInListings: boolean;
+  wasPrice: number | null;
+  usale: number | null;
 }
 
 export interface ProductVariantSetDefault_productVariantSetDefault {

@@ -500,6 +500,8 @@ export interface ProductCreate_productCreate_product {
   taxType: ProductCreate_productCreate_product_taxType | null;
   availableForPurchase: any | null;
   visibleInListings: boolean;
+  wasPrice: number | null;
+  usale: number | null;
 }
 
 export interface ProductCreate_productCreate {

@@ -71,6 +71,7 @@ interface FormData extends MetadataFormData {
   taxCode: string;
   trackInventory: boolean;
   visibleInListings: boolean;
+  wasPrice: number;
   weight: string;
 }
 export interface ProductCreatePageSubmitData extends FormData {
@@ -175,6 +176,7 @@ export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
     taxCode: null,
     trackInventory: false,
     visibleInListings: false,
+    wasPrice: 0,
     weight: ""
   };
 

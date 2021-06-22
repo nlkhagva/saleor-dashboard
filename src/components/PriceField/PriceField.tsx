@@ -79,6 +79,9 @@ export const PriceField: React.FC<PriceFieldProps> = props => {
       name={name}
       disabled={disabled}
       onChange={onChange}
+      onFocus={event => {
+        event.target.select();
+      }}
     />
   );
 };

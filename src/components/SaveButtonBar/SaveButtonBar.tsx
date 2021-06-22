@@ -25,11 +25,11 @@ const useStyles = makeStyles(
     },
     content: {
       "&:last-child": {
-        paddingBottom: theme.spacing(2)
+        paddingBottom: theme.spacing(1)
       },
       display: "flex",
-      paddingBottom: theme.spacing(2),
-      paddingTop: theme.spacing(2),
+      paddingBottom: theme.spacing(1),
+      paddingTop: theme.spacing(1),
       [theme.breakpoints.down("sm")]: {
         marginTop: theme.spacing(1)
       }
@@ -42,7 +42,10 @@ const useStyles = makeStyles(
       color: theme.palette.error.contrastText
     },
     root: {
-      height: 120
+      height: 100,
+      [theme.breakpoints.down("sm")]: {
+        height: 70
+      }
     },
     spacer: {
       flex: "1"

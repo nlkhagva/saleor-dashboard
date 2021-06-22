@@ -500,6 +500,8 @@ export interface ProductVariantReorder_productVariantReorder_product {
   taxType: ProductVariantReorder_productVariantReorder_product_taxType | null;
   availableForPurchase: any | null;
   visibleInListings: boolean;
+  wasPrice: number | null;
+  usale: number | null;
 }
 
 export interface ProductVariantReorder_productVariantReorder {

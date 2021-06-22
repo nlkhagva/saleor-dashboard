@@ -500,6 +500,8 @@ export interface ProductUpdate_productUpdate_product {
   taxType: ProductUpdate_productUpdate_product_taxType | null;
   availableForPurchase: any | null;
   visibleInListings: boolean;
+  wasPrice: number | null;
+  usale: number | null;
 }
 
 export interface ProductUpdate_productUpdate {

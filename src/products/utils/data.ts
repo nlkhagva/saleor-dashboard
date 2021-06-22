@@ -191,6 +191,8 @@ export interface ProductUpdatePageFormData extends MetadataFormData {
   trackInventory: boolean;
   visibleInListings: boolean;
   weight: string;
+  wasPrice: number;
+  usale: number;
 }
 
 export function getProductUpdatePageFormData(
@@ -229,7 +231,9 @@ export function getProductUpdatePageFormData(
     slug: product?.slug || "",
     taxCode: product?.taxType.taxCode,
     trackInventory: !!product?.variants[0]?.trackInventory,
+    usale: 0,
     visibleInListings: !!product?.visibleInListings,
+    wasPrice: maybe(() => product.wasPrice, 0),
     weight: product?.weight?.value.toString() || ""
   };
 }
@@ -268,13 +272,17 @@ export function getChoicesParent(nodes: any[]): SingleAutocompleteChoiceType[] {
   );
 }
 
-export function getLinkImages(product){
-  const metadata = product?.metadata.find(el => el.key === "linkImages")
+export function getLinkImages(product) {
+  const metadata = product?.metadata.find(el => el.key === "linkImages");
   return JSON.parse(metadata ? metadata.value : "[]" || "[]");
 }
 
-export function getAvatarImage(product){
+export function getAvatarImage(product) {
   const imageLinks = getLinkImages(product);
-  
-  return product?.thumbnail ?  product.thumbnail.url: imageLinks.length ? imageLinks[0] : null;
+
+  return product?.thumbnail
+    ? product.thumbnail.url
+    : imageLinks.length
+    ? imageLinks[0]
+    : null;
 }

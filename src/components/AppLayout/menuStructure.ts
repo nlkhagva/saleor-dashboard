@@ -1,7 +1,6 @@
 import appsIcon from "@assets/images/menu-apps-icon.svg";
 import catalogIcon from "@assets/images/menu-catalog-icon.svg";
 import customerIcon from "@assets/images/menu-customers-icon.svg";
-// import discountsIcon from "@assets/images/menu-discounts-icon.svg";
 import homeIcon from "@assets/images/menu-home-icon.svg";
 import ordersIcon from "@assets/images/menu-orders-icon.svg";
 import packageIcon from "@assets/images/menu-package-icon.svg";
@@ -15,12 +14,13 @@ import { appsListPath } from "../../apps/urls";
 import { categoryListUrl } from "../../categories/urls";
 import { collectionListUrl } from "../../collections/urls";
 import { customerListUrl } from "../../customers/urls";
-// import { saleListUrl, voucherListUrl } from "../../discounts/urls";
 import { orderDraftListUrl, orderListUrl } from "../../orders/urls";
-import { productListUrl } from "../../products/urls";
+import { productAddFbLivePath, productListUrl } from "../../products/urls";
 import { languageListUrl } from "../../translations/urls";
 import { PermissionEnum } from "../../types/globalTypes";
 
+// import discountsIcon from "@assets/images/menu-discounts-icon.svg";
+// import { saleListUrl, voucherListUrl } from "../../discounts/urls";
 export interface IMenuItem {
   ariaLabel: string;
   children?: IMenuItem[];
@@ -83,6 +83,12 @@ function createMenuStructure(intl: IntlShape): IMenuItem[] {
           label: intl.formatMessage(sectionNames.collections),
           testingContextId: "collections",
           url: collectionListUrl()
+        },
+        {
+          ariaLabel: "products",
+          label: "Facebook Live бараа үүсгэх",
+          testingContextId: "productsfacebooklive",
+          url: productAddFbLivePath
         }
       ],
       icon: catalogIcon,

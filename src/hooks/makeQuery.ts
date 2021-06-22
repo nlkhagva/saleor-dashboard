@@ -46,7 +46,7 @@ function makeQuery<TData, TVariables>(
         useBatching: true
       },
       errorPolicy: "all",
-      fetchPolicy: "cache-and-network",
+      fetchPolicy: "no-cache",
       onError: error =>
         handleQueryAuthError(
           error,

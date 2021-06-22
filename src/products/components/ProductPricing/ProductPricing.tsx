@@ -23,6 +23,7 @@ interface ProductPricingProps {
   currency?: string;
   data: {
     basePrice: number;
+    wasPrice: number;
   };
   disabled: boolean;
   errors: ProductErrorFragment[];
@@ -35,7 +36,7 @@ const ProductPricing: React.FC<ProductPricingProps> = props => {
   const classes = useStyles(props);
   const intl = useIntl();
 
-  const formErrors = getFormErrors(["basePrice"], errors);
+  const formErrors = getFormErrors(["basePrice", "wasPrice"], errors);
 
   return (
     <Card>
@@ -57,6 +58,24 @@ const ProductPricing: React.FC<ProductPricingProps> = props => {
             hint={getProductErrorMessage(formErrors.basePrice, intl)}
             name="basePrice"
             value={data.basePrice}
+            currencySymbol={currency}
+            onChange={onChange}
+            InputProps={{
+              inputProps: {
+                min: 0
+              }
+            }}
+          />
+          <PriceField
+            disabled={disabled}
+            label={intl.formatMessage({
+              defaultMessage: "Full price",
+              description: "product price"
+            })}
+            error={!!formErrors.wasPrice}
+            hint={getProductErrorMessage(formErrors.wasPrice, intl)}
+            name="wasPrice"
+            value={data.wasPrice}
             currencySymbol={currency}
             onChange={onChange}
             InputProps={{

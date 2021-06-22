@@ -41,6 +41,7 @@ import {
   ProductVariantDetails,
   ProductVariantDetailsVariables
 } from "./types/ProductVariantDetails";
+import { skuNextQuery as skuNext } from "./types/skuNextQuery";
 
 const initialProductFilterDataQuery = gql`
   query InitialProductFilterData(
@@ -124,7 +125,7 @@ const productListQuery = gql`
               name
             }
           }
-          metadata{
+          metadata {
             key
             value
           }
@@ -320,3 +321,12 @@ export const useCreateMultipleVariantsData = makeQuery<
   CreateMultipleVariantsData,
   CreateMultipleVariantsDataVariables
 >(createMultipleVariantsData);
+
+const skuNextQuery = gql`
+  query skuNextQuery {
+    ushopSkuNext {
+      sku
+    }
+  }
+`;
+export const useSkuNext = makeQuery<skuNext, null>(skuNextQuery);

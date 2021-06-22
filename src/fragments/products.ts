@@ -203,6 +203,8 @@ export const productFragmentDetails = gql`
     }
     availableForPurchase
     visibleInListings
+    wasPrice
+    usale
   }
 `;
 

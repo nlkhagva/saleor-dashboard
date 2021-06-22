@@ -266,6 +266,7 @@ export const product: (
   },
   thumbnail: { __typename: "Image" as "Image", url: placeholderImage },
   url: "/example-url",
+  usale: 0,
   variants: [
     {
       __typename: "ProductVariant",
@@ -350,6 +351,7 @@ export const product: (
     }
   ],
   visibleInListings: true,
+  wasPrice: 0,
   weight: {
     __typename: "Weight",
     unit: WeightUnitsEnum.KG,

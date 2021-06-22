@@ -20,7 +20,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import CardTitle from "@saleor/components/CardTitle";
 import ControlledCheckbox from "@saleor/components/ControlledCheckbox";
 import FormSpacer from "@saleor/components/FormSpacer";
-import Hr from "@saleor/components/Hr";
+// import Hr from "@saleor/components/Hr";
 import { ProductErrorFragment } from "@saleor/fragments/types/ProductErrorFragment";
 import { WarehouseFragment } from "@saleor/fragments/types/WarehouseFragment";
 import { FormChange } from "@saleor/hooks/useForm";
@@ -125,60 +125,66 @@ const ProductStocks: React.FC<ProductStocksProps> = ({
 
   return (
     <Card>
-      <CardTitle
-        title={intl.formatMessage({
-          defaultMessage: "Inventory",
-          description: "product stock, section header",
-          id: "productStockHeader"
-        })}
-      />
-      <CardContent>
-        <div className={classes.skuInputContainer}>
-          <TextField
-            disabled={disabled}
-            error={!!formErrors.sku}
-            fullWidth
-            helperText={getProductErrorMessage(formErrors.sku, intl)}
-            label={intl.formatMessage({
-              defaultMessage: "SKU (Stock Keeping Unit)"
-            })}
-            name="sku"
-            onChange={onFormDataChange}
-            value={data.sku}
-          />
-        </div>
-        <FormSpacer />
-        <ControlledCheckbox
-          checked={data.trackInventory}
-          name="trackInventory"
-          onChange={onFormDataChange}
-          disabled={disabled}
-          label={
-            <>
-              <FormattedMessage
-                defaultMessage="Track Inventory"
-                description="product inventory, checkbox"
-              />
-              <Typography variant="caption">
-                <FormattedMessage defaultMessage="Active inventory tracking will automatically calculate changes of stock" />
-              </Typography>
-            </>
-          }
+      {false && (
+        <CardTitle
+          title={intl.formatMessage({
+            defaultMessage: "Inventory",
+            description: "product stock, section header",
+            id: "productStockHeader"
+          })}
         />
-      </CardContent>
-      <Hr />
-      <CardContent className={classes.quantityContainer}>
-        <Typography>
-          <div className={classes.quantityHeader}>
-            <span>
-              <FormattedMessage
-                defaultMessage="Quantity"
-                description="header"
-              />
-            </span>
+      )}
+      {false && (
+        <CardContent>
+          <div className={classes.skuInputContainer}>
+            <TextField
+              disabled={disabled}
+              error={!!formErrors.sku}
+              fullWidth
+              helperText={getProductErrorMessage(formErrors.sku, intl)}
+              label={intl.formatMessage({
+                defaultMessage: "SKU (Stock Keeping Unit)"
+              })}
+              name="sku"
+              onChange={onFormDataChange}
+              value={data.sku}
+            />
           </div>
-        </Typography>
-      </CardContent>
+          <FormSpacer />
+          <ControlledCheckbox
+            checked={data.trackInventory}
+            name="trackInventory"
+            onChange={onFormDataChange}
+            disabled={disabled}
+            label={
+              <>
+                <FormattedMessage
+                  defaultMessage="Track Inventory"
+                  description="product inventory, checkbox"
+                />
+                <Typography variant="caption">
+                  <FormattedMessage defaultMessage="Active inventory tracking will automatically calculate changes of stock" />
+                </Typography>
+              </>
+            }
+          />
+        </CardContent>
+      )}
+      {/* <Hr /> */}
+      {true && (
+        <CardContent className={classes.quantityContainer}>
+          <Typography>
+            <div className={classes.quantityHeader}>
+              <span>
+                <FormattedMessage
+                  defaultMessage="Quantity"
+                  description="header"
+                />
+              </span>
+            </div>
+          </Typography>
+        </CardContent>
+      )}
       <Table>
         {/* <TableHead>
           <TableRow>
@@ -212,6 +218,9 @@ const ProductStocks: React.FC<ProductStocksProps> = ({
                     type: "number"
                   }}
                   onChange={event => onChange(stock.id, event.target.value)}
+                  onFocus={event => {
+                    event.target.select();
+                  }}
                   value={stock.value}
                 />
               </TableCell>

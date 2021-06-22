@@ -62,7 +62,8 @@ export function createUpdateHandler(
         },
         slug: data.slug,
         taxCode: data.changeTaxCode ? data.taxCode : null,
-        visibleInListings: data.visibleInListings
+        visibleInListings: data.visibleInListings,
+        wasPrice: decimal(data.wasPrice)
       }
     };
 

@@ -8,7 +8,9 @@ import { Route, RouteComponentProps, Switch } from "react-router-dom";
 
 import { WindowTitle } from "../components/WindowTitle";
 import {
+  productAddFbLivePath,
   productAddPath,
+  productFbPath,
   productImagePath,
   ProductImageUrlQueryParams,
   productListPath,
@@ -22,6 +24,8 @@ import {
   ProductVariantEditUrlQueryParams
 } from "./urls";
 import ProductCreate from "./views/ProductCreate";
+import ProductFbLiveCreate from "./views/ProductFbLiveCreate";
+import ProductFbLiveUpdate from "./views/ProductFbLiveUpdate/ProductFbLiveUpdate";
 import ProductImageComponent from "./views/ProductImage";
 import ProductListComponent from "./views/ProductList";
 import ProductUpdateComponent from "./views/ProductUpdate";
@@ -51,6 +55,22 @@ const ProductUpdate: React.FC<RouteComponentProps<any>> = ({ match }) => {
 
   return (
     <ProductUpdateComponent
+      id={decodeURIComponent(match.params.id)}
+      params={{
+        ...params,
+        ids: getArrayQueryParam(qs.ids)
+      }}
+    />
+  );
+};
+const ProductFbUpdate: React.FC<RouteComponentProps<{
+  id: string;
+}>> = ({ match }) => {
+  const qs = parseQs(location.search.substr(1));
+  const params: ProductUrlQueryParams = qs;
+
+  return (
+    <ProductFbLiveUpdate
       id={decodeURIComponent(match.params.id)}
       params={{
         ...params,
@@ -113,6 +133,11 @@ const Component = () => {
         <Route exact path={productListPath} component={ProductList} />
         <Route exact path={productAddPath} component={ProductCreate} />
         <Route
+          exact
+          path={productAddFbLivePath}
+          component={ProductFbLiveCreate}
+        />
+        <Route
           path={productVariantCreatorPath(":id")}
           component={ProductVariantCreator}
         />
@@ -125,6 +150,7 @@ const Component = () => {
           path={productVariantEditPath(":productId", ":variantId")}
           component={ProductVariant}
         />
+        <Route path={productFbPath(":id")} component={ProductFbUpdate} />
         <Route
           path={productImagePath(":productId", ":imageId")}
           component={ProductImage}
