@@ -192,6 +192,13 @@ const orderFulfillData = gql`
       id
       lines {
         id
+        allocations {
+          warehouse {
+            id
+            name
+          }
+          quantity
+        }
         isShippingRequired
         productName
         quantity

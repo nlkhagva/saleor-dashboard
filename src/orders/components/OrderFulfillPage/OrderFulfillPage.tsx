@@ -399,9 +399,20 @@ const OrderFulfillPage: React.FC<OrderFulfillPageProps> = props => {
                               );
                             }
 
+                            // const availableQuantity =
+                            //   warehouseStock.quantity -
+                            //   warehouseStock.quantityAllocated;
+
+                            const warehouseAllocation = line.allocations.find(
+                              allocation =>
+                                allocation.warehouse.id === warehouse.id
+                            );
+                            const allocatedQuantityForLine =
+                              warehouseAllocation?.quantity || 0;
                             const availableQuantity =
                               warehouseStock.quantity -
-                              warehouseStock.quantityAllocated;
+                              warehouseStock.quantityAllocated +
+                              allocatedQuantityForLine;
 
                             return (
                               <TableCell
