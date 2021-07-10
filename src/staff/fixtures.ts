@@ -7,7 +7,7 @@ import { StaffMemberDetails_user } from "./types/StaffMemberDetails";
 export const staffMembers: StaffList_staffUsers_edges_node[] = [
   {
     avatar: {
-      __typename: "Image" as "Image",
+      __typename: "Image" as const,
       url: avatarImage
     },
     email: "admin@example.com",
@@ -18,7 +18,7 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
   },
   {
     avatar: {
-      __typename: "Image" as "Image",
+      __typename: "Image" as const,
       url: avatarImage
     },
     email: "admin@example.com",
@@ -29,7 +29,7 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
   },
   {
     avatar: {
-      __typename: "Image" as "Image",
+      __typename: "Image" as const,
       url: avatarImage
     },
     email: "admin@example.com",
@@ -40,7 +40,7 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
   },
   {
     avatar: {
-      __typename: "Image" as "Image",
+      __typename: "Image" as const,
       url: avatarImage
     },
     email: "admin@example.com",
@@ -51,7 +51,7 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
   },
   {
     avatar: {
-      __typename: "Image" as "Image",
+      __typename: "Image" as const,
       url: avatarImage
     },
     email: "admin@example.com",
@@ -62,7 +62,7 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
   },
   {
     avatar: {
-      __typename: "Image" as "Image",
+      __typename: "Image" as const,
       url: avatarImage
     },
     email: "admin@example.com",
@@ -73,7 +73,7 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
   },
   {
     avatar: {
-      __typename: "Image" as "Image",
+      __typename: "Image" as const,
       url: avatarImage
     },
     email: "admin@example.com",
@@ -84,7 +84,7 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
   },
   {
     avatar: {
-      __typename: "Image" as "Image",
+      __typename: "Image" as const,
       url: avatarImage
     },
     email: "admin@example.com",
@@ -95,7 +95,7 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
   },
   {
     avatar: {
-      __typename: "Image" as "Image",
+      __typename: "Image" as const,
       url: avatarImage
     },
     email: "admin@example.com",
@@ -106,7 +106,7 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
   },
   {
     avatar: {
-      __typename: "Image" as "Image",
+      __typename: "Image" as const,
       url: avatarImage
     },
     email: "admin@example.com",
@@ -117,7 +117,7 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
   },
   {
     avatar: {
-      __typename: "Image" as "Image",
+      __typename: "Image" as const,
       url: avatarImage
     },
     email: "admin@example.com",
@@ -128,7 +128,7 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
   },
   {
     avatar: {
-      __typename: "Image" as "Image",
+      __typename: "Image" as const,
       url: avatarImage
     },
     email: "admin@example.com",
@@ -137,10 +137,10 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
     isActive: true,
     lastName: "Smith"
   }
-].map(staffMember => ({ __typename: "User" as "User", ...staffMember }));
+].map(staffMember => ({ __typename: "User" as const, ...staffMember }));
 export const staffMember: StaffMemberDetails_user = {
   __typename: "User",
-  avatar: { __typename: "Image" as "Image", url: avatarImage },
+  avatar: { __typename: "Image" as const, url: avatarImage },
   email: "admin@example.com",
   firstName: "Jacob",
   id: "VXNlcjoyMQ==",

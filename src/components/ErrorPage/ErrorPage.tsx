@@ -13,7 +13,7 @@ export interface ErrorPageProps {
 const useStyles = makeStyles(
   theme => ({
     bottomHeader: {
-      fontWeight: 600 as 600,
+      fontWeight: 600 as const,
       textTransform: "uppercase"
     },
     button: {
@@ -51,7 +51,7 @@ const useStyles = makeStyles(
       height: "calc(100vh - 180px)"
     },
     upperHeader: {
-      fontWeight: 600 as 600
+      fontWeight: 600 as const
     }
   }),
   { name: "ErrorPage" }

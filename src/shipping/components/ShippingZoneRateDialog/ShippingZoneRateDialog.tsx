@@ -183,7 +183,7 @@ const ShippingZoneRateDialog: React.FC<ShippingZoneRateDialogProps> = props => {
             </DialogContent>
             <Hr />
             <DialogContent>
-              {!!variant ? (
+              {variant ? (
                 <>
                   <Typography
                     className={classes.subheading}

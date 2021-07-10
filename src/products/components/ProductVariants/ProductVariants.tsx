@@ -50,7 +50,7 @@ function getWarehouseChoices(
           ...variant.stocks.reduce<
             ProductDetails_product_variants_stocks_warehouse[]
           >((variantStocks, stock) => {
-            if (!!warehouses.find(w => w.id === stock.warehouse.id)) {
+            if (warehouses.find(w => w.id === stock.warehouse.id)) {
               return variantStocks;
             }
 
@@ -112,10 +112,10 @@ const useStyles = makeStyles(
       display: "inline-block"
     },
     textLeft: {
-      textAlign: "left" as "left"
+      textAlign: "left" as const
     },
     textRight: {
-      textAlign: "right" as "right"
+      textAlign: "right" as const
     },
     warehouseLabel: {
       display: "inline-block",
@@ -136,8 +136,8 @@ function getAvailabilityLabel(
 ): string {
   const variantStock = variant.stocks.find(s => s.warehouse.id === warehouse);
 
-  if (!!warehouse) {
-    if (!!variantStock) {
+  if (warehouse) {
+    if (variantStock) {
       if (variantStock.quantity > 0) {
         return intl.formatMessage(
           {

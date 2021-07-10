@@ -73,7 +73,7 @@ const TranslationsSalesPage: React.FC<TranslationsSalesPageProps> = ({
             translation: maybe(() =>
               sale.translation ? sale.translation.name : null
             ),
-            type: "short" as "short",
+            type: "short" as const,
             value: maybe(() => sale.name)
           }
         ]}

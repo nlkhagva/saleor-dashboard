@@ -25,7 +25,7 @@ function createFilterHandlers<
   const { getFilterQueryParam, navigate, createUrl, params, cleanupFn } = opts;
 
   const changeFilters = (filter: IFilter<TFilterKeys>) => {
-    if (!!cleanupFn) {
+    if (cleanupFn) {
       cleanupFn();
     }
 
@@ -39,7 +39,7 @@ function createFilterHandlers<
   };
 
   const resetFilters = () => {
-    if (!!cleanupFn) {
+    if (cleanupFn) {
       cleanupFn();
     }
 
@@ -52,7 +52,7 @@ function createFilterHandlers<
   };
 
   const handleSearchChange = (query: string) => {
-    if (!!cleanupFn) {
+    if (cleanupFn) {
       cleanupFn();
     }
 

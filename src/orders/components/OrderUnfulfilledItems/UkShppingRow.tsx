@@ -11,7 +11,7 @@ interface UkShippingProps {
 
 const UkShippingRow: React.FC<UkShippingProps> = ({ line, classes }) => (
   <TableRow
-    className={!!line ? classes.clickableRow : undefined}
+    className={line ? classes.clickableRow : undefined}
     hover={!!line}
     key={maybe(() => line.id)}
   >

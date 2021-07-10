@@ -120,7 +120,7 @@ const CrawlerList: React.FC<CrawlerListProps> = props => {
               return (
                 <TableRow
                   hover={!!crawler}
-                  className={!!crawler ? classes.link : undefined}
+                  className={crawler ? classes.link : undefined}
                   onClick={crawler ? onRowClick(crawler.id) : undefined}
                   key={crawler ? crawler.id : "skeleton"}
                   selected={isSelected}

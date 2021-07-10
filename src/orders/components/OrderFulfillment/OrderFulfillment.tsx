@@ -144,7 +144,7 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
     <Card style={style}>
       <CardTitle
         title={
-          !!lines ? (
+          lines ? (
             <StatusLabel
               label={
                 <>
@@ -231,7 +231,7 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
         <TableBody>
           {renderCollection(lines, (line, index) => (
             <TableRow
-              className={!!line ? classes.clickableRow : undefined}
+              className={line ? classes.clickableRow : undefined}
               hover={!!line}
               key={maybe(() => line.id)}
             >

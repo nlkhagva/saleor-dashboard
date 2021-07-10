@@ -137,7 +137,7 @@ const ProductTypeList: React.FC<ProductTypeListProps> = props => {
             const isSelected = productType ? isChecked(productType.id) : false;
             return (
               <TableRow
-                className={!!productType ? classes.link : undefined}
+                className={productType ? classes.link : undefined}
                 hover={!!productType}
                 key={productType ? productType.id : "skeleton"}
                 onClick={productType ? onRowClick(productType.id) : undefined}

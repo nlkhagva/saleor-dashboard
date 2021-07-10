@@ -17,7 +17,7 @@ const useStyles = makeStyles(
       height: "100vh",
       overflow: "visible",
       padding: 0,
-      position: "fixed" as "fixed",
+      position: "fixed" as const,
       transition: "width 0.3s ease",
       width: drawerWidthExpanded
     },

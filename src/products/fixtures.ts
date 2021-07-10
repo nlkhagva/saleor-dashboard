@@ -14,12 +14,12 @@ export const product: (
   placeholderImage: string
 ) => ProductDetails_product &
   ProductVariantCreateData_product = placeholderImage => ({
-  __typename: "Product" as "Product",
+  __typename: "Product" as const,
   attributes: [
     {
       __typename: "SelectedAttribute",
       attribute: {
-        __typename: "Attribute" as "Attribute",
+        __typename: "Attribute" as const,
         id: "pta18161",
         inputType: AttributeInputTypeEnum.DROPDOWN,
         name: "Borders",
@@ -52,7 +52,7 @@ export const product: (
     {
       __typename: "SelectedAttribute",
       attribute: {
-        __typename: "Attribute" as "Attribute",
+        __typename: "Attribute" as const,
         id: "pta22785",
         inputType: AttributeInputTypeEnum.MULTISELECT,
         name: "Legacy",
@@ -97,7 +97,7 @@ export const product: (
   ],
   availableForPurchase: null,
   basePrice: {
-    __typename: "Money" as "Money",
+    __typename: "Money" as const,
     amount: 339.39,
     currency: "NZD",
     localized: "339.39 NZD"
@@ -264,7 +264,7 @@ export const product: (
     description: "standard",
     taxCode: "standard"
   },
-  thumbnail: { __typename: "Image" as "Image", url: placeholderImage },
+  thumbnail: { __typename: "Image" as const, url: placeholderImage },
   url: "/example-url",
   usale: 0,
   variants: [
@@ -1450,7 +1450,7 @@ export const variant = (placeholderImage: string): ProductVariant => ({
     {
       __typename: "SelectedAttribute",
       attribute: {
-        __typename: "Attribute" as "Attribute",
+        __typename: "Attribute" as const,
         id: "pta18161",
         name: "Borders",
         slug: "Borders",
@@ -1482,7 +1482,7 @@ export const variant = (placeholderImage: string): ProductVariant => ({
     {
       __typename: "SelectedAttribute",
       attribute: {
-        __typename: "Attribute" as "Attribute",
+        __typename: "Attribute" as const,
         id: "pta22785",
         name: "Legacy",
         slug: "Legacy",
@@ -1567,7 +1567,7 @@ export const variant = (placeholderImage: string): ProductVariant => ({
   },
   privateMetadata: [],
   product: {
-    __typename: "Product" as "Product",
+    __typename: "Product" as const,
     id: "prod1",
     images: [
       {
@@ -1635,7 +1635,7 @@ export const variant = (placeholderImage: string): ProductVariant => ({
       }
     ],
     name: "Our Awesome Book",
-    thumbnail: { __typename: "Image" as "Image", url: placeholderImage },
+    thumbnail: { __typename: "Image" as const, url: placeholderImage },
     variants: [
       {
         __typename: "ProductVariant",

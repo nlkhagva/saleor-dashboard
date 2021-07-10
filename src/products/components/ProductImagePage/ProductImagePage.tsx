@@ -127,7 +127,7 @@ const ProductImagePage: React.FC<ProductImagePageProps> = props => {
                   })}
                 />
                 <CardContent>
-                  {!!image ? (
+                  {image ? (
                     <div className={classes.imageContainer}>
                       <img src={image.url} className={classes.image} />
                     </div>

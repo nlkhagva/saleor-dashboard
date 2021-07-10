@@ -11,24 +11,24 @@ import {
   RadioGroup,
   TextField
 } from "@material-ui/core";
+
 import CardSpacer from "@saleor/components/CardSpacer";
 import CardTitle from "@saleor/components/CardTitle";
 import { ConfirmButtonTransitionState } from "@saleor/components/ConfirmButton";
+import { FetchMoreProps } from "@saleor/types";
 import Form from "@saleor/components/Form";
+import { PackageDetails_package } from "@saleor/package/types/PackageDetails";
+import { PackageNetOrGross } from "@saleor/types/globalTypes";
+import PackageUpost from "../PackageUpost";
+import React from "react";
 import SaveButtonBar from "@saleor/components/SaveButtonBar";
 import SingleAutocompleteSelectField from "@saleor/components/SingleAutocompleteSelectField";
-import useStateFromProps from "@saleor/hooks/useStateFromProps";
-import { maybe } from "@saleor/misc";
-import { PackageDetails_package } from "@saleor/package/types/PackageDetails";
-import { getChoices } from "@saleor/products/utils/data";
-import { FetchMoreProps } from "@saleor/types";
-import { PackageNetOrGross } from "@saleor/types/globalTypes";
-import { getFormErrors } from "@saleor/utils/errors";
 import createSingleAutocompleteSelectHandler from "@saleor/utils/handlers/singleAutocompleteSelectChangeHandler";
-import React from "react";
+import { getChoices } from "@saleor/products/utils/data";
+import { getFormErrors } from "@saleor/utils/errors";
+import { maybe } from "@saleor/misc";
 import { useIntl } from "react-intl";
-
-// import SelectGaduur from "../PackageDetailsPage/SelectGaduur";
+import useStateFromProps from "@saleor/hooks/useStateFromProps";
 
 export interface PackageFormProps {
   disabled: boolean;
@@ -130,26 +130,27 @@ const PackageForm: React.FC<PackageFormProps> = ({
           gaduurs
         );
         return (
-          <Card data-test="packageInfoSection">
-            <CardTitle title="Илгээмжийн мэдээлэл" />
-            <CardContent>
-              <SingleAutocompleteSelectField
-                displayValue={selectedGaduur}
-                error={!!formErrors.gaduur}
-                disabled={disabled}
-                label={intl.formatMessage({
-                  defaultMessage: "Гадуур дагавар"
-                })}
-                choices={disabled ? [] : gaduurs}
-                name="gaduur"
-                value={data.gaduur}
-                onChange={handleGaduurSelect}
-                fetchChoices={fetchGaduurs}
-                data-test="category"
-                {...fetchMoreGaduurs}
-              />
-              <CardSpacer />
-              {/* {!object && (
+          <>
+            <Card data-test="packageInfoSection">
+              <CardTitle title="Илгээмжийн мэдээлэл" />
+              <CardContent>
+                <SingleAutocompleteSelectField
+                  displayValue={selectedGaduur}
+                  error={!!formErrors.gaduur}
+                  disabled={disabled}
+                  label={intl.formatMessage({
+                    defaultMessage: "Гадуур дагавар"
+                  })}
+                  choices={disabled ? [] : gaduurs}
+                  name="gaduur"
+                  value={data.gaduur}
+                  onChange={handleGaduurSelect}
+                  fetchChoices={fetchGaduurs}
+                  data-test="category"
+                  {...fetchMoreGaduurs}
+                />
+                <CardSpacer />
+                {/* {!object && (
                 <SelectGaduur
                   gaduurs={
                     gaduurs
@@ -166,213 +167,231 @@ const PackageForm: React.FC<PackageFormProps> = ({
 
               )} */}
 
-              <TextField
-                disabled={disabled}
-                error={!!formErrors.name}
-                fullWidth
-                label={intl.formatMessage({
-                  defaultMessage: "Илгээмжийн дугаар"
-                })}
-                name={"name" as keyof typeof data}
-                value={data.name}
-                onChange={change}
-              />
-              <CardSpacer />
-              <Divider />
-              <CardSpacer />
-
-              <FormControl fullWidth variant="outlined">
-                <InputLabel htmlFor="outlined-width">
-                  {intl.formatMessage({
-                    defaultMessage: "Өргөн"
-                  })}
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-width"
+                <TextField
                   disabled={disabled}
-                  type="number"
-                  error={!!formErrors.width}
-                  name={"width" as keyof typeof data}
-                  value={data.width}
-                  onChange={e => calcOvor(e, change, data)}
-                  endAdornment={
-                    <InputAdornment position="start">cm</InputAdornment>
-                  }
-                  labelWidth={60}
-                />
-              </FormControl>
-              <CardSpacer />
-
-              <FormControl fullWidth variant="outlined">
-                <InputLabel htmlFor="outlined-height">
-                  {intl.formatMessage({
-                    defaultMessage: "Өндөр"
+                  error={!!formErrors.name}
+                  fullWidth
+                  label={intl.formatMessage({
+                    defaultMessage: "Илгээмжийн дугаар"
                   })}
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-height"
-                  disabled={disabled}
-                  type="number"
-                  error={!!formErrors.height}
-                  name={"height" as keyof typeof data}
-                  value={data.height}
-                  onChange={e => calcOvor(e, change, data)}
-                  endAdornment={
-                    <InputAdornment position="start">cm</InputAdornment>
-                  }
-                  labelWidth={60}
-                />
-              </FormControl>
-              <CardSpacer />
-
-              <FormControl fullWidth variant="outlined">
-                <InputLabel htmlFor="outlined-length">
-                  {intl.formatMessage({
-                    defaultMessage: "Урт"
-                  })}
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-length"
-                  disabled={disabled}
-                  type="number"
-                  error={!!formErrors.length}
-                  name={"length" as keyof typeof data}
-                  value={data.length}
-                  onChange={e => calcOvor(e, change, data)}
-                  endAdornment={
-                    <InputAdornment position="start">cm</InputAdornment>
-                  }
-                  labelWidth={60}
-                />
-              </FormControl>
-              <CardSpacer />
-              <Divider />
-              <CardSpacer />
-
-              <FormControl fullWidth variant="outlined">
-                <InputLabel htmlFor="outlined-netWeight">
-                  {intl.formatMessage({
-                    defaultMessage: "Цэвэр жин"
-                  })}
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-netWeight"
-                  disabled={disabled}
-                  type="number"
-                  error={!!formErrors.netWeight}
-                  name={"netWeight" as keyof typeof data}
-                  value={data.netWeight}
+                  name={"name" as keyof typeof data}
+                  value={data.name}
                   onChange={change}
-                  endAdornment={
-                    <InputAdornment position="start">kg</InputAdornment>
-                  }
-                  labelWidth={60}
                 />
-              </FormControl>
-              <CardSpacer />
+                <CardSpacer />
+                <Divider />
+                <CardSpacer />
 
-              <FormControl fullWidth variant="outlined">
-                <InputLabel htmlFor="outlined-grossWeight">
-                  {intl.formatMessage({
-                    defaultMessage: "Оврийн жин"
-                  })}
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-grossWeight"
-                  disabled={disabled}
-                  type="number"
-                  error={!!formErrors.grossWeight}
-                  name={"grossWeight" as keyof typeof data}
-                  value={data.grossWeight}
-                  onChange={change}
-                  endAdornment={
-                    <InputAdornment position="start">kg</InputAdornment>
-                  }
-                  labelWidth={60}
-                />
-              </FormControl>
-
-              <CardSpacer />
-
-              <FormControl>
-                <RadioGroup
-                  aria-label="net-or-gross"
-                  name={"netOrGross" as keyof typeof data}
-                  value={data.netOrGross}
-                  onChange={e => change(e)}
-                >
-                  <FormControlLabel
-                    value="NET"
-                    control={<Radio color="primary" />}
-                    label="Цэвэр жингээр"
+                <FormControl fullWidth variant="outlined">
+                  <InputLabel htmlFor="outlined-width">
+                    {intl.formatMessage({
+                      defaultMessage: "Өргөн"
+                    })}
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-width"
+                    disabled={disabled}
+                    type="number"
+                    error={!!formErrors.width}
+                    name={"width" as keyof typeof data}
+                    value={data.width}
+                    onChange={e => calcOvor(e, change, data)}
+                    endAdornment={
+                      <InputAdornment position="start">cm</InputAdornment>
+                    }
+                    labelWidth={60}
                   />
-                  <FormControlLabel
-                    value="GROSS"
-                    control={<Radio color="primary" />}
-                    label="Овороор"
+                </FormControl>
+                <CardSpacer />
+
+                <FormControl fullWidth variant="outlined">
+                  <InputLabel htmlFor="outlined-height">
+                    {intl.formatMessage({
+                      defaultMessage: "Өндөр"
+                    })}
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-height"
+                    disabled={disabled}
+                    type="number"
+                    error={!!formErrors.height}
+                    name={"height" as keyof typeof data}
+                    value={data.height}
+                    onChange={e => calcOvor(e, change, data)}
+                    endAdornment={
+                      <InputAdornment position="start">cm</InputAdornment>
+                    }
+                    labelWidth={60}
                   />
-                </RadioGroup>
-              </FormControl>
-              <CardSpacer />
-              <Divider />
-              <CardSpacer />
+                </FormControl>
+                <CardSpacer />
 
-              <FormControl fullWidth variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-amount">
-                  {intl.formatMessage({
-                    defaultMessage: "Тээврийн үнэ (1кг)"
-                  })}
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-amount"
+                <FormControl fullWidth variant="outlined">
+                  <InputLabel htmlFor="outlined-length">
+                    {intl.formatMessage({
+                      defaultMessage: "Урт"
+                    })}
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-length"
+                    disabled={disabled}
+                    type="number"
+                    error={!!formErrors.length}
+                    name={"length" as keyof typeof data}
+                    value={data.length}
+                    onChange={e => calcOvor(e, change, data)}
+                    endAdornment={
+                      <InputAdornment position="start">cm</InputAdornment>
+                    }
+                    labelWidth={60}
+                  />
+                </FormControl>
+                <CardSpacer />
+                <Divider />
+                <CardSpacer />
+
+                <FormControl fullWidth variant="outlined">
+                  <InputLabel htmlFor="outlined-netWeight">
+                    {intl.formatMessage({
+                      defaultMessage: "Цэвэр жин"
+                    })}
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-netWeight"
+                    disabled={disabled}
+                    type="number"
+                    error={!!formErrors.netWeight}
+                    name={"netWeight" as keyof typeof data}
+                    value={data.netWeight}
+                    onChange={change}
+                    endAdornment={
+                      <InputAdornment position="start">kg</InputAdornment>
+                    }
+                    labelWidth={60}
+                  />
+                </FormControl>
+                <CardSpacer />
+
+                <FormControl fullWidth variant="outlined">
+                  <InputLabel htmlFor="outlined-grossWeight">
+                    {intl.formatMessage({
+                      defaultMessage: "Оврийн жин"
+                    })}
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-grossWeight"
+                    disabled={disabled}
+                    type="number"
+                    error={!!formErrors.grossWeight}
+                    name={"grossWeight" as keyof typeof data}
+                    value={data.grossWeight}
+                    onChange={change}
+                    endAdornment={
+                      <InputAdornment position="start">kg</InputAdornment>
+                    }
+                    labelWidth={60}
+                  />
+                </FormControl>
+
+                <CardSpacer />
+
+                <FormControl>
+                  <RadioGroup
+                    aria-label="net-or-gross"
+                    name={"netOrGross" as keyof typeof data}
+                    value={data.netOrGross}
+                    onChange={e => change(e)}
+                  >
+                    <FormControlLabel
+                      value="NET"
+                      control={<Radio color="primary" />}
+                      label="Цэвэр жингээр"
+                    />
+                    <FormControlLabel
+                      value="GROSS"
+                      control={<Radio color="primary" />}
+                      label="Овороор"
+                    />
+                  </RadioGroup>
+                </FormControl>
+                <CardSpacer />
+                <Divider />
+                <CardSpacer />
+
+                <FormControl fullWidth variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-amount">
+                    {intl.formatMessage({
+                      defaultMessage: "Тээврийн үнэ (1кг)"
+                    })}
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-amount"
+                    disabled={disabled}
+                    type="number"
+                    error={!!formErrors.perkgAmount}
+                    name={"perkgAmount" as keyof typeof data}
+                    value={data.perkgAmount}
+                    onChange={change}
+                    startAdornment={
+                      <InputAdornment
+                        position="start"
+                        style={{ marginTop: 12 }}
+                      >
+                        &pound;
+                      </InputAdornment>
+                    }
+                    labelWidth={60}
+                  />
+                </FormControl>
+                <CardSpacer />
+
+                <FormControl fullWidth variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-amount">
+                    {intl.formatMessage({
+                      defaultMessage: "НИЙТ ТЭЭВЭР"
+                    })}
+                  </InputLabel>
+                  <OutlinedInput
+                    disabled={disabled}
+                    type="number"
+                    value={
+                      data.netOrGross === "NET"
+                        ? data.netWeight * data.perkgAmount
+                        : data.grossWeight * data.perkgAmount
+                    }
+                    startAdornment={
+                      <InputAdornment
+                        position="start"
+                        style={{ marginTop: 12 }}
+                      >
+                        &pound;
+                      </InputAdornment>
+                    }
+                    labelWidth={60}
+                  />
+                </FormControl>
+
+                <SaveButtonBar
                   disabled={disabled}
-                  type="number"
-                  error={!!formErrors.perkgAmount}
-                  name={"perkgAmount" as keyof typeof data}
-                  value={data.perkgAmount}
-                  onChange={change}
-                  startAdornment={
-                    <InputAdornment position="start" style={{ marginTop: 12 }}>
-                      &pound;
-                    </InputAdornment>
-                  }
-                  labelWidth={60}
+                  onCancel={onBack}
+                  onDelete={onDelete}
+                  onSave={submit}
+                  state={saveButtonBarState}
                 />
-              </FormControl>
-              <CardSpacer />
-
-              <FormControl fullWidth variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-amount">
-                  {intl.formatMessage({
-                    defaultMessage: "НИЙТ ТЭЭВЭР"
-                  })}
-                </InputLabel>
-                <OutlinedInput
-                  disabled={disabled}
-                  type="number"
-                  value={
-                    data.netOrGross === "NET"
-                      ? data.netWeight * data.perkgAmount
-                      : data.grossWeight * data.perkgAmount
-                  }
-                  startAdornment={
-                    <InputAdornment position="start" style={{ marginTop: 12 }}>
-                      &pound;
-                    </InputAdornment>
-                  }
-                  labelWidth={60}
-                />
-              </FormControl>
-
-              <SaveButtonBar
-                disabled={disabled}
-                onCancel={onBack}
-                onDelete={onDelete}
-                onSave={submit}
-                state={saveButtonBarState}
-              />
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+            <CardSpacer />
+            <Card>
+              <CardTitle title="UPOST" />
+              <CardContent>
+                {object?.upostPK ? (
+                  <>Upost info</>
+                ) : (
+                  <PackageUpost _package={object} />
+                )}
+              </CardContent>
+            </Card>
+          </>
         );
       }}
     </Form>

@@ -18,7 +18,7 @@ const AppStateProvider: React.FC = ({ children }) => {
   const [state, dispatch] = stateAndDispatch;
 
   React.useEffect(() => {
-    if (!!state.error) {
+    if (state.error) {
       dispatch({
         payload: {
           error: undefined

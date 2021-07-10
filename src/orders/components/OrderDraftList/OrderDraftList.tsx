@@ -180,7 +180,7 @@ export const OrderDraftList: React.FC<OrderDraftListProps> = props => {
             return (
               <TableRow
                 hover={!!order}
-                className={!!order ? classes.link : undefined}
+                className={order ? classes.link : undefined}
                 onClick={order ? onRowClick(order.id) : undefined}
                 key={order ? order.id : "skeleton"}
                 selected={isSelected}

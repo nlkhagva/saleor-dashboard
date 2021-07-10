@@ -56,11 +56,13 @@ const UshopGeneralInfo: React.FC<UshopGeneralInfoProps> = props => {
           onChange={change}
         />
         <CardSpacer />
-        
-        {ushop && <>
-          <UshopLogo onImageUpload={onImageUpload} ushop={ushop} />
-          <CardSpacer />
-        </>}
+
+        {ushop && (
+          <>
+            <UshopLogo onImageUpload={onImageUpload} ushop={ushop} />
+            <CardSpacer />
+          </>
+        )}
 
         <RichTextEditor
           disabled={disabled}

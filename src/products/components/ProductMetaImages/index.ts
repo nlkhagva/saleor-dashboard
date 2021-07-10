@@ -1,2 +1,2 @@
 export { default } from "./ProductMetaImages";
-export  * from "./ProductMetaImages";
+export * from "./ProductMetaImages";

@@ -222,7 +222,7 @@ const AssignMembersDialog: React.FC<AssignMembersDialogProps> = ({
                       </TableCell>
                       <TableCell className={classes.avatarCell}>
                         <div className={classes.avatar}>
-                          {!!member?.avatar?.url ? (
+                          {member?.avatar?.url ? (
                             <img
                               className={classes.avatarImage}
                               src={member.avatar.url}
@@ -242,7 +242,7 @@ const AssignMembersDialog: React.FC<AssignMembersDialogProps> = ({
                           variant={"caption"}
                           className={classes.statusText}
                         >
-                          {!!member ? (
+                          {member ? (
                             member.isActive ? (
                               intl.formatMessage({
                                 defaultMessage: "Active",

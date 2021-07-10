@@ -12,7 +12,7 @@ import { VoucherList_vouchers_edges_node } from "./types/VoucherList";
 
 export const saleList: SaleList_sales_edges_node[] = [
   {
-    __typename: "Sale" as "Sale",
+    __typename: "Sale" as const,
     endDate: null,
     id: "U2FsZTo0",
     name: "Happy front day!",
@@ -21,7 +21,7 @@ export const saleList: SaleList_sales_edges_node[] = [
     value: 40
   },
   {
-    __typename: "Sale" as "Sale",
+    __typename: "Sale" as const,
     endDate: null,
     id: "U2FsZTo1",
     name: "Happy minute day!",
@@ -30,7 +30,7 @@ export const saleList: SaleList_sales_edges_node[] = [
     value: 30
   },
   {
-    __typename: "Sale" as "Sale",
+    __typename: "Sale" as const,
     endDate: null,
     id: "U2FsZTox",
     name: "Happy class day!",
@@ -39,7 +39,7 @@ export const saleList: SaleList_sales_edges_node[] = [
     value: 10
   },
   {
-    __typename: "Sale" as "Sale",
+    __typename: "Sale" as const,
     endDate: null,
     id: "U2FsZToy",
     name: "Happy human day!",
@@ -48,7 +48,7 @@ export const saleList: SaleList_sales_edges_node[] = [
     value: 20
   },
   {
-    __typename: "Sale" as "Sale",
+    __typename: "Sale" as const,
     endDate: null,
     id: "U2FsZToz",
     name: "Happy year day!",
@@ -60,7 +60,7 @@ export const saleList: SaleList_sales_edges_node[] = [
 
 export const voucherList: VoucherList_vouchers_edges_node[] = [
   {
-    __typename: "Voucher" as "Voucher",
+    __typename: "Voucher" as const,
     code: "FREE2019",
     countries: [
       {
@@ -79,7 +79,7 @@ export const voucherList: VoucherList_vouchers_edges_node[] = [
     usageLimit: null
   },
   {
-    __typename: "Voucher" as "Voucher",
+    __typename: "Voucher" as const,
     code: "FREE2020",
     countries: [],
     discountValue: 25,
@@ -88,7 +88,7 @@ export const voucherList: VoucherList_vouchers_edges_node[] = [
     id: "Vm91Y2hlcjoy",
     minCheckoutItemsQuantity: 0,
     minSpent: {
-      __typename: "Money" as "Money",
+      __typename: "Money" as const,
       amount: 200,
       currency: "USD"
     },

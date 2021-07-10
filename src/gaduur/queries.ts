@@ -1,6 +1,7 @@
 import {
   gaduurDetailsFragment,
-  gaduurFragment} from "@saleor/fragments/gaduur";
+  gaduurFragment
+} from "@saleor/fragments/gaduur";
 import { pageInfoFragment } from "@saleor/fragments/pageInfo";
 import makeQuery from "@saleor/hooks/makeQuery";
 import gql from "graphql-tag";

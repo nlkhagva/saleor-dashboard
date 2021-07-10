@@ -102,7 +102,7 @@ const ProductTypeOperations: React.FC<ProductTypeOperationsProps> = ({
                   > = opts => {
                     const optimisticResponse: ProductTypeAttributeReorder = {
                       productTypeReorderAttributes: {
-                        __typename: "ProductTypeReorderAttributes" as "ProductTypeReorderAttributes",
+                        __typename: "ProductTypeReorderAttributes" as const,
                         errors: [],
                         productType: {
                           ...productType,

@@ -87,7 +87,7 @@ const TranslationsProductTypesPage: React.FC<TranslationsProductTypesPageProps> 
                   translation: maybe(() =>
                     attribute.translation ? attribute.translation.name : null
                   ),
-                  type: "short" as "short",
+                  type: "short" as const,
                   value: maybe(() => attribute.name)
                 },
                 ...attribute.values.map(
@@ -107,7 +107,7 @@ const TranslationsProductTypesPage: React.FC<TranslationsProductTypesPageProps> 
                         ? attributeValue.translation.name
                         : null
                     ),
-                    type: "short" as "short",
+                    type: "short" as const,
                     value: maybe(() => attributeValue.name)
                   })
                 )
@@ -153,7 +153,7 @@ const TranslationsProductTypesPage: React.FC<TranslationsProductTypesPageProps> 
                           ? attribute.translation.name
                           : null
                       ),
-                      type: "short" as "short",
+                      type: "short" as const,
                       value: maybe(() => attribute.name)
                     },
                     ...attribute.values.map(
@@ -173,7 +173,7 @@ const TranslationsProductTypesPage: React.FC<TranslationsProductTypesPageProps> 
                             ? attributeValue.translation.name
                             : null
                         ),
-                        type: "short" as "short",
+                        type: "short" as const,
                         value: maybe(() => attributeValue.name)
                       })
                     )

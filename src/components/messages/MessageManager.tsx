@@ -61,7 +61,7 @@ export const MessageManagerTemplate: React.FC<IMessageManagerProps> = props => {
           </span>
         }
         action={[
-          !!expandText ? (
+          expandText ? (
             <div
               key="expanded"
               className={classNames(classes.expandedContainer, {

@@ -156,12 +156,10 @@ const ProductTypeAttributes: React.FC<ProductTypeAttributesProps> = props => {
               return (
                 <SortableTableRow
                   selected={isSelected}
-                  className={!!attribute ? classes.link : undefined}
+                  className={attribute ? classes.link : undefined}
                   hover={!!attribute}
                   onClick={
-                    !!attribute
-                      ? () => onAttributeClick(attribute.id)
-                      : undefined
+                    attribute ? () => onAttributeClick(attribute.id) : undefined
                   }
                   key={maybe(() => attribute.id)}
                   index={attributeIndex || 0}

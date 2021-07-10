@@ -99,7 +99,7 @@ function getMultiDisplayValue(
     const definedAttributeValue = attribute.data.values.find(
       definedValue => definedValue.slug === attributeValue
     );
-    if (!!definedAttributeValue) {
+    if (definedAttributeValue) {
       return {
         label: definedAttributeValue.name,
         value: definedAttributeValue.slug

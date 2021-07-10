@@ -75,7 +75,7 @@ const UshopTable = ({ ushop, classes, canFulfill, onFulfill }: any) => {
       <TableBody>
         {ushop.lines.map((line, index) => (
           <TableRow
-            className={!!line ? classes.clickableRow : undefined}
+            className={line ? classes.clickableRow : undefined}
             hover={!!line}
             key={maybe(() => line.id)}
           >

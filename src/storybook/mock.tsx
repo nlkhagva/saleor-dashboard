@@ -42,7 +42,7 @@ export function useMockChoiceProvider(
   );
 
   const handleChange = (value: string) => {
-    if (!!timeout.current) {
+    if (timeout.current) {
       clearTimeout(timeout.current);
     }
     timeout.current = setTimeout(() => fetchChoices(value), loadingTime);

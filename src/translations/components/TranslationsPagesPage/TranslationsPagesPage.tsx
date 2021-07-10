@@ -77,7 +77,7 @@ const TranslationsPagesPage: React.FC<TranslationsPagesPageProps> = ({
             translation: maybe(() =>
               page.translation ? page.translation.title : null
             ),
-            type: "short" as "short",
+            type: "short" as const,
             value: maybe(() => page.title)
           },
           {
@@ -89,7 +89,7 @@ const TranslationsPagesPage: React.FC<TranslationsPagesPageProps> = ({
             translation: maybe(() =>
               page.translation ? page.translation.contentJson : null
             ),
-            type: "rich" as "rich",
+            type: "rich" as const,
             value: maybe(() => page.contentJson)
           }
         ]}
@@ -115,7 +115,7 @@ const TranslationsPagesPage: React.FC<TranslationsPagesPageProps> = ({
             translation: maybe(() =>
               page.translation ? page.translation.seoTitle : null
             ),
-            type: "short" as "short",
+            type: "short" as const,
             value: maybe(() => page.seoTitle)
           },
           {
@@ -126,7 +126,7 @@ const TranslationsPagesPage: React.FC<TranslationsPagesPageProps> = ({
             translation: maybe(() =>
               page.translation ? page.translation.seoDescription : null
             ),
-            type: "long" as "long",
+            type: "long" as const,
             value: maybe(() => page.seoDescription)
           }
         ]}

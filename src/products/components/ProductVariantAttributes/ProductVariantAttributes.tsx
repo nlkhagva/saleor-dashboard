@@ -40,7 +40,7 @@ function getAttributeDisplayValue(
   const attributeValue = attribute.data.values.find(
     value => value.slug === slug
   );
-  if (!!attributeValue) {
+  if (attributeValue) {
     return attributeValue.name;
   }
 

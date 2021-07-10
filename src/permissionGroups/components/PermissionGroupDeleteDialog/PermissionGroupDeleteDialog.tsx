@@ -34,7 +34,7 @@ const PermissionGroupDeleteDialog: React.FC<PermissionDeleteDialogProps> = ({
         "Cant's delete group which is out of your permission scope",
       description: "deletion error message"
     });
-  } else if (!!error) {
+  } else if (error) {
     errorMessage = getPermissionGroupErrorMessage(error, intl);
   }
 

@@ -78,7 +78,7 @@ const TranslationsCollectionsPage: React.FC<TranslationsCollectionsPageProps> = 
             translation: maybe(() =>
               collection.translation ? collection.translation.name : null
             ),
-            type: "short" as "short",
+            type: "short" as const,
             value: maybe(() => collection.name)
           },
           {
@@ -89,7 +89,7 @@ const TranslationsCollectionsPage: React.FC<TranslationsCollectionsPageProps> = 
                 ? collection.translation.descriptionJson
                 : null
             ),
-            type: "rich" as "rich",
+            type: "rich" as const,
             value: maybe(() => collection.descriptionJson)
           }
         ]}
@@ -115,7 +115,7 @@ const TranslationsCollectionsPage: React.FC<TranslationsCollectionsPageProps> = 
             translation: maybe(() =>
               collection.translation ? collection.translation.seoTitle : null
             ),
-            type: "short" as "short",
+            type: "short" as const,
             value: maybe(() => collection.seoTitle)
           },
           {
@@ -128,7 +128,7 @@ const TranslationsCollectionsPage: React.FC<TranslationsCollectionsPageProps> = 
                 ? collection.translation.seoDescription
                 : null
             ),
-            type: "long" as "long",
+            type: "long" as const,
             value: maybe(() => collection.seoDescription)
           }
         ]}

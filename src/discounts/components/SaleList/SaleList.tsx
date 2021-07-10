@@ -172,7 +172,7 @@ const SaleList: React.FC<SaleListProps> = props => {
 
             return (
               <TableRow
-                className={!!sale ? classes.tableRow : undefined}
+                className={sale ? classes.tableRow : undefined}
                 hover={!!sale}
                 key={sale ? sale.id : "skeleton"}
                 onClick={sale ? onRowClick(sale.id) : undefined}

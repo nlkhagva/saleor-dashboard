@@ -221,7 +221,7 @@ const VoucherList: React.FC<VoucherListProps> = props => {
 
             return (
               <TableRow
-                className={!!voucher ? classes.tableRow : undefined}
+                className={voucher ? classes.tableRow : undefined}
                 hover={!!voucher}
                 key={voucher ? voucher.id : "skeleton"}
                 selected={isSelected}

@@ -129,7 +129,7 @@ export const PluginsDetails: React.FC<PluginsDetailsProps> = ({
                   <>
                     <ActionDialog
                       confirmButtonState={
-                        !!params.action ? pluginUpdateOpts.status : "default"
+                        params.action ? pluginUpdateOpts.status : "default"
                       }
                       onClose={closeModal}
                       open={params.action === "clear" && !!params.id}
@@ -145,7 +145,7 @@ export const PluginsDetails: React.FC<PluginsDetailsProps> = ({
                     </ActionDialog>
                     <PluginSecretFieldDialog
                       confirmButtonState={
-                        !!params.action ? pluginUpdateOpts.status : "default"
+                        params.action ? pluginUpdateOpts.status : "default"
                       }
                       field={pluginDetails.data?.plugin?.configuration.find(
                         field => field.name === params.id

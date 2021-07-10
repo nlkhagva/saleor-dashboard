@@ -78,7 +78,7 @@ export default (colors: IThemeColors): Theme =>
       },
       MuiCardActions: {
         root: {
-          flexDirection: "row-reverse" as "row-reverse"
+          flexDirection: "row-reverse" as const
         }
       },
       MuiCardContent: {
@@ -180,7 +180,7 @@ export default (colors: IThemeColors): Theme =>
         },
         formControl: {
           transform: "translate(0, 1.5px) scale(0.75)",
-          transformOrigin: "top left" as "top left",
+          transformOrigin: "top left" as const,
           width: "100%"
         },
         outlined: {
@@ -435,7 +435,7 @@ export default (colors: IThemeColors): Theme =>
           "&:first-child": {
             "&:not($paddingCheckbox)": {
               paddingLeft: 24 + "px",
-              textAlign: "left" as "left"
+              textAlign: "left" as const
             }
           },
           borderBottomColor: colors.paperBorder,

@@ -162,7 +162,7 @@ const AttributeDetails: React.FC<AttributeDetailsProps> = ({ params }) => {
         }
         saveButtonBarState={attributeCreateOpts.status}
         values={values.map((value, valueIndex) => ({
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: valueIndex.toString(),
           slug: slugify(value.name).toLowerCase(),
           sortOrder: valueIndex,

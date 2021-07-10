@@ -82,7 +82,7 @@ export const HomeProductList: React.FC<HomeProductListProps> = props => {
                   [classes.tableRow]: !!variant
                 })}
                 onClick={
-                  !!variant
+                  variant
                     ? () => onRowClick(variant.product.id, variant.id)
                     : undefined
                 }

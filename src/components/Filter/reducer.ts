@@ -24,7 +24,7 @@ function merge<T extends string>(
     const prevFilter = prevState.find(
       prevFilter => prevFilter.name === newFilter.name
     );
-    if (!!prevFilter) {
+    if (prevFilter) {
       return {
         ...newFilter,
         active: prevFilter.active,

@@ -92,7 +92,7 @@ export function useAuthProvider(
       } else {
         const user = result.tokenVerify?.user;
 
-        if (!!user) {
+        if (user) {
           setUserContext(user);
         }
       }
@@ -128,7 +128,7 @@ export function useAuthProvider(
     const result = await tokenAuth({ variables: { email, password } });
 
     if (result && !result.data.tokenCreate.errors.length) {
-      if (!!onLogin) {
+      if (onLogin) {
         onLogin();
       }
       saveCredentials(result.data.tokenCreate.user, password);
@@ -145,7 +145,7 @@ export function useAuthProvider(
   };
 
   const refreshToken = (): Promise<boolean> => {
-    if (!!refreshPromise.current) {
+    if (refreshPromise.current) {
       return refreshPromise.current;
     }
 
@@ -153,7 +153,7 @@ export function useAuthProvider(
       const token = getTokens().refresh;
 
       return tokenRefresh({ variables: { token } }).then(refreshData => {
-        if (!!refreshData.data.tokenRefresh?.token) {
+        if (refreshData.data.tokenRefresh?.token) {
           setAuthToken(refreshData.data.tokenRefresh.token, persistToken);
           return resolve(true);
         }

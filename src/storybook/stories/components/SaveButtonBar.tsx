@@ -25,7 +25,7 @@ class InteractiveDemo extends React.Component<
   InteractiveDemoState
 > {
   state = {
-    state: "default" as "default"
+    state: "default" as const
   };
   timer = undefined;
 

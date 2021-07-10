@@ -60,7 +60,7 @@ const CountryList: React.FC<CountryListProps> = props => {
                   [classes.tableRow]: !!country
                 })}
                 hover={!!country}
-                onClick={!!country ? () => onRowClick(country.code) : undefined}
+                onClick={country ? () => onRowClick(country.code) : undefined}
                 key={country ? country.code : "skeleton"}
               >
                 <TableCell>

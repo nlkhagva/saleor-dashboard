@@ -26,7 +26,7 @@ const Marketplace: React.FC<MarketplaceProps> = ({ link }) => {
           })}
         />
         <CardContent className={classes.marketplaceContent}>
-          {!!link ? (
+          {link ? (
             <>
               <Typography variant="body2">
                 <FormattedMessage

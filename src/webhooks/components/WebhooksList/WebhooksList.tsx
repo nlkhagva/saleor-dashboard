@@ -79,7 +79,7 @@ const WebhooksList: React.FC<WebhooksListProps> = ({
             webhook => (
               <TableRow
                 hover={!!webhook}
-                className={!!webhook ? classes.tableRow : undefined}
+                className={webhook ? classes.tableRow : undefined}
                 onClick={webhook ? onRowClick(webhook.id) : undefined}
                 key={webhook ? webhook.id : "skeleton"}
               >

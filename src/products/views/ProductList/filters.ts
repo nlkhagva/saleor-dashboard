@@ -91,7 +91,7 @@ export function getFilterOpts(
           })),
         []
       ),
-      displayValues: !!params.categories
+      displayValues: params.categories
         ? maybe(
             () =>
               categories.initial.map(category => ({
@@ -121,7 +121,7 @@ export function getFilterOpts(
           })),
         []
       ),
-      displayValues: !!params.collections
+      displayValues: params.collections
         ? maybe(
             () =>
               collections.initial.map(category => ({
@@ -162,7 +162,7 @@ export function getFilterOpts(
           })),
         []
       ),
-      displayValues: !!params.productTypes
+      displayValues: params.productTypes
         ? maybe(
             () =>
               productTypes.initial.map(productType => ({
@@ -197,7 +197,7 @@ export function getFilterVariables(
   params: ProductListUrlFilters
 ): ProductFilterInput {
   return {
-    attributes: !!params.attributes
+    attributes: params.attributes
       ? Object.keys(params.attributes).map(key => ({
           slug: key,
           // It is possible for qs to parse values not as string[] but string
@@ -232,7 +232,7 @@ export function getFilterQueryParam(
 ): ProductListUrlFilters {
   const { active, group, name, value } = filter;
 
-  if (!!group) {
+  if (group) {
     const rest = params && params[group] ? params[group] : undefined;
 
     return {

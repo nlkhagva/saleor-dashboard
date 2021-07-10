@@ -98,7 +98,7 @@ const CustomerOrders: React.FC<CustomerOrdersProps> = props => {
             order => (
               <TableRow
                 hover={!!order}
-                className={!!order ? classes.link : undefined}
+                className={order ? classes.link : undefined}
                 onClick={order ? () => onRowClick(order.id) : undefined}
                 key={order ? order.id : "skeleton"}
               >

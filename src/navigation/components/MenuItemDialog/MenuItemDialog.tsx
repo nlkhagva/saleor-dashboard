@@ -226,7 +226,7 @@ const MenuItemDialog: React.FC<MenuItemDialogProps> = ({
       }}
     >
       <DialogTitle>
-        {!!initial
+        {initial
           ? intl.formatMessage({
               defaultMessage: "Edit Item",
               description: "edit menu item, header",

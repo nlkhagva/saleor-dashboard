@@ -374,7 +374,7 @@ export const permissions: ShopInfo_shop_permissions[] = [
     name: "Manage webhooks."
   }
 ].map(perm => ({
-  __typename: "Permission" as "Permission",
+  __typename: "Permission" as const,
   ...perm
 }));
 
@@ -487,12 +487,12 @@ export const adminUserPermissions: User_userPermissions[] = [
 ];
 
 export const address = {
-  __typename: "Address" as "Address",
+  __typename: "Address" as const,
   city: "Port Danielshire",
   cityArea: "",
   companyName: "",
   country: {
-    __typename: "CountryDisplay" as "CountryDisplay",
+    __typename: "CountryDisplay" as const,
     code: "SE",
     country: "Szwecja"
   },

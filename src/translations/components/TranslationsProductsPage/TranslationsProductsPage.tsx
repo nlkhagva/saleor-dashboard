@@ -78,7 +78,7 @@ const TranslationsProductsPage: React.FC<TranslationsProductsPageProps> = ({
             translation: maybe(() =>
               product.translation ? product.translation.name : null
             ),
-            type: "short" as "short",
+            type: "short" as const,
             value: maybe(() => product.name)
           },
           {
@@ -89,7 +89,7 @@ const TranslationsProductsPage: React.FC<TranslationsProductsPageProps> = ({
             translation: maybe(() =>
               product.translation ? product.translation.descriptionJson : null
             ),
-            type: "rich" as "rich",
+            type: "rich" as const,
             value: maybe(() => product.descriptionJson)
           }
         ]}
@@ -115,7 +115,7 @@ const TranslationsProductsPage: React.FC<TranslationsProductsPageProps> = ({
             translation: maybe(() =>
               product.translation ? product.translation.seoTitle : null
             ),
-            type: "short" as "short",
+            type: "short" as const,
             value: maybe(() => product.seoTitle)
           },
           {
@@ -126,7 +126,7 @@ const TranslationsProductsPage: React.FC<TranslationsProductsPageProps> = ({
             translation: maybe(() =>
               product.translation ? product.translation.seoDescription : null
             ),
-            type: "long" as "long",
+            type: "long" as const,
             value: maybe(() => product.seoDescription)
           }
         ]}

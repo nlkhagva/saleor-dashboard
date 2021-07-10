@@ -111,7 +111,7 @@ const MessageManagerProvider = ({ children }) => {
                 <Transition key={notification.id}>
                   <MessageManagerTemplate
                     {...notification}
-                    {...(!!notification.timeout
+                    {...(notification.timeout
                       ? {
                           onMouseEnter: () => pauseTimer(notification),
                           onMouseLeave: () => resumeTimer(notification)

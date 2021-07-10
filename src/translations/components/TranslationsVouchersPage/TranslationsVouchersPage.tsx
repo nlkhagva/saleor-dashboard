@@ -74,7 +74,7 @@ const TranslationsVouchersPage: React.FC<TranslationsVouchersPageProps> = ({
             translation: maybe(() =>
               voucher.translation ? voucher.translation.name : null
             ),
-            type: "short" as "short",
+            type: "short" as const,
             value: maybe(() => voucher.name)
           }
         ]}

@@ -140,7 +140,7 @@ const CustomerList: React.FC<CustomerListProps> = props => {
 
             return (
               <TableRow
-                className={!!customer ? classes.tableRow : undefined}
+                className={customer ? classes.tableRow : undefined}
                 hover={!!customer}
                 key={customer ? customer.id : "skeleton"}
                 selected={isSelected}

@@ -77,7 +77,7 @@ const TranslationsCategoriesPage: React.FC<TranslationsCategoriesPageProps> = ({
             translation: maybe(() =>
               category.translation ? category.translation.name : null
             ),
-            type: "short" as "short",
+            type: "short" as const,
             value: maybe(() => category.name)
           },
           {
@@ -86,7 +86,7 @@ const TranslationsCategoriesPage: React.FC<TranslationsCategoriesPageProps> = ({
             translation: maybe(() =>
               category.translation ? category.translation.descriptionJson : null
             ),
-            type: "rich" as "rich",
+            type: "rich" as const,
             value: maybe(() => category.descriptionJson)
           }
         ]}
@@ -112,7 +112,7 @@ const TranslationsCategoriesPage: React.FC<TranslationsCategoriesPageProps> = ({
             translation: maybe(() =>
               category.translation ? category.translation.seoTitle : null
             ),
-            type: "short" as "short",
+            type: "short" as const,
             value: maybe(() => category.seoTitle)
           },
           {
@@ -123,7 +123,7 @@ const TranslationsCategoriesPage: React.FC<TranslationsCategoriesPageProps> = ({
             translation: maybe(() =>
               category.translation ? category.translation.seoDescription : null
             ),
-            type: "long" as "long",
+            type: "long" as const,
             value: maybe(() => category.seoDescription)
           }
         ]}

@@ -33,12 +33,12 @@ storiesOf("Views / Plugins / Plugin details", module)
         ...(["active", "Username or account", "Password or license"] as Array<
           keyof FormData
         >).map(field => ({
-          __typename: "PluginError" as "PluginError",
+          __typename: "PluginError" as const,
           code: PluginErrorCode.INVALID,
           field
         })),
         {
-          __typename: "PluginError" as "PluginError",
+          __typename: "PluginError" as const,
           code: PluginErrorCode.PLUGIN_MISCONFIGURED,
           field: null
         }

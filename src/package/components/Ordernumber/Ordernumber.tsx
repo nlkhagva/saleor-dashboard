@@ -3,7 +3,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import YoutubeSearchedForIcon from "@material-ui/icons/YoutubeSearchedFor";
-import React, { useRef,useState } from "react";
+import React, { useRef, useState } from "react";
 import { useIntl } from "react-intl";
 
 import FulfillmentRender from "./FulfillmentRender";

@@ -38,7 +38,7 @@ const useStyles = makeStyles(
       textAlign: "center"
     },
     tableRow: {
-      cursor: "pointer" as "pointer"
+      cursor: "pointer" as const
     }
   }),
   { name: "CollectionList" }

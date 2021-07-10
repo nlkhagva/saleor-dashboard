@@ -86,7 +86,7 @@ const CollectionProducts: React.FC<CollectionProductsProps> = props => {
     <Card>
       <CardTitle
         title={
-          !!collection ? (
+          collection ? (
             intl.formatMessage(
               {
                 defaultMessage: "Products in {name}",
@@ -166,7 +166,7 @@ const CollectionProducts: React.FC<CollectionProductsProps> = props => {
                 <TableRow
                   className={classes.tableRow}
                   hover={!!product}
-                  onClick={!!product ? onRowClick(product.id) : undefined}
+                  onClick={product ? onRowClick(product.id) : undefined}
                   key={product ? product.id : "skeleton"}
                   selected={isSelected}
                 >

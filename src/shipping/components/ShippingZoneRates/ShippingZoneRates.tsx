@@ -122,7 +122,7 @@ const ShippingZoneRates: React.FC<ShippingZoneRatesProps> = props => {
               <TableRow
                 hover={!!rate}
                 key={rate ? rate.id : "skeleton"}
-                onClick={!!rate ? () => onRateEdit(rate.id) : undefined}
+                onClick={rate ? () => onRateEdit(rate.id) : undefined}
               >
                 <TableCell className={classes.nameColumn}>
                   {maybe<React.ReactNode>(() => rate.name, <Skeleton />)}

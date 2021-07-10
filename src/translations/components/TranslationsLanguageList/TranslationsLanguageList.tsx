@@ -49,7 +49,7 @@ const TranslationsLanguageList: React.FC<TranslationsLanguageListProps> = props 
             languages,
             language => (
               <TableRow
-                className={!!language ? classes.link : undefined}
+                className={language ? classes.link : undefined}
                 hover={!!language}
                 key={language ? language.code : "skeleton"}
                 onClick={() => onRowClick(language.code)}

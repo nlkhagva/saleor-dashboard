@@ -122,7 +122,7 @@ const PackageLines: React.FC<PackageLinesProps> = props => {
         <Card style={style} key={order.id}>
           <CardTitle
             title={
-              !!lines ? (
+              lines ? (
                 <StatusLabel label={<>#{order.id}</>} status={"success"} />
               ) : (
                 <Skeleton />

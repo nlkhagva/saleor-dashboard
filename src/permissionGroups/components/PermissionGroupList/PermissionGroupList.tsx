@@ -119,7 +119,7 @@ const PermissionGroupList: React.FC<PermissionGroupListProps> = props => {
           permissionGroups,
           permissionGroup => (
             <TableRow
-              className={!!permissionGroup ? classes.link : undefined}
+              className={permissionGroup ? classes.link : undefined}
               hover={!!permissionGroup}
               key={permissionGroup ? permissionGroup.id : "skeleton"}
               onClick={

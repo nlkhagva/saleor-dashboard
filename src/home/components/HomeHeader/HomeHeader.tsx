@@ -10,7 +10,7 @@ const useStyles = makeStyles(
       marginBottom: theme.spacing(3)
     },
     pageHeader: {
-      fontWeight: 600 as 600
+      fontWeight: 600 as const
     },
     subtitle: {
       color: theme.typography.caption.color

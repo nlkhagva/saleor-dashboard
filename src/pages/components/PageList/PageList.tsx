@@ -155,7 +155,7 @@ const PageList: React.FC<PageListProps> = props => {
               return (
                 <TableRow
                   hover={!!page}
-                  className={!!page ? classes.link : undefined}
+                  className={page ? classes.link : undefined}
                   onClick={page ? onRowClick(page.id) : undefined}
                   key={page ? page.id : "skeleton"}
                   selected={isSelected}

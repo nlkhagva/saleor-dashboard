@@ -12,7 +12,7 @@ import useDateLocalize from "@saleor/hooks/useDateLocalize";
 import useNavigator from "@saleor/hooks/useNavigator";
 import { sectionNames } from "@saleor/intl";
 import { maybe } from "@saleor/misc";
-import {productUrl} from "@saleor/products/urls";
+import { productUrl } from "@saleor/products/urls";
 import UshopGeneralInfo from "@saleor/ushop/components/UshopGeneralInfo";
 import { UshopUpdate_ushopUpdate_shop } from "@saleor/ushop/types/UshopUpdate";
 import { getFormErrors } from "@saleor/utils/errors";
@@ -136,7 +136,7 @@ const UshopDetailsPage: React.FC<DetailsPageProps> = ({
                 onImageUpload={onImageUpload}
               />
               <CardSpacer />
-              
+
               <UshopCrawler
                 disabled={disabled}
                 formErrors={formErrors}
@@ -153,13 +153,19 @@ const UshopDetailsPage: React.FC<DetailsPageProps> = ({
               />
               <CardSpacer />
 
-              {ushop?.shippingProduct &&
-               (<div>
-                <Button variant="contained" color="secondary" onClick={() =>navigate(productUrl(ushop?.shippingProduct.id))}>
-                  {ushop?.shippingProduct.name}
-                </Button>
-              </div>)
-              }
+              {ushop?.shippingProduct && (
+                <div>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={() =>
+                      navigate(productUrl(ushop?.shippingProduct.id))
+                    }
+                  >
+                    {ushop?.shippingProduct.name}
+                  </Button>
+                </div>
+              )}
               <CardSpacer />
               <VisibilityCard
                 data={data}

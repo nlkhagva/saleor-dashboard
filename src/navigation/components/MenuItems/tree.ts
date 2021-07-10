@@ -76,7 +76,7 @@ export function getDiff(
 
     if (patch.length > 0) {
       const addedNode = patch.find(operation => operation.type === "add");
-      if (!!addedNode) {
+      if (addedNode) {
         return {
           id: addedNode.items[0],
           parentId: key === "root" ? undefined : key,

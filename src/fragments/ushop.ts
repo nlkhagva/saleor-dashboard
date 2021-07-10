@@ -29,7 +29,7 @@ export const ushopDetailsFragment = gql`
     ratingProductRank
     listSelection
     productSelection
-    shippingProduct{
+    shippingProduct {
       id
       name
     }

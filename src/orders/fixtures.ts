@@ -19,28 +19,28 @@ import { SearchOrderVariant_search_edges_node } from "./types/SearchOrderVariant
 
 export const clients: SearchCustomers_search_edges_node[] = [
   {
-    __typename: "User" as "User",
+    __typename: "User" as const,
     email: "test.client1@example.com",
     firstName: "John",
     id: "c1",
     lastName: "Doe"
   },
   {
-    __typename: "User" as "User",
+    __typename: "User" as const,
     email: "test.client2@example.com",
     firstName: "Dough",
     id: "c2",
     lastName: "Jones"
   },
   {
-    __typename: "User" as "User",
+    __typename: "User" as const,
     email: "test.client3@example.com",
     firstName: "Jonas",
     id: "c3",
     lastName: "Dough"
   },
   {
-    __typename: "User" as "User",
+    __typename: "User" as const,
     email: "test.client4@example.com",
     firstName: "Bill",
     id: "c4",
@@ -955,7 +955,7 @@ export const order = (): OrderDetails_order => ({
       quantity: 3,
       quantityFulfilled: 0,
       thumbnail: {
-        __typename: "Image" as "Image",
+        __typename: "Image" as const,
         url: placeholder
       },
       unitPrice: {
@@ -982,7 +982,7 @@ export const order = (): OrderDetails_order => ({
       quantity: 2,
       quantityFulfilled: 2,
       thumbnail: {
-        __typename: "Image" as "Image",
+        __typename: "Image" as const,
         url: placeholder
       },
       unitPrice: {
@@ -1076,7 +1076,7 @@ export const order = (): OrderDetails_order => ({
   userEmail: "melissa.simon@example.com"
 });
 export const draftOrder = (): OrderDetails_order => ({
-  __typename: "Order" as "Order",
+  __typename: "Order" as const,
   actions: [OrderAction.CAPTURE],
   availableShippingMethods: null,
   billingAddress: null,
@@ -1099,7 +1099,7 @@ export const draftOrder = (): OrderDetails_order => ({
   ],
   lines: [
     {
-      __typename: "OrderLine" as "OrderLine",
+      __typename: "OrderLine" as const,
       id: "T3JkZXJMaW5lOjQ1",
       isShippingRequired: false,
       productName: "Davis Group (Hard)",
@@ -1107,18 +1107,18 @@ export const draftOrder = (): OrderDetails_order => ({
       quantity: 2,
       quantityFulfilled: 0,
       thumbnail: {
-        __typename: "Image" as "Image",
+        __typename: "Image" as const,
         url: placeholder
       },
       unitPrice: {
-        __typename: "TaxedMoney" as "TaxedMoney",
+        __typename: "TaxedMoney" as const,
         gross: {
-          __typename: "Money" as "Money",
+          __typename: "Money" as const,
           amount: 65.95,
           currency: "USD"
         },
         net: {
-          __typename: "Money" as "Money",
+          __typename: "Money" as const,
           amount: 65.95,
           currency: "USD"
         }
@@ -1126,7 +1126,7 @@ export const draftOrder = (): OrderDetails_order => ({
       variant: null
     },
     {
-      __typename: "OrderLine" as "OrderLine",
+      __typename: "OrderLine" as const,
       id: "T3JkZXJMaW5lOjQ2",
       isShippingRequired: false,
       productName: "Anderson PLC (15-1337)",
@@ -1134,18 +1134,18 @@ export const draftOrder = (): OrderDetails_order => ({
       quantity: 2,
       quantityFulfilled: 0,
       thumbnail: {
-        __typename: "Image" as "Image",
+        __typename: "Image" as const,
         url: placeholder
       },
       unitPrice: {
-        __typename: "TaxedMoney" as "TaxedMoney",
+        __typename: "TaxedMoney" as const,
         gross: {
-          __typename: "Money" as "Money",
+          __typename: "Money" as const,
           amount: 68.2,
           currency: "USD"
         },
         net: {
-          __typename: "Money" as "Money",
+          __typename: "Money" as const,
           amount: 68.2,
           currency: "USD"
         }
@@ -1161,31 +1161,31 @@ export const draftOrder = (): OrderDetails_order => ({
   shippingMethod: null,
   shippingMethodName: null,
   shippingPrice: {
-    __typename: "TaxedMoney" as "TaxedMoney",
+    __typename: "TaxedMoney" as const,
     gross: {
-      __typename: "Money" as "Money",
+      __typename: "Money" as const,
       amount: 0,
       currency: "USD"
     }
   },
   status: "DRAFT" as OrderStatus.DRAFT,
   subtotal: {
-    __typename: "TaxedMoney" as "TaxedMoney",
+    __typename: "TaxedMoney" as const,
     gross: {
-      __typename: "Money" as "Money",
+      __typename: "Money" as const,
       amount: 168.3,
       currency: "USD"
     }
   },
   total: {
-    __typename: "TaxedMoney" as "TaxedMoney",
+    __typename: "TaxedMoney" as const,
     gross: {
-      __typename: "Money" as "Money",
+      __typename: "Money" as const,
       amount: 168.3,
       currency: "USD"
     },
     tax: {
-      __typename: "Money" as "Money",
+      __typename: "Money" as const,
       amount: 68.3,
       currency: "USD"
     }
@@ -1229,16 +1229,16 @@ export const orderLineSearch = (
   placeholderImage: string
 ): SearchOrderVariant_search_edges_node[] => [
   {
-    __typename: "Product" as "Product",
+    __typename: "Product" as const,
     id: "UHJvZHVjdDo3Mg==",
     name: "Apple Juice",
     thumbnail: {
-      __typename: "Image" as "Image",
+      __typename: "Image" as const,
       url: placeholderImage
     },
     variants: [
       {
-        __typename: "ProductVariant" as "ProductVariant",
+        __typename: "ProductVariant" as const,
         id: "UHJvZHVjdFZhcmlhbnQ6MjAy",
         name: "500ml",
         pricing: {
@@ -1246,7 +1246,7 @@ export const orderLineSearch = (
           priceUndiscounted: {
             __typename: "TaxedMoney",
             net: {
-              __typename: "Money" as "Money",
+              __typename: "Money" as const,
               amount: 3.0,
               currency: "USD"
             }
@@ -1255,7 +1255,7 @@ export const orderLineSearch = (
         sku: "93855755"
       },
       {
-        __typename: "ProductVariant" as "ProductVariant",
+        __typename: "ProductVariant" as const,
         id: "UHJvZHVjdFZhcmlhbnQ6MjAz",
         name: "1l",
         pricing: {
@@ -1263,7 +1263,7 @@ export const orderLineSearch = (
           priceUndiscounted: {
             __typename: "TaxedMoney",
             net: {
-              __typename: "Money" as "Money",
+              __typename: "Money" as const,
               amount: 5.0,
               currency: "USD"
             }
@@ -1272,7 +1272,7 @@ export const orderLineSearch = (
         sku: "43226647"
       },
       {
-        __typename: "ProductVariant" as "ProductVariant",
+        __typename: "ProductVariant" as const,
         id: "UHJvZHVjdFZhcmlhbnQ6MjA0",
         name: "2l",
         pricing: {
@@ -1280,7 +1280,7 @@ export const orderLineSearch = (
           priceUndiscounted: {
             __typename: "TaxedMoney",
             net: {
-              __typename: "Money" as "Money",
+              __typename: "Money" as const,
               amount: 7.0,
               currency: "USD"
             }
@@ -1291,16 +1291,16 @@ export const orderLineSearch = (
     ]
   },
   {
-    __typename: "Product" as "Product",
+    __typename: "Product" as const,
     id: "UHJvZHVjdDo3NQ==",
     name: "Pineapple Juice",
     thumbnail: {
-      __typename: "Image" as "Image",
+      __typename: "Image" as const,
       url: placeholderImage
     },
     variants: [
       {
-        __typename: "ProductVariant" as "ProductVariant",
+        __typename: "ProductVariant" as const,
         id: "UHJvZHVjdFZhcmlhbnQ6MjEx",
         name: "500ml",
         pricing: {
@@ -1308,7 +1308,7 @@ export const orderLineSearch = (
           priceUndiscounted: {
             __typename: "TaxedMoney",
             net: {
-              __typename: "Money" as "Money",
+              __typename: "Money" as const,
               amount: 3.0,
               currency: "USD"
             }
@@ -1317,7 +1317,7 @@ export const orderLineSearch = (
         sku: "43200242"
       },
       {
-        __typename: "ProductVariant" as "ProductVariant",
+        __typename: "ProductVariant" as const,
         id: "UHJvZHVjdFZhcmlhbnQ6MjEy",
         name: "1l",
         pricing: {
@@ -1325,7 +1325,7 @@ export const orderLineSearch = (
           priceUndiscounted: {
             __typename: "TaxedMoney",
             net: {
-              __typename: "Money" as "Money",
+              __typename: "Money" as const,
               amount: 5.0,
               currency: "USD"
             }
@@ -1334,7 +1334,7 @@ export const orderLineSearch = (
         sku: "79129513"
       },
       {
-        __typename: "ProductVariant" as "ProductVariant",
+        __typename: "ProductVariant" as const,
         id: "UHJvZHVjdFZhcmlhbnQ6MjEz",
         name: "2l",
         pricing: {
@@ -1342,7 +1342,7 @@ export const orderLineSearch = (
           priceUndiscounted: {
             __typename: "TaxedMoney",
             net: {
-              __typename: "Money" as "Money",
+              __typename: "Money" as const,
               amount: 7.0,
               currency: "USD"
             }

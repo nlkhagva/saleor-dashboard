@@ -29,7 +29,7 @@ const useStyles = makeStyles(
     },
     cardTitle: {
       fontSize: 20,
-      fontWeight: 500 as 500
+      fontWeight: 500 as const
     },
     icon: {
       color: theme.palette.primary.contrastText,

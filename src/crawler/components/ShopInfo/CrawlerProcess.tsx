@@ -122,7 +122,7 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
           listSelection,
           productSelection,
           url,
-          user: 1,
+          user: 1
         }),
         headers: {
           Accept: "application/json",
@@ -163,14 +163,15 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
     }
 
     if (data.status === "complete") {
-      
       const cleanedProducts = data.products.map((product, index) => {
         const bPrice = parseFloat(product.basePrice.replace(/[^0-9.-]+/g, ""));
         const wPrice = parseFloat(product.wasPrice.replace(/[^0-9.-]+/g, ""));
-        let usalePercent = parseFloat((100 - bPrice*100/wPrice).toFixed(2));
-        usalePercent = isNaN(usalePercent)? 0: usalePercent
-      
-        return  {
+        let usalePercent = parseFloat(
+          (100 - (bPrice * 100) / wPrice).toFixed(2)
+        );
+        usalePercent = isNaN(usalePercent) ? 0 : usalePercent;
+
+        return {
           ...product,
           basePrice: bPrice,
           category: null,
@@ -185,8 +186,8 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
           ushop: crawler.shop.id,
           ustatus: "unsaved",
           visibleInListings: true,
-          wasPrice: wPrice,
-        }
+          wasPrice: wPrice
+        };
       });
 
       if (crawledData.length === 0) {

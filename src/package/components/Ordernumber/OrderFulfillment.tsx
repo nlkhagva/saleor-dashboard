@@ -125,7 +125,7 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
     <Card style={style}>
       <CardTitle
         title={
-          !!lines ? (
+          lines ? (
             <StatusLabel
               label={
                 <>

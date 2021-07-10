@@ -10,7 +10,7 @@ import { ProductTypeList_productTypes_edges_node } from "./types/ProductTypeList
 export const attributes: SearchProductTypes_search_edges_node_productAttributes[] = [
   {
     node: {
-      __typename: "Attribute" as "Attribute",
+      __typename: "Attribute" as const,
       id: "UHJvZHVjdEF0dHJpYnV0ZTo5",
       inputType: AttributeInputTypeEnum.DROPDOWN,
       name: "Author",
@@ -18,7 +18,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
       valueRequired: true,
       values: [
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjI0",
           name: "John Doe",
           slug: "john-doe",
@@ -27,7 +27,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjI1",
           name: "Milionare Pirate",
           slug: "milionare-pirate",
@@ -40,7 +40,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
   },
   {
     node: {
-      __typename: "Attribute" as "Attribute",
+      __typename: "Attribute" as const,
       id: "UHJvZHVjdEF0dHJpYnV0ZTo2",
       inputType: AttributeInputTypeEnum.DROPDOWN,
       name: "Box Size",
@@ -48,7 +48,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
       valueRequired: true,
       values: [
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjE1",
           name: "100g",
           slug: "100g",
@@ -57,7 +57,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjE2",
           name: "250g",
           slug: "250g",
@@ -66,7 +66,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjE3",
           name: "500g",
           slug: "500g",
@@ -75,7 +75,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjE4",
           name: "1kg",
           slug: "1kg",
@@ -88,7 +88,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
   },
   {
     node: {
-      __typename: "Attribute" as "Attribute",
+      __typename: "Attribute" as const,
       id: "UHJvZHVjdEF0dHJpYnV0ZToz",
       inputType: AttributeInputTypeEnum.DROPDOWN,
       name: "Brand",
@@ -96,7 +96,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
       valueRequired: true,
       values: [
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjY=",
           name: "Saleor",
           slug: "saleor",
@@ -109,7 +109,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
   },
   {
     node: {
-      __typename: "Attribute" as "Attribute",
+      __typename: "Attribute" as const,
       id: "UHJvZHVjdEF0dHJpYnV0ZTo4",
       inputType: AttributeInputTypeEnum.DROPDOWN,
       name: "Candy Box Size",
@@ -117,7 +117,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
       valueRequired: true,
       values: [
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjIx",
           name: "100g",
           slug: "100g",
@@ -126,7 +126,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjIy",
           name: "250g",
           slug: "250g",
@@ -135,7 +135,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjIz",
           name: "500g",
           slug: "500g",
@@ -148,7 +148,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
   },
   {
     node: {
-      __typename: "Attribute" as "Attribute",
+      __typename: "Attribute" as const,
       id: "UHJvZHVjdEF0dHJpYnV0ZTo1",
       inputType: AttributeInputTypeEnum.DROPDOWN,
       name: "Coffee Genre",
@@ -156,7 +156,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
       valueRequired: true,
       values: [
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjEz",
           name: "Arabica",
           slug: "arabica",
@@ -165,7 +165,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjE0",
           name: "Robusta",
           slug: "robusta",
@@ -178,7 +178,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
   },
   {
     node: {
-      __typename: "Attribute" as "Attribute",
+      __typename: "Attribute" as const,
       id: "UHJvZHVjdEF0dHJpYnV0ZToy",
       inputType: AttributeInputTypeEnum.DROPDOWN,
       name: "Collar",
@@ -186,7 +186,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
       valueRequired: true,
       values: [
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjM=",
           name: "Round",
           slug: "round",
@@ -195,7 +195,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjQ=",
           name: "V-Neck",
           slug: "v-neck",
@@ -204,7 +204,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjU=",
           name: "Polo",
           slug: "polo",
@@ -217,7 +217,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
   },
   {
     node: {
-      __typename: "Attribute" as "Attribute",
+      __typename: "Attribute" as const,
       id: "UHJvZHVjdEF0dHJpYnV0ZTox",
       inputType: AttributeInputTypeEnum.DROPDOWN,
       name: "Color",
@@ -225,7 +225,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
       valueRequired: true,
       values: [
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjE=",
           name: "Blue",
           slug: "blue",
@@ -234,7 +234,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjI=",
           name: "White",
           slug: "white",
@@ -247,7 +247,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
   },
   {
     node: {
-      __typename: "Attribute" as "Attribute",
+      __typename: "Attribute" as const,
       id: "UHJvZHVjdEF0dHJpYnV0ZToxMg==",
       inputType: AttributeInputTypeEnum.DROPDOWN,
       name: "Cover",
@@ -255,7 +255,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
       valueRequired: true,
       values: [
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjMw",
           name: "Soft",
           slug: "soft",
@@ -264,7 +264,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjMx",
           name: "Hard",
           slug: "hard",
@@ -273,7 +273,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjMy",
           name: "Middle soft",
           slug: "middle-soft",
@@ -282,7 +282,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjMz",
           name: "Middle hard",
           slug: "middle-hard",
@@ -291,7 +291,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjM0",
           name: "Middle",
           slug: "middle",
@@ -300,7 +300,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjM1",
           name: "Very hard",
           slug: "very-hard",
@@ -313,7 +313,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
   },
   {
     node: {
-      __typename: "Attribute" as "Attribute",
+      __typename: "Attribute" as const,
       id: "UHJvZHVjdEF0dHJpYnV0ZTo3",
       inputType: AttributeInputTypeEnum.DROPDOWN,
       name: "Flavor",
@@ -321,7 +321,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
       valueRequired: true,
       values: [
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjE5",
           name: "Sour",
           slug: "sour",
@@ -330,7 +330,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjIw",
           name: "Sweet",
           slug: "sweet",
@@ -343,7 +343,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
   },
   {
     node: {
-      __typename: "Attribute" as "Attribute",
+      __typename: "Attribute" as const,
       id: "UHJvZHVjdEF0dHJpYnV0ZToxMQ==",
       inputType: AttributeInputTypeEnum.DROPDOWN,
       name: "Language",
@@ -351,7 +351,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
       valueRequired: true,
       values: [
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjI4",
           name: "English",
           slug: "english",
@@ -360,7 +360,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjI5",
           name: "Pirate",
           slug: "pirate",
@@ -373,7 +373,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
   },
   {
     node: {
-      __typename: "Attribute" as "Attribute",
+      __typename: "Attribute" as const,
       id: "UHJvZHVjdEF0dHJpYnV0ZToxMA==",
       inputType: AttributeInputTypeEnum.DROPDOWN,
       name: "Publisher",
@@ -381,7 +381,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
       valueRequired: true,
       values: [
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjI2",
           name: "Mirumee Press",
           slug: "mirumee-press",
@@ -390,7 +390,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjI3",
           name: "Saleor Publishing",
           slug: "saleor-publishing",
@@ -403,7 +403,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
   },
   {
     node: {
-      __typename: "Attribute" as "Attribute",
+      __typename: "Attribute" as const,
       id: "UHJvZHVjdEF0dHJpYnV0ZTo0",
       inputType: AttributeInputTypeEnum.DROPDOWN,
       name: "Size",
@@ -411,7 +411,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
       valueRequired: true,
       values: [
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjc=",
           name: "XS",
           slug: "xs",
@@ -420,7 +420,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjg=",
           name: "S",
           slug: "s",
@@ -429,7 +429,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjk=",
           name: "M",
           slug: "m",
@@ -438,7 +438,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjEw",
           name: "L",
           slug: "l",
@@ -447,7 +447,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjEx",
           name: "XL",
           slug: "xl",
@@ -456,7 +456,7 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
           value: ""
         },
         {
-          __typename: "AttributeValue" as "AttributeValue",
+          __typename: "AttributeValue" as const,
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjEy",
           name: "XXL",
           slug: "xxl",
@@ -472,81 +472,81 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
 export const productTypes: Array<SearchProductTypes_search_edges_node &
   ProductTypeList_productTypes_edges_node> = [
   {
-    __typename: "ProductType" as "ProductType",
+    __typename: "ProductType" as const,
     hasVariants: true,
     id: "UHJvZHVjdFR5cGU6NA==",
     isShippingRequired: true,
     name: "Candy",
     productAttributes: [attributes[0]],
     taxType: {
-      __typename: "TaxType" as "TaxType",
+      __typename: "TaxType" as const,
       description: "PB100000",
       taxCode: "Books / Manuals"
     },
     variantAttributes: [attributes[1], attributes[2]]
   },
   {
-    __typename: "ProductType" as "ProductType",
+    __typename: "ProductType" as const,
     hasVariants: false,
     id: "UHJvZHVjdFR5cGU6NQ==",
     isShippingRequired: false,
     name: "E-books",
     productAttributes: [attributes[5]],
     taxType: {
-      __typename: "TaxType" as "TaxType",
+      __typename: "TaxType" as const,
       description: "PH403682",
       taxCode: "Holters"
     },
     variantAttributes: [attributes[0], attributes[3]]
   },
   {
-    __typename: "ProductType" as "ProductType",
+    __typename: "ProductType" as const,
     hasVariants: false,
     id: "UHJvZHVjdFR5cGU6Mg==",
     isShippingRequired: true,
     name: "Mugs",
     productAttributes: [attributes[7]],
     taxType: {
-      __typename: "TaxType" as "TaxType",
+      __typename: "TaxType" as const,
       description: "PC077426",
       taxCode: "Cabling"
     },
     variantAttributes: [attributes[2], attributes[5]]
   },
   {
-    __typename: "ProductType" as "ProductType",
+    __typename: "ProductType" as const,
     hasVariants: true,
     id: "UHJvZHVjdFR5cGU6Mw==",
     isShippingRequired: true,
     name: "Coffee",
     productAttributes: [attributes[8]],
     taxType: {
-      __typename: "TaxType" as "TaxType",
+      __typename: "TaxType" as const,
       description: "PB100000",
       taxCode: "Books / Manuals"
     },
     variantAttributes: [attributes[1], attributes[4]]
   },
   {
-    __typename: "ProductType" as "ProductType",
+    __typename: "ProductType" as const,
     hasVariants: true,
     id: "UHJvZHVjdFR5cGU6MQ==",
     isShippingRequired: true,
     name: "T-Shirt",
     productAttributes: [attributes[4]],
     taxType: {
-      __typename: "TaxType" as "TaxType",
+      __typename: "TaxType" as const,
       description: "PH403970",
       taxCode: "Wheelchair"
     },
     variantAttributes: [attributes[1], attributes[6]]
   }
 ].map(productType => ({
-  __typename: "ProductType" as "ProductType",
+  __typename: "ProductType" as const,
   ...productType
 }));
 export const productType: ProductTypeDetails_productType = {
-  __typename: "ProductType" as "ProductType",
+  __typename: "ProductType" as const,
   hasVariants: false,
   id: "UHJvZHVjdFR5cGU6NQ==",
   isShippingRequired: false,
@@ -561,7 +561,7 @@ export const productType: ProductTypeDetails_productType = {
   privateMetadata: [],
   productAttributes: [
     {
-      __typename: "Attribute" as "Attribute",
+      __typename: "Attribute" as const,
       filterableInDashboard: true,
       filterableInStorefront: false,
       id: "UHJvZHVjdEF0dHJpYnV0ZTo5",
@@ -570,7 +570,7 @@ export const productType: ProductTypeDetails_productType = {
       visibleInStorefront: true
     },
     {
-      __typename: "Attribute" as "Attribute",
+      __typename: "Attribute" as const,
       filterableInDashboard: true,
       filterableInStorefront: false,
       id: "UHJvZHVjdEF0dHJpYnV0ZToxMQ==",
@@ -579,7 +579,7 @@ export const productType: ProductTypeDetails_productType = {
       visibleInStorefront: true
     },
     {
-      __typename: "Attribute" as "Attribute",
+      __typename: "Attribute" as const,
       filterableInDashboard: true,
       filterableInStorefront: false,
       id: "UHJvZHVjdEF0dHJpYnV0ZToxMA==",
@@ -589,7 +589,7 @@ export const productType: ProductTypeDetails_productType = {
     }
   ],
   taxType: {
-    __typename: "TaxType" as "TaxType",
+    __typename: "TaxType" as const,
     description: "PH405458",
     taxCode: "Shields"
   },

@@ -22,12 +22,12 @@ export const permissionGroups: PermissionGroupList_permissionGroups_edges_node[]
           id: "VXNlcjoyMQ==",
           firstName: "",
           lastName: "",
-          __typename: "User" as "User"
+          __typename: "User" as const
         }
       ],
-      __typename: "Group" as "Group"
+      __typename: "Group" as const
     },
-    __typename: "GroupCountableEdge" as "GroupCountableEdge"
+    __typename: "GroupCountableEdge" as const
   },
   {
     node: {
@@ -39,12 +39,12 @@ export const permissionGroups: PermissionGroupList_permissionGroups_edges_node[]
           id: "VXNlcjoyMQ==",
           firstName: "",
           lastName: "",
-          __typename: "User" as "User"
+          __typename: "User" as const
         }
       ],
-      __typename: "Group" as "Group"
+      __typename: "Group" as const
     },
-    __typename: "GroupCountableEdge" as "GroupCountableEdge"
+    __typename: "GroupCountableEdge" as const
   },
   {
     node: {
@@ -52,9 +52,9 @@ export const permissionGroups: PermissionGroupList_permissionGroups_edges_node[]
       name: "Management",
       users: [],
       userCanManage: true,
-      __typename: "Group" as "Group"
+      __typename: "Group" as const
     },
-    __typename: "GroupCountableEdge" as "GroupCountableEdge"
+    __typename: "GroupCountableEdge" as const
   },
   {
     node: {
@@ -66,18 +66,18 @@ export const permissionGroups: PermissionGroupList_permissionGroups_edges_node[]
           id: "VXNlcjoyMw==",
           firstName: "Bryan",
           lastName: "Rodgers",
-          __typename: "User" as "User"
+          __typename: "User" as const
         },
         {
           id: "VXNlcjoyMg==",
           firstName: "Joshua",
           lastName: "Mitchell",
-          __typename: "User" as "User"
+          __typename: "User" as const
         }
       ],
-      __typename: "Group" as "Group"
+      __typename: "Group" as const
     },
-    __typename: "GroupCountableEdge" as "GroupCountableEdge"
+    __typename: "GroupCountableEdge" as const
   },
   {
     node: {
@@ -85,9 +85,9 @@ export const permissionGroups: PermissionGroupList_permissionGroups_edges_node[]
       name: "Publishers",
       userCanManage: true,
       users: [],
-      __typename: "Group" as "Group"
+      __typename: "Group" as const
     },
-    __typename: "GroupCountableEdge" as "GroupCountableEdge"
+    __typename: "GroupCountableEdge" as const
   }
 ].map(edge => edge.node);
 
@@ -179,11 +179,11 @@ export const users: SearchStaffMembers_search_edges_node[] = [
       avatar: {
         alt: null,
         url: avatarImg,
-        __typename: "Image" as "Image"
+        __typename: "Image" as const
       },
-      __typename: "User" as "User"
+      __typename: "User" as const
     },
-    __typename: "UserCountableEdge" as "UserCountableEdge"
+    __typename: "UserCountableEdge" as const
   },
   {
     node: {
@@ -195,11 +195,11 @@ export const users: SearchStaffMembers_search_edges_node[] = [
       avatar: {
         alt: null,
         url: avatarImg,
-        __typename: "Image" as "Image"
+        __typename: "Image" as const
       },
-      __typename: "User" as "User"
+      __typename: "User" as const
     },
-    __typename: "UserCountableEdge" as "UserCountableEdge"
+    __typename: "UserCountableEdge" as const
   },
   {
     node: {
@@ -211,11 +211,11 @@ export const users: SearchStaffMembers_search_edges_node[] = [
       avatar: {
         alt: null,
         url: avatarImg,
-        __typename: "Image" as "Image"
+        __typename: "Image" as const
       },
-      __typename: "User" as "User"
+      __typename: "User" as const
     },
-    __typename: "UserCountableEdge" as "UserCountableEdge"
+    __typename: "UserCountableEdge" as const
   },
   {
     node: {
@@ -227,10 +227,10 @@ export const users: SearchStaffMembers_search_edges_node[] = [
       avatar: {
         alt: null,
         url: avatarImg,
-        __typename: "Image" as "Image"
+        __typename: "Image" as const
       },
-      __typename: "User" as "User"
+      __typename: "User" as const
     },
-    __typename: "UserCountableEdge" as "UserCountableEdge"
+    __typename: "UserCountableEdge" as const
   }
 ].map(edge => edge.node);

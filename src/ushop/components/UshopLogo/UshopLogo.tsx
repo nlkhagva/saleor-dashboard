@@ -1,12 +1,11 @@
 import photoIcon from "@assets/images/photo-icon.svg";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import { maybe } from  "@saleor/misc"
+import { maybe } from "@saleor/misc";
 import { UshopUpdate_ushopUpdate_shop } from "@saleor/ushop/types/UshopUpdate";
 import React from "react";
 import SVG from "react-inlinesvg";
 import { FormattedMessage } from "react-intl";
-
 
 export interface Props {
   onImageUpload: (file: File) => void | null;
@@ -93,38 +92,38 @@ const useStyles = makeStyles(
   { name: "UshopLogo" }
 );
 
-const UshopLogo:React.FC<Props> = (props) => {
+const UshopLogo: React.FC<Props> = props => {
   const { onImageUpload, ushop } = props;
   const classes = useStyles(props);
   const imgInputAnchor = React.createRef<HTMLInputElement>();
 
   const clickImgInput = () => imgInputAnchor.current.click();
-  
+
   return (
     <div>
-    <div className={classes.avatar}>
-      {maybe(() => ushop.logoImage.url) ? (
-        <img
-          className={classes.avatarImage}
-          src={maybe(() => ushop.logoImage.url)}
-        />
-      ) : (
-        <div className={classes.avatarDefault}>
-          <Typography>LG</Typography>
-        </div>
-      )}
-      <div className={classes.avatarHover}>
-        <SVG src={photoIcon} />
-        <Typography
-          onClick={clickImgInput}
-          className={classes.avatarActionText}
-        >
-          <FormattedMessage
-            defaultMessage="Change photo"
-            description="button"
+      <div className={classes.avatar}>
+        {maybe(() => ushop.logoImage.url) ? (
+          <img
+            className={classes.avatarImage}
+            src={maybe(() => ushop.logoImage.url)}
           />
-        </Typography>
-        {/* <Typography
+        ) : (
+          <div className={classes.avatarDefault}>
+            <Typography>LG</Typography>
+          </div>
+        )}
+        <div className={classes.avatarHover}>
+          <SVG src={photoIcon} />
+          <Typography
+            onClick={clickImgInput}
+            className={classes.avatarActionText}
+          >
+            <FormattedMessage
+              defaultMessage="Change photo"
+              description="button"
+            />
+          </Typography>
+          {/* <Typography
           onClick={onImageDelete}
           className={classes.avatarActionText}
         >
@@ -133,19 +132,18 @@ const UshopLogo:React.FC<Props> = (props) => {
             description="button"
           />
         </Typography> */}
-        <input
-          className={classes.fileField}
-          id="fileUpload"
-          onChange={event => onImageUpload(event.target.files[0])}
-          type="file"
-          ref={imgInputAnchor}
-        />
+          <input
+            className={classes.fileField}
+            id="fileUpload"
+            onChange={event => onImageUpload(event.target.files[0])}
+            type="file"
+            ref={imgInputAnchor}
+          />
+        </div>
       </div>
     </div>
-  </div>
-  )
-}
+  );
+};
 
-UshopLogo.displayName="UshopLogo";
+UshopLogo.displayName = "UshopLogo";
 export default UshopLogo;
-
