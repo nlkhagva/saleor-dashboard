@@ -30,26 +30,26 @@ const PackageUpost: React.FC<PackageUpostProps> = ({ _package }) => {
     }
     fetchToken();
   }, []);
-  console.log(upostToken);
+  // console.log(upostToken);
 
-  const upostFunc = async function(token, data) {
-    const response = await fetch("https://2018.upost.mn/api/DoExec", {
-      body: JSON.stringify(data),
-      headers: {
-        Authorization: "Bearer " + token,
-        "Content-Type": "application/json"
-      },
-      method: "post"
-    });
+  // const upostFunc = async function(token, data) {
+  //   const response = await fetch("https://2018.upost.mn/api/DoExec", {
+  //     body: JSON.stringify(data),
+  //     headers: {
+  //       Authorization: "Bearer " + token,
+  //       "Content-Type": "application/json"
+  //     },
+  //     method: "post"
+  //   });
 
-    const responseJSON = await response.json();
+  //   const responseJSON = await response.json();
 
-    return responseJSON;
-  };
+  //   return responseJSON;
+  // };
 
   return (
     <>
-      {text} + {_package?.name}
+      {text} + {_package?.name} + {upostToken}
     </>
   );
 };
