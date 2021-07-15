@@ -1,15 +1,15 @@
-import { WindowTitle } from "@saleor/components/WindowTitle";
+import React, { useState } from "react";
+import { packageListUrl, packageUrl } from "../urls";
+
 import { DEFAULT_INITIAL_SEARCH_DATA } from "@saleor/config";
-import useNavigator from "@saleor/hooks/useNavigator";
-import useNotifier from "@saleor/hooks/useNotifier";
+import { PackageCreate as PackageCreateData } from "../types/PackageCreate";
+import PackageDetailsPage from "../components/PackageDetailsPage";
+import { WindowTitle } from "@saleor/components/WindowTitle";
 import { getMutationStatus } from "@saleor/misc";
 import useGaduurSearchSearch from "@saleor/searches/useGaduurSearch";
-import React, { useState } from "react";
-
-import PackageDetailsPage from "../components/PackageDetailsPage";
+import useNavigator from "@saleor/hooks/useNavigator";
+import useNotifier from "@saleor/hooks/useNotifier";
 import { usePackageCreate } from "../mutations";
-import { PackageCreate as PackageCreateData } from "../types/PackageCreate";
-import { packageListUrl, packageUrl } from "../urls";
 
 export interface PackageCreateProps {
   routeParams: any;
@@ -67,6 +67,7 @@ export const PackageCreate: React.FC<PackageCreateProps> = ({
         setLines={setLines}
         object={null}
         onDelete={null}
+        updatePackage={() => {}}
         onSubmit={data =>
           createPackage({
             variables: {

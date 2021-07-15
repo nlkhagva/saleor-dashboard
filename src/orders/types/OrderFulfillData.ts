@@ -7,6 +7,27 @@
 // GraphQL query operation: OrderFulfillData
 // ====================================================
 
+export interface OrderFulfillData_order_lines_allocations_warehouse {
+  __typename: "Warehouse";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
+export interface OrderFulfillData_order_lines_allocations {
+  __typename: "Allocation";
+  /**
+   * The warehouse were items were allocated.
+   */
+  warehouse: OrderFulfillData_order_lines_allocations_warehouse;
+  /**
+   * Quantity allocated for orders.
+   */
+  quantity: number;
+}
+
 export interface OrderFulfillData_order_lines_variant_product_productType {
   __typename: "ProductType";
   /**
@@ -130,6 +151,10 @@ export interface OrderFulfillData_order_lines {
    * The ID of the object.
    */
   id: string;
+  /**
+   * List of allocations across warehouses.
+   */
+  allocations: OrderFulfillData_order_lines_allocations[] | null;
   isShippingRequired: boolean;
   productName: string;
   quantity: number;

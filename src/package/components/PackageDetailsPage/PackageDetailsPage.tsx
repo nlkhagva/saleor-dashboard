@@ -1,21 +1,21 @@
+import PackageForm, { PackageFormData } from "../PackageForm";
+
 import AppHeader from "@saleor/components/AppHeader";
 import { ConfirmButtonTransitionState } from "@saleor/components/ConfirmButton";
 import Container from "@saleor/components/Container";
+import Customer from "../Customer";
+import { FetchMoreProps } from "@saleor/types";
 import Grid from "@saleor/components/Grid";
+import Ordernumber from "../Ordernumber";
+import { PackageDetails_package } from "@saleor/package/types/PackageDetails";
+import PackageLines from "./PackageLines";
 import PageHeader from "@saleor/components/PageHeader";
+import React from "react";
+import { SearchGaduurs_search_edges_node } from "@saleor/searches/types/SearchGaduurs";
 // import SingleSelectField from "@saleor/components/SingleSelectField";
 // import useDateLocalize from "@saleor/hooks/useDateLocalize";
 import { sectionNames } from "@saleor/intl";
-import { PackageDetails_package } from "@saleor/package/types/PackageDetails";
-import { SearchGaduurs_search_edges_node } from "@saleor/searches/types/SearchGaduurs";
-import { FetchMoreProps } from "@saleor/types";
-import React from "react";
 import { useIntl } from "react-intl";
-
-import Customer from "../Customer";
-import Ordernumber from "../Ordernumber";
-import PackageForm, { PackageFormData } from "../PackageForm";
-import PackageLines from "./PackageLines";
 
 export interface DetailsPageProps {
   disabled: boolean;
@@ -31,6 +31,7 @@ export interface DetailsPageProps {
   onDelete: () => void | null;
   routeParams: any;
   fetchGaduurs: (query: string) => void;
+  updatePackage: () => void;
 }
 
 const PackageDetailsPage: React.FC<DetailsPageProps> = ({
@@ -44,6 +45,7 @@ const PackageDetailsPage: React.FC<DetailsPageProps> = ({
   onBack,
   onDelete,
   onSubmit,
+  updatePackage,
   routeParams,
   saveButtonBarState,
   setLines
@@ -85,6 +87,7 @@ const PackageDetailsPage: React.FC<DetailsPageProps> = ({
             onBack={onBack}
             onDelete={onDelete}
             onSubmit={onSubmit}
+            updatePackage={updatePackage}
             saveButtonBarState={saveButtonBarState}
           />
         </div>

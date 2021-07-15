@@ -34,6 +34,10 @@ export interface PackageUpdate_packageUpdate_package_gaduur {
   endDate: any | null;
   receivedDate: any | null;
   trackingNumber: string | null;
+  shippingType: string | null;
+  netWeight: number | null;
+  grossWeight: number | null;
+  totalAmount: number | null;
 }
 
 export interface PackageUpdate_packageUpdate_package_shippingAddress_country {

@@ -21,6 +21,10 @@ export interface PackageDetailsFragment_gaduur {
   endDate: any | null;
   receivedDate: any | null;
   trackingNumber: string | null;
+  shippingType: string | null;
+  netWeight: number | null;
+  grossWeight: number | null;
+  totalAmount: number | null;
 }
 
 export interface PackageDetailsFragment_shippingAddress_country {

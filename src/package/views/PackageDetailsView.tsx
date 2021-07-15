@@ -1,21 +1,21 @@
-import NotFoundPage from "@saleor/components/NotFoundPage";
-import { WindowTitle } from "@saleor/components/WindowTitle";
-import { DEFAULT_INITIAL_SEARCH_DATA } from "@saleor/config";
-import useNavigator from "@saleor/hooks/useNavigator";
-import useNotifier from "@saleor/hooks/useNotifier";
-import { commonMessages } from "@saleor/intl";
+import { PackageUrlQueryParams, packageListUrl, packageUrl } from "../urls";
 import { getMutationStatus, getStringOrPlaceholder } from "@saleor/misc";
-import useGaduurSearchSearch from "@saleor/searches/useGaduurSearch";
-import createDialogActionHandlers from "@saleor/utils/handlers/dialogActionHandlers";
-import React from "react";
-import { useIntl } from "react-intl";
+import { usePackageDelete, usePackageUpdate } from "../mutations";
 
+import { DEFAULT_INITIAL_SEARCH_DATA } from "@saleor/config";
+import NotFoundPage from "@saleor/components/NotFoundPage";
 import PackageDeleteDialog from "../components/PackageDeleteDialog";
 import PackageDetailsPage from "../components/PackageDetailsPage";
-import { usePackageDelete, usePackageUpdate } from "../mutations";
-import { usePackageDetails } from "../queries";
 import { PackageUpdate as PackageUpdateData } from "../types/PackageUpdate";
-import { packageListUrl, packageUrl, PackageUrlQueryParams } from "../urls";
+import React from "react";
+import { WindowTitle } from "@saleor/components/WindowTitle";
+import { commonMessages } from "@saleor/intl";
+import createDialogActionHandlers from "@saleor/utils/handlers/dialogActionHandlers";
+import useGaduurSearchSearch from "@saleor/searches/useGaduurSearch";
+import { useIntl } from "react-intl";
+import useNavigator from "@saleor/hooks/useNavigator";
+import useNotifier from "@saleor/hooks/useNotifier";
+import { usePackageDetails } from "../queries";
 
 export interface PackageCreateProps {
   id: string;
@@ -38,7 +38,7 @@ export const PackageDetailsView: React.FC<PackageCreateProps> = ({
     variables: DEFAULT_INITIAL_SEARCH_DATA
   });
 
-  const { data, loading } = usePackageDetails({
+  const { data, loading, refetch } = usePackageDetails({
     displayLoader: true,
     variables: { id }
   });
@@ -46,6 +46,7 @@ export const PackageDetailsView: React.FC<PackageCreateProps> = ({
   const [updatePackage, updatePackageOpts] = usePackageUpdate({
     onCompleted: (data: PackageUpdateData) => {
       if (data.packageUpdate.errors.length === 0) {
+        refetch();
         notify({
           status: "success",
           text: intl.formatMessage(commonMessages.savedChanges)
@@ -101,6 +102,7 @@ export const PackageDetailsView: React.FC<PackageCreateProps> = ({
         onBack={() => navigate(packageListUrl())}
         onDelete={() => openModal("delete")}
         routeParams={routeParams}
+        updatePackage={updatePackage}
         onSubmit={data =>
           updatePackage({
             variables: {

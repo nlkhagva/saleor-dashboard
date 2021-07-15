@@ -21,6 +21,10 @@ export interface GaduurList_gaduurs_edges_node {
   endDate: any | null;
   receivedDate: any | null;
   trackingNumber: string | null;
+  shippingType: string | null;
+  netWeight: number | null;
+  grossWeight: number | null;
+  totalAmount: number | null;
 }
 
 export interface GaduurList_gaduurs_edges {

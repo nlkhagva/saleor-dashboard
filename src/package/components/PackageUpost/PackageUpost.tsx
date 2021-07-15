@@ -1,12 +1,21 @@
+import {
+  createPackageInfoJson,
+  createPackageLineInfoJson
+} from "@saleor/package/utils";
+
+import Button from "@material-ui/core/Button";
 import { PackageDetails_package } from "@saleor/package/types/PackageDetails";
 import React from "react";
 
 export interface PackageUpostProps {
   _package: PackageDetails_package | null;
+  updatePackage: any;
 }
 
-const PackageUpost: React.FC<PackageUpostProps> = ({ _package }) => {
-  const text = "upost send";
+const PackageUpost: React.FC<PackageUpostProps> = ({
+  _package,
+  updatePackage
+}) => {
   const [upostToken, setUpostToken] = React.useState(null);
 
   React.useEffect(() => {
@@ -30,26 +39,69 @@ const PackageUpost: React.FC<PackageUpostProps> = ({ _package }) => {
     }
     fetchToken();
   }, []);
-  // console.log(upostToken);
 
-  // const upostFunc = async function(token, data) {
-  //   const response = await fetch("https://2018.upost.mn/api/DoExec", {
-  //     body: JSON.stringify(data),
-  //     headers: {
-  //       Authorization: "Bearer " + token,
-  //       "Content-Type": "application/json"
-  //     },
-  //     method: "post"
-  //   });
+  React.useEffect(() => {
+    if (_package) {
+      console.log(_package);
+    }
+  }, [_package]);
 
-  //   const responseJSON = await response.json();
+  const upostFunc = async function(data) {
+    const response = await fetch("https://2018.upost.mn/api/DoExec", {
+      body: JSON.stringify(data),
+      headers: {
+        Authorization: "Bearer " + upostToken,
+        "Content-Type": "application/json"
+      },
+      method: "post"
+    });
 
-  //   return responseJSON;
-  // };
+    const responseJSON = await response.json();
+
+    return responseJSON;
+  };
+
+  const sendUpost = async () => {
+    const packageData = createPackageInfoJson(_package);
+    const upostPackage = await upostFunc(packageData);
+
+    if (upostPackage.retType === 1) {
+      alert(upostPackage.retDesc);
+    } else {
+      if (upostPackage.retData.Table !== undefined) {
+        const packageId = upostPackage.retData.Table[0].PK;
+
+        for (const line of _package.lines) {
+          const lineData = createPackageLineInfoJson(packageId, line);
+          await upostFunc(lineData);
+        }
+
+        updatePackage({
+          variables: {
+            id: _package.id,
+            input: {
+              upostPK: packageId,
+              gaduur: _package.gaduur.id,
+              grossWeight: _package.grossWeight,
+              height: _package.height,
+              length: _package.length,
+              name: _package.name,
+              netOrGross: _package.netOrGross.toLowerCase(),
+              netWeight: _package.netWeight,
+              perkgAmount: _package.perkgAmount,
+              width: _package.width
+            }
+          }
+        });
+      }
+    }
+  };
 
   return (
     <>
-      {text} + {_package?.name} + {upostToken}
+      <Button variant="contained" color="primary" onClick={() => sendUpost()}>
+        UPost.mn рүү илгээх
+      </Button>
     </>
   );
 };

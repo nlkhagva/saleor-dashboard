@@ -9,6 +9,10 @@ export const gaduurFragment = gql`
     endDate
     receivedDate
     trackingNumber
+    shippingType
+    netWeight
+    grossWeight
+    totalAmount
   }
 `;
 

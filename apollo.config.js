@@ -6,7 +6,8 @@ module.exports = {
     service: {
       // localSchemaFile: "schema.graphql",
       name: "saleodddr",
-      url: "http://localhost:8000/graphql/"
+      // url: "http://localhost:8000/graphql/"
+      url: "https://core.unurshop.com/graphql/"
     }
   }
 };

@@ -1,6 +1,7 @@
 /* eslint-disable sort-keys */
 
 import * as placeholderImage from "@assets/images/sample-product.jpg";
+
 import { OrderFulfillData_order } from "@saleor/orders/types/OrderFulfillData";
 import { warehouseList } from "@saleor/warehouses/fixtures";
 
@@ -10,6 +11,7 @@ export const orderToFulfill: OrderFulfillData_order = {
   lines: [
     {
       __typename: "OrderLine",
+      allocations: null,
       id: "T3JkZXJMaW5lOjQ=",
       isShippingRequired: true,
       productName: "T-Shirt",
@@ -72,6 +74,7 @@ export const orderToFulfill: OrderFulfillData_order = {
     },
     {
       __typename: "OrderLine",
+      allocations: null,
       id: "T3JkZXJMaW5lOjU=",
       isShippingRequired: true,
       productName: "Lemon Juice",
@@ -127,6 +130,7 @@ export const orderToFulfill: OrderFulfillData_order = {
     },
     {
       __typename: "OrderLine",
+      allocations: null,
       id: "T3JkZXJMaW5lOjY=",
       isShippingRequired: true,
       productName: "Orange Juice",

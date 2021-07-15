@@ -21,4 +21,8 @@ export interface GaduurFragment {
   endDate: any | null;
   receivedDate: any | null;
   trackingNumber: string | null;
+  shippingType: string | null;
+  netWeight: number | null;
+  grossWeight: number | null;
+  totalAmount: number | null;
 }

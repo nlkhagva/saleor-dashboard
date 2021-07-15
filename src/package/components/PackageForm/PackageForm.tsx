@@ -39,6 +39,7 @@ export interface PackageFormProps {
   object: PackageDetails_package | null;
   onBack: () => void;
   onDelete: () => void | null;
+  updatePackage: () => void;
   onSubmit: (data: PackageFormData) => void;
   saveButtonBarState: ConfirmButtonTransitionState;
 }
@@ -72,6 +73,7 @@ const PackageForm: React.FC<PackageFormProps> = ({
   onBack,
   onDelete,
   onSubmit,
+  updatePackage,
   saveButtonBarState
 }) => {
   const intl = useIntl();
@@ -381,16 +383,21 @@ const PackageForm: React.FC<PackageFormProps> = ({
               </CardContent>
             </Card>
             <CardSpacer />
-            <Card>
-              <CardTitle title="UPOST" />
-              <CardContent>
-                {object?.upostPK ? (
-                  <>Upost info</>
-                ) : (
-                  <PackageUpost _package={object} />
-                )}
-              </CardContent>
-            </Card>
+            {object && (
+              <Card>
+                <CardTitle title="UPOST" />
+                <CardContent>
+                  {object?.upostPK ? (
+                    <>Upost info</>
+                  ) : (
+                    <PackageUpost
+                      _package={object}
+                      updatePackage={updatePackage}
+                    />
+                  )}
+                </CardContent>
+              </Card>
+            )}
           </>
         );
       }}

@@ -1492,6 +1492,7 @@ export interface PackageFilterInput {
 
 export interface PackageInput {
   name?: string | null;
+  upostPK?: string | null;
   lines?: (PackageLineInput | null)[] | null;
   shippingAddressId?: string | null;
   senderAddressId?: string | null;
