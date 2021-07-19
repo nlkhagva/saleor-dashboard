@@ -1,5 +1,7 @@
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
+import Metadata, { MetadataFormData } from "@saleor/components/Metadata";
+import OrderHistory, { FormData as HistoryFormData } from "../OrderHistory";
+import { maybe, renderCollection } from "../../../misc";
+
 import AppHeader from "@saleor/components/AppHeader";
 import CardMenu from "@saleor/components/CardMenu";
 import { CardSpacer } from "@saleor/components/CardSpacer";
@@ -8,27 +10,25 @@ import { Container } from "@saleor/components/Container";
 import { DateTime } from "@saleor/components/Date";
 import Form from "@saleor/components/Form";
 import Grid from "@saleor/components/Grid";
-import Metadata, { MetadataFormData } from "@saleor/components/Metadata";
-import PageHeader from "@saleor/components/PageHeader";
-import SaveButtonBar from "@saleor/components/SaveButtonBar";
-import Skeleton from "@saleor/components/Skeleton";
-import { sectionNames } from "@saleor/intl";
-import { UserPermissionProps } from "@saleor/types";
-import { mapMetadataItemToInput } from "@saleor/utils/maps";
-import useMetadataChangeTrigger from "@saleor/utils/metadata/useMetadataChangeTrigger";
-import React from "react";
-import { useIntl } from "react-intl";
-
-import { maybe, renderCollection } from "../../../misc";
-import { OrderStatus } from "../../../types/globalTypes";
-import { OrderDetails_order } from "../../types/OrderDetails";
 import OrderCustomer from "../OrderCustomer";
 import OrderCustomerNote from "../OrderCustomerNote";
+import { OrderDetails_order } from "../../types/OrderDetails";
 import OrderFulfillment from "../OrderFulfillment";
-import OrderHistory, { FormData as HistoryFormData } from "../OrderHistory";
 import OrderInvoiceList from "../OrderInvoiceList";
 import OrderPayment from "../OrderPayment/OrderPayment";
+import { OrderStatus } from "../../../types/globalTypes";
 import OrderUnfulfilledItems from "../OrderUnfulfilledItems/OrderUnfulfilledItems";
+import PageHeader from "@saleor/components/PageHeader";
+import React from "react";
+import SaveButtonBar from "@saleor/components/SaveButtonBar";
+import Skeleton from "@saleor/components/Skeleton";
+import Typography from "@material-ui/core/Typography";
+import { UserPermissionProps } from "@saleor/types";
+import { makeStyles } from "@material-ui/core/styles";
+import { mapMetadataItemToInput } from "@saleor/utils/maps";
+import { sectionNames } from "@saleor/intl";
+import { useIntl } from "react-intl";
+import useMetadataChangeTrigger from "@saleor/utils/metadata/useMetadataChangeTrigger";
 
 const useStyles = makeStyles(
   theme => ({
@@ -75,10 +75,12 @@ export interface OrderDetailsPageProps extends UserPermissionProps {
   onInvoiceGenerate();
   onInvoiceSend(invoiceId: string);
   onSubmit(data: MetadataFormData);
+  createPackageUrl(params?: any);
 }
 
 const OrderDetailsPage: React.FC<OrderDetailsPageProps> = props => {
   const {
+    createPackageUrl,
     disabled,
     order,
     saveButtonBarState,
@@ -192,6 +194,7 @@ const OrderDetailsPage: React.FC<OrderDetailsPageProps> = props => {
                       ) && <CardSpacer />}
                       <OrderFulfillment
                         fulfillment={fulfillment}
+                        createPackageUrl={createPackageUrl}
                         orderNumber={maybe(() => order.number)}
                         onOrderFulfillmentCancel={() =>
                           onFulfillmentCancel(fulfillment.id)

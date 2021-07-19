@@ -1,66 +1,67 @@
-import { MetadataFormData } from "@saleor/components/Metadata";
-import NotFoundPage from "@saleor/components/NotFoundPage";
-import { WindowTitle } from "@saleor/components/WindowTitle";
-import { DEFAULT_INITIAL_SEARCH_DATA } from "@saleor/config";
-import { Task } from "@saleor/containers/BackgroundTasks/types";
-import useBackgroundTask from "@saleor/hooks/useBackgroundTask";
-import useNavigator from "@saleor/hooks/useNavigator";
-import useNotifier from "@saleor/hooks/useNotifier";
-import useUser from "@saleor/hooks/useUser";
-import { commonMessages } from "@saleor/intl";
-import OrderCannotCancelOrderDialog from "@saleor/orders/components/OrderCannotCancelOrderDialog";
-import OrderInvoiceEmailSendDialog from "@saleor/orders/components/OrderInvoiceEmailSendDialog";
-import { InvoiceRequest } from "@saleor/orders/types/InvoiceRequest";
-import useCustomerSearch from "@saleor/searches/useCustomerSearch";
-import createDialogActionHandlers from "@saleor/utils/handlers/dialogActionHandlers";
-import createMetadataUpdateHandler from "@saleor/utils/handlers/metadataUpdateHandler";
 import {
-  useMetadataUpdate,
-  usePrivateMetadataUpdate
-} from "@saleor/utils/metadata/updateMetadata";
-import { useWarehouseList } from "@saleor/warehouses/queries";
-import React from "react";
-import { useIntl } from "react-intl";
-
-import { customerUrl } from "../../../customers/urls";
+  FulfillmentStatus,
+  JobStatusEnum,
+  OrderStatus
+} from "../../../types/globalTypes";
+import OrderDraftFinalizeDialog, {
+  OrderDraftFinalizeWarning
+} from "../../components/OrderDraftFinalizeDialog";
+import {
+  OrderUrlDialog,
+  OrderUrlQueryParams,
+  orderFulfillUrl,
+  orderListUrl,
+  orderUrl
+} from "../../urls";
+import { TypedOrderDetailsQuery, useOrderVariantSearch } from "../../queries";
 import {
   getMutationState,
   getStringOrPlaceholder,
   maybe,
   transformAddressToForm
 } from "../../../misc";
-import { productUrl } from "../../../products/urls";
 import {
-  FulfillmentStatus,
-  JobStatusEnum,
-  OrderStatus
-} from "../../../types/globalTypes";
+  useMetadataUpdate,
+  usePrivateMetadataUpdate
+} from "@saleor/utils/metadata/updateMetadata";
+
+import { DEFAULT_INITIAL_SEARCH_DATA } from "@saleor/config";
+import { InvoiceRequest } from "@saleor/orders/types/InvoiceRequest";
+import { MetadataFormData } from "@saleor/components/Metadata";
+import NotFoundPage from "@saleor/components/NotFoundPage";
 import OrderAddressEditDialog from "../../components/OrderAddressEditDialog";
 import OrderCancelDialog from "../../components/OrderCancelDialog";
+import OrderCannotCancelOrderDialog from "@saleor/orders/components/OrderCannotCancelOrderDialog";
+import { OrderDetailsMessages } from "./OrderDetailsMessages";
 import OrderDetailsPage from "../../components/OrderDetailsPage";
+import { OrderDetails_order } from "../../types/OrderDetails";
 import OrderDraftCancelDialog from "../../components/OrderDraftCancelDialog/OrderDraftCancelDialog";
-import OrderDraftFinalizeDialog, {
-  OrderDraftFinalizeWarning
-} from "../../components/OrderDraftFinalizeDialog";
 import OrderDraftPage from "../../components/OrderDraftPage";
 import OrderFulfillmentCancelDialog from "../../components/OrderFulfillmentCancelDialog";
 import OrderFulfillmentTrackingDialog from "../../components/OrderFulfillmentTrackingDialog";
+import OrderInvoiceEmailSendDialog from "@saleor/orders/components/OrderInvoiceEmailSendDialog";
 import OrderMarkAsPaidDialog from "../../components/OrderMarkAsPaidDialog/OrderMarkAsPaidDialog";
+import OrderOperations from "../../containers/OrderOperations";
 import OrderPaymentDialog from "../../components/OrderPaymentDialog";
 import OrderPaymentVoidDialog from "../../components/OrderPaymentVoidDialog";
 import OrderProductAddDialog from "../../components/OrderProductAddDialog";
 import OrderShippingMethodEditDialog from "../../components/OrderShippingMethodEditDialog";
-import OrderOperations from "../../containers/OrderOperations";
-import { TypedOrderDetailsQuery, useOrderVariantSearch } from "../../queries";
-import { OrderDetails_order } from "../../types/OrderDetails";
-import {
-  orderFulfillUrl,
-  orderListUrl,
-  orderUrl,
-  OrderUrlDialog,
-  OrderUrlQueryParams
-} from "../../urls";
-import { OrderDetailsMessages } from "./OrderDetailsMessages";
+import React from "react";
+import { Task } from "@saleor/containers/BackgroundTasks/types";
+import { WindowTitle } from "@saleor/components/WindowTitle";
+import { commonMessages } from "@saleor/intl";
+import createDialogActionHandlers from "@saleor/utils/handlers/dialogActionHandlers";
+import createMetadataUpdateHandler from "@saleor/utils/handlers/metadataUpdateHandler";
+import { customerUrl } from "../../../customers/urls";
+import { packageAddUrl } from "../../../package/urls";
+import { productUrl } from "../../../products/urls";
+import useBackgroundTask from "@saleor/hooks/useBackgroundTask";
+import useCustomerSearch from "@saleor/searches/useCustomerSearch";
+import { useIntl } from "react-intl";
+import useNavigator from "@saleor/hooks/useNavigator";
+import useNotifier from "@saleor/hooks/useNotifier";
+import useUser from "@saleor/hooks/useUser";
+import { useWarehouseList } from "@saleor/warehouses/queries";
 
 const orderDraftFinalizeWarnings = (order: OrderDetails_order) => {
   const warnings = [] as OrderDraftFinalizeWarning[];
@@ -135,6 +136,7 @@ export const OrderDetails: React.FC<OrderDetailsProps> = ({ id, params }) => {
   >(navigate, params => orderUrl(id, params), params);
 
   const handleBack = () => navigate(orderListUrl());
+  const createPackageUrl = params => navigate(packageAddUrl(params));
 
   return (
     <TypedOrderDetailsQuery displayLoader variables={{ id }}>
@@ -254,6 +256,7 @@ export const OrderDetails: React.FC<OrderDetailsProps> = ({ id, params }) => {
                             })
                           }
                           onBack={handleBack}
+                          createPackageUrl={createPackageUrl}
                           order={order}
                           saveButtonBarState={getMutationState(
                             updateMetadataOpts.called ||

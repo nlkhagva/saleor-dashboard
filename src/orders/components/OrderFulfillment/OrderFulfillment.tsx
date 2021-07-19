@@ -3,12 +3,7 @@ import { PRODUCT_TYPE_SHIPPING, metakeyInfo } from "@saleor/constants";
 import TableCellAvatar, {
   AVATAR_MARGIN
 } from "@saleor/components/TableCellAvatar";
-import {
-  createHref,
-  getStringOrPlaceholder,
-  maybe,
-  renderCollection
-} from "../../../misc";
+import { getStringOrPlaceholder, maybe, renderCollection } from "../../../misc";
 
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
@@ -30,7 +25,8 @@ import Typography from "@material-ui/core/Typography";
 import UkShippingRow from "./UkShppingRow";
 import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
-import { packageAddUrl } from "../../../package/urls";
+
+// import { packageAddUrl } from "../../../package/urls";
 
 const useStyles = makeStyles(
   theme => ({
@@ -95,12 +91,14 @@ interface OrderFulfillmentProps {
   orderNumber: string;
   onOrderFulfillmentCancel: () => void;
   onTrackingCodeAdd: () => void;
+  createPackageUrl(params?: any);
 }
 
 const numberOfColumns = 5;
 
 const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
   const {
+    createPackageUrl,
     fulfillment,
     orderNumber,
     onOrderFulfillmentCancel,
@@ -393,9 +391,12 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
         <CardActions>
           <Button
             color="primary"
-            href={createHref(
-              packageAddUrl({ ordernumber: fulfillment.trackingNumber })
-            )}
+            // href={createHref(
+            //   packageAddUrl({ ordernumber: fulfillment.trackingNumber })
+            // )}
+            onClick={() =>
+              createPackageUrl({ ordernumber: fulfillment.trackingNumber })
+            }
           >
             <FormattedMessage defaultMessage="Илгээмж үүсгэх" />
           </Button>

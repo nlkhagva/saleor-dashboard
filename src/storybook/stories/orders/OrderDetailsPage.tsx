@@ -1,24 +1,25 @@
-import { Omit } from "@material-ui/core";
-import { adminUserPermissions } from "@saleor/fixtures";
-import { storiesOf } from "@storybook/react";
-import React from "react";
-
-import OrderDetailsPage, {
-  OrderDetailsPageProps
-} from "../../../orders/components/OrderDetailsPage";
-import { countries, order as orderFixture } from "../../../orders/fixtures";
 import {
   FulfillmentStatus,
   OrderStatus,
   PaymentChargeStatusEnum
 } from "../../../types/globalTypes";
+import OrderDetailsPage, {
+  OrderDetailsPageProps
+} from "../../../orders/components/OrderDetailsPage";
+import { countries, order as orderFixture } from "../../../orders/fixtures";
+
 import Decorator from "../../Decorator";
+import { Omit } from "@material-ui/core";
+import React from "react";
+import { adminUserPermissions } from "@saleor/fixtures";
+import { storiesOf } from "@storybook/react";
 
 const order = orderFixture();
 
 const props: Omit<OrderDetailsPageProps, "classes"> = {
   countries,
   disabled: false,
+  createPackageUrl: () => undefined,
   onBack: () => undefined,
   onBillingAddressEdit: undefined,
   onFulfillmentCancel: () => undefined,
