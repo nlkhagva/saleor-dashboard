@@ -14,6 +14,7 @@ export interface SearchGaduurs_search_edges_node {
    */
   id: string;
   name: string;
+  shippingType: string | null;
 }
 
 export interface SearchGaduurs_search_edges {

@@ -1,8 +1,8 @@
-import { pageInfoFragment } from "@saleor/fragments/pageInfo";
-import makeTopLevelSearch from "@saleor/hooks/makeTopLevelSearch";
-import gql from "graphql-tag";
-
 import { SearchGaduurs, SearchGaduursVariables } from "./types/SearchGaduurs";
+
+import gql from "graphql-tag";
+import makeTopLevelSearch from "@saleor/hooks/makeTopLevelSearch";
+import { pageInfoFragment } from "@saleor/fragments/pageInfo";
 
 export const searchGaduurs = gql`
   ${pageInfoFragment}
@@ -12,6 +12,7 @@ export const searchGaduurs = gql`
         node {
           id
           name
+          shippingType
         }
       }
       pageInfo {

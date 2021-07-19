@@ -76,11 +76,26 @@ const PackageForm: React.FC<PackageFormProps> = ({
   updatePackage,
   saveButtonBarState
 }) => {
+  const perKgArray = { air: 8, ground: 4 };
   const intl = useIntl();
+  const inputPerKg = React.useRef(null);
+  const [initPerKg, setInitPerKg] = React.useState(perKgArray["air"]);
+
   const gaduurs = getChoices(gaduurChoiceList);
   const [selectedGaduur, setSelectedGaduur] = useStateFromProps(
     maybe(() => object?.gaduur.name, "")
   );
+
+  React.useEffect(() => {
+    if (selectedGaduur) {
+      const _selectedGaduur = gaduurChoiceList.find(
+        g => g.name === selectedGaduur
+      );
+      if (_selectedGaduur && _selectedGaduur.shippingType !== "air") {
+        setInitPerKg(perKgArray["ground"]);
+      }
+    }
+  }, [selectedGaduur]);
 
   const initialForm: PackageFormData = {
     gaduur: maybe(() => object?.gaduur.id, ""),
@@ -90,7 +105,7 @@ const PackageForm: React.FC<PackageFormProps> = ({
     name: maybe(() => object?.name, ""),
     netOrGross: maybe(() => object?.netOrGross, PackageNetOrGross.NET),
     netWeight: maybe(() => object?.netWeight, 0),
-    perkgAmount: maybe(() => object?.perkgAmount, 8),
+    perkgAmount: maybe(() => object?.perkgAmount, initPerKg),
     width: maybe(() => object?.width, 0)
   };
 
@@ -343,6 +358,7 @@ const PackageForm: React.FC<PackageFormProps> = ({
                       </InputAdornment>
                     }
                     labelWidth={60}
+                    inputRef={inputPerKg}
                   />
                 </FormControl>
                 <CardSpacer />
