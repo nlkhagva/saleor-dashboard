@@ -1,35 +1,13 @@
-import DeleteFilterTabDialog from "@saleor/components/DeleteFilterTabDialog";
+import {
+  PackageListUrlDialog,
+  PackageListUrlQueryParams,
+  packageAddUrl,
+  packageListUrl,
+  packageUrl
+} from "@saleor/package/urls";
 import SaveFilterTabDialog, {
   SaveFilterTabDialogFormData
 } from "@saleor/components/SaveFilterTabDialog";
-import { WindowTitle } from "@saleor/components/WindowTitle";
-import useListSettings from "@saleor/hooks/useListSettings";
-import useNavigator from "@saleor/hooks/useNavigator";
-import useNotifier from "@saleor/hooks/useNotifier";
-import usePaginator, {
-  createPaginationState
-} from "@saleor/hooks/usePaginator";
-import { commonMessages, sectionNames } from "@saleor/intl";
-import { getMutationStatus, maybe } from "@saleor/misc";
-import PackageDeleteDialog from "@saleor/package/components/PackageDeleteDialog";
-import PackageListPage from "@saleor/package/components/PackageListPage";
-import { usePackageDelete } from "@saleor/package/mutations";
-import { usePackageList } from "@saleor/package/queries";
-import {
-  packageAddUrl,
-  packageListUrl,
-  PackageListUrlDialog,
-  PackageListUrlQueryParams,
-  packageUrl
-} from "@saleor/package/urls";
-import { ListViews } from "@saleor/types";
-import createDialogActionHandlers from "@saleor/utils/handlers/dialogActionHandlers";
-import createFilterHandlers from "@saleor/utils/handlers/filterHandlers";
-import createSortHandler from "@saleor/utils/handlers/sortHandler";
-import { getSortParams } from "@saleor/utils/sort";
-import React from "react";
-import { useIntl } from "react-intl";
-
 import {
   areFiltersApplied,
   deleteFilterTab,
@@ -38,7 +16,29 @@ import {
   getFilterVariables,
   saveFilterTab
 } from "./filters";
+import { commonMessages, sectionNames } from "@saleor/intl";
+import { getMutationStatus, maybe } from "@saleor/misc";
+import usePaginator, {
+  createPaginationState
+} from "@saleor/hooks/usePaginator";
+
+import DeleteFilterTabDialog from "@saleor/components/DeleteFilterTabDialog";
+import { ListViews } from "@saleor/types";
+import PackageDeleteDialog from "@saleor/package/components/PackageDeleteDialog";
+import PackageListPage from "@saleor/package/components/PackageListPage";
+import React from "react";
+import { WindowTitle } from "@saleor/components/WindowTitle";
+import createDialogActionHandlers from "@saleor/utils/handlers/dialogActionHandlers";
+import createFilterHandlers from "@saleor/utils/handlers/filterHandlers";
+import createSortHandler from "@saleor/utils/handlers/sortHandler";
+import { getSortParams } from "@saleor/utils/sort";
 import { getSortQueryVariables } from "./sort";
+import { useIntl } from "react-intl";
+import useListSettings from "@saleor/hooks/useListSettings";
+import useNavigator from "@saleor/hooks/useNavigator";
+import useNotifier from "@saleor/hooks/useNotifier";
+import { usePackageDelete } from "@saleor/package/mutations";
+import { usePackageList } from "@saleor/package/queries";
 
 export interface PackageListProps {
   params: PackageListUrlQueryParams;
@@ -146,7 +146,7 @@ const PackageList: React.FC<PackageListProps> = ({ params }) => {
         settings={settings}
         disabled={loading}
         pageInfo={pageInfo}
-        onAdd={() => navigate(packageAddUrl)}
+        onAdd={() => navigate(packageAddUrl())}
         onNextPage={loadNextPage}
         onPreviousPage={loadPreviousPage}
         onRemove={id => openModal("delete", { id })}

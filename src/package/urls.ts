@@ -33,6 +33,8 @@ export type PackageListUrlQueryParams = ActiveTab &
   PackageListUrlFilters &
   PackageListUrlSort &
   SingleAction;
+export type PackageAddParams = ordernumber;
+
 export const packageListUrl = (params?: PackageListUrlQueryParams) =>
   packageListPath + "?" + stringifyQs(params);
 
@@ -45,7 +47,7 @@ export const packageUrl = (id: string, params?: PackageUrlQueryParams) =>
   packagePath(encodeURIComponent(id)) + "?" + stringifyQs(params);
 
 export const packageAddPath = urlJoin(packageSection, "add");
-export const packageAddUrl = params =>
+export const packageAddUrl = (params?: PackageAddParams) =>
   packageAddPath + "?" + stringifyQs(params);
 // export const packageAddUrlWithONum = (id: string) =>
 //   urlJoin(packageAddPath, encodeURIComponent(id));
