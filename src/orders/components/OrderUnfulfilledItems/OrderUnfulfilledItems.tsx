@@ -1,15 +1,14 @@
-import Card from "@material-ui/core/Card";
-import { makeStyles } from "@material-ui/core/styles";
-import CardTitle from "@saleor/components/CardTitle";
-import ResponsiveTable from "@saleor/components/ResponsiveTable";
-import StatusLabel from "@saleor/components/StatusLabel";
 import { AVATAR_MARGIN } from "@saleor/components/TableCellAvatar";
+import Card from "@material-ui/core/Card";
+import CardTitle from "@saleor/components/CardTitle";
+import { OrderDetails_order_lines } from "../../types/OrderDetails";
 import { PRODUCT_TYPE_SHIPPING } from "@saleor/constants";
 import React from "react";
-import { useIntl } from "react-intl";
-
-import { OrderDetails_order_lines } from "../../types/OrderDetails";
+import ResponsiveTable from "@saleor/components/ResponsiveTable";
+import StatusLabel from "@saleor/components/StatusLabel";
 import UshopTable from "./UshopTable";
+import { makeStyles } from "@material-ui/core/styles";
+import { useIntl } from "react-intl";
 
 const useStyles = makeStyles(
   {
@@ -88,38 +87,44 @@ const OrderUnfulfilledItems: React.FC<OrderUnfulfilledItemsProps> = props => {
     }
   });
 
+  const un_quantity = productLines
+    .map(line => line.quantity - line.quantityFulfilled)
+    .reduce((prev, curr) => prev + curr, 0);
+
   return (
-    <Card>
-      <CardTitle
-        title={
-          <StatusLabel
-            label={intl.formatMessage(
-              {
-                defaultMessage: "Unfulfilled ({quantity})",
-                description: "section header"
-              },
-              {
-                quantity: productLines
-                  .map(line => line.quantity - line.quantityFulfilled)
-                  .reduce((prev, curr) => prev + curr, 0)
-              }
-            )}
-            status="error"
+    <>
+      {un_quantity > 0 && (
+        <Card>
+          <CardTitle
+            title={
+              <StatusLabel
+                label={intl.formatMessage(
+                  {
+                    defaultMessage: "Unfulfilled ({quantity})",
+                    description: "section header"
+                  },
+                  {
+                    quantity: un_quantity
+                  }
+                )}
+                status="error"
+              />
+            }
           />
-        }
-      />
-      <ResponsiveTable className={classes.table}>
-        {ushops.map(ushop => (
-          <UshopTable
-            ushop={ushop}
-            classes={classes}
-            key={ushop.id}
-            canFulfill={canFulfill}
-            onFulfill={onFulfill}
-          />
-        ))}
-      </ResponsiveTable>
-    </Card>
+          <ResponsiveTable className={classes.table}>
+            {ushops.map(ushop => (
+              <UshopTable
+                ushop={ushop}
+                classes={classes}
+                key={ushop.id}
+                canFulfill={canFulfill}
+                onFulfill={onFulfill}
+              />
+            ))}
+          </ResponsiveTable>
+        </Card>
+      )}
+    </>
   );
 };
 OrderUnfulfilledItems.displayName = "OrderUnfulfilledItems";

@@ -388,7 +388,7 @@ const PackageForm: React.FC<PackageFormProps> = ({
                 <CardTitle title="UPOST" />
                 <CardContent>
                   {object?.upostPK ? (
-                    <>Upost info</>
+                    <>Upost руу илгээгдсэн </>
                   ) : (
                     <PackageUpost
                       _package={object}

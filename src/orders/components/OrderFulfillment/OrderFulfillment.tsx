@@ -1,30 +1,36 @@
+import { FormattedMessage, useIntl } from "react-intl";
+import { PRODUCT_TYPE_SHIPPING, metakeyInfo } from "@saleor/constants";
+import TableCellAvatar, {
+  AVATAR_MARGIN
+} from "@saleor/components/TableCellAvatar";
+import {
+  createHref,
+  getStringOrPlaceholder,
+  maybe,
+  renderCollection
+} from "../../../misc";
+
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
-import { makeStyles } from "@material-ui/core/styles";
+import CardMenu from "@saleor/components/CardMenu";
+import CardTitle from "@saleor/components/CardTitle";
+import { FulfillmentStatus } from "../../../types/globalTypes";
+import Money from "@saleor/components/Money";
+import { OrderDetails_order_fulfillments } from "../../types/OrderDetails";
+import React from "react";
+import ResponsiveTable from "@saleor/components/ResponsiveTable";
+import Skeleton from "@saleor/components/Skeleton";
+import StatusLabel from "@saleor/components/StatusLabel";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import Typography from "@material-ui/core/Typography";
-import CardMenu from "@saleor/components/CardMenu";
-import CardTitle from "@saleor/components/CardTitle";
-import Money from "@saleor/components/Money";
-import ResponsiveTable from "@saleor/components/ResponsiveTable";
-import Skeleton from "@saleor/components/Skeleton";
-import StatusLabel from "@saleor/components/StatusLabel";
-import TableCellAvatar, {
-  AVATAR_MARGIN
-} from "@saleor/components/TableCellAvatar";
-import { metakeyInfo, PRODUCT_TYPE_SHIPPING } from "@saleor/constants";
-import classNames from "classnames";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
-
-import { getStringOrPlaceholder, maybe, renderCollection } from "../../../misc";
-import { FulfillmentStatus } from "../../../types/globalTypes";
-import { OrderDetails_order_fulfillments } from "../../types/OrderDetails";
 // import TableHeader from "./TableHeader";
 import UkShippingRow from "./UkShppingRow";
+import classNames from "classnames";
+import { makeStyles } from "@material-ui/core/styles";
+import { packageAddUrlWithONum } from "../../../package/urls";
 
 const useStyles = makeStyles(
   theme => ({
@@ -377,7 +383,7 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
         <CardActions>
           <Button color="primary" onClick={onTrackingCodeAdd}>
             <FormattedMessage
-              defaultMessage="Add tracking"
+              defaultMessage="Add Order Number"
               description="fulfillment group tracking number"
             />
           </Button>
@@ -385,9 +391,15 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
       )}
       {status === FulfillmentStatus.FULFILLED && fulfillment.trackingNumber && (
         <CardActions>
+          <Button
+            color="primary"
+            href={createHref(packageAddUrlWithONum(fulfillment.trackingNumber))}
+          >
+            <FormattedMessage defaultMessage="Илгээмж үүсгэх" />
+          </Button>
           <Button color="primary" onClick={onTrackingCodeAdd}>
             <FormattedMessage
-              defaultMessage="Edit tracking"
+              defaultMessage="Edit Order Number"
               description="fulfillment group tracking number"
             />
           </Button>

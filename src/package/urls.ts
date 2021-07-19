@@ -1,6 +1,3 @@
-import { stringify as stringifyQs } from "qs";
-import urlJoin from "url-join";
-
 import {
   ActiveTab,
   Dialog,
@@ -10,6 +7,9 @@ import {
   Sort,
   TabActionDialog
 } from "../types";
+
+import { stringify as stringifyQs } from "qs";
+import urlJoin from "url-join";
 
 export type ordernumber = Partial<{
   ordernumber: string;
@@ -46,5 +46,7 @@ export const packageUrl = (id: string, params?: PackageUrlQueryParams) =>
 
 export const packageAddPath = urlJoin(packageSection, "add");
 export const packageAddUrl = packageAddPath;
+export const packageAddUrlWithONum = (ordernumber: string) =>
+  urlJoin(packageAddPath) + "?ordernumber=" + encodeURIComponent(ordernumber);
 
 export const packageFulfill = urlJoin(packageSection, "fulfill");

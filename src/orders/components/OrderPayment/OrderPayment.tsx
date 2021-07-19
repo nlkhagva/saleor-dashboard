@@ -1,19 +1,20 @@
+import { FormattedMessage, useIntl } from "react-intl";
+import Money, { subtractMoney } from "@saleor/components/Money";
+import { OrderAction, OrderStatus } from "../../../types/globalTypes";
+import { maybe, transformPaymentStatus } from "../../../misc";
+
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import { makeStyles } from "@material-ui/core/styles";
 import CardTitle from "@saleor/components/CardTitle";
 import { Hr } from "@saleor/components/Hr";
-import Money, { subtractMoney } from "@saleor/components/Money";
+import { OrderDetails_order } from "../../types/OrderDetails";
+import { PRODUCT_TYPE_SHIPPING } from "@saleor/constants";
+import React from "react";
 import Skeleton from "@saleor/components/Skeleton";
 import StatusLabel from "@saleor/components/StatusLabel";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
-
-import { maybe, transformPaymentStatus } from "../../../misc";
-import { OrderAction, OrderStatus } from "../../../types/globalTypes";
-import { OrderDetails_order } from "../../types/OrderDetails";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(
   theme => ({
@@ -58,6 +59,16 @@ const OrderPayment: React.FC<OrderPaymentProps> = props => {
     maybe(() => order.paymentStatus),
     intl
   );
+  const only_product_lines = order?.lines.filter(
+    i => i.variant.product?.productType.id !== PRODUCT_TYPE_SHIPPING
+  );
+  const shipping_lines = order?.lines.filter(
+    i => i.variant.product?.productType.id === PRODUCT_TYPE_SHIPPING
+  );
+  // console.log(shipping_lines);
+  const package_lines = shipping_lines?.filter(
+    i => i.variant.product?.id === "UHJvZHVjdDoyMDI=" // fix this
+  );
   return (
     <Card>
       <CardTitle
@@ -87,7 +98,7 @@ const OrderPayment: React.FC<OrderPaymentProps> = props => {
                     defaultMessage="{quantity} items"
                     description="ordered products"
                     values={{
-                      quantity: order.lines
+                      quantity: only_product_lines
                         .map(line => line.quantity)
                         .reduce((curr, prev) => prev + curr, 0)
                     }}
@@ -98,7 +109,16 @@ const OrderPayment: React.FC<OrderPaymentProps> = props => {
                 {maybe(() => order.subtotal.gross) === undefined ? (
                   <Skeleton />
                 ) : (
-                  <Money money={order.subtotal.gross} />
+                  <Money
+                    money={{
+                      currency: order.subtotal.gross.currency,
+                      amount: only_product_lines.reduce(
+                        (curr, prev) =>
+                          prev.quantity * prev.unitPrice.gross.amount + curr,
+                        0
+                      )
+                    }}
+                  />
                 )}
               </td>
             </tr>
@@ -138,7 +158,7 @@ const OrderPayment: React.FC<OrderPaymentProps> = props => {
                 />
               </td>
               <td>
-                {maybe(() => order.shippingMethodName) === undefined &&
+                {/* {maybe(() => order.shippingMethodName) === undefined &&
                 maybe(() => order.shippingPrice) === undefined ? (
                   <Skeleton />
                 ) : order.shippingMethodName === null ? (
@@ -149,13 +169,22 @@ const OrderPayment: React.FC<OrderPaymentProps> = props => {
                   })
                 ) : (
                   order.shippingMethodName
-                )}
+                )} */}
               </td>
               <td className={classes.textRight}>
                 {maybe(() => order.shippingPrice.gross) === undefined ? (
                   <Skeleton />
                 ) : (
-                  <Money money={order.shippingPrice.gross} />
+                  <Money
+                    money={{
+                      currency: order.shippingPrice.gross.currency,
+                      amount: package_lines.reduce(
+                        (curr, prev) =>
+                          prev.quantity * prev.unitPrice.gross.amount + curr,
+                        0
+                      )
+                    }}
+                  />
                 )}
               </td>
             </tr>
