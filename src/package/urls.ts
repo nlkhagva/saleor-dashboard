@@ -45,8 +45,9 @@ export const packageUrl = (id: string, params?: PackageUrlQueryParams) =>
   packagePath(encodeURIComponent(id)) + "?" + stringifyQs(params);
 
 export const packageAddPath = urlJoin(packageSection, "add");
-export const packageAddUrl = packageAddPath;
-export const packageAddUrlWithONum = (ordernumber: string) =>
-  urlJoin(packageAddPath) + "?ordernumber=" + encodeURIComponent(ordernumber);
+export const packageAddUrl = params =>
+  packageAddPath + "?" + stringifyQs(params);
+// export const packageAddUrlWithONum = (id: string) =>
+//   urlJoin(packageAddPath, encodeURIComponent(id));
 
 export const packageFulfill = urlJoin(packageSection, "fulfill");

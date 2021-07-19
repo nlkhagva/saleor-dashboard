@@ -30,7 +30,7 @@ import Typography from "@material-ui/core/Typography";
 import UkShippingRow from "./UkShppingRow";
 import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
-import { packageAddUrlWithONum } from "../../../package/urls";
+import { packageAddUrl } from "../../../package/urls";
 
 const useStyles = makeStyles(
   theme => ({
@@ -393,7 +393,9 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
         <CardActions>
           <Button
             color="primary"
-            href={createHref(packageAddUrlWithONum(fulfillment.trackingNumber))}
+            href={createHref(
+              packageAddUrl({ ordernumber: fulfillment.trackingNumber })
+            )}
           >
             <FormattedMessage defaultMessage="Илгээмж үүсгэх" />
           </Button>

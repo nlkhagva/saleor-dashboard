@@ -42,7 +42,7 @@ const PackageUpost: React.FC<PackageUpostProps> = ({
 
   React.useEffect(() => {
     if (_package) {
-      console.log(_package);
+      // console.log(_package);
     }
   }, [_package]);
 
