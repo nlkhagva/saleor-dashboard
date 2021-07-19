@@ -1,58 +1,60 @@
-import AppHeader from "@saleor/components/AppHeader";
-import AvailabilityCard from "@saleor/components/AvailabilityCard";
-import CardSpacer from "@saleor/components/CardSpacer";
-import { ConfirmButtonTransitionState } from "@saleor/components/ConfirmButton";
-import Container from "@saleor/components/Container";
-import Form from "@saleor/components/Form";
-import Grid from "@saleor/components/Grid";
+import { ContentState, RawDraftContentState, convertToRaw } from "draft-js";
 import Metadata, { MetadataFormData } from "@saleor/components/Metadata";
-import { MultiAutocompleteChoiceType } from "@saleor/components/MultiAutocompleteSelectField";
-import PageHeader from "@saleor/components/PageHeader";
-import SaveButtonBar from "@saleor/components/SaveButtonBar";
-import SeoForm from "@saleor/components/SeoForm";
-import { ProductErrorFragment } from "@saleor/fragments/types/ProductErrorFragment";
-import { TaxTypeFragment } from "@saleor/fragments/types/TaxTypeFragment";
-import useDateLocalize from "@saleor/hooks/useDateLocalize";
-import useFormset from "@saleor/hooks/useFormset";
-import useStateFromProps from "@saleor/hooks/useStateFromProps";
-import { sectionNames } from "@saleor/intl";
 import {
-  getChoices,
   ProductAttributeValueChoices,
-  ProductType
+  ProductType,
+  getChoices
 } from "@saleor/products/utils/data";
-import { SearchCategories_search_edges_node } from "@saleor/searches/types/SearchCategories";
-import { SearchCollections_search_edges_node } from "@saleor/searches/types/SearchCollections";
-import { SearchProductTypes_search_edges_node_productAttributes } from "@saleor/searches/types/SearchProductTypes";
-import { SearchWarehouses_search_edges_node } from "@saleor/searches/types/SearchWarehouses";
-import createMultiAutocompleteSelectHandler from "@saleor/utils/handlers/multiAutocompleteSelectChangeHandler";
-import createSingleAutocompleteSelectHandler from "@saleor/utils/handlers/singleAutocompleteSelectChangeHandler";
-import useMetadataChangeTrigger from "@saleor/utils/metadata/useMetadataChangeTrigger";
-import { ContentState, convertToRaw, RawDraftContentState } from "draft-js";
-import React from "react";
-import { useIntl } from "react-intl";
-
-import { FetchMoreProps } from "../../../types";
+import ProductAttributes, {
+  ProductAttributeInput,
+  ProductAttributeInputData
+} from "../ProductAttributes";
+import ProductStocks, { ProductStockInput } from "../ProductStocks";
 import {
   createAttributeChangeHandler,
   createAttributeMultiChangeHandler,
   createProductTypeSelectHandler
 } from "../../utils/handlers";
-import ProductAttributes, {
-  ProductAttributeInput,
-  ProductAttributeInputData
-} from "../ProductAttributes";
+
+import AppHeader from "@saleor/components/AppHeader";
+import AvailabilityCard from "@saleor/components/AvailabilityCard";
+import CardSpacer from "@saleor/components/CardSpacer";
+import { ConfirmButtonTransitionState } from "@saleor/components/ConfirmButton";
+import Container from "@saleor/components/Container";
+import { FetchMoreProps } from "../../../types";
+import Form from "@saleor/components/Form";
+import Grid from "@saleor/components/Grid";
+import { MultiAutocompleteChoiceType } from "@saleor/components/MultiAutocompleteSelectField";
+import PageHeader from "@saleor/components/PageHeader";
 import ProductDetailsForm from "../ProductDetailsForm";
+import { ProductErrorFragment } from "@saleor/fragments/types/ProductErrorFragment";
 import ProductOrganization from "../ProductOrganization";
 import ProductPricing from "../ProductPricing";
 import ProductShipping from "../ProductShipping/ProductShipping";
-import ProductStocks, { ProductStockInput } from "../ProductStocks";
 import ProductTaxes from "../ProductTaxes";
+import React from "react";
+import SaveButtonBar from "@saleor/components/SaveButtonBar";
+import { SearchCategories_search_edges_node } from "@saleor/searches/types/SearchCategories";
+import { SearchCollections_search_edges_node } from "@saleor/searches/types/SearchCollections";
+import { SearchProductTypes_search_edges_node_productAttributes } from "@saleor/searches/types/SearchProductTypes";
+import { SearchUshops_search_edges_node } from "@saleor/searches/types/SearchUshops";
+import { SearchWarehouses_search_edges_node } from "@saleor/searches/types/SearchWarehouses";
+import SeoForm from "@saleor/components/SeoForm";
+import { TaxTypeFragment } from "@saleor/fragments/types/TaxTypeFragment";
+import createMultiAutocompleteSelectHandler from "@saleor/utils/handlers/multiAutocompleteSelectChangeHandler";
+import createSingleAutocompleteSelectHandler from "@saleor/utils/handlers/singleAutocompleteSelectChangeHandler";
+import { sectionNames } from "@saleor/intl";
+import useDateLocalize from "@saleor/hooks/useDateLocalize";
+import useFormset from "@saleor/hooks/useFormset";
+import { useIntl } from "react-intl";
+import useMetadataChangeTrigger from "@saleor/utils/metadata/useMetadataChangeTrigger";
+import useStateFromProps from "@saleor/hooks/useStateFromProps";
 
 interface FormData extends MetadataFormData {
   availableForPurchase: string;
   basePrice: number;
   category: string;
+  ushop: string;
   changeTaxCode: boolean;
   chargeTaxes: boolean;
   collections: string[];
@@ -83,9 +85,11 @@ interface ProductCreatePageProps {
   errors: ProductErrorFragment[];
   collections: SearchCollections_search_edges_node[];
   categories: SearchCategories_search_edges_node[];
+  ushops: SearchUshops_search_edges_node[];
   currency: string;
   disabled: boolean;
   fetchMoreCategories: FetchMoreProps;
+  fetchMoreUshops: FetchMoreProps;
   fetchMoreCollections: FetchMoreProps;
   fetchMoreProductTypes: FetchMoreProps;
   productTypes?: Array<{
@@ -100,6 +104,7 @@ interface ProductCreatePageProps {
   warehouses: SearchWarehouses_search_edges_node[];
   taxTypes: TaxTypeFragment[];
   fetchCategories: (data: string) => void;
+  fetchUshops: (data: string) => void;
   fetchCollections: (data: string) => void;
   fetchProductTypes: (data: string) => void;
   onBack?();
@@ -109,12 +114,15 @@ interface ProductCreatePageProps {
 export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
   currency,
   disabled,
+  ushops: ushopChoiceList,
   categories: categoryChoiceList,
   collections: collectionChoiceList,
   errors,
   fetchCategories,
+  fetchUshops,
   fetchCollections,
   fetchMoreCategories,
+  fetchMoreUshops,
   fetchMoreCollections,
   fetchMoreProductTypes,
   header,
@@ -156,6 +164,7 @@ export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
     availableForPurchase: "",
     basePrice: 0,
     category: "",
+    ushop: "",
     changeTaxCode: false,
     chargeTaxes: false,
     collections: [],
@@ -186,6 +195,7 @@ export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
   >([]);
 
   const [selectedCategory, setSelectedCategory] = useStateFromProps("");
+  const [selectedUshop, setSelectedUshop] = useStateFromProps("");
 
   const [selectedCollections, setSelectedCollections] = useStateFromProps<
     MultiAutocompleteChoiceType[]
@@ -195,6 +205,7 @@ export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
   const [selectedTaxType, setSelectedTaxType] = useStateFromProps(null);
 
   const categories = getChoices(categoryChoiceList);
+  const ushops = getChoices(ushopChoiceList);
   const collections = getChoices(collectionChoiceList);
   const productTypes = getChoices(productTypeChoiceList);
   const taxTypeChoices =
@@ -223,6 +234,11 @@ export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
           change,
           setSelectedCategory,
           categories
+        );
+        const handleUshopSelect = createSingleAutocompleteSelectHandler(
+          change,
+          setSelectedUshop,
+          ushops
         );
         const handleAttributeChange = createAttributeChangeHandler(
           changeAttributeData,
@@ -348,14 +364,18 @@ export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
                 <ProductOrganization
                   canChangeType={true}
                   categories={categories}
+                  ushops={ushops}
                   categoryInputDisplayValue={selectedCategory}
+                  ushopInputDisplayValue={selectedUshop}
                   collections={collections}
                   data={data}
                   disabled={disabled}
                   errors={errors}
                   fetchCategories={fetchCategories}
+                  fetchUshops={fetchUshops}
                   fetchCollections={fetchCollections}
                   fetchMoreCategories={fetchMoreCategories}
+                  fetchMoreUshops={fetchMoreUshops}
                   fetchMoreCollections={fetchMoreCollections}
                   fetchMoreProductTypes={fetchMoreProductTypes}
                   fetchProductTypes={fetchProductTypes}
@@ -363,6 +383,7 @@ export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
                   productTypeInputDisplayValue={productType?.name || ""}
                   productTypes={productTypes}
                   onCategoryChange={handleCategorySelect}
+                  onUshopChange={handleUshopSelect}
                   onCollectionChange={handleCollectionSelect}
                   onProductTypeChange={handleProductTypeSelect}
                   collectionsInputDisplayValue={selectedCollections}

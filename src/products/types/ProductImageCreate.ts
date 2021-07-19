@@ -287,6 +287,15 @@ export interface ProductImageCreate_productImageCreate_product_category {
   parent: ProductImageCreate_productImageCreate_product_category_parent | null;
 }
 
+export interface ProductImageCreate_productImageCreate_product_ushop {
+  __typename: "Ushop";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
 export interface ProductImageCreate_productImageCreate_product_collections {
   __typename: "Collection";
   /**
@@ -468,6 +477,7 @@ export interface ProductImageCreate_productImageCreate_product {
   seoDescription: string | null;
   defaultVariant: ProductImageCreate_productImageCreate_product_defaultVariant | null;
   category: ProductImageCreate_productImageCreate_product_category | null;
+  ushop: ProductImageCreate_productImageCreate_product_ushop | null;
   /**
    * List of collections for the product.
    */

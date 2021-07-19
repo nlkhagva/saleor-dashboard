@@ -287,6 +287,15 @@ export interface ProductVariantReorder_productVariantReorder_product_category {
   parent: ProductVariantReorder_productVariantReorder_product_category_parent | null;
 }
 
+export interface ProductVariantReorder_productVariantReorder_product_ushop {
+  __typename: "Ushop";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
 export interface ProductVariantReorder_productVariantReorder_product_collections {
   __typename: "Collection";
   /**
@@ -468,6 +477,7 @@ export interface ProductVariantReorder_productVariantReorder_product {
   seoDescription: string | null;
   defaultVariant: ProductVariantReorder_productVariantReorder_product_defaultVariant | null;
   category: ProductVariantReorder_productVariantReorder_product_category | null;
+  ushop: ProductVariantReorder_productVariantReorder_product_ushop | null;
   /**
    * List of collections for the product.
    */

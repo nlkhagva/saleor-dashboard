@@ -1,23 +1,23 @@
-import { MetadataFormData } from "@saleor/components/Metadata/types";
-import { MultiAutocompleteChoiceType } from "@saleor/components/MultiAutocompleteSelectField";
-import { SingleAutocompleteChoiceType } from "@saleor/components/SingleAutocompleteSelectField";
-import { ProductVariant } from "@saleor/fragments/types/ProductVariant";
-import { FormsetAtomicData } from "@saleor/hooks/useFormset";
-import { maybe } from "@saleor/misc";
 import {
   ProductDetails_product,
   ProductDetails_product_collections,
   ProductDetails_product_variants
 } from "@saleor/products/types/ProductDetails";
-import { SearchProductTypes_search_edges_node_productAttributes } from "@saleor/searches/types/SearchProductTypes";
-import { StockInput } from "@saleor/types/globalTypes";
-import { mapMetadataItemToInput } from "@saleor/utils/maps";
-import { RawDraftContentState } from "draft-js";
 
+import { FormsetAtomicData } from "@saleor/hooks/useFormset";
+import { MetadataFormData } from "@saleor/components/Metadata/types";
+import { MultiAutocompleteChoiceType } from "@saleor/components/MultiAutocompleteSelectField";
 import { ProductAttributeInput } from "../components/ProductAttributes";
 import { ProductStockInput } from "../components/ProductStocks";
-import { VariantAttributeInput } from "../components/ProductVariantAttributes";
+import { ProductVariant } from "@saleor/fragments/types/ProductVariant";
 import { ProductVariantCreateData_product } from "../types/ProductVariantCreateData";
+import { RawDraftContentState } from "draft-js";
+import { SearchProductTypes_search_edges_node_productAttributes } from "@saleor/searches/types/SearchProductTypes";
+import { SingleAutocompleteChoiceType } from "@saleor/components/SingleAutocompleteSelectField";
+import { StockInput } from "@saleor/types/globalTypes";
+import { VariantAttributeInput } from "../components/ProductVariantAttributes";
+import { mapMetadataItemToInput } from "@saleor/utils/maps";
+import { maybe } from "@saleor/misc";
 
 export interface Collection {
   id: string;
@@ -174,6 +174,7 @@ export interface ProductUpdatePageFormData extends MetadataFormData {
   availableForPurchase: string;
   basePrice: number;
   category: string | null;
+  ushop: string | null;
   changeTaxCode: boolean;
   chargeTaxes: boolean;
   collections: string[];
@@ -203,6 +204,7 @@ export function getProductUpdatePageFormData(
     availableForPurchase: product?.availableForPurchase,
     basePrice: maybe(() => product.variants[0].price.amount, 0),
     category: maybe(() => product.category.id, ""),
+    ushop: maybe(() => product.ushop.id, ""),
     changeTaxCode: !!product?.taxType.taxCode,
     chargeTaxes: maybe(() => product.chargeTaxes, false),
     collections: maybe(

@@ -1,5 +1,4 @@
 import gql from "graphql-tag";
-
 import { metadataFragment } from "./metadata";
 import { taxTypeFragment } from "./taxes";
 import { weightFragment } from "./weight";
@@ -135,6 +134,10 @@ export const productFragmentDetails = gql`
           }
         }
       }
+    }
+    ushop {
+      id
+      name
     }
     collections {
       id

@@ -1,11 +1,3 @@
-import { BulkStockErrorFragment } from "@saleor/fragments/types/BulkStockErrorFragment";
-import { ProductErrorFragment } from "@saleor/fragments/types/ProductErrorFragment";
-import { StockErrorFragment } from "@saleor/fragments/types/StockErrorFragment";
-import { decimal, weight } from "@saleor/misc";
-import { ProductUpdatePageSubmitData } from "@saleor/products/components/ProductUpdatePage";
-import { ProductDetails_product } from "@saleor/products/types/ProductDetails";
-import { ProductImageCreateVariables } from "@saleor/products/types/ProductImageCreate";
-import { ProductImageReorderVariables } from "@saleor/products/types/ProductImageReorder";
 import {
   ProductSetAvailabilityForPurchase,
   ProductSetAvailabilityForPurchaseVariables
@@ -14,18 +6,27 @@ import {
   ProductUpdate,
   ProductUpdateVariables
 } from "@saleor/products/types/ProductUpdate";
-import { ProductVariantCreateData_product } from "@saleor/products/types/ProductVariantCreateData";
-import { ProductVariantDetails_productVariant_product } from "@saleor/products/types/ProductVariantDetails";
-import { ProductVariantReorderVariables } from "@saleor/products/types/ProductVariantReorder";
 import {
   SimpleProductUpdate,
   SimpleProductUpdateVariables
 } from "@saleor/products/types/SimpleProductUpdate";
-import { mapFormsetStockToStockInput } from "@saleor/products/utils/data";
-import { getProductAvailabilityVariables } from "@saleor/products/utils/handlers";
-import { ReorderEvent } from "@saleor/types";
+import { decimal, weight } from "@saleor/misc";
+
+import { BulkStockErrorFragment } from "@saleor/fragments/types/BulkStockErrorFragment";
 import { MutationFetchResult } from "react-apollo";
+import { ProductDetails_product } from "@saleor/products/types/ProductDetails";
+import { ProductErrorFragment } from "@saleor/fragments/types/ProductErrorFragment";
+import { ProductImageCreateVariables } from "@saleor/products/types/ProductImageCreate";
+import { ProductImageReorderVariables } from "@saleor/products/types/ProductImageReorder";
+import { ProductUpdatePageSubmitData } from "@saleor/products/components/ProductUpdatePage";
+import { ProductVariantCreateData_product } from "@saleor/products/types/ProductVariantCreateData";
+import { ProductVariantDetails_productVariant_product } from "@saleor/products/types/ProductVariantDetails";
+import { ProductVariantReorderVariables } from "@saleor/products/types/ProductVariantReorder";
+import { ReorderEvent } from "@saleor/types";
+import { StockErrorFragment } from "@saleor/fragments/types/StockErrorFragment";
 import { arrayMove } from "react-sortable-hoc";
+import { getProductAvailabilityVariables } from "@saleor/products/utils/handlers";
+import { mapFormsetStockToStockInput } from "@saleor/products/utils/data";
 
 export function createUpdateHandler(
   product: ProductDetails_product,
@@ -49,6 +50,7 @@ export function createUpdateHandler(
         })),
         basePrice: decimal(data.basePrice),
         category: data.category,
+        ushop: data.ushop,
         chargeTaxes: data.chargeTaxes,
         collections: data.collections,
         descriptionJson: JSON.stringify(data.description),

@@ -1,3 +1,26 @@
+import { FetchMoreProps, ListActions, ReorderAction } from "@saleor/types";
+import {
+  ProductAttributeValueChoices,
+  ProductUpdatePageFormData,
+  getAttributeInputFromProduct,
+  getChoices,
+  getProductUpdatePageFormData,
+  getSelectedAttributesFromProduct,
+  getStockInputFromProduct
+} from "../../utils/data";
+import ProductAttributes, { ProductAttributeInput } from "../ProductAttributes";
+import {
+  ProductDetails_product,
+  ProductDetails_product_images,
+  ProductDetails_product_variants
+} from "../../types/ProductDetails";
+import ProductStocks, { ProductStockInput } from "./ProductStocks";
+import { RawDraftContentState, convertFromRaw } from "draft-js";
+import {
+  createAttributeChangeHandler,
+  createAttributeMultiChangeHandler
+} from "../../utils/handlers";
+
 import AppHeader from "@saleor/components/AppHeader";
 import AvailabilityCard from "@saleor/components/AvailabilityCard";
 import CardSpacer from "@saleor/components/CardSpacer";
@@ -7,46 +30,8 @@ import Form from "@saleor/components/Form";
 import Grid from "@saleor/components/Grid";
 import Metadata from "@saleor/components/Metadata/Metadata";
 import PageHeader from "@saleor/components/PageHeader";
-import SaveButtonBar from "@saleor/components/SaveButtonBar";
-import SeoForm from "@saleor/components/SeoForm";
+import ProductDetailsForm from "./ProductDetailsForm";
 import { ProductErrorFragment } from "@saleor/fragments/types/ProductErrorFragment";
-import { TaxTypeFragment } from "@saleor/fragments/types/TaxTypeFragment";
-import { WarehouseFragment } from "@saleor/fragments/types/WarehouseFragment";
-import useDateLocalize from "@saleor/hooks/useDateLocalize";
-import useFormset from "@saleor/hooks/useFormset";
-import useStateFromProps from "@saleor/hooks/useStateFromProps";
-import { sectionNames } from "@saleor/intl";
-import { maybe } from "@saleor/misc";
-import { SearchCategories_search_edges_node } from "@saleor/searches/types/SearchCategories";
-import { SearchCollections_search_edges_node } from "@saleor/searches/types/SearchCollections";
-import { FetchMoreProps, ListActions, ReorderAction } from "@saleor/types";
-import createMultiAutocompleteSelectHandler from "@saleor/utils/handlers/multiAutocompleteSelectChangeHandler";
-import createSingleAutocompleteSelectHandler from "@saleor/utils/handlers/singleAutocompleteSelectChangeHandler";
-import useMetadataChangeTrigger from "@saleor/utils/metadata/useMetadataChangeTrigger";
-import { convertFromRaw, RawDraftContentState } from "draft-js";
-import { diff } from "fast-array-diff";
-import React from "react";
-import { useIntl } from "react-intl";
-
-import {
-  ProductDetails_product,
-  ProductDetails_product_images,
-  ProductDetails_product_variants
-} from "../../types/ProductDetails";
-import {
-  getAttributeInputFromProduct,
-  getChoices,
-  getProductUpdatePageFormData,
-  getSelectedAttributesFromProduct,
-  getStockInputFromProduct,
-  ProductAttributeValueChoices,
-  ProductUpdatePageFormData
-} from "../../utils/data";
-import {
-  createAttributeChangeHandler,
-  createAttributeMultiChangeHandler
-} from "../../utils/handlers";
-import ProductAttributes, { ProductAttributeInput } from "../ProductAttributes";
 import ProductImages from "../ProductImages";
 import ProductMetaImages from "../ProductMetaImages";
 import ProductOrganization from "../ProductOrganization";
@@ -54,8 +39,24 @@ import ProductPricing from "../ProductPricing";
 import ProductShipping from "../ProductShipping/ProductShipping";
 import ProductTaxes from "../ProductTaxes";
 import ProductVariants from "../ProductVariants";
-import ProductDetailsForm from "./ProductDetailsForm";
-import ProductStocks, { ProductStockInput } from "./ProductStocks";
+import React from "react";
+import SaveButtonBar from "@saleor/components/SaveButtonBar";
+import { SearchCategories_search_edges_node } from "@saleor/searches/types/SearchCategories";
+import { SearchCollections_search_edges_node } from "@saleor/searches/types/SearchCollections";
+import { SearchUshops_search_edges_node } from "@saleor/searches/types/SearchUshops";
+import SeoForm from "@saleor/components/SeoForm";
+import { TaxTypeFragment } from "@saleor/fragments/types/TaxTypeFragment";
+import { WarehouseFragment } from "@saleor/fragments/types/WarehouseFragment";
+import createMultiAutocompleteSelectHandler from "@saleor/utils/handlers/multiAutocompleteSelectChangeHandler";
+import createSingleAutocompleteSelectHandler from "@saleor/utils/handlers/singleAutocompleteSelectChangeHandler";
+import { diff } from "fast-array-diff";
+import { maybe } from "@saleor/misc";
+import { sectionNames } from "@saleor/intl";
+import useDateLocalize from "@saleor/hooks/useDateLocalize";
+import useFormset from "@saleor/hooks/useFormset";
+import { useIntl } from "react-intl";
+import useMetadataChangeTrigger from "@saleor/utils/metadata/useMetadataChangeTrigger";
+import useStateFromProps from "@saleor/hooks/useStateFromProps";
 
 export interface ProductUpdatePageProps extends ListActions {
   defaultWeightUnit: string;
@@ -63,8 +64,10 @@ export interface ProductUpdatePageProps extends ListActions {
   placeholderImage: string;
   collections: SearchCollections_search_edges_node[];
   categories: SearchCategories_search_edges_node[];
+  ushops: SearchUshops_search_edges_node[];
   disabled: boolean;
   fetchMoreCategories: FetchMoreProps;
+  fetchMoreUshops: FetchMoreProps;
   fetchMoreCollections: FetchMoreProps;
   variants: ProductDetails_product_variants[];
   images: ProductDetails_product_images[];
@@ -74,6 +77,7 @@ export interface ProductUpdatePageProps extends ListActions {
   warehouses: WarehouseFragment[];
   taxTypes: TaxTypeFragment[];
   fetchCategories: (query: string) => void;
+  fetchUshops: (query: string) => void;
   fetchCollections: (query: string) => void;
   onVariantsAdd: () => void;
   onVariantShow: (id: string) => () => void;
@@ -102,11 +106,14 @@ export const ProductFbLiveUpdatePage: React.FC<ProductUpdatePageProps> = ({
   defaultWeightUnit,
   disabled,
   categories: categoryChoiceList,
+  ushops: ushopChoiceList,
   collections: collectionChoiceList,
   errors,
   fetchCategories,
+  fetchUshops,
   fetchCollections,
   fetchMoreCategories,
+  fetchMoreUshops,
   fetchMoreCollections,
   images,
   header,
@@ -161,6 +168,9 @@ export const ProductFbLiveUpdatePage: React.FC<ProductUpdatePageProps> = ({
   const [selectedCategory, setSelectedCategory] = useStateFromProps(
     maybe(() => product.category.name, "")
   );
+  const [selectedUshop, setSelectedUshop] = useStateFromProps(
+    maybe(() => product.ushop.name, "")
+  );
 
   const [selectedCollections, setSelectedCollections] = useStateFromProps(
     getChoices(maybe(() => product.collections, []))
@@ -182,6 +192,7 @@ export const ProductFbLiveUpdatePage: React.FC<ProductUpdatePageProps> = ({
   );
 
   const categories = getChoices(categoryChoiceList);
+  const ushops = getChoices(ushopChoiceList);
   const collections = getChoices(collectionChoiceList);
   const currency =
     product?.variants?.length && product.variants[0].price.currency;
@@ -246,6 +257,11 @@ export const ProductFbLiveUpdatePage: React.FC<ProductUpdatePageProps> = ({
           change,
           setSelectedCategory,
           categories
+        );
+        const handleUshopSelect = createSingleAutocompleteSelectHandler(
+          change,
+          setSelectedUshop,
+          ushops
         );
         const handleAttributeChange = createAttributeChangeHandler(
           changeAttributeData,
@@ -415,18 +431,23 @@ export const ProductFbLiveUpdatePage: React.FC<ProductUpdatePageProps> = ({
                   <ProductOrganization
                     canChangeType={false}
                     categories={categories}
+                    ushops={ushops}
                     categoryInputDisplayValue={selectedCategory}
+                    ushopInputDisplayValue={selectedUshop}
                     collections={collections}
                     collectionsInputDisplayValue={selectedCollections}
                     data={data}
                     disabled={disabled}
                     errors={errors}
                     fetchCategories={fetchCategories}
+                    fetchUshops={fetchUshops}
                     fetchCollections={fetchCollections}
                     fetchMoreCategories={fetchMoreCategories}
+                    fetchMoreUshops={fetchMoreUshops}
                     fetchMoreCollections={fetchMoreCollections}
                     productType={maybe(() => product.productType)}
                     onCategoryChange={handleCategorySelect}
+                    onUshopChange={handleUshopSelect}
                     onCollectionChange={handleCollectionSelect}
                   />
                   <CardSpacer />

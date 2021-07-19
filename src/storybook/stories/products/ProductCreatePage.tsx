@@ -1,16 +1,16 @@
-import { fetchMoreProps } from "@saleor/fixtures";
-import { ProductErrorCode } from "@saleor/types/globalTypes";
-import { warehouseList } from "@saleor/warehouses/fixtures";
-import { storiesOf } from "@storybook/react";
-import React from "react";
-
 import ProductCreatePage, {
   ProductCreatePageSubmitData
 } from "../../../products/components/ProductCreatePage";
+
+import Decorator from "../../Decorator";
+import { ProductErrorCode } from "@saleor/types/globalTypes";
+import React from "react";
+import { fetchMoreProps } from "@saleor/fixtures";
 import { product as productFixture } from "../../../products/fixtures";
 import { productTypes } from "../../../productTypes/fixtures";
-import Decorator from "../../Decorator";
+import { storiesOf } from "@storybook/react";
 import { taxTypes } from "../taxes/fixtures";
+import { warehouseList } from "@saleor/warehouses/fixtures";
 
 const product = productFixture("");
 
@@ -31,6 +31,9 @@ storiesOf("Views / Products / Create product", module)
       fetchMoreProductTypes={fetchMoreProps}
       productTypes={productTypes}
       categories={[product.category]}
+      fetchUshops={() => undefined}
+      fetchMoreUshops={fetchMoreProps}
+      ushops={[]}
       onBack={() => undefined}
       onSubmit={() => undefined}
       saveButtonBarState="default"
@@ -54,6 +57,9 @@ storiesOf("Views / Products / Create product", module)
       fetchMoreProductTypes={fetchMoreProps}
       productTypes={productTypes}
       categories={[product.category]}
+      fetchUshops={() => undefined}
+      fetchMoreUshops={fetchMoreProps}
+      ushops={[]}
       onBack={() => undefined}
       onSubmit={() => undefined}
       saveButtonBarState="default"
@@ -64,6 +70,9 @@ storiesOf("Views / Products / Create product", module)
   ))
   .add("form errors", () => (
     <ProductCreatePage
+      fetchUshops={() => undefined}
+      fetchMoreUshops={fetchMoreProps}
+      ushops={[]}
       currency="USD"
       disabled={false}
       errors={(["name", "productType", "category", "sku"] as Array<

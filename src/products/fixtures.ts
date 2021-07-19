@@ -1,14 +1,14 @@
-import { ProductVariant } from "@saleor/fragments/types/ProductVariant";
 import {
   AttributeInputTypeEnum,
   WeightUnitsEnum
 } from "@saleor/types/globalTypes";
-import { warehouseList } from "@saleor/warehouses/fixtures";
 
-import { content } from "../storybook/stories/components/RichTextEditor";
 import { ProductDetails_product } from "./types/ProductDetails";
 import { ProductList_products_edges_node } from "./types/ProductList";
+import { ProductVariant } from "@saleor/fragments/types/ProductVariant";
 import { ProductVariantCreateData_product } from "./types/ProductVariantCreateData";
+import { content } from "../storybook/stories/components/RichTextEditor";
+import { warehouseList } from "@saleor/warehouses/fixtures";
 
 export const product: (
   placeholderImage: string
@@ -104,6 +104,12 @@ export const product: (
   },
   category: {
     __typename: "Category",
+    id: "Q2F0ZWdvcnk6MQ==",
+    name: "Apparel",
+    parent: null
+  },
+  ushop: {
+    __typename: "Ushop",
     id: "Q2F0ZWdvcnk6MQ==",
     name: "Apparel",
     parent: null

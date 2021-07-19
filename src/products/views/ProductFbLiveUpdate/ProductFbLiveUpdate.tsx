@@ -1,18 +1,26 @@
-import placeholderImg from "@assets/images/placeholder255x255.png";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete";
-import ActionDialog from "@saleor/components/ActionDialog";
-import NotFoundPage from "@saleor/components/NotFoundPage";
-import { WindowTitle } from "@saleor/components/WindowTitle";
-import { DEFAULT_INITIAL_SEARCH_DATA } from "@saleor/config";
-import useBulkActions from "@saleor/hooks/useBulkActions";
-import useNavigator from "@saleor/hooks/useNavigator";
-import useNotifier from "@saleor/hooks/useNotifier";
-import useOnSetDefaultVariant from "@saleor/hooks/useOnSetDefaultVariant";
-import useShop from "@saleor/hooks/useShop";
-import useStateFromProps from "@saleor/hooks/useStateFromProps";
-import { commonMessages } from "@saleor/intl";
+import { FormattedMessage, useIntl } from "react-intl";
+import {
+  ProductUrlDialog,
+  ProductUrlQueryParams,
+  productAddFbLivePath,
+  productImageUrl,
+  productListUrl,
+  productUrl,
+  productVariantAddUrl,
+  productVariantCreatorUrl,
+  productVariantEditUrl
+} from "../../urls";
+import {
+  createImageReorderHandler,
+  createImageUploadHandler,
+  createUpdateHandler,
+  createVariantReorderHandler
+} from "../ProductUpdate/handlers";
+import { getMutationState, maybe } from "../../../misc";
+import {
+  useMetadataUpdate,
+  usePrivateMetadataUpdate
+} from "@saleor/utils/metadata/updateMetadata";
 import {
   useProductDeleteMutation,
   useProductImageCreateMutation,
@@ -24,40 +32,33 @@ import {
   useProductVariantReorderMutation,
   useSimpleProductUpdateMutation
 } from "@saleor/products/mutations";
-import useCategorySearch from "@saleor/searches/useCategorySearch";
-import useCollectionSearch from "@saleor/searches/useCollectionSearch";
-import createDialogActionHandlers from "@saleor/utils/handlers/dialogActionHandlers";
-import createMetadataUpdateHandler from "@saleor/utils/handlers/metadataUpdateHandler";
-import {
-  useMetadataUpdate,
-  usePrivateMetadataUpdate
-} from "@saleor/utils/metadata/updateMetadata";
-import { useWarehouseList } from "@saleor/warehouses/queries";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
 
-import { getMutationState, maybe } from "../../../misc";
+import ActionDialog from "@saleor/components/ActionDialog";
+import { DEFAULT_INITIAL_SEARCH_DATA } from "@saleor/config";
+import DeleteIcon from "@material-ui/icons/Delete";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import IconButton from "@material-ui/core/IconButton";
+import NotFoundPage from "@saleor/components/NotFoundPage";
 import ProductFbLiveUpdatePage from "../../components/ProductFbLiveUpdatePage";
-import { useProductDetails } from "../../queries";
 import { ProductImageCreateVariables } from "../../types/ProductImageCreate";
 import { ProductUpdate as ProductUpdateMutationResult } from "../../types/ProductUpdate";
-import {
-  productAddFbLivePath,
-  productImageUrl,
-  productListUrl,
-  productUrl,
-  ProductUrlDialog,
-  ProductUrlQueryParams,
-  productVariantAddUrl,
-  productVariantCreatorUrl,
-  productVariantEditUrl
-} from "../../urls";
-import {
-  createImageReorderHandler,
-  createImageUploadHandler,
-  createUpdateHandler,
-  createVariantReorderHandler
-} from "../ProductUpdate/handlers";
+import React from "react";
+import { WindowTitle } from "@saleor/components/WindowTitle";
+import { commonMessages } from "@saleor/intl";
+import createDialogActionHandlers from "@saleor/utils/handlers/dialogActionHandlers";
+import createMetadataUpdateHandler from "@saleor/utils/handlers/metadataUpdateHandler";
+import placeholderImg from "@assets/images/placeholder255x255.png";
+import useBulkActions from "@saleor/hooks/useBulkActions";
+import useCategorySearch from "@saleor/searches/useCategorySearch";
+import useCollectionSearch from "@saleor/searches/useCollectionSearch";
+import useNavigator from "@saleor/hooks/useNavigator";
+import useNotifier from "@saleor/hooks/useNotifier";
+import useOnSetDefaultVariant from "@saleor/hooks/useOnSetDefaultVariant";
+import { useProductDetails } from "../../queries";
+import useShop from "@saleor/hooks/useShop";
+import useStateFromProps from "@saleor/hooks/useStateFromProps";
+import useUshopSearch from "@saleor/searches/useUshopSearch";
+import { useWarehouseList } from "@saleor/warehouses/queries";
 
 interface ProductUpdateProps {
   id: string;
@@ -78,6 +79,14 @@ export const ProductUpdate: React.FC<ProductUpdateProps> = ({ id, params }) => {
   } = useCategorySearch({
     variables: DEFAULT_INITIAL_SEARCH_DATA
   });
+  const {
+    loadMore: loadMoreUshops,
+    search: searchUshop,
+    result: searchUshopOpts
+  } = useUshopSearch({
+    variables: DEFAULT_INITIAL_SEARCH_DATA
+  });
+
   const {
     loadMore: loadMoreCollections,
     search: searchCollections,
@@ -272,6 +281,10 @@ export const ProductUpdate: React.FC<ProductUpdateProps> = ({ id, params }) => {
     () => searchCategoriesOpts.data.search.edges,
     []
   ).map(edge => edge.node);
+  const ushops = maybe(() => searchUshopOpts.data.search.edges, []).map(
+    edge => edge.node
+  );
+
   const collections = maybe(
     () => searchCollectionsOpts.data.search.edges,
     []
@@ -296,12 +309,14 @@ export const ProductUpdate: React.FC<ProductUpdateProps> = ({ id, params }) => {
       />
       <ProductFbLiveUpdatePage
         categories={categories}
+        ushops={ushops}
         collections={collections}
         defaultWeightUnit={shop?.defaultWeightUnit}
         disabled={disableFormSave}
         onSetDefaultVariant={onSetDefaultVariant}
         errors={errors}
         fetchCategories={searchCategories}
+        fetchUshops={searchUshop}
         fetchCollections={searchCollections}
         saveButtonBarState={formTransitionState}
         images={maybe(() => data.product.images)}
@@ -347,6 +362,13 @@ export const ProductUpdate: React.FC<ProductUpdateProps> = ({ id, params }) => {
           ),
           loading: searchCategoriesOpts.loading,
           onFetchMore: loadMoreCategories
+        }}
+        fetchMoreUshops={{
+          hasMore: maybe(
+            () => searchUshopOpts.data.search.pageInfo.hasNextPage
+          ),
+          loading: searchUshopOpts.loading,
+          onFetchMore: loadMoreUshops
         }}
         fetchMoreCollections={{
           hasMore: maybe(

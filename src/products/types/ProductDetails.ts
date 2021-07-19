@@ -274,6 +274,15 @@ export interface ProductDetails_product_category {
   parent: ProductDetails_product_category_parent | null;
 }
 
+export interface ProductDetails_product_ushop {
+  __typename: "Ushop";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
 export interface ProductDetails_product_collections {
   __typename: "Collection";
   /**
@@ -455,6 +464,7 @@ export interface ProductDetails_product {
   seoDescription: string | null;
   defaultVariant: ProductDetails_product_defaultVariant | null;
   category: ProductDetails_product_category | null;
+  ushop: ProductDetails_product_ushop | null;
   /**
    * List of collections for the product.
    */

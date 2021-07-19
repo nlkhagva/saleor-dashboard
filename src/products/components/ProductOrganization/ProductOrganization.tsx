@@ -1,24 +1,25 @@
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import CardSpacer from "@saleor/components/CardSpacer";
-import CardTitle from "@saleor/components/CardTitle";
-import { FormSpacer } from "@saleor/components/FormSpacer";
-import Hr from "@saleor/components/Hr";
+import { FormattedMessage, useIntl } from "react-intl";
 import MultiAutocompleteSelectField, {
   MultiAutocompleteChoiceType
 } from "@saleor/components/MultiAutocompleteSelectField";
 import SingleAutocompleteSelectField, {
   SingleAutocompleteChoiceType
 } from "@saleor/components/SingleAutocompleteSelectField";
-import { ProductErrorFragment } from "@saleor/fragments/types/ProductErrorFragment";
-import { ChangeEvent } from "@saleor/hooks/useForm";
-import { maybe } from "@saleor/misc";
-import { FetchMoreProps } from "@saleor/types";
 import { getFormErrors, getProductErrorMessage } from "@saleor/utils/errors";
+
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import CardSpacer from "@saleor/components/CardSpacer";
+import CardTitle from "@saleor/components/CardTitle";
+import { ChangeEvent } from "@saleor/hooks/useForm";
+import { FetchMoreProps } from "@saleor/types";
+import { FormSpacer } from "@saleor/components/FormSpacer";
+import Hr from "@saleor/components/Hr";
+import { ProductErrorFragment } from "@saleor/fragments/types/ProductErrorFragment";
 import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import { maybe } from "@saleor/misc";
 
 interface ProductType {
   hasVariants: boolean;
@@ -45,11 +46,14 @@ const useStyles = makeStyles(
 interface ProductOrganizationProps {
   canChangeType: boolean;
   categories?: SingleAutocompleteChoiceType[];
+  ushops?: SingleAutocompleteChoiceType[];
   categoryInputDisplayValue: string;
+  ushopInputDisplayValue: string;
   collections?: MultiAutocompleteChoiceType[];
   collectionsInputDisplayValue: MultiAutocompleteChoiceType[];
   data: {
     category: string;
+    ushop: string;
     collections: string[];
     productType?: string;
   };
@@ -59,12 +63,15 @@ interface ProductOrganizationProps {
   productTypeInputDisplayValue?: string;
   productTypes?: SingleAutocompleteChoiceType[];
   fetchCategories: (query: string) => void;
+  fetchUshops: (query: string) => void;
   fetchCollections: (query: string) => void;
   fetchMoreCategories: FetchMoreProps;
+  fetchMoreUshops: FetchMoreProps;
   fetchMoreCollections: FetchMoreProps;
   fetchMoreProductTypes?: FetchMoreProps;
   fetchProductTypes?: (data: string) => void;
   onCategoryChange: (event: ChangeEvent) => void;
+  onUshopChange: (event: ChangeEvent) => void;
   onCollectionChange: (event: ChangeEvent) => void;
   onProductTypeChange?: (event: ChangeEvent) => void;
 }
@@ -73,15 +80,19 @@ const ProductOrganization: React.FC<ProductOrganizationProps> = props => {
   const {
     canChangeType,
     categories,
+    ushops,
     categoryInputDisplayValue,
+    ushopInputDisplayValue,
     collections,
     collectionsInputDisplayValue,
     data,
     disabled,
     errors,
     fetchCategories,
+    fetchUshops,
     fetchCollections,
     fetchMoreCategories,
+    fetchMoreUshops,
     fetchMoreCollections,
     fetchMoreProductTypes,
     fetchProductTypes,
@@ -89,6 +100,7 @@ const ProductOrganization: React.FC<ProductOrganizationProps> = props => {
     productTypeInputDisplayValue,
     productTypes,
     onCategoryChange,
+    onUshopChange,
     onCollectionChange,
     onProductTypeChange
   } = props;
@@ -97,7 +109,7 @@ const ProductOrganization: React.FC<ProductOrganizationProps> = props => {
   const intl = useIntl();
 
   const formErrors = getFormErrors(
-    ["productType", "category", "collections"],
+    ["productType", "category", "collections", "ushop"],
     errors
   );
 
@@ -157,6 +169,24 @@ const ProductOrganization: React.FC<ProductOrganizationProps> = props => {
         <FormSpacer />
         <Hr />
         <FormSpacer />
+        <SingleAutocompleteSelectField
+          displayValue={ushopInputDisplayValue}
+          error={!!formErrors.ushop}
+          helperText={getProductErrorMessage(formErrors.ushop, intl)}
+          disabled={disabled}
+          label={intl.formatMessage({
+            defaultMessage: "Англи дэлгүүр"
+          })}
+          choices={disabled ? [] : ushops}
+          name="ushop"
+          value={data.ushop}
+          onChange={onUshopChange}
+          fetchChoices={fetchUshops}
+          data-test="ushop"
+          {...fetchMoreUshops}
+        />
+        <FormSpacer />
+        <Hr />
         <SingleAutocompleteSelectField
           displayValue={categoryInputDisplayValue}
           error={!!formErrors.category}

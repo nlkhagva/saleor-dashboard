@@ -1,31 +1,34 @@
-import placeholderImage from "@assets/images/placeholder255x255.png";
-import { collections } from "@saleor/collections/fixtures";
-import { fetchMoreProps, listActionsProps } from "@saleor/fixtures";
 import ProductUpdatePage, {
   ProductUpdatePageProps
 } from "@saleor/products/components/ProductUpdatePage";
-import { product as productFixture } from "@saleor/products/fixtures";
-import { ProductUpdatePageFormData } from "@saleor/products/utils/data";
-import { ProductErrorCode } from "@saleor/types/globalTypes";
-import { warehouseList } from "@saleor/warehouses/fixtures";
-import { storiesOf } from "@storybook/react";
-import React from "react";
+import { fetchMoreProps, listActionsProps } from "@saleor/fixtures";
 
 import Decorator from "../../Decorator";
+import { ProductErrorCode } from "@saleor/types/globalTypes";
+import { ProductUpdatePageFormData } from "@saleor/products/utils/data";
+import React from "react";
+import { collections } from "@saleor/collections/fixtures";
+import placeholderImage from "@assets/images/placeholder255x255.png";
+import { product as productFixture } from "@saleor/products/fixtures";
+import { storiesOf } from "@storybook/react";
 import { taxTypes } from "../taxes/fixtures";
+import { warehouseList } from "@saleor/warehouses/fixtures";
 
 const product = productFixture(placeholderImage);
 
 const props: ProductUpdatePageProps = {
   ...listActionsProps,
   categories: [product.category],
+  ushops: [],
   collections,
   defaultWeightUnit: "kg",
   disabled: false,
   errors: [],
   fetchCategories: () => undefined,
+  fetchUshops: () => undefined,
   fetchCollections: () => undefined,
   fetchMoreCategories: fetchMoreProps,
+  fetchMoreUshops: fetchMoreProps,
   fetchMoreCollections: fetchMoreProps,
   header: product.name,
   images: product.images,

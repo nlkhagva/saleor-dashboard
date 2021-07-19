@@ -287,6 +287,15 @@ export interface ProductCreate_productCreate_product_category {
   parent: ProductCreate_productCreate_product_category_parent | null;
 }
 
+export interface ProductCreate_productCreate_product_ushop {
+  __typename: "Ushop";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
 export interface ProductCreate_productCreate_product_collections {
   __typename: "Collection";
   /**
@@ -468,6 +477,7 @@ export interface ProductCreate_productCreate_product {
   seoDescription: string | null;
   defaultVariant: ProductCreate_productCreate_product_defaultVariant | null;
   category: ProductCreate_productCreate_product_category | null;
+  ushop: ProductCreate_productCreate_product_ushop | null;
   /**
    * List of collections for the product.
    */

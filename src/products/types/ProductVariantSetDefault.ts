@@ -287,6 +287,15 @@ export interface ProductVariantSetDefault_productVariantSetDefault_product_categ
   parent: ProductVariantSetDefault_productVariantSetDefault_product_category_parent | null;
 }
 
+export interface ProductVariantSetDefault_productVariantSetDefault_product_ushop {
+  __typename: "Ushop";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
 export interface ProductVariantSetDefault_productVariantSetDefault_product_collections {
   __typename: "Collection";
   /**
@@ -468,6 +477,7 @@ export interface ProductVariantSetDefault_productVariantSetDefault_product {
   seoDescription: string | null;
   defaultVariant: ProductVariantSetDefault_productVariantSetDefault_product_defaultVariant | null;
   category: ProductVariantSetDefault_productVariantSetDefault_product_category | null;
+  ushop: ProductVariantSetDefault_productVariantSetDefault_product_ushop | null;
   /**
    * List of collections for the product.
    */

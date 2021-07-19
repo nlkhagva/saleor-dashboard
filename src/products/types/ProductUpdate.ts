@@ -287,6 +287,15 @@ export interface ProductUpdate_productUpdate_product_category {
   parent: ProductUpdate_productUpdate_product_category_parent | null;
 }
 
+export interface ProductUpdate_productUpdate_product_ushop {
+  __typename: "Ushop";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
 export interface ProductUpdate_productUpdate_product_collections {
   __typename: "Collection";
   /**
@@ -468,6 +477,7 @@ export interface ProductUpdate_productUpdate_product {
   seoDescription: string | null;
   defaultVariant: ProductUpdate_productUpdate_product_defaultVariant | null;
   category: ProductUpdate_productUpdate_product_category | null;
+  ushop: ProductUpdate_productUpdate_product_ushop | null;
   /**
    * List of collections for the product.
    */

@@ -1,31 +1,32 @@
-import { WindowTitle } from "@saleor/components/WindowTitle";
-import { DEFAULT_INITIAL_SEARCH_DATA } from "@saleor/config";
-import useNavigator from "@saleor/hooks/useNavigator";
-import useNotifier from "@saleor/hooks/useNotifier";
-import useShop from "@saleor/hooks/useShop";
-import { getProductAvailabilityVariables } from "@saleor/products/utils/handlers";
-import useCategorySearch from "@saleor/searches/useCategorySearch";
-import useCollectionSearch from "@saleor/searches/useCollectionSearch";
-import useProductTypeSearch from "@saleor/searches/useProductTypeSearch";
-import { useTaxTypeList } from "@saleor/taxes/queries";
-import createMetadataCreateHandler from "@saleor/utils/handlers/metadataCreateHandler";
+import ProductCreatePage, {
+  ProductCreatePageSubmitData
+} from "../components/ProductCreatePage";
+import { decimal, weight } from "../../misc";
+import { productListUrl, productUrl } from "../urls";
 import {
   useMetadataUpdate,
   usePrivateMetadataUpdate
 } from "@saleor/utils/metadata/updateMetadata";
-import { useWarehouseList } from "@saleor/warehouses/queries";
-import React from "react";
-import { useIntl } from "react-intl";
-
-import { decimal, weight } from "../../misc";
-import ProductCreatePage, {
-  ProductCreatePageSubmitData
-} from "../components/ProductCreatePage";
 import {
   useProductCreateMutation,
   useProductSetAvailabilityForPurchase
 } from "../mutations";
-import { productListUrl, productUrl } from "../urls";
+
+import { DEFAULT_INITIAL_SEARCH_DATA } from "@saleor/config";
+import React from "react";
+import { WindowTitle } from "@saleor/components/WindowTitle";
+import createMetadataCreateHandler from "@saleor/utils/handlers/metadataCreateHandler";
+import { getProductAvailabilityVariables } from "@saleor/products/utils/handlers";
+import useCategorySearch from "@saleor/searches/useCategorySearch";
+import useCollectionSearch from "@saleor/searches/useCollectionSearch";
+import { useIntl } from "react-intl";
+import useNavigator from "@saleor/hooks/useNavigator";
+import useNotifier from "@saleor/hooks/useNotifier";
+import useProductTypeSearch from "@saleor/searches/useProductTypeSearch";
+import useShop from "@saleor/hooks/useShop";
+import { useTaxTypeList } from "@saleor/taxes/queries";
+import useUshopSearch from "@saleor/searches/useUshopSearch";
+import { useWarehouseList } from "@saleor/warehouses/queries";
 
 export const ProductCreateView: React.FC = () => {
   const navigate = useNavigator();
@@ -37,6 +38,13 @@ export const ProductCreateView: React.FC = () => {
     search: searchCategory,
     result: searchCategoryOpts
   } = useCategorySearch({
+    variables: DEFAULT_INITIAL_SEARCH_DATA
+  });
+  const {
+    loadMore: loadMoreUshops,
+    search: searchUshop,
+    result: searchUshopOpts
+  } = useUshopSearch({
     variables: DEFAULT_INITIAL_SEARCH_DATA
   });
   const {
@@ -100,6 +108,7 @@ export const ProductCreateView: React.FC = () => {
           })),
           basePrice: decimal(formData.basePrice),
           category: formData.category,
+          ushop: formData.ushop,
           chargeTaxes: formData.chargeTaxes,
           collections: formData.collections,
           descriptionJson: JSON.stringify(formData.description),
@@ -163,12 +172,16 @@ export const ProductCreateView: React.FC = () => {
         categories={(searchCategoryOpts.data?.search.edges || []).map(
           edge => edge.node
         )}
+        ushops={(searchUshopOpts.data?.search.edges || []).map(
+          edge => edge.node
+        )}
         collections={(searchCollectionOpts.data?.search.edges || []).map(
           edge => edge.node
         )}
         disabled={productCreateOpts.loading || productAvailabilityOpts.loading}
         errors={productCreateOpts.data?.productCreate.errors || []}
         fetchCategories={searchCategory}
+        fetchUshops={searchUshop}
         fetchCollections={searchCollection}
         fetchProductTypes={searchProductTypes}
         header={intl.formatMessage({
@@ -185,6 +198,11 @@ export const ProductCreateView: React.FC = () => {
           hasMore: searchCategoryOpts.data?.search.pageInfo.hasNextPage,
           loading: searchCategoryOpts.loading,
           onFetchMore: loadMoreCategories
+        }}
+        fetchMoreUshops={{
+          hasMore: searchUshopOpts.data?.search.pageInfo.hasNextPage,
+          loading: searchUshopOpts.loading,
+          onFetchMore: loadMoreUshops
         }}
         fetchMoreCollections={{
           hasMore: searchCollectionOpts.data?.search.pageInfo.hasNextPage,
