@@ -125,7 +125,7 @@ export interface OrderFulfillData_order_lines_variant {
   id: string;
   name: string;
   sku: string;
-  product: OrderFulfillData_order_lines_variant_product;
+  product: OrderFulfillData_order_lines_variant_product | null;
   /**
    * List of attributes assigned to this variant.
    */

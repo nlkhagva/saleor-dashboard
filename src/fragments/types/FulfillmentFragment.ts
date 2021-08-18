@@ -60,7 +60,7 @@ export interface FulfillmentFragment_lines_orderLine_variant_product {
 
 export interface FulfillmentFragment_lines_orderLine_variant {
   __typename: "ProductVariant";
-  product: FulfillmentFragment_lines_orderLine_variant_product;
+  product: FulfillmentFragment_lines_orderLine_variant_product | null;
   /**
    * Quantity of a product available for sale in one checkout.
    */

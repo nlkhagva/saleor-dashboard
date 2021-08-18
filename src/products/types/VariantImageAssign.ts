@@ -289,7 +289,7 @@ export interface VariantImageAssign_variantImageAssign_productVariant {
    * pricing field to get the public price for customers.
    */
   price: VariantImageAssign_variantImageAssign_productVariant_price | null;
-  product: VariantImageAssign_variantImageAssign_productVariant_product;
+  product: VariantImageAssign_variantImageAssign_productVariant_product | null;
   sku: string;
   /**
    * Stocks for the product variant.

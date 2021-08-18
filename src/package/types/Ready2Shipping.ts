@@ -119,7 +119,7 @@ export interface Ready2Shipping_ready2shipping_lines_orderLine_variant {
    */
   id: string;
   name: string;
-  product: Ready2Shipping_ready2shipping_lines_orderLine_variant_product;
+  product: Ready2Shipping_ready2shipping_lines_orderLine_variant_product | null;
 }
 
 export interface Ready2Shipping_ready2shipping_lines_orderLine_unitPrice_gross {
@@ -266,7 +266,7 @@ export interface Ready2Shipping_ready2shipping_others2shipping_lines_orderLine_v
    */
   id: string;
   name: string;
-  product: Ready2Shipping_ready2shipping_others2shipping_lines_orderLine_variant_product;
+  product: Ready2Shipping_ready2shipping_others2shipping_lines_orderLine_variant_product | null;
 }
 
 export interface Ready2Shipping_ready2shipping_others2shipping_lines_orderLine_unitPrice_gross {

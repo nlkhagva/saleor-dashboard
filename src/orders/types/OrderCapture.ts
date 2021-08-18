@@ -184,7 +184,7 @@ export interface OrderCapture_orderCapture_order_fulfillments_lines_orderLine_va
 
 export interface OrderCapture_orderCapture_order_fulfillments_lines_orderLine_variant {
   __typename: "ProductVariant";
-  product: OrderCapture_orderCapture_order_fulfillments_lines_orderLine_variant_product;
+  product: OrderCapture_orderCapture_order_fulfillments_lines_orderLine_variant_product | null;
   /**
    * Quantity of a product available for sale in one checkout.
    */
@@ -358,7 +358,7 @@ export interface OrderCapture_orderCapture_order_lines_variant_product {
 
 export interface OrderCapture_orderCapture_order_lines_variant {
   __typename: "ProductVariant";
-  product: OrderCapture_orderCapture_order_lines_variant_product;
+  product: OrderCapture_orderCapture_order_lines_variant_product | null;
   /**
    * Quantity of a product available for sale in one checkout.
    */
@@ -437,6 +437,42 @@ export interface OrderCapture_orderCapture_order_lines {
    * The main thumbnail for the ordered product.
    */
   thumbnail: OrderCapture_orderCapture_order_lines_thumbnail | null;
+}
+
+export interface OrderCapture_orderCapture_order_payments_capturedAmount {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface OrderCapture_orderCapture_order_payments {
+  __typename: "Payment";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  gateway: string;
+  /**
+   * Internal payment status.
+   */
+  chargeStatus: PaymentChargeStatusEnum;
+  isActive: boolean;
+  created: any;
+  modified: any;
+  /**
+   * Total amount captured for this payment.
+   */
+  capturedAmount: OrderCapture_orderCapture_order_payments_capturedAmount | null;
 }
 
 export interface OrderCapture_orderCapture_order_shippingAddress_country {
@@ -686,6 +722,10 @@ export interface OrderCapture_orderCapture_order {
    * Internal payment status.
    */
   paymentStatus: PaymentChargeStatusEnum | null;
+  /**
+   * List of payments for the order.
+   */
+  payments: (OrderCapture_orderCapture_order_payments | null)[] | null;
   shippingAddress: OrderCapture_orderCapture_order_shippingAddress | null;
   shippingMethod: OrderCapture_orderCapture_order_shippingMethod | null;
   shippingMethodName: string | null;

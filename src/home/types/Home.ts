@@ -138,7 +138,7 @@ export interface Home_productTopToday_edges_node {
    * List of attributes assigned to this variant.
    */
   attributes: Home_productTopToday_edges_node_attributes[];
-  product: Home_productTopToday_edges_node_product;
+  product: Home_productTopToday_edges_node_product | null;
   /**
    * Total quantity ordered.
    */

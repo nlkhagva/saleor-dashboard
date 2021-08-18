@@ -171,7 +171,7 @@ export interface OrderDetailsFragment_fulfillments_lines_orderLine_variant_produ
 
 export interface OrderDetailsFragment_fulfillments_lines_orderLine_variant {
   __typename: "ProductVariant";
-  product: OrderDetailsFragment_fulfillments_lines_orderLine_variant_product;
+  product: OrderDetailsFragment_fulfillments_lines_orderLine_variant_product | null;
   /**
    * Quantity of a product available for sale in one checkout.
    */
@@ -345,7 +345,7 @@ export interface OrderDetailsFragment_lines_variant_product {
 
 export interface OrderDetailsFragment_lines_variant {
   __typename: "ProductVariant";
-  product: OrderDetailsFragment_lines_variant_product;
+  product: OrderDetailsFragment_lines_variant_product | null;
   /**
    * Quantity of a product available for sale in one checkout.
    */
@@ -424,6 +424,42 @@ export interface OrderDetailsFragment_lines {
    * The main thumbnail for the ordered product.
    */
   thumbnail: OrderDetailsFragment_lines_thumbnail | null;
+}
+
+export interface OrderDetailsFragment_payments_capturedAmount {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface OrderDetailsFragment_payments {
+  __typename: "Payment";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  gateway: string;
+  /**
+   * Internal payment status.
+   */
+  chargeStatus: PaymentChargeStatusEnum;
+  isActive: boolean;
+  created: any;
+  modified: any;
+  /**
+   * Total amount captured for this payment.
+   */
+  capturedAmount: OrderDetailsFragment_payments_capturedAmount | null;
 }
 
 export interface OrderDetailsFragment_shippingAddress_country {
@@ -673,6 +709,10 @@ export interface OrderDetailsFragment {
    * Internal payment status.
    */
   paymentStatus: PaymentChargeStatusEnum | null;
+  /**
+   * List of payments for the order.
+   */
+  payments: (OrderDetailsFragment_payments | null)[] | null;
   shippingAddress: OrderDetailsFragment_shippingAddress | null;
   shippingMethod: OrderDetailsFragment_shippingMethod | null;
   shippingMethodName: string | null;

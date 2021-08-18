@@ -192,7 +192,7 @@ export interface FulfillOrder_orderFulfill_order_fulfillments_lines_orderLine_va
 
 export interface FulfillOrder_orderFulfill_order_fulfillments_lines_orderLine_variant {
   __typename: "ProductVariant";
-  product: FulfillOrder_orderFulfill_order_fulfillments_lines_orderLine_variant_product;
+  product: FulfillOrder_orderFulfill_order_fulfillments_lines_orderLine_variant_product | null;
   /**
    * Quantity of a product available for sale in one checkout.
    */
@@ -366,7 +366,7 @@ export interface FulfillOrder_orderFulfill_order_lines_variant_product {
 
 export interface FulfillOrder_orderFulfill_order_lines_variant {
   __typename: "ProductVariant";
-  product: FulfillOrder_orderFulfill_order_lines_variant_product;
+  product: FulfillOrder_orderFulfill_order_lines_variant_product | null;
   /**
    * Quantity of a product available for sale in one checkout.
    */
@@ -445,6 +445,42 @@ export interface FulfillOrder_orderFulfill_order_lines {
    * The main thumbnail for the ordered product.
    */
   thumbnail: FulfillOrder_orderFulfill_order_lines_thumbnail | null;
+}
+
+export interface FulfillOrder_orderFulfill_order_payments_capturedAmount {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface FulfillOrder_orderFulfill_order_payments {
+  __typename: "Payment";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  gateway: string;
+  /**
+   * Internal payment status.
+   */
+  chargeStatus: PaymentChargeStatusEnum;
+  isActive: boolean;
+  created: any;
+  modified: any;
+  /**
+   * Total amount captured for this payment.
+   */
+  capturedAmount: FulfillOrder_orderFulfill_order_payments_capturedAmount | null;
 }
 
 export interface FulfillOrder_orderFulfill_order_shippingAddress_country {
@@ -694,6 +730,10 @@ export interface FulfillOrder_orderFulfill_order {
    * Internal payment status.
    */
   paymentStatus: PaymentChargeStatusEnum | null;
+  /**
+   * List of payments for the order.
+   */
+  payments: (FulfillOrder_orderFulfill_order_payments | null)[] | null;
   shippingAddress: FulfillOrder_orderFulfill_order_shippingAddress | null;
   shippingMethod: FulfillOrder_orderFulfill_order_shippingMethod | null;
   shippingMethodName: string | null;

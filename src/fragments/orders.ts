@@ -132,6 +132,19 @@ export const fragmentOrderDetails = gql`
     }
     number
     paymentStatus
+    payments {
+      id
+      gateway
+      chargeStatus
+      isActive
+      created
+      modified
+      capturedAmount {
+        amount
+        currency
+        localized
+      }
+    }
     shippingAddress {
       ...AddressFragment
     }

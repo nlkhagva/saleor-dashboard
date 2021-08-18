@@ -171,7 +171,7 @@ export interface OrderDetails_order_fulfillments_lines_orderLine_variant_product
 
 export interface OrderDetails_order_fulfillments_lines_orderLine_variant {
   __typename: "ProductVariant";
-  product: OrderDetails_order_fulfillments_lines_orderLine_variant_product;
+  product: OrderDetails_order_fulfillments_lines_orderLine_variant_product | null;
   /**
    * Quantity of a product available for sale in one checkout.
    */
@@ -345,7 +345,7 @@ export interface OrderDetails_order_lines_variant_product {
 
 export interface OrderDetails_order_lines_variant {
   __typename: "ProductVariant";
-  product: OrderDetails_order_lines_variant_product;
+  product: OrderDetails_order_lines_variant_product | null;
   /**
    * Quantity of a product available for sale in one checkout.
    */
@@ -424,6 +424,42 @@ export interface OrderDetails_order_lines {
    * The main thumbnail for the ordered product.
    */
   thumbnail: OrderDetails_order_lines_thumbnail | null;
+}
+
+export interface OrderDetails_order_payments_capturedAmount {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface OrderDetails_order_payments {
+  __typename: "Payment";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  gateway: string;
+  /**
+   * Internal payment status.
+   */
+  chargeStatus: PaymentChargeStatusEnum;
+  isActive: boolean;
+  created: any;
+  modified: any;
+  /**
+   * Total amount captured for this payment.
+   */
+  capturedAmount: OrderDetails_order_payments_capturedAmount | null;
 }
 
 export interface OrderDetails_order_shippingAddress_country {
@@ -673,6 +709,10 @@ export interface OrderDetails_order {
    * Internal payment status.
    */
   paymentStatus: PaymentChargeStatusEnum | null;
+  /**
+   * List of payments for the order.
+   */
+  payments: (OrderDetails_order_payments | null)[] | null;
   shippingAddress: OrderDetails_order_shippingAddress | null;
   shippingMethod: OrderDetails_order_shippingMethod | null;
   shippingMethodName: string | null;

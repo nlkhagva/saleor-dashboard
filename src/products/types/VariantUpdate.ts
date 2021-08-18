@@ -289,7 +289,7 @@ export interface VariantUpdate_productVariantUpdate_productVariant {
    * pricing field to get the public price for customers.
    */
   price: VariantUpdate_productVariantUpdate_productVariant_price | null;
-  product: VariantUpdate_productVariantUpdate_productVariant_product;
+  product: VariantUpdate_productVariantUpdate_productVariant_product | null;
   sku: string;
   /**
    * Stocks for the product variant.
@@ -589,7 +589,7 @@ export interface VariantUpdate_productVariantStocksUpdate_productVariant {
    * pricing field to get the public price for customers.
    */
   price: VariantUpdate_productVariantStocksUpdate_productVariant_price | null;
-  product: VariantUpdate_productVariantStocksUpdate_productVariant_product;
+  product: VariantUpdate_productVariantStocksUpdate_productVariant_product | null;
   sku: string;
   /**
    * Stocks for the product variant.

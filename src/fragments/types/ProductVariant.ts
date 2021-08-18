@@ -276,7 +276,7 @@ export interface ProductVariant {
    * pricing field to get the public price for customers.
    */
   price: ProductVariant_price | null;
-  product: ProductVariant_product;
+  product: ProductVariant_product | null;
   sku: string;
   /**
    * Stocks for the product variant.

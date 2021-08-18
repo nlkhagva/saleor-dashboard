@@ -800,7 +800,7 @@ export interface SimpleProductUpdate_productVariantUpdate_productVariant {
    * pricing field to get the public price for customers.
    */
   price: SimpleProductUpdate_productVariantUpdate_productVariant_price | null;
-  product: SimpleProductUpdate_productVariantUpdate_productVariant_product;
+  product: SimpleProductUpdate_productVariantUpdate_productVariant_product | null;
   sku: string;
   /**
    * Stocks for the product variant.
@@ -1100,7 +1100,7 @@ export interface SimpleProductUpdate_productVariantStocksCreate_productVariant {
    * pricing field to get the public price for customers.
    */
   price: SimpleProductUpdate_productVariantStocksCreate_productVariant_price | null;
-  product: SimpleProductUpdate_productVariantStocksCreate_productVariant_product;
+  product: SimpleProductUpdate_productVariantStocksCreate_productVariant_product | null;
   sku: string;
   /**
    * Stocks for the product variant.
@@ -1399,7 +1399,7 @@ export interface SimpleProductUpdate_productVariantStocksDelete_productVariant {
    * pricing field to get the public price for customers.
    */
   price: SimpleProductUpdate_productVariantStocksDelete_productVariant_price | null;
-  product: SimpleProductUpdate_productVariantStocksDelete_productVariant_product;
+  product: SimpleProductUpdate_productVariantStocksDelete_productVariant_product | null;
   sku: string;
   /**
    * Stocks for the product variant.
@@ -1702,7 +1702,7 @@ export interface SimpleProductUpdate_productVariantStocksUpdate_productVariant {
    * pricing field to get the public price for customers.
    */
   price: SimpleProductUpdate_productVariantStocksUpdate_productVariant_price | null;
-  product: SimpleProductUpdate_productVariantStocksUpdate_productVariant_product;
+  product: SimpleProductUpdate_productVariantStocksUpdate_productVariant_product | null;
   sku: string;
   /**
    * Stocks for the product variant.

@@ -289,7 +289,7 @@ export interface VariantCreate_productVariantCreate_productVariant {
    * pricing field to get the public price for customers.
    */
   price: VariantCreate_productVariantCreate_productVariant_price | null;
-  product: VariantCreate_productVariantCreate_productVariant_product;
+  product: VariantCreate_productVariantCreate_productVariant_product | null;
   sku: string;
   /**
    * Stocks for the product variant.

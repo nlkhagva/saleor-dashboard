@@ -792,6 +792,7 @@ export const order = (): OrderDetails_order => ({
       }
     }
   ],
+  payments: [],
   billingAddress: {
     __typename: "Address",
     city: "West Patriciastad",
@@ -1155,6 +1156,7 @@ export const draftOrder = (): OrderDetails_order => ({
   ],
   metadata: [],
   number: "24",
+  payments: [],
   paymentStatus: null,
   privateMetadata: [],
   shippingAddress: null,

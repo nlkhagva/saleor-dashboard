@@ -1,20 +1,22 @@
+import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import Money, { subtractMoney } from "@saleor/components/Money";
-import { OrderAction, OrderStatus } from "../../../types/globalTypes";
-import { maybe, transformPaymentStatus } from "../../../misc";
 
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
+import { makeStyles } from "@material-ui/core/styles";
 import CardTitle from "@saleor/components/CardTitle";
+import { DateTime } from "@saleor/components/Date";
 import { Hr } from "@saleor/components/Hr";
-import { OrderDetails_order } from "../../types/OrderDetails";
-import { PRODUCT_TYPE_SHIPPING } from "@saleor/constants";
-import React from "react";
+import Money, { subtractMoney } from "@saleor/components/Money";
 import Skeleton from "@saleor/components/Skeleton";
 import StatusLabel from "@saleor/components/StatusLabel";
-import { makeStyles } from "@material-ui/core/styles";
+import { PRODUCT_TYPE_SHIPPING } from "@saleor/constants";
+
+import { maybe, transformPaymentStatus } from "../../../misc";
+import { OrderAction, OrderStatus } from "../../../types/globalTypes";
+import { OrderDetails_order } from "../../types/OrderDetails";
 
 const useStyles = makeStyles(
   theme => ({
@@ -28,6 +30,9 @@ const useStyles = makeStyles(
     },
     totalRow: {
       fontWeight: 600
+    },
+    paymentHisotry: {
+      fontSize: 12
     }
   }),
   { name: "OrderPayment" }
@@ -43,6 +48,7 @@ interface OrderPaymentProps {
 
 const OrderPayment: React.FC<OrderPaymentProps> = props => {
   const { order, onCapture, onMarkAsPaid, onRefund, onVoid } = props;
+  console.log(order?.payments);
   const classes = useStyles(props);
 
   const intl = useIntl();
@@ -227,10 +233,11 @@ const OrderPayment: React.FC<OrderPaymentProps> = props => {
           <tbody>
             <tr>
               <td>
-                <FormattedMessage
+                Урьдчилан зөвшөөрөгдсөн хэмжээ
+                {/* <FormattedMessage
                   defaultMessage="Preauthorized amount"
                   description="order payment"
-                />
+                /> */}
               </td>
               <td className={classes.textRight}>
                 {maybe(() => order.totalAuthorized.amount) === undefined ? (
@@ -242,10 +249,11 @@ const OrderPayment: React.FC<OrderPaymentProps> = props => {
             </tr>
             <tr>
               <td>
-                <FormattedMessage
+                Төлсөн
+                {/* <FormattedMessage
                   defaultMessage="Captured amount"
                   description="order payment"
-                />
+                /> */}
               </td>
               <td className={classes.textRight}>
                 {maybe(() => order.totalCaptured.amount) === undefined ? (
@@ -255,12 +263,36 @@ const OrderPayment: React.FC<OrderPaymentProps> = props => {
                 )}
               </td>
             </tr>
+            <tr style={{ backgroundColor: "#efefef", fontSize: 10 }}>
+              <th colSpan={2}>Төлбөрийн түүх</th>
+            </tr>
+
+            {order?.payments
+              .filter(payment => payment.chargeStatus === "FULLY_CHARGED")
+              .map(payment => (
+                <tr className={classes.paymentHisotry} key={payment.id}>
+                  <td>
+                    {payment.gateway === "mirumee.payments.stripe"
+                      ? "Stripe"
+                      : payment.gateway}
+                    <span style={{ fontSize: 12 }}>
+                      &nbsp;(
+                      <DateTime date={payment.modified} />)
+                    </span>
+                  </td>
+                  <td className={classes.textRight}>
+                    {payment.capturedAmount.localized}
+                  </td>
+                </tr>
+              ))}
+
             <tr className={classes.totalRow}>
               <td>
-                <FormattedMessage
+                Үлдэгдэл тэнцэл
+                {/* <FormattedMessage
                   defaultMessage="Outstanding Balance"
                   description="order payment"
-                />
+                /> */}
               </td>
               <td className={classes.textRight}>
                 {maybe(

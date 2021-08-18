@@ -169,7 +169,7 @@ export interface PackageDetails_package_lines_fulfillmentline_orderLine_variant 
    */
   id: string;
   name: string;
-  product: PackageDetails_package_lines_fulfillmentline_orderLine_variant_product;
+  product: PackageDetails_package_lines_fulfillmentline_orderLine_variant_product | null;
 }
 
 export interface PackageDetails_package_lines_fulfillmentline_orderLine_unitPrice_gross {
