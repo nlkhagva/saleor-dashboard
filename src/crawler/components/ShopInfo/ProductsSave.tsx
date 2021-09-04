@@ -196,7 +196,7 @@ const ProductsSave: React.FC<ProductItemProps> = ({
   const changeProductInfo = e => {
     e.preventDefault();
 
-    if (selectedPType.id === "" && selectedCategory.id === "") {
+    if (selectedPType.id === "" || selectedCategory.id === "") {
       alert("Барааны төрөл, Ангилал 2ийг заавал сонгоно уу");
       return;
     }
@@ -285,6 +285,8 @@ const ProductsSave: React.FC<ProductItemProps> = ({
                 input: { ...filtered, sku: uuidv4() }
               }
             });
+            console.log(result);
+
             console.log("saved product:", result.data.productCreate.product.id);
             product.ustatus = "saved";
             product.uproductId = result.data.productCreate.product.id;
