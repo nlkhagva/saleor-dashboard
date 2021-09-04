@@ -20,6 +20,11 @@ import {
   SearchOrderVariantVariables
 } from "./types/SearchOrderVariant";
 
+import {
+  PackageLinesByFlineIds,
+  PackageLinesByFlineIdsVariables
+} from "./types/PackageLinesByFlineIds";
+
 export const orderListQuery = gql`
   ${fragmentAddress}
   query OrderList(
@@ -250,3 +255,27 @@ export const useOrderFulfillData = makeQuery<
   OrderFulfillData,
   OrderFulfillDataVariables
 >(orderFulfillData);
+
+const packageNames = gql`
+  query PackageLinesByFlineIds($ids: [ID]) {
+    packageLines(filter: { fulfillmentline: $ids }, first: 10) {
+      edges {
+        node {
+          id
+          name
+          fulfillmentline {
+            id
+          }
+          package {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+`;
+export const usePackageNames = makeQuery<
+  PackageLinesByFlineIds,
+  PackageLinesByFlineIdsVariables
+>(packageNames);

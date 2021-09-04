@@ -48,7 +48,6 @@ interface OrderPaymentProps {
 
 const OrderPayment: React.FC<OrderPaymentProps> = props => {
   const { order, onCapture, onMarkAsPaid, onRefund, onVoid } = props;
-  console.log(order?.payments);
   const classes = useStyles(props);
 
   const intl = useIntl();

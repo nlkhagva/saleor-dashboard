@@ -1,4 +1,6 @@
+import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
+import LinearProgress from "@material-ui/core/LinearProgress";
 import { makeStyles } from "@material-ui/core/styles";
 import { productPath } from "@saleor/products/urls";
 import React, { useState } from "react";
@@ -101,19 +103,20 @@ const ProductItem: React.FC<ProductItemProps> = ({
         <h5 className={classes.uh5}>
           {productTypeName} / {categoryName}
           <span style={{ float: "right", marginRight: 15 }}>
-            [
             {product.ustatus === "saved" ? (
-              <Link to={productPath(product.uproductId)}>
-                {product.ustatus}
-              </Link>
+              <Button color="primary" size="small">
+                <Link to={productPath(product.uproductId)} color="green">
+                  {product.ustatus}
+                </Link>
+              </Button>
             ) : (
               product.ustatus
             )}
-            ]
           </span>
         </h5>
       </div>
       <div>
+        {product.loading && <LinearProgress />}
         {product.linkImages.length > 0 && (
           <div className={classes.productImage}>
             {product.linkImages.slice(0, 3).map((image, index) => (

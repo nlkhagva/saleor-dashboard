@@ -1295,6 +1295,17 @@ export interface CrawlerInput {
   listSelection?: string | null;
 }
 
+export interface CrawlerLineInput {
+  crawler?: string | null;
+  product?: string | null;
+  url?: string | null;
+  uproductSelection?: string | null;
+  uoptions?: any | null;
+  price?: any | null;
+  wasPrice?: any | null;
+  syncAt?: any | null;
+}
+
 export interface CustomerFilterInput {
   dateJoined?: DateRangeInput | null;
   moneySpent?: PriceRangeInput | null;

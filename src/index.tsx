@@ -104,7 +104,9 @@ const apolloClient = new ApolloClient({
 });
 
 // "http://18.197.139.122"
-export const socketURI = process.env.CRAWLER_URL || "http://18.197.139.122";
+export const socketURI =
+  process.env.CRAWLER_URL || "http://crawler.unurshop.com";
+
 export const socketOptions = { transports: ["websocket"] };
 
 const App: React.FC = () => {

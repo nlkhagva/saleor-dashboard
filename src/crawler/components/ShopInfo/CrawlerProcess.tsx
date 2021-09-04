@@ -1,4 +1,9 @@
+import clsx from "clsx";
+import React, { useState } from "react";
+import { Event } from "react-socket-io";
+
 import { useMutation } from "@apollo/react-hooks";
+import { TextField } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { green } from "@material-ui/core/colors";
@@ -11,11 +16,9 @@ import {
   Theme,
   withStyles
 } from "@material-ui/core/styles";
+import FormSpacer from "@saleor/components/FormSpacer";
 import useNotifier from "@saleor/hooks/useNotifier";
 import { socketURI } from "@saleor/index";
-import clsx from "clsx";
-import React, { useState } from "react";
-import { Event } from "react-socket-io";
 
 import { crawlerUpdate } from "../../mutations";
 import { CrawlerDetails_crawler } from "../../types/CrawlerDetails";
@@ -35,6 +38,7 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
   productSelection
 }) => {
   const [saveCrawledData] = useMutation(crawlerUpdate);
+  const [crawlerLimit, setCrawlerLimit] = React.useState(10);
 
   const crawlerServerURI = socketURI;
   const notify = useNotifier();
@@ -63,7 +67,8 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
         },
         wrapper: {
           margin: 0,
-          position: "relative"
+          position: "relative",
+          width: "100%"
         }
       }),
     { name: "CrawlerProcess" }
@@ -118,7 +123,7 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
 
       const rs = await fetch(crawlerServerURI + "/crawler", {
         body: JSON.stringify({
-          limit: 30,
+          limit: crawlerLimit,
           listSelection,
           productSelection,
           url,
@@ -186,7 +191,9 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
           ushop: crawler.shop.id,
           ustatus: "unsaved",
           visibleInListings: true,
-          wasPrice: wPrice
+          wasPrice: wPrice,
+          loading: false,
+          errorMessage: null
         };
       });
 
@@ -299,11 +306,21 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
           <Button onClick={receiveProductData} component="span">
             Get products
           </Button>
+          <FormSpacer />
+          <TextField
+            required
+            label="Limit"
+            type="number"
+            defaultValue={crawlerLimit}
+            onChange={e => {
+              setCrawlerLimit(Number(e.target.value));
+            }}
+            variant="outlined"
+          />
         </Grid>
         <Grid item xs={8}>
           {crawlerInfo.total > 0 && (
             <span>
-              {" "}
               {(
                 ((crawlerInfo.current + crawlerInfo.errors) /
                   crawlerInfo.total) *
@@ -335,6 +352,7 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
 
       {crawledData.length > 0 && (
         <ProductsSave
+          crawler={crawler}
           crawledData={crawledData}
           setCrawledData={setCrawledData}
           saveCrawledDataFunction={saveCrawledDataFunction}

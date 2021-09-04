@@ -1,5 +1,6 @@
 import gql from "graphql-tag";
 
+import makeMutation from "@saleor/hooks/makeMutation";
 import { TypedMutation } from "../mutations";
 import { crawlerFragment } from "./queries";
 import {
@@ -9,6 +10,14 @@ import {
 import { CrawlerCreate, CrawlerCreateVariables } from "./types/CrawlerCreate";
 import { CrawlerRemove, CrawlerRemoveVariables } from "./types/CrawlerRemove";
 import { CrawlerUpdate, CrawlerUpdateVariables } from "./types/CrawlerUpdate";
+import {
+  ImageUploadViaUrl,
+  ImageUploadViaUrlVariables
+} from "./types/ImageUploadViaUrl";
+import {
+  CrawlerLineCreate,
+  CrawlerLineCreateVariables
+} from "./types/CrawlerLineCreate";
 
 const crawlerCreate = gql`
   ${crawlerFragment}
@@ -79,3 +88,42 @@ export const TypedCrawlerBulkRemove = TypedMutation<
   CrawlerBulkRemove,
   CrawlerBulkRemoveVariables
 >(crawlerBulkRemove);
+
+const productImageCreateViaUrl = gql`
+  mutation ImageUploadViaUrl($url: String!, $product: ID!) {
+    productImageCreateViaUrl(input: { url: $url, product: $product }) {
+      product {
+        id
+        name
+        images {
+          id
+          url
+        }
+      }
+    }
+  }
+`;
+export const useProductImageCreateViaUrlMutation = makeMutation<
+  ImageUploadViaUrl,
+  ImageUploadViaUrlVariables
+>(productImageCreateViaUrl);
+
+const crawlerLineCreate = gql`
+  mutation CrawlerLineCreate($input: CrawlerLineInput) {
+    crawlerLineCreate(input: $input) {
+      crawlerLine {
+        id
+        crawler {
+          shop {
+            name
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const useCrawlerLineCreateMutation = makeMutation<
+  CrawlerLineCreate,
+  CrawlerLineCreateVariables
+>(crawlerLineCreate);

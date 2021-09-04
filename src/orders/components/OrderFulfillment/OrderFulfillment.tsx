@@ -25,6 +25,7 @@ import Typography from "@material-ui/core/Typography";
 import UkShippingRow from "./UkShppingRow";
 import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
+import { usePackageNames } from "@saleor/orders/queries";
 
 // import { packageAddUrl } from "../../../package/urls";
 
@@ -121,6 +122,19 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
       l => l.orderLine.variant.product.productType.id === PRODUCT_TYPE_SHIPPING
     )
   );
+
+  const fulfillmentLineIds = maybe(() => fulfillment.lines.map(l => l.id), []);
+
+  const { data } = usePackageNames({
+    displayLoader: true,
+    variables: {
+      ids: fulfillmentLineIds
+    }
+  });
+  const __packageNames = {};
+  data?.packageLines.edges.map(edge => {
+    __packageNames[edge.node.fulfillmentline.id] = edge.node.package.name;
+  });
 
   const productTotal = {
     amount: lines
@@ -247,10 +261,14 @@ const OrderFulfillment: React.FC<OrderFulfillmentProps> = props => {
                 <Typography variant="caption" color="error">
                   {maybe(() => ushopStatusRender(line)) || <Skeleton />}
                 </Typography>
+                <Typography variant="caption" color="primary">
+                  {maybe(() => "#" + __packageNames[line.id])}
+                </Typography>
 
                 <Typography variant="caption">
                   {maybe(() => line.orderLine.productName) || <Skeleton />}
                 </Typography>
+
                 <Typography variant="caption">
                   {maybe(() => line.orderLine.variant.name)}
                 </Typography>

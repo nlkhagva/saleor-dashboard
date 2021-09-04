@@ -1,5 +1,8 @@
 // import { repeat } from 'lodash-es';
 
+import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+
 import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -7,14 +10,20 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import SingleAutocompleteSelectField from "@saleor/components/SingleAutocompleteSelectField";
 import { maybe } from "@saleor/misc";
-import { useProductCreateMutation } from "@saleor/products/mutations";
-import { useProductVariantBulkCreateMutation } from "@saleor/products/mutations";
+import {
+  useProductCreateMutation,
+  useProductVariantBulkCreateMutation
+} from "@saleor/products/mutations";
 import { getChoices } from "@saleor/products/utils/data";
 // import { getChoices, getChoicesParent } from "@saleor/products/utils/data";
 import useCategorySearch from "@saleor/searches/useCategorySearch";
 import useProductTypeSearch from "@saleor/searches/useProductTypeSearch";
 import { useMetadataUpdate } from "@saleor/utils/metadata/updateMetadata";
-import React, { useState } from "react";
+
+import {
+  useProductImageCreateViaUrlMutation,
+  useCrawlerLineCreateMutation
+} from "@saleor/crawler/mutations";
 
 import ProductItem from "./ProductItem";
 
@@ -23,6 +32,7 @@ export interface ProductItemProps {
   setCrawledData: any;
   saveCrawledDataFunction: any;
   productSelection: any;
+  crawler: any;
 }
 
 const useStyles = makeStyles(
@@ -69,7 +79,8 @@ const ProductsSave: React.FC<ProductItemProps> = ({
   crawledData,
   setCrawledData,
   saveCrawledDataFunction,
-  productSelection
+  productSelection,
+  crawler
 }) => {
   const [usedProductTypes] = useState([
     {
@@ -129,6 +140,8 @@ const ProductsSave: React.FC<ProductItemProps> = ({
   const [productCreate] = useProductCreateMutation({});
   const [bulkProductVariantCreate] = useProductVariantBulkCreateMutation({});
   const [updateMetadata] = useMetadataUpdate({});
+  const [productImageViaLinkMutation] = useProductImageCreateViaUrlMutation({});
+  const [crawlerLineCreateMutation] = useCrawlerLineCreateMutation({});
 
   const changeProducts = () => {
     // setCrawledData(JSON.parse(JSON.stringify(crawledData)))
@@ -236,9 +249,13 @@ const ProductsSave: React.FC<ProductItemProps> = ({
 
   const saveProducts = async (tmpProducts, selectedProductIds) => {
     setLoadingSave(true);
-    tmpProducts.map(async product => {
+
+    for (const product of tmpProducts) {
       if (selectedProductIds.map(i => i).includes(product.key)) {
         if (!product.uproductId) {
+          product.loading = true;
+          setCrawledData(JSON.parse(JSON.stringify(crawledData)));
+
           const allowed = [
             "name",
             "ushop",
@@ -261,90 +278,125 @@ const ProductsSave: React.FC<ProductItemProps> = ({
               { productType: "" }
             );
 
-          // linkImages: JSON.stringify(product.linkImages)
-          const result = await productCreate({
-            variables: {
-              input: filtered
-            }
-          });
-          product.ustatus = "saved";
-          product.uproductId = result.data.productCreate.product.id;
-
-          const vattrArray = result.data.productCreate.product.productType.variantAttributes.map(
-            vattr => ({
-              id: vattr.id,
-              values: vattr.values.map(v => v.slug)
-            })
-          );
-
-          const inputPreper = [];
-          product.options.map(opt => {
-            vattrArray.map(vattr => {
-              if (vattr.values.includes(opt.toLowerCase())) {
-                inputPreper.push({
-                  attributes: [
-                    {
-                      id: vattr.id,
-                      values: [opt.toLowerCase()]
-                    }
-                  ],
-                  price: product.basePrice,
-                  sku: (product.name + "_" + opt.toLowerCase()).replace(
-                    /[^a-zA-Z0-9-_]+/gi,
-                    ""
-                  ),
-                  stocks: [
-                    {
-                      quantity: product.stockQuantity,
-                      warehouse:
-                        "V2FyZWhvdXNlOjQ4ZjU5YjRmLWMxODUtNGUzMi05MjExLTMzOWE5NGJlYmIxYw=="
-                    }
-                  ],
-                  trackInventory: true
-                });
+          try {
+            // linkImages: JSON.stringify(product.linkImages)
+            const result = await productCreate({
+              variables: {
+                input: { ...filtered, sku: uuidv4() }
               }
             });
-          });
+            console.log("saved product:", result.data.productCreate.product.id);
+            product.ustatus = "saved";
+            product.uproductId = result.data.productCreate.product.id;
 
-          const metaInput = [
-            {
-              key: "url",
-              value: product.url
-            },
-            {
-              key: "wasPrice",
-              value: product.wasPrice
-            },
-            {
-              key: "linkImages",
-              value: JSON.stringify(product.linkImages)
-            },
-            {
-              key: "productSelection",
-              value: productSelection
+            const vattrArray = result.data.productCreate.product.productType.variantAttributes.map(
+              vattr => ({
+                id: vattr.id,
+                values: vattr.values.map(v => v.slug)
+              })
+            );
+
+            const inputPreper = [];
+            product.options.map(opt => {
+              vattrArray.map(vattr => {
+                if (vattr.values.includes(opt.toLowerCase())) {
+                  inputPreper.push({
+                    attributes: [
+                      {
+                        id: vattr.id,
+                        values: [opt.toLowerCase()]
+                      }
+                    ],
+                    price: product.basePrice,
+                    sku: uuidv4(),
+                    stocks: [
+                      {
+                        quantity: product.stockQuantity,
+                        warehouse:
+                          "V2FyZWhvdXNlOjQ4ZjU5YjRmLWMxODUtNGUzMi05MjExLTMzOWE5NGJlYmIxYw=="
+                      }
+                    ],
+                    trackInventory: true
+                  });
+                }
+              });
+            });
+
+            const metaInput = [
+              {
+                key: "url",
+                value: product.url
+              },
+              {
+                key: "wasPrice",
+                value: product.wasPrice
+              },
+              {
+                key: "productSelection",
+                value: productSelection
+              }
+            ];
+
+            await updateMetadata({
+              variables: {
+                id: result.data.productCreate.product.id,
+                input: metaInput,
+                keysToDelete: []
+              }
+            });
+            console.log(
+              "saved metadata: ",
+              result.data.productCreate.product.id
+            );
+
+            await bulkProductVariantCreate({
+              variables: {
+                id: result.data.productCreate.product.id,
+                inputs: inputPreper
+              }
+            });
+            console.log(
+              "create variants: ",
+              result.data.productCreate.product.id
+            );
+
+            // {
+            //   key: "linkImages",
+            //   value: JSON.stringify(product.linkImages)
+            // },
+            for (const img of product.linkImages) {
+              await productImageViaLinkMutation({
+                variables: {
+                  url: img,
+                  product: product.uproductId
+                }
+              });
+              console.log("saved image:", img);
             }
-          ];
 
-          await updateMetadata({
-            variables: {
-              id: result.data.productCreate.product.id,
-              input: metaInput,
-              keysToDelete: []
-            }
-          });
+            await crawlerLineCreateMutation({
+              variables: {
+                input: {
+                  product: product.uproductId,
+                  crawler: crawler.id,
+                  url: product.url,
+                  uproductSelection: JSON.stringify(crawler.productSelection),
+                  uoptions: JSON.stringify({ options: product.options }),
+                  price: product.basePrice,
+                  wasPrice: product.wasPrice
+                }
+              }
+            });
+          } catch (e) {
+            alert(e);
+          }
 
-          await bulkProductVariantCreate({
-            variables: {
-              id: result.data.productCreate.product.id,
-              inputs: inputPreper
-            }
-          });
-
+          product.loading = false;
           setCrawledData(JSON.parse(JSON.stringify(crawledData)));
           saveCrawledDataFunction(crawledData);
         }
       }
-    });
+    }
     setSelectedProducts([]);
     setLoadingSave(false);
   };
@@ -446,10 +498,14 @@ const ProductsSave: React.FC<ProductItemProps> = ({
               () => searchProductTypesOpts.data.search.pageInfo.hasNextPage
             )}
             loading={searchProductTypesOpts.loading}
+            disabled={searchProductTypesOpts.loading}
             onFetchMore={loadMoreProductTypes}
           />
         </div>
         <div>
+          {/* {searchCategoryOpts.loading ? (
+            "loading categories ..."
+          ) : ( */}
           <SingleAutocompleteSelectField
             displayValue={selectedCategory.name}
             name="category"
@@ -467,8 +523,10 @@ const ProductsSave: React.FC<ProductItemProps> = ({
               () => searchCategoryOpts.data.search.pageInfo.hasNextPage
             )}
             loading={searchCategoryOpts.loading}
+            disabled={searchCategoryOpts.loading}
             onFetchMore={loadMoreCategories}
           />
+          {/* )} */}
         </div>
         <div className={classes.controller}>
           <span style={{ paddingRight: 15 }}>
@@ -591,7 +649,7 @@ const ProductsSave: React.FC<ProductItemProps> = ({
                       }
                       style={{ color: "#13BEBB !important" }}
                     >
-                      Save products
+                      Save products {loadingSave ? "saving..." : ""}
                     </Button>
                   </span>
                 )}
