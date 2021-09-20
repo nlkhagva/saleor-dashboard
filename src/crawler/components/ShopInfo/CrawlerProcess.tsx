@@ -185,7 +185,7 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
           key: index + 1,
           productType: null,
           sku: null,
-          stockQuantity: 100,
+          stockQuantity: 3,
           uproductId: null,
           usale: usalePercent,
           ushop: crawler.shop.id,

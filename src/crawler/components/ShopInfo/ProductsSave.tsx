@@ -382,7 +382,7 @@ const ProductsSave: React.FC<ProductItemProps> = ({
                   product: product.uproductId,
                   crawler: crawler.id,
                   url: product.url,
-                  uproductSelection: JSON.stringify(crawler.productSelection),
+                  uproductSelection: crawler.productSelection,
                   uoptions: JSON.stringify({ options: product.options }),
                   price: product.basePrice,
                   wasPrice: product.wasPrice
