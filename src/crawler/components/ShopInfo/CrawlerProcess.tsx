@@ -38,7 +38,7 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
   productSelection
 }) => {
   const [saveCrawledData] = useMutation(crawlerUpdate);
-  const [crawlerLimit, setCrawlerLimit] = React.useState(10);
+  const [crawlerLimit, setCrawlerLimit] = React.useState(50);
 
   const crawlerServerURI = socketURI;
   const notify = useNotifier();
