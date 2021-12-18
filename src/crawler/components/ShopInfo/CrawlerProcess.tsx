@@ -77,6 +77,7 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
   const classes = useStyles({});
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
+  const [uerrors, setUerrors] = React.useState([]);
 
   const buttonClassname = clsx({
     [classes.buttonSuccess]: success
@@ -97,9 +98,7 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
     if (data.current + data.errors === data.total && data.total > 0) {
       setLoading(false);
 
-      if (data.current > 0) {
-        receiveProductData();
-      }
+      receiveProductData();
     }
   };
 
@@ -161,6 +160,7 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
     });
 
     const data = await result.json();
+    setUerrors(data.errors);
 
     if (loading) {
       setSuccess(true);
@@ -346,6 +346,21 @@ const CrawlerProcess: React.FC<PropsRequest> = ({
                 }
               />
             </>
+          )}
+
+          {uerrors.length > 0 && (
+            <ul
+              style={{
+                listStyle: "none",
+                color: "#a94442",
+                backgroundColor: "#f2dede",
+                border: "1px solid #ebccd1"
+              }}
+            >
+              {uerrors.map((e, index) => (
+                <li key={index}>{e}</li>
+              ))}
+            </ul>
           )}
         </Grid>
       </Grid>
